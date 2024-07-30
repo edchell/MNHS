@@ -272,7 +272,6 @@ success:function(data)
      <label style="font-size:10px" for="">Adviser:</label>
         <input type="text" style="width:220px;text-align:center" 
         value="<?php echo $row['name'] ?>" disabled>
-        <br><br>
      <label style="font-size:10px" for="">General Average:</label>
         <input type="text" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>" disabled>
         <br><br>
