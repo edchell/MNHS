@@ -11,41 +11,41 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="images/logo.jpg"> -->
     <title>Student Grading System</title>
-    <link href="asset/css/bootstrap.min.css" rel="stylesheet">
-    <link href="asset/css/sb-admin.css" rel="stylesheet">
-    <link href="asset/css/plugins/morris.css" rel="stylesheet">
-    <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="asset/css/styles.css" rel="stylesheet">
+    <link href="/asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/asset/css/sb-admin.css" rel="stylesheet">
+    <link href="/asset/css/plugins/morris.css" rel="stylesheet">
+    <link href="/asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/datatables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/asset/css/styles.css" rel="stylesheet">
     
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="datatables/jquery.dataTables.js"></script>
-    <script src="datatables/dataTables.bootstrap.js"></script>
-    <script src="asset/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/datatables/jquery.dataTables.js"></script>
+    <script src="/datatables/dataTables.bootstrap.js"></script>
+    <script src="/asset/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/assets/js/ie-emulation-modes-warning.js"></script>
 
-		<script src="vendors/scripts/core.js"></script>
-		<script src="vendors/scripts/script.min.js"></script>
-		<script src="vendors/scripts/process.js"></script>
-		<script src="vendors/scripts/layout-settings.js"></script>
-		<script src="src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
-		<script src="src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
-		<script src="src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
-		<script src="src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-		<script src="src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-		<script src="vendors/scripts/dashboard2.js"></script>
+		<script src="/vendors/scripts/core.js"></script>
+		<script src="/vendors/scripts/script.min.js"></script>
+		<script src="/vendors/scripts/process.js"></script>
+		<script src="/vendors/scripts/layout-settings.js"></script>
+		<script src="/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
+		<script src="/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
+		<script src="/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
+		<script src="/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+		<script src="/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+		<script src="/vendors/scripts/dashboard2.js"></script>
 
     <!-- bootstrap of deskapp-->
-    <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/core.css" />
 		<link
 			rel="stylesheet"
 			type="text/css"
-			href="vendors/styles/icon-font.min.css"
+			href="/vendors/styles/icon-font.min.css"
 		/>
 		<link
 			rel="stylesheet"
 			type="text/css"
-			href="src/plugins/jvectormap/jquery-jvectormap-2.0.3.css"
+			href="/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css"
 		/>
 		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
     <script
@@ -356,9 +356,9 @@ function showSlides() {
 </script>
 
 
-    <script src="assets/js/holder.min.js"></script>
+    <script src="/assets/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
 
 
 </body>
