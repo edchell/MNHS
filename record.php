@@ -404,6 +404,20 @@ mysqli_close($conn);
    
 
     </div>
+    <script type="text/javascript">
+$(document).ready(function() {
+    // Initialize DataTable if it's not already initialized
+    if (!$.fn.DataTable.isDataTable('#students')) {
+        $("#students").DataTable({
+            "aaSorting": [[0, "asc"]], // Default sorting by the sixth column (index starts at 0)
+            "paging": true,           // Enable pagination
+            "searching": true,        // Enable search box
+            "ordering": true,         // Enable column sorting
+            "info": true              // Display information (e.g., showing 1 to 10 of 50 entries)
+        });
+    }
+        });
+    </script>
     
     
 
