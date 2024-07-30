@@ -263,7 +263,7 @@ success:function(data)
      <label style="font-size:10px" for="">lacks unit in</label>
         <input type="text" style="width:200px;text-align:center" value="<?php echo $row['LACK_UNIT'] ?>" disabled>
         <br><br>
-     <label style="font-size:10px" for="">o be classified as</label>
+     <label style="font-size:10px" for="">To be classified as</label>
         <input type="text" style="width:170px;text-align:center" value="<?php echo $row['TO_BE_CLASSIFIED'] ?>" disabled>
         <br><br>
      <label style="font-size:10px" for="">Total Number of<br>years in school to date</label>
