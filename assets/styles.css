@@ -1,0 +1,11 @@
+.loginbox {
+    background-color:  rgb(162, 161, 120);
+    text-align: center;
+    padding: 5px 15px 10px 10px;
+    width:480px;
+    top: 100px;
+    margin: 4% auto 0 auto;
+    position: relative;
+    color: #618fb7;
+    border-radius:15px;
+}
