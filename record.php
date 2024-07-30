@@ -108,11 +108,11 @@ success:function(data)
       <?php
     } ?>
     </div>
-    
-    
+    <br>
+    <br>
     <input type="text" style="width:100%;text-align:center"  disabled>
-    
-    
+    <br>
+    <br>
  
  <?php
     include 'db.php';
@@ -142,7 +142,7 @@ success:function(data)
 
       <label style="font-size:6" for="">Section</label>
         <input type="text" style="width:100px;text-align:center" value="<?php echo $row["SECTION"] ?>" disabled>  
-        
+        <br>
 
       <label style="font-size:6" for="">Total number of years in school to date</label>
         <input type="text" style="width:290px;text-align:center" value="<?php echo $row["TOTAL_NO_OF_YEAR"] ?>" disabled>
@@ -152,38 +152,38 @@ success:function(data)
 
 
     
-        
+        <br>
         <div class="col-xs-9" style="width:690px">
 
         <div class="row">
           <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
-          
+          <br>
             <label for="" style="font-size:6">Subjects</label>
-            
+            <br>
           </div>
           <div class="col-xs-4" style="height:53px;border:1px solid black;width:225px">
           
             <label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
-            
+            <br>
             <label for="" style="font-size:6;width:43px;border-right:1px solid black;text-align:center">1</label>
             <label for="" style="font-size:6;width:52px;border-right:1px solid black;text-align:center">2</label>
             <label for="" style="font-size:6;width:52px;border-right:1px solid black;text-align:center">3</label>
             <label for="" style="font-size:6;width:30px;;text-align:center">4</label>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
-          
+          <br>
             <label for="" style="font-size:6">Final</label>
-            
+            <br>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
-          
+          <br>
             <label for="" style="font-size:6">Units</label>
-            
+            <br>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
           
             <label for="" style="font-size:15px;text-align:center">Passed or Failed</label>
-            
+            <br>
           </div>
 
             
@@ -259,25 +259,26 @@ success:function(data)
         <input type="text" style="width:162px;text-align:center" value="<?php echo $row['ADVANCE_UNIT'] ?>" disabled>
    </div>
    <div class="row">
-   
+   <br><br>
      <label style="font-size:10px" for="">lacks unit in</label>
         <input type="text" style="width:200px;text-align:center" value="<?php echo $row['LACK_UNIT'] ?>" disabled>
-        
+        <br><br>
      <label style="font-size:10px" for="">To be classified as</label>
         <input type="text" style="width:170px;text-align:center" value="<?php echo $row['TO_BE_CLASSIFIED'] ?>" disabled>
-        
-     <label style="font-size:10px" for="">Total Number ofyears in school to date</label>
+        <br><br>
+     <label style="font-size:10px" for="">Total Number of<br>years in school to date</label>
         <input type="text" style="width:145px;text-align:center" value="<?php echo $row['TOTAL_NO_OF_YEAR'] ?>" disabled>
-        
+        <br><br>
      <label style="font-size:10px" for="">Adviser:</label>
         <input type="text" style="width:220px;text-align:center" 
         value="<?php echo $row['name'] ?>" disabled>
+        <br><br>
      <label style="font-size:10px" for="">General Average:</label>
         <input type="text" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>" disabled>
-        
+        <br><br>
      <label style="font-size:10px" for="">Rank:</label>
         <input type="text" style="width:232px;text-align:center" value="<?php echo $row['RANK'] ?>" disabled>
-        
+        <BR><BR><BR><br>
    </div>
     </div>
 
@@ -335,10 +336,10 @@ success:function(data)
       </table>
     </div> 
     </div>
-     
+     <br>
      <input type="text" style="width:100%;text-align:center"  disabled>
-    
-    
+    <br>
+    <br>
         <?php
 
   }  
