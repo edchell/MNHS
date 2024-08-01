@@ -70,11 +70,10 @@
             <div class="container frm-new">
       <div class="row main">
         <div class="main-login main-center">
-        <h3 id="head">Add New Grade</h3>
+      <center>  <h3 id="head">Add New Grade</h3> </center>
           <form class="" method="post">
             <input type="hidden" id="id" name="id">
             <div class="form-group">
-              <label for="grade" class="cols-sm-2 control-label">Grade</label>
               <div class="cols-sm-4">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>
