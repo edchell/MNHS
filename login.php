@@ -63,8 +63,6 @@
   <div class="login-form" id="login_modal" role="dialog" >
 
 
-  <center><h3 style="background:grey;color:black;border-radius:5px"><b>Please Login</b></h3></center>
-  
   
 
   <form class="form-horizontal" id="loginForm" method="post">
