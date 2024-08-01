@@ -159,7 +159,7 @@ success:function(data)
 <div class="col-md-12">
 <br>
 <div class="form-group">
-  <label class="col-xs-2 control-label" for="icc">Intermediate Course</label> 
+  <label class="col-xs-2 control-label" for="icc">Intermediate Completed</label> 
   <br>
   <div class="col-xs-6">
   <input id="icc" name="icc" type="text"
