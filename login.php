@@ -40,7 +40,7 @@
   display: block;
   position: fixed;
   border:5px solid grey;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 30px;
   width: 500px;
   background-color: transparent;
