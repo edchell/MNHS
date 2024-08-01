@@ -246,7 +246,7 @@
          </div>
          <div class="row">
          <div class="col-md-8 text-right">
-          <button type="submit" class="btn btn-info"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
+          <button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
           
           </div>
 
