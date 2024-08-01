@@ -57,7 +57,22 @@ success:function(data)
      
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button 
+    type="button" 
+    class="close" 
+    data-dismiss="modal" 
+    style="
+        background-color: #dc3545; /* Custom background color */
+        color: white;              /* Text color */
+        border: none;              /* Remove border */
+        font-size: 24px;           /* Font size */
+        opacity: 0.8;              /* Slightly transparent */
+        border-radius: 50%;        /* Round button */
+    "
+>
+    &times;
+</button>
+
           <h4 class="modal-title">New Students</h4>
         </div>
         <div class="modal-body">
