@@ -87,7 +87,6 @@
       <div class="row main">
         <div class="main-login main-center">
       <center>  <h3 id="head">Add New School Year</h3> </center>
-      <br><br><br><br></br>
           <form class="" method="post">
             <input type="hidden" id="id" name="id">
             <div class="form-group">
@@ -96,7 +95,7 @@
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                   <input type="text" class="form-control" id="sy" name="sy"
-                  style="width:200px"  placeholder="(From - To)" value="<?php if(isset($_POST['sy'])){echo $_POST['sy'];} ?>"/>
+                  style="width:100px"  placeholder="(From - To)" value="<?php if(isset($_POST['sy'])){echo $_POST['sy'];} ?>"/>
                 </div>
                  <p>
             <?php if(isset($errors['sy'])){echo "<div class='erlert' id='alert'><h5>" .$errors['sy']. "</h5></div>"; } ?>
