@@ -57,22 +57,7 @@ success:function(data)
      
       <div class="modal-content">
         <div class="modal-header">
-        <button 
-    type="button" 
-    class="close" 
-    data-dismiss="modal" 
-    style="
-        background-color: #dc3545; /* Custom background color */
-        color: white;              /* Text color */
-        border: none;              /* Remove border */
-        font-size: 24px;           /* Font size */
-        opacity: 0.8;              /* Slightly transparent */
-        border-radius: 50%;        /* Round button */
-    "
->
-    &times;
-</button>
-
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">New Students</h4>
         </div>
         <div class="modal-body">
@@ -342,7 +327,7 @@ success:function(data)
         border-radius: 5px; /* Rounded corners */
         cursor: pointer; /* Pointer cursor on hover */
         transition: background-color 0.3s; /* Smooth transition on hover */
-    "  class="btn btn-default" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">View Profile</a>
+    "  class="btn btn-primary" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">View Profile</a>
 
 
       <?php
@@ -360,29 +345,23 @@ success:function(data)
                <div class="modal-content modal-lg">  
              
                   <div class="modal-header"> 
-                     <style>
-    .modal .close {
-        background-color: #ff0000; /* Custom red background color */
-        color: white; /* Text color */
-        border-radius: 50%; /* Round button */
-        width: 30px; /* Button width */
-        height: 30px; /* Button height */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px; /* Font size for the × */
-        border: none; /* Remove border */
-        cursor: pointer; /* Pointer cursor on hover */
-    }
+                  <button 
+    type="button" 
+    class="close" 
+    data-dismiss="modal" 
+    style="
+        background-color: #dc3545; /* Custom background color */
+        color: white;              /* Text color */
+        border: none;              /* Remove border */
+        font-size: 24px;           /* Font size */
+        border-radius: 50%;        /* Round button */
+        padding: 10px;             /* Padding around the content */
+        opacity: 0.8;              /* Slightly transparent */
+    "
+>
+    &times;
+</button>
 
-    .modal .close:hover {
-        background-color: #cc0000; /* Darker red on hover */
-    }
-
-    .modal .close:focus {
-        outline: none; /* Remove focus outline */
-    }
-</style>
 
                      <h4 class="modal-title">
                      <i class=""></i> PROFILE
