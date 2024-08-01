@@ -159,7 +159,7 @@ success:function(data)
 <div class="col-md-12">
 <br>
 <div class="form-group">
-  <label class="col-xs-2 control-label" for="icc">Intermediate Course Completed</label> 
+  <label class="col-xs-2 control-label" for="icc">Intermediate Course</label> 
   <br>
   <div class="col-xs-6">
   <input id="icc" name="icc" type="text"
@@ -181,7 +181,7 @@ success:function(data)
   
 
   <div class="form-group">
-  <label class="col-xs-2 control-label" for="tn">Total Nummber Of</label> 
+  <label class="col-xs-2 control-label" for="tn">Total Number Of</label> 
   <br>
   <div class="col-xs-6">
   <input id="tn" name="tny" type="number" style="width:100px;text-align:right"
