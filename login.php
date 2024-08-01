@@ -86,7 +86,7 @@
     </div>
     <div class="form-group">        
         <div class="col-md-offset-9 col-md-12">
-        <center>  <button type="submit" class="btn btn-default">Login</button> </center>
+          <button type="submit" class="btn btn-default">Login</button> 
         </div>
     </div>
 </form>
