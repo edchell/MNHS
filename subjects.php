@@ -13,7 +13,7 @@
                 <div class="row-md-3" style="display: flex; justify-content: flex-end;">
                   <br>
                   <br>
-        <button class="btn btn-secondary " data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true" ></i>Add New</button></div>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true" ></i>Add New</button></div>
         </div>
        <div class="col-md-12 " id="s_page">
              
