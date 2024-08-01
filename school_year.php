@@ -1,5 +1,5 @@
 
-          <h1 class="page-header">School Year</h1>
+          
       <?php
             include 'new_school_year.php';
                 ?> 

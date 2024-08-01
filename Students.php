@@ -277,18 +277,18 @@ success:function(data)
 
         </div> 
         <div class="panel-body"> 
-  <table id="students" class="table table-bordered table-condensed">
-    <thead>
-      <tr id="heads">
-      <th style="width:10%;text-align:center"> NO.</th>
-        <th style="width:10%;text-align:center">LRN NO.</th>
-        <th style="width:30%;text-align:center">Name</th>
-        <th style="width:20%;text-align:center">Curriculum</th>
-        <th style="width:20%;text-align:center">Level</th>
-        <th style="width:10%"></th>
-      </tr>
-    </thead>
-    <tbody>
+        <table id="students" class="table table-bordered table-condensed">
+            <thead>
+                <tr id="heads">
+                    <th style="width:10%; text-align:center;">No.</th>
+                    <th style="width:10%; text-align:center;">LRN No.</th>
+                    <th style="width:30%; text-align:center;">Name</th>
+                    <th style="width:20%; text-align:center;">Curriculum</th>
+                    <th style="width:20%; text-align:center;">Level</th>
+                    <th style="width:10%;"></th>
+                </tr>
+            </thead>
+            <tbody>
     <?php
     include 'db.php';
     $sql=  mysqli_query($conn, "SELECT * FROM student_info order by INT_COURSE_COMP ");
@@ -337,7 +337,30 @@ success:function(data)
                <div class="modal-content modal-lg">  
              
                   <div class="modal-header"> 
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                     <style>
+    .modal .close {
+        background-color: #ff0000; /* Custom red background color */
+        color: white; /* Text color */
+        border-radius: 50%; /* Round button */
+        width: 30px; /* Button width */
+        height: 30px; /* Button height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px; /* Font size for the × */
+        border: none; /* Remove border */
+        cursor: pointer; /* Pointer cursor on hover */
+    }
+
+    .modal .close:hover {
+        background-color: #cc0000; /* Darker red on hover */
+    }
+
+    .modal .close:focus {
+        outline: none; /* Remove focus outline */
+    }
+</style>
+
                      <h4 class="modal-title">
                      <i class=""></i> PROFILE
                      </h4> 
