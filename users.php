@@ -112,7 +112,6 @@ success:function(data)
               <div class="cols-sm-4">
                 <div class="input-group">
         <input type="text" class="form-control" id="fname" name="user" placeholder="Enter Type" required>
-        <select class="form-control" name="type" id="sel1" required>
         <option></option>
           <option value="ADMINISTRATOR">ADMINISTRATOR</option>
           <option value="STAFF">STAFF</option>n>
