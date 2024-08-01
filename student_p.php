@@ -31,7 +31,7 @@
      ?>
      <div class="container">
          <div class="col-md-12">
-         <form method="post"">
+         <form method="post">
          <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>"
 
          <div class="row">
