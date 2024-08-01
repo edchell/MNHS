@@ -140,11 +140,15 @@
             <div class="form-group ">
             <button 
     class="btn btn-primary" 
->
+    style="background-color: #007bff; border-color: #007bff; color: white;">
     Add
 </button>
 
-<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+
+<button type="button" class="btn btn-info" data-dismiss="modal" style="background-color: #dc3545; border-color: #dc3545; color: white;">
+    Close
+</button>
+
 
 
          
