@@ -8,7 +8,7 @@
     $sql = mysqli_query($conn, "SELECT * From student_info left join program on student_info.PROGRAM = program.PROGRAM_ID where STUDENT_ID = '$id'");
     while($row = mysqli_fetch_assoc($sql)){
      ?>
-         <input type="hidden" name="id" value="<?php echo $id ?>"
+         <input type="hidden" name="id" value="<?php echo $id ?>">
          <div class="row">
          <div class="col-md-5 text-right">
          <label>LRN:</label>
