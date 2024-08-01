@@ -1,3 +1,58 @@
+<style>
+  .modal-body {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for better readability */
+}
+
+.profile-section {
+    margin-bottom: 15px; /* Space between sections */
+}
+
+.row {
+    margin-bottom: 10px; /* Space between rows */
+}
+
+.label {
+    font-weight: bold;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.modal-footer {
+    background-color: #f1f1f1; /* Slightly different background for footer */
+    padding: 15px;
+    text-align: right;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-default {
+    background-color: #ffffff;
+    border-color: #dddddd;
+}
+
+.btn-default:hover {
+    background-color: #f5f5f5;
+    border-color: #cccccc;
+}
+
+
+</style>
+
 <div class="modal-body">
     <?php
     include 'db.php';
