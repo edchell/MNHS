@@ -111,6 +111,7 @@ success:function(data)
             <div class="form-group">
               <div class="cols-sm-4">
                 <div class="input-group">
+                <input type="password" class="form-control"" id="fname" name="pwd" placeholder="Enter Type" required>
         <select class="form-control" name="type" id="sel1" required>
         <option></option>
           <option value="ADMINISTRATOR">ADMINISTRATOR</option>
