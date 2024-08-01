@@ -77,7 +77,7 @@ success:function(data)
 <div class="col-md-4">
 <br>
 <div class="form-group">
-  <label class="col-xs-4 control-label" for="lrn">LRN Number</label>  
+  <label class="col-xs-4 control-label" for="lrn">LRN</label>  
   <div class="col-xs-6">
   <input id="lrn" name="lrn" type="text" placeholder="Enter LRN " maxlength="12" class="form-control input-xs" required="">
   </div>
@@ -110,7 +110,7 @@ success:function(data)
 </div>
 
 <div class="form-group">
-  <label class="col-xs-4 control-label" for="address">Birth Place</label>
+  <label class="col-xs-4 control-label" for="address"> Place</label>
   <div class="col-xs-8">
     <div class="input-group">
       <input id="address" class="form-control"
@@ -181,7 +181,7 @@ success:function(data)
   
 
   <div class="form-group">
-  <label class="col-xs-2 control-label" for="tn">Total Nummber Of Years</label> 
+  <label class="col-xs-2 control-label" for="tn">Total Nummber Of</label> 
   <br>
   <div class="col-xs-6">
   <input id="tn" name="tny" type="number" style="width:100px;text-align:right"
