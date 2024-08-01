@@ -327,7 +327,7 @@ success:function(data)
         border-radius: 5px; /* Rounded corners */
         cursor: pointer; /* Pointer cursor on hover */
         transition: background-color 0.3s; /* Smooth transition on hover */
-    "  class="btn btn-primary" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">View Profile</a>
+    "  class="btn btn-default" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">View Profile</a>
 
 
       <?php
