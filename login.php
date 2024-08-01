@@ -39,7 +39,7 @@
       .login-form {
   display: block;
   position: fixed;
-  border:5px solid grey;
+  border:2px solid grey;
   border-radius: 10px;
   padding: 30px;
   width: 500px;
@@ -67,7 +67,7 @@
 
   <form class="form-horizontal" id="loginForm" method="post">
     <div class="form-group">
-        <label class="control-label col-sm-2" for="user">User:</label>
+      <center>  <label class="control-label col-sm-2" for="user">User:</label> </center>
         <div class="col-md-10">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <center>   <label class="control-label col-sm-2" for="pwd">Password:</label> </center>
         <div class="col-md-10">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
@@ -86,7 +86,7 @@
     </div>
     <div class="form-group">        
         <div class="col-md-offset-9 col-md-12">
-            <button type="submit" class="btn btn-default">Login</button>
+        <center>  <button type="submit" class="btn btn-default">Login</button> </center>
         </div>
     </div>
 </form>
