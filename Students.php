@@ -38,8 +38,16 @@ success:function(data)
   include 'newstudent.php';
   ?>
 
-        <button style="float:right" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      <i class="glyphicon glyphicon-plus"></i> New Entry</button></h1>
+<button 
+    type="button" 
+    class="btn btn-primary" 
+    data-toggle="modal" 
+    data-target="#myModal" 
+    style="float:right; background-color: #007bff; border-color: #007bff; color: white;"
+>
+    <i class="glyphicon glyphicon-plus"></i> New Entry
+</button>
+
   
  
 
