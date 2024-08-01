@@ -11,7 +11,7 @@
          <input type="hidden" name="id" value="<?php echo $id ?>">
          <div class="row">
          <div class="col-md-5 text-right">
-         <label>sRN:</label>
+         <label>LRN:</label>
          </div>
          <div class="col-md-2 text-left">
           <?php echo $row['LRN_NO'] ?>
