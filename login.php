@@ -45,7 +45,7 @@
   width: 500px;
   background-color: transparent;
   left:500px;
-  top:180px;
+  top:150px;
  } 
  .erlert{
   display:block;
