@@ -59,7 +59,7 @@ success:function(data)
         <td><?php echo $row['USER'] ?></td>
         <td><?php echo $row['USER_TYPE'] ?></td>
         <td><a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i> edit</a>
-        <a data-toggle="modal" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-delete-square" aria-hidden="true"></i> delete</a></td>
+        <a data-toggle="modal" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-trash-square" aria-hidden="true"></i> delete</a></td>
       </tr>
       </form>
       <?php
