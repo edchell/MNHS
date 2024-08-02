@@ -1,4 +1,5 @@
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     $(document).ready(function(){
@@ -177,39 +178,55 @@ success:function(data)
         </div>
       
  <script type="text/javascript">
-        $(function() {
-            $("#students").dataTable(
-        { "aaSorting": [[ 0, "asc" ]] }
-      );
-        });
-    </script>
-<script>
-  function deleteUser(userId) {
-    if (confirm("Are you sure you want to delete this user?")) {
-        // Create an AJAX request
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "delete_user.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+function deleteUser(userId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Create an AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "your_script.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        // Define what happens on successful data submission
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                alert("User deleted successfully.");
-                // Optionally, you can refresh the page or remove the user row from the table
-                location.reload();
-            } else {
-                alert("Error deleting user.");
-            }
-        };
+            // Define what happens on successful data submission
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    Swal.fire(
+                        'Deleted!',
+                        'User has been deleted.',
+                        'success'
+                    ).then(() => {
+                        // Optionally, you can refresh the page or remove the user row from the table
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire(
+                        'Error!',
+                        'There was an error deleting the user.',
+                        'error'
+                    );
+                }
+            };
 
-        // Define what happens in case of error
-        xhr.onerror = function () {
-            alert("Request failed.");
-        };
+            // Define what happens in case of error
+            xhr.onerror = function () {
+                Swal.fire(
+                    'Error!',
+                    'Request failed.',
+                    'error'
+                );
+            };
 
-        // Set up our request
-        xhr.send("user_id=" + userId);
-    }
+            // Set up our request
+            xhr.send("action=delete&user_id=" + userId);
+        }
+    });
 }
 
 </script>
