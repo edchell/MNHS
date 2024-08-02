@@ -23,10 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Log login activity
             mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged in', '$id', NOW())");
 
-            // Display success alert
-            echo '<div class="alert alert-success" role="alert">
-                    Login successful! Redirecting to homepage...
-                  </div>';
 
             // Redirect to home page after a short delay
             header("refresh:2;url=rms.php?page=home");
