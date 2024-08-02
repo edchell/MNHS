@@ -58,7 +58,7 @@ success:function(data)
         <td><?php echo $row['FIRSTNAME']." ".$row['LASTNAME'] ?></td>
         <td><?php echo $row['USER'] ?></td>
         <td><?php echo $row['USER_TYPE'] ?></td>
-        <td><a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i> edit</a>
+        <td><a class="btn btn-primary" data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
         <a class="btn btn-danger" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="deleteUser(<?php echo $row['USER_ID'] ?>)"><i class="icon-copy fa fa-times-rectangle" aria-hidden="true"></i></a></td>
       </tr>
       </form>
