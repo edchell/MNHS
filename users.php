@@ -59,6 +59,7 @@ success:function(data)
         <td><?php echo $row['USER'] ?></td>
         <td><?php echo $row['USER_TYPE'] ?></td>
         <td><a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i> edit</a></td>
+        <td><a data-toggle="modal" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-delete-square" aria-hidden="true"></i> delete</a></td>
       </tr>
       </form>
       <?php
@@ -124,7 +125,7 @@ success:function(data)
 
             <div class="form-group ">
             <button 
-    class="btn btn-info" 
+    class="btn btn-primary" 
     style="background-color: #28a745; border-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;"
 >
     Add
