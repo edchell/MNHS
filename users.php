@@ -183,3 +183,33 @@ success:function(data)
       );
         });
     </script>
+<script>
+  function deleteUser(userId) {
+    if (confirm("Are you sure you want to delete this user?")) {
+        // Create an AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "delete_user.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Define what happens on successful data submission
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert("User deleted successfully.");
+                // Optionally, you can refresh the page or remove the user row from the table
+                location.reload();
+            } else {
+                alert("Error deleting user.");
+            }
+        };
+
+        // Define what happens in case of error
+        xhr.onerror = function () {
+            alert("Request failed.");
+        };
+
+        // Set up our request
+        xhr.send("user_id=" + userId);
+    }
+}
+
+</script>
