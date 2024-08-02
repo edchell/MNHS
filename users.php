@@ -178,7 +178,7 @@ success:function(data)
         </div>
       
  <script type="text/javascript">
-function deleteUser(userId) {
+function deleteUser(USER_ID) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
