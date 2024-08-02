@@ -41,7 +41,7 @@ success:function(data)
         <th style="width:20%">Name</th>
         <th style="width:10%">User</th>
         <th style="width:10%">Type</th>
-        <th style="width:20%"></th>
+        <th style="width:30%"></th>
       </tr>
     </thead>
     <tbody>
@@ -59,7 +59,7 @@ success:function(data)
         <td><?php echo $row['USER'] ?></td>
         <td><?php echo $row['USER_TYPE'] ?></td>
         <td><a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i> edit</a>
-        <a class="btn btn-delete" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="deleteUser(<?php echo $row['USER_ID'] ?>)"><i class="icon-copy fa fa-times-rectangle" aria-hidden="true"></i> delete</a></td>
+        <a class="btn btn-danger" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="deleteUser(<?php echo $row['USER_ID'] ?>)"><i class="icon-copy fa fa-times-rectangle" aria-hidden="true"></i></a></td>
       </tr>
       </form>
       <?php
