@@ -191,7 +191,7 @@ function deleteUser(userId) {
         if (result.isConfirmed) {
             // Create an AJAX request
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "your_script.php", true);
+            xhr.open("POST", "delete_user.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             // Define what happens on successful data submission

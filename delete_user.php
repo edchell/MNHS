@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     $userId = $_POST['user_id'];
 
     // Database connection
-    $conn = new mysqli('your_host', 'your_username', 'your_password', 'your_database');
+    $conn = new mysqli('127.0.0.1', 'u510162695_grading_db', '1Grading_db', 'u510162695_grading_db');
 
     // Check connection
     if ($conn->connect_error) {
