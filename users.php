@@ -41,7 +41,7 @@ success:function(data)
         <th style="width:20%">Name</th>
         <th style="width:10%">User</th>
         <th style="width:10%">Type</th>
-        <th style="width:10%"></th>
+        <th style="width:20%"></th>
       </tr>
     </thead>
     <tbody>
