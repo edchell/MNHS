@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     }
 
     // SQL to delete a record
-    $sql = "DELETE FROM users WHERE USER_ID = ?";
+    $sql = "DELETE FROM user WHERE USER_ID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $userId);
 
