@@ -48,8 +48,6 @@ success:function(data)
     <i class="glyphicon glyphicon-plus"></i> New Entry
 </button>
 
-  
- 
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
