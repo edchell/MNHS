@@ -138,22 +138,6 @@ mysqli_close($conn);
         <button onclick="window.history.back()" class="back-button">Back</button>
         <h1 class="page-header"><?php echo $student['LASTNAME'] . ', ' . $student['FIRSTNAME'] . ' ' . $student['MIDDLENAME']; ?></h1>
 
-        <div class="form-inline">
-            <div class="form-group">
-                <label for="fetch">Select Grade:</label>
-                <select class="form-control" id="fetch">
-                    <?php
-                    // Fetch and display grades
-                    include 'db.php';
-                    $gradeQuery = "SELECT * FROM grade ORDER BY grade_id";
-                    $gradeResult = mysqli_query($conn, $gradeQuery);
-                    while ($grade = mysqli_fetch_assoc($gradeResult)) {
-                        echo "<option value='{$grade['grade_id']}'>{$grade['grade']}</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
 
         <br><br>
 
