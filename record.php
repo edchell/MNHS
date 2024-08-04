@@ -138,19 +138,11 @@ success:function(data)
         <option > </option>
     <?php 
     include 'db.php';
-    $query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
-    while($row=mysqli_fetch_assoc($query)){
-    ?>
-    <option value="<?php echo $row['grade_id'] ?>"><?php echo $row['grade'] ?> </option>
-    <?php }  ?>
-      </select>
-      <div class="col-md-7 text-right">
-    <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
+   $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
     while($sy = mysqli_fetch_assoc($query)){ ?>
       <button class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>&prog=<?php echo $_GET['prog'] ?>"><i class="fa fa-plus"> Add Record</i></button>
       <?php
     } ?>
-    </div>
     </div>
     </div>
     </div>
