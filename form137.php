@@ -289,10 +289,8 @@ $user = $_SESSION['ID'];
 		</table>
 		
 		<div class="row">
-          <div class="col-xs-4 text-center" style="height:80px;border:1px solid black;padding-right:1px">
-          <br>
+          <div class="col-xs-4 text-center" style="height:40px;border:1px solid black;padding-right:1px">
             <label for="" style="font-size:6">Subjects</label>
-            <br>
           </div>
           <div class="col-xs-4" style="height:50px;border:1px solid black;width:225px">    
             <label for="" style="font-size:6;text-align:center;width:300px;border-bottom:2px solid black">Periodic Rating</label>
