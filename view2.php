@@ -57,7 +57,7 @@
 <div class="container-fluid">
 
   <div class="login-form" id="login_modal" role="dialog">
-    <form class="form-horizontal" id="loginForm" method="post" action="view_grades.php">
+    <form class="form-horizontal" id="loginForm" method="post" action="view2.php">
       <div class="form-group">
         <label class="control-label col-sm-2" for="student_id">Student ID:</label>
         <div class="col-md-10">
