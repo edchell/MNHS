@@ -155,14 +155,6 @@ mysqli_close($conn);
             </div>
         </div>
 
-        <div class="col-md-7 text-right">
-            <?php while ($schoolYear = mysqli_fetch_assoc($schoolYearResult)) { ?>
-                <a class="btn btn-success" href="rms.php?page=addrecord&id=<?php echo $_GET['id']; ?>&sy=<?php echo $schoolYear['school_year']; ?>&prog=<?php echo $_GET['prog']; ?>">
-                    <i class="fa fa-plus"> Add Record</i>
-                </a>
-            <?php } ?>
-        </div>
-
         <br><br>
 
         <input type="text" style="width:100%;text-align:center" disabled>
