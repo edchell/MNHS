@@ -142,8 +142,8 @@ $user = $_SESSION['ID'];
 <div id='print'>
 <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 
-<img src="images/Deped-Logo.png" alt="images/Deped-Logo.png">
-<img src="images/mnlogo.jpg" alt="images/mnlogo.jpg">
+<img src="images/mnlogo.jpg" alt="images/mnlogo.jpg" width="10" height="13">
+<img src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="10" height="13">
 		<p><center><b>MNHS Student Grading System</b></center></p>
 
 		  </div>
