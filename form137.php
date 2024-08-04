@@ -323,8 +323,8 @@ $user = $_SESSION['ID'];
     <div class="container">
         <div class="row">
             <!-- Subjects Column -->
-            <div class="col-xs-4 text-center" style="height: 10px; border: 1px solid black;">
-                <label for="" style="font-size: 12px;">Subjects</label>
+            <div class="col-xs-4 text-center" style="height: 50px; border: 10px solid black;">
+                <label for="" style="font-size: 1px;">Subjects</label>
             </div>
             <!-- Periodic Rating Column -->
             <div class="col-xs-4" style="height: 50px; border: 1px solid black;">
@@ -342,7 +342,7 @@ $user = $_SESSION['ID'];
             </div>
             <!-- Final Column -->
             <div class="col-xs-1 text-center final-cell" style="border: 1px solid black;">
-                <label for="" style="font-size: 12px;">Final</label>
+                <label for="" style="font-size: 1px;">Final</label>
             </div>
             <!-- Passed or Failed Column -->
             <div class="col-xs-1 pass-fail-cell" style="border: 1px solid black;">
