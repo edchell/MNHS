@@ -289,7 +289,7 @@ $user = $_SESSION['ID'];
 		</table>
 		
 		<div class="row">
-          <div class="col-xs-4 text-center" style="height:30px;border:1px solid black;padding-right:1px">
+          <div class="col-xs-4 text-center" style="height:60px;border:1px solid black;padding-right:1px">
           <br>
             <label for="" style="font-size:6">Subjects</label>
             <br>
@@ -298,7 +298,7 @@ $user = $_SESSION['ID'];
           
             <label for="" style="font-size:6;text-align:center;width:300px;border-bottom:1px solid black">Periodic Rating</label>
             <br>
-            <label for="" style="font-size:6;width:45px;border-right:1px solid black;text-align:center">1</label>
+            <label for="" style="font-size:6;width:40px;border-right:1px solid black;text-align:center">1</label>
             <label for="" style="font-size:6;width:40px;border-right:1px solid black;text-align:center">2</label>
             <label for="" style="font-size:6;width:40px;border-right:1px solid black;text-align:center">3</label>
             <label for="" style="font-size:6;width:40px;;text-align:center">4</label>
