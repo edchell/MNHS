@@ -1,49 +1,51 @@
 <?php
-include 'db.php';
+include 'db.php'; // Include your database connection
 
-// Get the student LRN_NO and LASTNAME from the URL
-$lrn_no = mysqli_real_escape_string($conn, $_GET['lrn_no']);
-$lastname = mysqli_real_escape_string($conn, $_GET['lastname']);
-
-// Fetch student information based on LRN_NO and LASTNAME
-$studentQuery = "SELECT * FROM student_info WHERE LRN_NO = '$lrn_no' AND LASTNAME = '$lastname'";
-$studentResult = mysqli_query($conn, $studentQuery);
-
-if ($studentResult && mysqli_num_rows($studentResult) > 0) {
-    $student = mysqli_fetch_assoc($studentResult);
-
-    // Fetch school year info and grades
-    $gradeQuery = "
-        SELECT * 
-        FROM student_year_info 
-        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
-        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
-        WHERE STUDENT_ID = '{$student['STUDENT_ID']}'
-    ";
-    $gradeResult = mysqli_query($conn, $gradeQuery);
-
-    // Fetch school year
-    $schoolYearQuery = "SELECT school_year FROM school_year WHERE status='Yes'";
-    $schoolYearResult = mysqli_query($conn, $schoolYearQuery);
-
-    // Fetch subjects and grades
-    $subjectQuery = "
-        SELECT * 
-        FROM total_grades_subjects 
-        WHERE SYI_ID = (
-            SELECT SYI_ID 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve and sanitize input
+    $lrn_no = mysqli_real_escape_string($conn, $_POST['LRN_NO']);
+    $lastname = mysqli_real_escape_string($conn, $_POST['LASTNAME']);
+    
+    // Fetch student information
+    $studentQuery = "SELECT * FROM student_info WHERE LRN_NO = '$lrn_no' AND LASTNAME = '$lastname'";
+    $studentResult = mysqli_query($conn, $studentQuery);
+    
+    if ($studentResult && mysqli_num_rows($studentResult) > 0) {
+        $student = mysqli_fetch_assoc($studentResult);
+        
+        // Fetch school year info and grades
+        $gradeQuery = "
+            SELECT * 
             FROM student_year_info 
+            LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+            LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
             WHERE STUDENT_ID = '{$student['STUDENT_ID']}'
-        ) 
-        ORDER BY SUBJECT
-    ";
-    $subjectResult = mysqli_query($conn, $subjectQuery);
-} else {
-    echo "<div class='alert alert-danger' role='alert'>Student not found.</div>";
-    exit();
+        ";
+        $gradeResult = mysqli_query($conn, $gradeQuery);
+        
+        // Fetch subjects and grades
+        $subjectQuery = "
+            SELECT * 
+            FROM total_grades_subjects 
+            WHERE SYI_ID = (
+                SELECT SYI_ID 
+                FROM student_year_info 
+                WHERE STUDENT_ID = '{$student['STUDENT_ID']}'
+            ) 
+            ORDER BY SUBJECT
+        ";
+        $subjectResult = mysqli_query($conn, $subjectQuery);
+        
+        // Fetch school year
+        $schoolYearQuery = "SELECT school_year FROM school_year WHERE status='Yes'";
+        $schoolYearResult = mysqli_query($conn, $schoolYearQuery);
+        
+    } else {
+        $error_message = "Student not found.";
+    }
+    
+    mysqli_close($conn);
 }
-
-mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
