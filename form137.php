@@ -293,7 +293,7 @@ $user = $_SESSION['ID'];
 		<style>
         table {
             border-collapse: collapse;
-            width: 150%;
+            width: 80%;
             font-size: 12px;
         }
         th, td {
