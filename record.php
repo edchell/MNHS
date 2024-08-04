@@ -125,7 +125,7 @@ success:function(data)
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s; /* Smooth transition on hover */
 ">Back</button> 
-    <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
+    <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='No'");
     while($sy = mysqli_fetch_assoc($query)){ ?>
       <a class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>&prog=<?php echo $_GET['prog'] ?>"><i class="fa fa-plus"> Add Record</i></a>
       <?php
