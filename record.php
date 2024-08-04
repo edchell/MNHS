@@ -138,7 +138,7 @@ success:function(data)
     $query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
     while($row=mysqli_fetch_assoc($query)){
     ?>
-    <input type="text" value="<?php echo $row['grade_id'] ?>" readonly><?php echo $row['grade'] ?>
+    <input value="<?php echo $row['grade_id'] ?>" readonly><?php echo $row['grade'] ?>
     <?php }  ?>
       </select>
     </div>
