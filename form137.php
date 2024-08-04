@@ -35,7 +35,8 @@ $user = $_SESSION['ID'];
     <!-- Custom Fonts -->
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    
+    <title>Fixed Table Layout</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="datatables/jquery.dataTables.js"></script>
     <script src="datatables/dataTables.bootstrap.js"></script>
         <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
@@ -288,34 +289,68 @@ $user = $_SESSION['ID'];
 		</tr>
 		</table>
 		
-		<div class="row">
-          <div class="col-xs-4 text-center" style="height:40px;border:1px solid black;padding-right:1px">
-            <label for="" style="font-size:6">Subjects</label>
-          </div>
-          <div class="col-xs-4" style="height:50px;border:1px solid black;width:225px">    
-            <label for="" style="font-size:6;text-align:center;width:300px;border-bottom:2px solid black">Periodic Rating</label>
-            <br>
-            <label for="" style="font-size:6;width:40px;border-right:1px solid black;text-align:center">1</label>
-            <label for="" style="font-size:6;width:40px;border-right:1px solid black;text-align:center">2</label>
-            <label for="" style="font-size:6;width:40px;border-right:1px solid black;text-align:center">3</label>
-            <label for="" style="font-size:6;width:40px;;text-align:center">4</label>
-          </div>
-          <div class="col-xs-1 text-center" style="height:30px;border:1px solid black">
-          <br>
-            <label for="" style="font-size:6">Final</label>
-            <br>
-          </div>
-          <div class="col-xs-1 text-center" style="height:20px;border:1px solid black;padding-left:1px;width:100px">
-          
-            <label for="" style="font-size:15px;text-align:center">Passed or Failed</label>
-            <br>
-          </div>
+		<style>
+        .table-header {
+            font-size: 12px;
+            text-align: center;
+            border-bottom: 2px solid black;
+            padding: 5px;
+        }
+        .table-cell {
+            font-size: 12px;
+            text-align: center;
+            border-right: 1px solid black;
+            padding: 5px;
+        }
+        .table-cell:last-child {
+            border-right: none;
+        }
+        .final-cell {
+            height: 40px;
+        }
+        .pass-fail-cell {
+            height: 40px;
+            padding: 0;
+            text-align: center;
+        }
+        .pass-fail-cell label {
+            font-size: 15px;
+            line-height: 40px; /* Vertically center text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Subjects Column -->
+            <div class="col-xs-4 text-center" style="height: 40px; border: 1px solid black;">
+                <label for="" style="font-size: 12px;">Subjects</label>
+            </div>
+            <!-- Periodic Rating Column -->
+            <div class="col-xs-4" style="height: 50px; border: 1px solid black;">
+                <div class="row">
+                    <div class="col-xs-12 table-header">
+                        Periodic Rating
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 table-cell">1</div>
+                    <div class="col-xs-3 table-cell">2</div>
+                    <div class="col-xs-3 table-cell">3</div>
+                    <div class="col-xs-3 table-cell">4</div>
+                </div>
+            </div>
+            <!-- Final Column -->
+            <div class="col-xs-1 text-center final-cell" style="border: 1px solid black;">
+                <label for="" style="font-size: 12px;">Final</label>
+            </div>
+            <!-- Passed or Failed Column -->
+            <div class="col-xs-1 pass-fail-cell" style="border: 1px solid black;">
+                <label for="">Passed or Failed</label>
+            </div>
+        </div>
+    </div>
 
-            
-
-        </div>  
-
-        <div class="row" >
 		
 		<?php
 		$syi = $row1['SYI_ID'];
