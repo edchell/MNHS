@@ -133,7 +133,6 @@ success:function(data)
       <div class="col-md-5">
       <div class="form-inline">
       <div class="form-group">
-      <label for="focusedInput">Select Grade:</label>
       <select class="form-control" style="height:30px;font-size:12px" id="fetch">
         <option > </option>
     <?php 
