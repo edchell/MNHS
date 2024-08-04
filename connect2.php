@@ -1,25 +1,38 @@
 <?php
 include 'db.php';
 
-// Get the input values
-$lrn_no = $_POST['lrn_no'];
-$lastname = $_POST['lastname'];
+// Check if POST data is available
+if (isset($_POST['lrn_no']) && isset($_POST['lastname'])) {
+    // Get the input values
+    $lrn_no = $_POST['lrn_no'];
+    $lastname = $_POST['lastname'];
 
-// Create a SQL query to search for the student
-$sql = "SELECT * FROM student_info WHERE LRN_NO = '$lrn_no' AND LASTNAME = '$lastname'";
-$result = mysqli_query($conn, $sql);
+    // Prepare the SQL query to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM student_info WHERE LRN_NO = ? AND LASTNAME = ?");
+    $stmt->bind_param("ss", $lrn_no, $lastname);
+    
+    // Execute the query
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-// Check if any results were found
-if (mysqli_num_rows($result) > 0) {
-    // Output the student data
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Display the student data in HTML
-        echo '<h1>' . $row['LASTNAME'] . ', ' . $row['FIRSTNAME'] . ' ' . $row['MIDDLENAME'] . '</h1>';
-        // Include the rest of your student information display here
+    // Check if any results were found
+    if ($result->num_rows > 0) {
+        // Output the student data
+        while ($row = $result->fetch_assoc()) {
+            // Display the student data in HTML
+            echo '<h1>' . htmlspecialchars($row['LASTNAME']) . ', ' . htmlspecialchars($row['FIRSTNAME']) . ' ' . htmlspecialchars($row['MIDDLENAME']) . '</h1>';
+            // Include the rest of your student information display here
+        }
+    } else {
+        echo 'No student found.';
     }
+
+    // Close the statement
+    $stmt->close();
 } else {
-    echo 'No student found.';
+    echo 'Invalid input.';
 }
 
-mysqli_close($conn);
+// Close the database connection
+$conn->close();
 ?>
