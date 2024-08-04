@@ -288,14 +288,41 @@ $user = $_SESSION['ID'];
 		</tr>
 		</table>
 		
+		<div class="row">
+          <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
+          <br>
+            <label for="" style="font-size:6">Subjects</label>
+            <br>
+          </div>
+          <div class="col-xs-4" style="height:53px;border:1px solid black;width:225px">
+          
+            <label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
+            <br>
+            <label for="" style="font-size:6;width:43px;border-right:1px solid black;text-align:center">1</label>
+            <label for="" style="font-size:6;width:52px;border-right:1px solid black;text-align:center">2</label>
+            <label for="" style="font-size:6;width:52px;border-right:1px solid black;text-align:center">3</label>
+            <label for="" style="font-size:6;width:30px;;text-align:center">4</label>
+          </div>
+          <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
+          <br>
+            <label for="" style="font-size:6">Final</label>
+            <br>
+          </div>
+          <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
+            <br>
+          </div>
+          <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
+          
+            <label for="" style="font-size:15px;text-align:center">Passed or Failed</label>
+            <br>
+          </div>
+
+            
+
+        </div>  
+
+        <div class="row" >
 		
-		<table style="border-collapse:collapse">
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
-		</tr>
 		<?php
 		$syi = $row1['SYI_ID'];
 		$sql2 = mysqli_query($conn,"SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT");
