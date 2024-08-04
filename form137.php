@@ -289,7 +289,7 @@ $user = $_SESSION['ID'];
 		</table>
 		
 		<div class="row">
-          <div class="col-xs-4 text-center" style="height:100px;border:1px solid black;padding-right:1px">
+          <div class="col-xs-4 text-center" style="height:30px;border:1px solid black;padding-right:1px">
           <br>
             <label for="" style="font-size:6">Subjects</label>
             <br>
@@ -308,9 +308,7 @@ $user = $_SESSION['ID'];
             <label for="" style="font-size:6">Final</label>
             <br>
           </div>
-            <br>
-          </div>
-          <div class="col-xs-1 text-center" style="height:20px;border:1px solid black;padding-left:1px;width:50px">
+          <div class="col-xs-1 text-center" style="height:20px;border:1px solid black;padding-left:1px;width:100px">
           
             <label for="" style="font-size:15px;text-align:center">Passed or Failed</label>
             <br>
