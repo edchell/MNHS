@@ -144,7 +144,8 @@ $user = $_SESSION['ID'];
 
 <img src="images/mnlogo.jpg" alt="images/mnlogo.jpg" width="40" height="30">
 <img src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="40" height="30">
-
+<html>
+<head>
 <style>
 body {
   background-image: url("images/mnlogo.jpg");
@@ -154,7 +155,11 @@ body {
   background-attachment: fixed;
 }
 </style>
-
+</head>
+<body>
+	
+<html>
+<head>
 <style>
 body {
   background-image: url("images/Deped-Logo.png");
@@ -164,6 +169,8 @@ body {
   background-attachment: fixed;
 }
 </style>
+</head>
+<body>
 
 
 		<p><center><b>MNHS Student Grading System</b></center></p>
