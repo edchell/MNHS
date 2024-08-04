@@ -150,9 +150,7 @@ $user = $_SESSION['ID'];
 
 		<p><center><b>MNHS Student Grading System</b></center></p>
 
-		  </div>
-		  <div class="row">
-		  <div class="col-md-12">
+		  
 		  <style>
         .header-container {
             background-color: lightgray;
