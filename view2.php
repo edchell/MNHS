@@ -85,11 +85,6 @@
     ?>
   </div>          
 </div>
-
-<script src="assets/js/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js"></script>
-<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#search-student').on('click', function() {
