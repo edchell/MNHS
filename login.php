@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="form-group">        
-        <div class="col-md-offset-8 col-md-11">
+        <div class="col-md-offset-8 col-md-9">
           <button type="submit" class="btn btn-default">Login</button>
           <button class="btn btn-primary">Student View</button> 
         </div>
