@@ -19,9 +19,10 @@ $user = $_SESSION['ID'];
 
 ?>
 <head>
-    <link rel="icon" href="images/logo.jpg">
+    <link rel="icon" href="images/Deped-Logo.png">
+	<link rel="icon" href="images/mnlogo.jpg">
 
-    <title>Student Grading System</title>
+    <title>MNHS Student Grading System</title>
 
      <!-- Bootstrap Core CSS -->
     <link href="asset/css/bootstrap.min.css" rel="stylesheet">
