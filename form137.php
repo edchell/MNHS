@@ -153,7 +153,15 @@ $user = $_SESSION['ID'];
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
-		  
+		  <style>
+        .highlighted-heading {
+            background-color: lightgray; /* Background color for highlighting */
+            padding: 10px; /* Add some padding around the text */
+            text-align: center; /* Center the text */
+            border-radius: 5px; /* Optional: rounded corners */
+        }
+    </style>
+
 		  <p class="highlighted-heading">
         <b><h4>Learner's Information</h4></b>
     </p>
