@@ -311,7 +311,7 @@ $user = $_SESSION['ID'];
         <thead>
             <tr>
                 <th style="width: 150px;">Subjects</th>
-                <th colspan="4" style="width: 160px;">Periodic Rating</th>
+                <th colspan="4" style="width: 200px;">Periodic Rating</th>
                 <th style="width: 80px;">Final Rating</th>
                 <th style="width: 100px;">Remarks<br>Taken</th>
             </tr>
