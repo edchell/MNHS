@@ -133,19 +133,15 @@ success:function(data)
       <div class="col-md-5">
       <div class="form-inline">
       <div class="form-group">
-      <label for="focusedInput">Select Grade:</label>
-      <select class="form-control" style="height:30px;font-size:12px" id="fetch">
-        <option > </option>
-    <?php 
-    include 'db.php';
-   $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
+    </div>
+    </div>
+    </div>
+    <div class="col-md-7 text-right">
+    <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
     while($sy = mysqli_fetch_assoc($query)){ ?>
-      <button class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>&prog=<?php echo $_GET['prog'] ?>"><i class="fa fa-plus"> Add Record</i></button>
+      <a class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>&prog=<?php echo $_GET['prog'] ?>"><i class="fa fa-plus"> Add Record</i></a>
       <?php
     } ?>
-    </div>
-    </div>
-    </div>
     </div>
     <br>
     <br>
