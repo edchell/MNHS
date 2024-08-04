@@ -63,16 +63,16 @@
         <div class="col-md-10">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" id="student_id" name="student_id" placeholder="Enter Student ID" autocomplete="off">
+            <input type="text" class="form-control" id="LRN_NO" name="LRN_NO" placeholder="Enter Student LRN number" autocomplete="off">
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="name">Name:</label>
+        <label class="control-label col-sm-2" for="LASTNAME">Name:</label>
         <div class="col-md-10">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" autocomplete="off">
+            <input type="text" class="form-control" id="LASTNAME" name="LASTNAME" placeholder="Enter Name" autocomplete="off">
           </div>
         </div>
       </div>
