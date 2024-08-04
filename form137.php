@@ -308,9 +308,9 @@ $user = $_SESSION['ID'];
         .periodic-rating {
             display: flex;
             align-items: center;
-            height: 50px;
+            height: 20px;
             border: 1px solid black;
-            width: 100%;
+            width: 50%;
         }
         .periodic-rating label {
             font-size: 10px;
