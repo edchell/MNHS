@@ -316,18 +316,7 @@ $user = $_SESSION['ID'];
                 <th style="width: 100px;">Remarks<br>Taken</th>
             </tr>
             <tr>
-                <td></td> <!-- Empty cell to align with header cells -->
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-           
-            <!-- More rows as needed -->
+              
         </tbody>
     </table>
 		<?php
