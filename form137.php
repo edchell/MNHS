@@ -326,16 +326,7 @@ $user = $_SESSION['ID'];
             </tr>
         </thead>
         <tbody>
-            <!-- Data rows will go here -->
-            <tr>
-                <td>Subject 1</td>
-                <td>85</td>
-                <td>90</td>
-                <td>88</td>
-                <td>92</td>
-                <td>89</td>
-                <td>Pass</td>
-            </tr>
+           
             <!-- More rows as needed -->
         </tbody>
     </table>
