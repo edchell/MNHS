@@ -166,9 +166,6 @@ $user = $_SESSION['ID'];
         }
     </style>
  	   <h4>Learner's Information</h4>
-		  <center><p><b><h4>Learner's Information</h4></b></p></center>
-		  </div>
-          </div>
           <div class="row">
 		  <div class="col-md-12">
 
