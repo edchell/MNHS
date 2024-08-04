@@ -142,35 +142,10 @@ $user = $_SESSION['ID'];
 <div id='print'>
 <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 
+<background-position: left top;>
+
 <img src="images/mnlogo.jpg" alt="images/mnlogo.jpg" width="40" height="30">
 <img src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="40" height="30">
-<html>
-<head>
-<style>
-body {
-  background-image: url("images/mnlogo.jpg");
-  background-repeat: no-repeat;
-  background-position: left top;
-  margin-right: 50px;
-  background-attachment: fixed;
-}
-</style>
-</head>
-<body>
-	
-<html>
-<head>
-<style>
-body {
-  background-image: url("images/Deped-Logo.png");
-  background-repeat: no-repeat;
-  background-position: right top;
-  margin-right: 50px;
-  background-attachment: fixed;
-}
-</style>
-</head>
-<body>
 
 
 		<p><center><b>MNHS Student Grading System</b></center></p>
