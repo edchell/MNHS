@@ -1,3 +1,50 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        input {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            border-bottom: 1px solid black;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .page-header {
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-control {
+            height: 30px;
+            font-size: 12px;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .disabled-input {
+            text-align: center;
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        .table th, .table td {
+            text-align: center;
+            font-size: 10px;
+        }
+    </style>
 <?php
 include 'db.php';
 
