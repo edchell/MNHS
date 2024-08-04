@@ -19,8 +19,8 @@ $user = $_SESSION['ID'];
 
 ?>
 <head>
-<img src="images/Deped-Logo.png" alt="images/Deped-Logo.png">
-<img src="images/mnlogo.jpg" alt="images/mnlogo.jpg">
+    
+
     <title>MNHS Student Grading System</title>
 
      <!-- Bootstrap Core CSS -->
