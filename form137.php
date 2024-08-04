@@ -297,8 +297,8 @@ $user = $_SESSION['ID'];
 		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>2</b></center></td>
 		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>3</b></center></td>
 		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>4</b></center></td>
-		<td style="width:40px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Remarks<br>Taken</b></center></td>
+		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
+		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>Remarks<br>Taken</b></center></td>
 		</tr>
 		
 		<?php
