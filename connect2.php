@@ -1,11 +1,12 @@
 <?php
 include 'db.php';
 
-// Get the student ID from the URL
-$id = mysqli_real_escape_string($conn, $_GET['id']);
+// Get the student LRN_NO and LASTNAME from the URL
+$lrn_no = mysqli_real_escape_string($conn, $_GET['lrn_no']);
+$lastname = mysqli_real_escape_string($conn, $_GET['lastname']);
 
-// Fetch student information
-$studentQuery = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
+// Fetch student information based on LRN_NO and LASTNAME
+$studentQuery = "SELECT * FROM student_info WHERE LRN_NO = '$lrn_no' AND LASTNAME = '$lastname'";
 $studentResult = mysqli_query($conn, $studentQuery);
 
 if ($studentResult && mysqli_num_rows($studentResult) > 0) {
@@ -17,7 +18,7 @@ if ($studentResult && mysqli_num_rows($studentResult) > 0) {
         FROM student_year_info 
         LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
         LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
-        WHERE STUDENT_ID = '$id'
+        WHERE STUDENT_ID = '{$student['STUDENT_ID']}'
     ";
     $gradeResult = mysqli_query($conn, $gradeQuery);
 
@@ -32,7 +33,7 @@ if ($studentResult && mysqli_num_rows($studentResult) > 0) {
         WHERE SYI_ID = (
             SELECT SYI_ID 
             FROM student_year_info 
-            WHERE STUDENT_ID = '$id'
+            WHERE STUDENT_ID = '{$student['STUDENT_ID']}'
         ) 
         ORDER BY SUBJECT
     ";
