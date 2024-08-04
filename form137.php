@@ -153,7 +153,20 @@ $user = $_SESSION['ID'];
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
-		  <center><p><b><h4>SECONDARY STUDENT'S PERMANENT RECORDS</h4></b></p></center>
+		  <style>
+        .header-container {
+            background-color: lightgray;
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+        }
+        .header-container h4 {
+            margin: 0;
+            font-weight: bold;
+        }
+    </style>
+ 	   <h4>Learner's Information</h4>
+		  <center><p><b><h4>Learner's Information</h4></b></p></center>
 		  </div>
           </div>
           <div class="row">
