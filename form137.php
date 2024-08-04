@@ -293,12 +293,12 @@ $user = $_SESSION['ID'];
 		<tr>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
 		<label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
-		<td style="width:40px;border:1px solid black;font-size:12px;"><center><b>1</b></center></td>
-		<td style="width:40px;border:1px solid black;font-size:12px;"><center><b>2</b></center></td>
-		<td style="width:40px;border:1px solid black;font-size:12px;"><center><b>3</b></center></td>
-		<td style="width:40px;border:1px solid black;font-size:12px;"><center><b>4</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
+		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>1</b></center></td>
+		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>2</b></center></td>
+		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>3</b></center></td>
+		<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>4</b></center></td>
+		<td style="width:40px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
+		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Remarks<br>Taken</b></center></td>
 		</tr>
 		
 		<?php
