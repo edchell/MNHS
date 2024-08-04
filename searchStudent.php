@@ -48,8 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo '<div class="col-md-7 text-right">';
                 $schoolYearQuery = mysqli_query($conn, "SELECT school_year FROM school_year WHERE status='Yes'");
                 while ($sy = mysqli_fetch_assoc($schoolYearQuery)) {
-                    echo "<a class='btn btn-success' href='rms.php?page=addrecord&id=$id&sy=" . $sy['school_year'] . "&prog=" . $_GET['prog'] . "'><i class='fa fa-plus'> Add Record</i></a>";
-                }
+                    }
                 echo '</div>';
                 echo '<br><br><input type="text" style="width:100%;text-align:center"  disabled><br><br>';
 
