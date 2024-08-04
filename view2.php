@@ -57,31 +57,32 @@
 <div class="container-fluid">
 
   <div class="login-form" id="login_modal" role="dialog">
-    <form class="form-horizontal" method="post" action="view2.php">
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="student_id">Student ID:</label>
-        <div class="col-md-10">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" id="LRN_NO" name="LRN_NO" placeholder="Enter Student LRN number" autocomplete="off">
-          </div>
-        </div>
+  <form class="form-horizontal" method="post" action="view2.php">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="LRN_NO">Student ID:</label>
+    <div class="col-md-10">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        <input type="text" class="form-control" id="LRN_NO" name="LRN_NO" placeholder="Enter Student LRN number" autocomplete="off">
       </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="LASTNAME">Name:</label>
-        <div class="col-md-10">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" id="LASTNAME" name="LASTNAME" placeholder="Enter Name" autocomplete="off">
-          </div>
-        </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="LASTNAME">Name:</label>
+    <div class="col-md-10">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+        <input type="text" class="form-control" id="LASTNAME" name="LASTNAME" placeholder="Enter Last Name" autocomplete="off">
       </div>
-      <div class="form-group">        
-        <div class="col-md-offset-6 col-md-9">
-          <button type="submit" class="btn btn-primary">View Grades</button> 
-        </div>
-      </div>
-    </form>
+    </div>
+  </div>
+  <div class="form-group">        
+    <div class="col-md-offset-6 col-md-9">
+      <button type="submit" class="btn btn-primary">View Grades</button> 
+    </div>
+  </div>
+</form>
+
 
     <?php if (isset($error_message)): ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
