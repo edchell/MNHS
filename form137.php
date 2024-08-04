@@ -296,7 +296,7 @@ $user = $_SESSION['ID'];
           </div>
           <div class="col-xs-4" style="height:50px;border:1px solid black;width:225px">
           
-            <label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
+            <label for="" style="font-size:6;text-align:center;width:300px;border-bottom:1px solid black">Periodic Rating</label>
             <br>
             <label for="" style="font-size:6;width:45px;border-right:1px solid black;text-align:center">1</label>
             <label for="" style="font-size:6;width:40px;border-right:1px solid black;text-align:center">2</label>
