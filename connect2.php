@@ -45,7 +45,6 @@ if ($studentResult && mysqli_num_rows($studentResult) > 0) {
 
 mysqli_close($conn);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
