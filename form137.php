@@ -292,7 +292,7 @@ $user = $_SESSION['ID'];
 		<table style="border-collapse:collapse">
 		<tr>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		<div class="col-xs-6" style="height:53px;border:1px solid black;width:225px">
+		<div class="col-xs-4" style="height:53px;border:1px solid black;width:225px">
 
 			<label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
 			<br>
@@ -302,7 +302,7 @@ $user = $_SESSION['ID'];
 			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>4</b></center></td>
 			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
 			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>Remarks<br>Taken</b></center></td>
-		</div>
+		</tr>
 		
 		<?php
 		$syi = $row1['SYI_ID'];
