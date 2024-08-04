@@ -309,13 +309,13 @@ $user = $_SESSION['ID'];
             height: 40px;
         }
         .pass-fail-cell {
-            height: 40px;
+            height: 20px;
             padding: 0;
             text-align: center;
         }
         .pass-fail-cell label {
             font-size: 15px;
-            line-height: 40px; /* Vertically center text */
+            line-height: 20px; /* Vertically center text */
         }
     </style>
 </head>
@@ -323,7 +323,7 @@ $user = $_SESSION['ID'];
     <div class="container">
         <div class="row">
             <!-- Subjects Column -->
-            <div class="col-xs-4 text-center" style="height: 40px; border: 1px solid black;">
+            <div class="col-xs-4 text-center" style="height: 10px; border: 1px solid black;">
                 <label for="" style="font-size: 12px;">Subjects</label>
             </div>
             <!-- Periodic Rating Column -->
