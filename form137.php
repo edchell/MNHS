@@ -35,7 +35,9 @@ $user = $_SESSION['ID'];
     <!-- Custom Fonts -->
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Example</title>
+
     <script src="datatables/jquery.dataTables.js"></script>
     <script src="datatables/dataTables.bootstrap.js"></script>
         <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
@@ -288,22 +290,55 @@ $user = $_SESSION['ID'];
 		</tr>
 		</table>
 		
-		
-		<table style="border-collapse:collapse">
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		<div class="col-xs-4" style="height:53px;border:1px solid black;width:225px">
-
-			<label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
-			<br>
-			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>1</b></center></td>
-			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>2</b></center></td>
-			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>3</b></center></td>
-			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>4</b></center></td>
-			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
-			<td style="width:20px;border:1px solid black;font-size:12px;"><center><b>Remarks<br>Taken</b></center></td>
-		</tr>
-		
+		<style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2; /* Light gray background for headers */
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 150px;">Subjects</th>
+                <th colspan="4" style="width: 160px;">Periodic Rating</th>
+                <th style="width: 80px;">Final Rating</th>
+                <th style="width: 100px;">Remarks<br>Taken</th>
+            </tr>
+            <tr>
+                <td></td> <!-- Empty cell to align with header cells -->
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will go here -->
+            <tr>
+                <td>Subject 1</td>
+                <td>85</td>
+                <td>90</td>
+                <td>88</td>
+                <td>92</td>
+                <td>89</td>
+                <td>Pass</td>
+            </tr>
+            <!-- More rows as needed -->
+        </tbody>
+    </table>
 		<?php
 		$syi = $row1['SYI_ID'];
 		$sql2 = mysqli_query($conn,"SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT");
