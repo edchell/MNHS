@@ -35,9 +35,7 @@ $user = $_SESSION['ID'];
     <!-- Custom Fonts -->
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Example</title>
-
+    
     <script src="datatables/jquery.dataTables.js"></script>
     <script src="datatables/dataTables.bootstrap.js"></script>
         <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
@@ -290,35 +288,14 @@ $user = $_SESSION['ID'];
 		</tr>
 		</table>
 		
-		<style>
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            font-size: 12px;
-        }
-        th, td {
-            border: 1px solid black;
-            text-align: center;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2; /* Light gray background for headers */
-        }
-    </style>
-</head>
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 150px;">Subjects</th>
-                <th colspan="4" style="width: 200px;">Periodic Rating</th>
-                <th style="width: 80px;">Final Rating</th>
-                <th style="width: 100px;">Remarks<br>Taken</th>
-            </tr>
-            <tr>
-              
-        </tbody>
-    </table>
+		
+		<table style="border-collapse:collapse">
+		<tr>
+		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
+		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
+		</tr>
 		<?php
 		$syi = $row1['SYI_ID'];
 		$sql2 = mysqli_query($conn,"SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT");
