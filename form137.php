@@ -153,9 +153,8 @@ $user = $_SESSION['ID'];
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
-		  <center><p><b><h4>Learner's Information</h4></b></p></center>
+		  <center><p><b><h4>Learner's Permanent Academic Record(SF10-HighSchool)</h4></b></p></center>
 		  <p class="highlighted-heading">
-        <b><h4>Learner's Information</h4></b>
     </p>
 		  </div>
           </div>
