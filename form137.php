@@ -146,6 +146,10 @@ $user = $_SESSION['ID'];
 
 <img style="position: absolute; margin-left: -330px;margin-top: -80px;" src="images/mnlogo.jpg" alt="images/mnlogo.jpg" width="150" height="150">
 <img style="position: absolute; margin-right: -330px;margin-top: -80px;" src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="150" height="150">
+<br>
+<br>
+<br>
+<br>
 
 
 		<p><center><b>MNHS Student Grading System</b></center></p>
