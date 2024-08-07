@@ -115,7 +115,7 @@
                                 <label style="font-size:6" for="">School</label>
                                 <input type="text" style="width:450px;text-align:center" value="' . htmlspecialchars($syi["SCHOOL"]) . '" disabled>
                                 <label style="font-size:6" for="">Grade</label>
-                                <input type="text" style="width:150px;text-align:center" value="' . htmlspecialchars($row['PROGRAM']) . ' ' . htmlspecialchars($syi["grade"]) . '" disabled>
+                                <input type="text" style="width:150px;text-align:center" value="' . htmlspecialchars($syi["grade"]) . '" disabled>
                                 <label style="font-size:6" for="">Section</label>
                                 <input type="text" style="width:100px;text-align:center" value="' . htmlspecialchars($syi["SECTION"]) . '" disabled>
                                 <br>
