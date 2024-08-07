@@ -145,7 +145,7 @@ $user = $_SESSION['ID'];
 <background-position: left top;>
 
 <img style="position: absolute; margin-left: -330px;margin-top: -80px;" src="images/mnlogo.jpg" alt="images/mnlogo.jpg" width="150" height="150">
-<img style="position: absolute; margin-right: 10px;margin-top: -80px;" src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="150" height="150">
+<img style="position: absolute; margin-right: 5px;margin-top: -80px;" src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="150" height="150">
 <br>
 <br>
 <br>
