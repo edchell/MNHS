@@ -48,7 +48,7 @@
             border: 1px solid #ccc;
         }
         .btn-primary {
-            background-color: #007bff;
+            background-color: transparent;
             border-color: #007bff;
             color: white;
             padding: 10px 20px;
@@ -58,7 +58,7 @@
             transition: background-color 0.3s;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: transparent;
             border-color: #004085;
         }
         /* Additional styling for the result display */
