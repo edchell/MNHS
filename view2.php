@@ -12,7 +12,7 @@
         input {
             border: 0;
             outline: 0;
-            background: light blue
+            background: blue
             border-bottom: 1px solid black;
         }
         table, th, td {
@@ -24,13 +24,13 @@
         }
         .back-button {
             background-color: #6c757d;
-            color: light blue;
+            color: blue;
             padding: 10px 20px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color  blue
         }
         .form-control {
             height: 30px;
@@ -42,7 +42,7 @@
         .disabled-input {
             text-align: center;
             width: 100%;
-            background: light blue
+            background: blue
             border: none;
             border-bottom: 1px solid black;
         }
