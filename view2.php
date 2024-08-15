@@ -71,7 +71,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Form Container -->
         <div class="form-container">
             <!-- Search Form -->
             <h2>Search Student</h2>
@@ -101,15 +100,19 @@
     <script>
         document.getElementById('search-button').addEventListener('click', function() {
             // Retrieve values from input fields
-            const id = document.getElementById('id').value;
-            const lastname = document.getElementById('lastname').value;
+            const id = document.getElementById('id').value.trim();
+            const lastname = document.getElementById('lastname').value.trim();
 
-            // Display the entered values in the result div
-            document.getElementById('result').innerHTML = `
-                <p><strong>Search initiated!</strong></p>
-                <p>ID: ${id}</p>
-                <p>Last Name: ${lastname}</p>
-            `;
+            // Check if inputs are empty and display appropriate message
+            if (!id && !lastname) {
+                document.getElementById('result').innerHTML = '<p class="text-danger">Please enter at least one search criteria.</p>';
+            } else {
+                document.getElementById('result').innerHTML = `
+                    <p><strong>Search initiated!</strong></p>
+                    <p><strong>ID:</strong> ${id ? id : 'N/A'}</p>
+                    <p><strong>Last Name:</strong> ${lastname ? lastname : 'N/A'}</p>
+                `;
+            }
         });
     </script>
 </body>
