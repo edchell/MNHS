@@ -22,7 +22,7 @@
         background-size: contain; /* Scale the image to fit within the container */
         background-position: center; /* Center the image */
         width: 100%; /* Set the width of the container */
-        height: 700px; 
+        height: 600px; 
       }
     <style>
         input {
