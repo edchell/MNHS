@@ -26,7 +26,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background: #fff; /* Added background to improve text readability */
+            background-color: transparent;
         }
         .form-container h2 {
             margin-bottom: 20px;
@@ -48,7 +48,7 @@
             border: 1px solid #ccc;
         }
         .btn-primary {
-            background-color: transparent;
+           background-color: transparent;
             border-color: #007bff;
             color: white;
             padding: 10px 20px;
@@ -58,7 +58,7 @@
             transition: background-color 0.3s;
         }
         .btn-primary:hover {
-            background-color: transparent;
+            background-color: #0056b3;
             border-color: #004085;
         }
         /* Additional styling for the result display */
