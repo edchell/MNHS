@@ -12,28 +12,18 @@
         body {
             background-color: #e0f7fa; /* Light blue background */
         }
+        .search-container {
+            background-color: #ffffff; /* White background for the form */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin-top: 20px;
+        }
         input {
             border: 0;
             outline: 0;
             background: transparent;
             border-bottom: 1px solid black;
-        }
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        .page-header {
-            margin-top: 20px;
-        }
-        .back-button {
-            background-color: #6c757d;
-            color: blue;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
         .form-control {
             height: 30px;
@@ -58,25 +48,27 @@
 <body>
     <div class="container">
         <!-- Search Form -->
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Search Student</h2>
-                <form id="search-form">
-                    <div class="form-group">
-                        <label for="id">ID:</label>
-                        <input type="text" id="id" class="form-control" placeholder="Enter ID">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Last Name:</label>
-                        <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
-                    </div>
-                    <button type="button" id="search-button" class="btn btn-primary">Search</button>
-                </form>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="search-container">
+                    <h2>Search Student</h2>
+                    <form id="search-form">
+                        <div class="form-group">
+                            <label for="id">ID:</label>
+                            <input type="text" id="id" class="form-control" placeholder="Enter ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
+                        </div>
+                        <button type="button" id="search-button" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <!-- Results will be shown here -->
-        <div id="result"></div>
+        <div id="result" class="mt-4"></div>
     </div>
 
     <script>
