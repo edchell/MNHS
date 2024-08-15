@@ -132,12 +132,14 @@ success:function(data)
     Add
 </button>
 
-           <input 
-    type="reset" 
-    class="btn btn-secondary" 
-    id="reset" 
-    name="reset" 
-    value="Cancel">
+<div class="form-group ">
+            <button 
+    class="btn btn-primary" 
+    style="background-color: #28a745; border-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;"
+>
+    Cancel
+</button>
+
     
 
              
