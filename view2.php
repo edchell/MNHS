@@ -76,10 +76,12 @@
             <h2>Search Student</h2>
             <form id="search-form">
                 <div class="form-group">
+                <h2>ID</h2>
                     <label for="id">ID:</label>
                     <input type="text" id="id" class="form-control" placeholder="Enter ID">
                 </div>
                 <div class="form-group">
+                <h2>Lastname</h2>
                     <label for="lastname">Last Name:</label>
                     <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
                 </div>
