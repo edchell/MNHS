@@ -21,12 +21,11 @@
         }
         .form-container {
             max-width: 600px;
-            margin: 20px auto;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background-color: transparent;
+            background-color: #fff; /* Changed from transparent to white for better visibility */
         }
         .form-container h2 {
             margin-bottom: 20px;
@@ -48,7 +47,7 @@
             border: 1px solid #ccc;
         }
         .btn-primary {
-           background-color: transparent;
+            background-color: #007bff;
             border-color: #007bff;
             color: white;
             padding: 10px 20px;
@@ -103,11 +102,12 @@
             const id = document.getElementById('id').value.trim();
             const lastname = document.getElementById('lastname').value.trim();
 
-            // Check if inputs are empty and display appropriate message
+            // Display result in the result div
+            const resultDiv = document.getElementById('result');
             if (!id && !lastname) {
-                document.getElementById('result').innerHTML = '<p class="text-danger">Please enter at least one search criteria.</p>';
+                resultDiv.innerHTML = '<p class="text-danger">Please enter at least one search criteria.</p>';
             } else {
-                document.getElementById('result').innerHTML = `
+                resultDiv.innerHTML = `
                     <p><strong>Search initiated!</strong></p>
                     <p><strong>ID:</strong> ${id ? id : 'N/A'}</p>
                     <p><strong>Last Name:</strong> ${lastname ? lastname : 'N/A'}</p>
