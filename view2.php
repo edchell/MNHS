@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Display</title>
     <style>
-        body {
-            display: flex;
-            height: calc(100vh); /* Full viewport height */
-            width: calc(100vw); /* Full viewport width */
-            justify-content: center;
-            align-items: center;
-            background-image: url('images/Mad.jpg.jpg');
-            background-repeat: no-repeat; /* Prevent tiling */
-            background-size: cover; /* Scale the image to cover the container */
-            background-position: center; /* Center the image */
-        }
+      body{
+        display: flex;
+        height: calc(100%);
+        width: calc(100%);
+        justify-content: center;
+        align-items: center;
+        background-image: url('images/Mad.jpg.jpg');
+        background-repeat: no-repeat; /* Prevent tiling */
+        background-size: contain; /* Scale the image to fit within the container */
+        background-position: center; /* Center the image */
+        width: 100%; /* Set the width of the container */
+        height: 600px; 
+      }
+    <style>
         input {
             border: 0;
             outline: 0;
@@ -64,7 +67,6 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background: #fff; /* Added background to improve text readability */
         }
         .form-container h2 {
             margin-bottom: 20px;
@@ -121,25 +123,8 @@
                         <button type="button" id="search-button" class="btn-primary">Search</button>
                     </form>
 
-                    <!-- Results will be shown here -->
-                    <div id="result"></div>
-                </div>
-            </div>
-        </div>
+        <!-- Results will be shown here -->
+        <div id="result"></div>
     </div>
-
-    <!-- JavaScript to handle the search button click -->
-    <script>
-        document.getElementById('search-button').addEventListener('click', function() {
-            // Retrieve values from input fields
-            const id = document.getElementById('id').value;
-            const lastname = document.getElementById('lastname').value;
-
-            // For demonstration, show an alert with the entered values
-            alert('Search initiated!\nID: ' + id + '\nLast Name: ' + lastname);
-
-            // Here, you would add code to perform the actual search, e.g., make an API call or filter results
-        });
-    </script>
 </body>
 </html>
