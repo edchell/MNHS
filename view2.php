@@ -24,7 +24,7 @@
         }
         .back-button {
             background-color: #6c757d;
-            color: white;
+            color: light blue;
             padding: 10px 20px;
             font-size: 16px;
             border: none;
