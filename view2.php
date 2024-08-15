@@ -8,6 +8,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <style>
+      body{
+        display: flex;
+        height: calc(100%);
+        width: calc(100%);
+        justify-content: center;
+        align-items: center;
+        background-image: url('images/Mad.jpg.jpg');
+        background-repeat: no-repeat; /* Prevent tiling */
+        background-size: contain; /* Scale the image to fit within the container */
+        background-position: center; /* Center the image */
+        width: 100%; /* Set the width of the container */
+        height: 600px; 
+      }
     <style>
         input {
             border: 0;
