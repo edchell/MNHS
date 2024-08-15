@@ -134,7 +134,7 @@ success:function(data)
 
            <input 
     type="reset" 
-    class="btn btn-info" 
+    class="btn btn-primary" 
     id="reset" 
     name="reset" 
     value="Cancel">
