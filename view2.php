@@ -123,6 +123,23 @@
                         <button type="button" id="search-button" class="btn-primary">Search</button>
                     </form>
 
+                    <!-- Login Form -->
+                    <h2 style="margin-top: 40px;">Login</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" class="form-control" placeholder="Enter Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter Password">
+                        </div>
+                        <button type="submit" id="login-button" class="btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <!-- Results will be shown here -->
         <div id="result"></div>
     </div>
