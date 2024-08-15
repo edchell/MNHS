@@ -71,7 +71,6 @@
         <!-- Search Form -->
         <div class="row">
             <div class="col-md-12">
-                <h2>Search Student</h2>
                 <form id="search-form">
                     <div class="form-group">
                         <label for="id">ID:</label>
