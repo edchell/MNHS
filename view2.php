@@ -95,15 +95,26 @@
     </div>
 
     <script>
-        document.getElementById('search-button').addEventListener('click', function() {
-            // Retrieve values from input fields
-            const id = document.getElementById('id').value;
-            const lastname = document.getElementById('lastname').value;
+        $(document).ready(function() {
+            $('#search-button').on('click', function() {
+                var id = $('#id').val();
+                var lastname = $('#lastname').val();
 
-            // For demonstration, show an alert with the entered values
-            alert('Search initiated!\nID: ' + id + '\nLast Name: ' + lastname);
-
-            // Here, you would add code to perform the actual search, e.g., make an API call or filter results
+                $.ajax({
+                    type: 'POST',
+                    url: 'searchStudent.php',
+                    data: { id: id, lastname: lastname },
+                    beforeSend: function() {
+                        $("#result").html('Searching, please wait...');
+                    },
+                    success: function(response) {
+                        $("#result").html(response);
+                    },
+                    error: function() {
+                        $("#result").html('An error occurred while searching.');
+                    }
+                });
+            });
         });
     </script>
 </body>
