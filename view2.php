@@ -43,7 +43,7 @@
             transition: background-color 0.3s;
         }
         .form-control {
-            height: 30px;
+            height: 50px;
             font-size: 12px;
         }
         .text-right {
