@@ -132,14 +132,25 @@ success:function(data)
     Add
 </button>
 
-<div class="form-group">
-    <button 
-        class="btn btn-primary" 
-        style="background-color: red; border-color: red; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;"
-    >
-        Cancel
-    </button>
-</div>
+<input 
+    type="reset" 
+    class="btn btn-info" 
+    id="reset" 
+    name="reset" 
+    value="Cancel"
+    style="
+        background-color: #dc3545; /* Custom red background */
+        border-color: #dc3545; /* Red border */
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding around text */
+        font-size: 16px; /* Font size */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        text-align: center; /* Center text */
+        transition: background-color 0.3s; /* Smooth background color transition */
+    "
+>
+
 
 
              
