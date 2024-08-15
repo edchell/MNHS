@@ -13,7 +13,7 @@
             background-color: #e0f7fa; /* Light blue background */
         }
         .search-container {
-            background-color: #ffffff; /* White background for the form */
+            background-color: transparent;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
