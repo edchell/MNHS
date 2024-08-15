@@ -13,7 +13,7 @@
             background-color: #e0f7fa; /* Light blue background */
         }
         .search-container {
-            background-color: transparent;
+            background-color: #e0f7fa; /* Light blue background */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -22,7 +22,7 @@
         input {
             border: 0;
             outline: 0;
-            background: transparent;
+            background-color: #e0f7fa; /* Light blue background */
             border-bottom: 1px solid black;
         }
         .form-control {
@@ -35,7 +35,7 @@
         .disabled-input {
             text-align: center;
             width: 100%;
-            background: transparent;
+            background-color: #e0f7fa; /* Light blue background */
             border: none;
             border-bottom: 1px solid black;
         }
