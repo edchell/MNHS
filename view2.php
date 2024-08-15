@@ -9,10 +9,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
+      body{
+        display: flex;
+        height: calc(100%);
+        width: calc(100%);
+        justify-content: center;
+        align-items: center;
+        background-color: blue
+        width: 100%; /* Set the width of the container */
+        height: 600px; 
+      }
+    <style>
         input {
             border: 0;
             outline: 0;
-            background: blue
+            background: transparent;
             border-bottom: 1px solid black;
         }
         table, th, td {
@@ -24,13 +35,13 @@
         }
         .back-button {
             background-color: #6c757d;
-            color: blue;
+            color: white;
             padding: 10px 20px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color  blue
+            transition: background-color 0.3s;
         }
         .form-control {
             height: 30px;
@@ -42,7 +53,7 @@
         .disabled-input {
             text-align: center;
             width: 100%;
-            background: blue
+            background: transparent;
             border: none;
             border-bottom: 1px solid black;
         }
