@@ -40,6 +40,7 @@
             border-bottom: 1px solid black;
         }
         .table th, .table td {
+            background-color: #e0f7fa; /* Light blue background */
             text-align: center;
             font-size: 10px;
         }
