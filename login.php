@@ -1,117 +1,133 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="images/Mad.jpg.jpg">
-
-    <title>Student Grading System</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="asset/css/style.css" rel="stylesheet">
-    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="assets/css/sticky-footer-navbar.css" rel="stylesheet">
-        <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.js"></script>
-
-    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Display</title>
     <style>
-      body{
-        display: flex;
-        height: calc(100%);
-        width: calc(100%);
-        justify-content: center;
-        align-items: center;
-        background-image: url('images/Mad.jpg.jpg');
-        background-repeat: no-repeat; /* Prevent tiling */
-        background-size: contain; /* Scale the image to fit within the container */
-        background-position: center; /* Center the image */
-        width: 100%; /* Set the width of the container */
-        height: 600px; 
-      }
-      .login-form {
-  display: block;
-  position: fixed;
-  border:2px solid grey;
-  border-radius: 10px;
-  padding: 30px;
-  width: 500px;
-  background-color: transparent;
-  left:500px;
-  top:110px;
- } 
- .erlert{
-  display:block;
-  border-radius:5px;
-  background-color:rgba(230, 103, 42, 0.37);
-  padding: 5px;
-}
+        input {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            border-bottom: 1px solid black;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .page-header {
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-control {
+            height: 30px;
+            font-size: 12px;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .disabled-input {
+            text-align: center;
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        .table th, .table td {
+            text-align: center;
+            font-size: 10px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
     </style>
-  </head>
+</head>
 <body>
-  
+    <div class="container">
+        <!-- Forms Container -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-container">
+                    <!-- Search Form -->
+                    <h2>Search Student</h2>
+                    <form id="search-form">
+                        <div class="form-group">
+                            <label for="id">ID:</label>
+                            <input type="text" id="id" class="form-control" placeholder="Enter ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
+                        </div>
+                        <button type="button" id="search-button" class="btn-primary">Search</button>
+                    </form>
 
-<div class="container-fluid">
-
-  <div class="login-form" id="login_modal" role="dialog" >
-
-
-  
-
-  <form class="form-horizontal" id="loginForm" method="post">
-    <div class="form-group">
-      <center>  <label class="control-label col-sm-2" for="user">User:</label> </center>
-        <div class="col-md-10">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" id="user" name="user" placeholder="Enter User" autocomplete="off">
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-    <center>   <label class="control-label col-sm-2" for="pwd">Password:</label> </center>
-        <div class="col-md-10">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
-                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password" autocomplete="off">
-            </div>
-        </div>
-    </div>
-    <div class="form-group">        
-        <div class="col-md-offset-6 col-md-9">
-          <button type="submit" class="btn btn-default">Login</button>
-          <a href="view2.php" class="btn btn-primary">Student View</a> 
-        </div>
-    </div>
-</form>
-
-  <?php if (isset($error_message)): ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <?php echo $error_message; ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <!-- Login Form -->
+                    <h2 style="margin-top: 40px;">Login</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" class="form-control" placeholder="Enter Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter Password">
+                        </div>
+                        <button type="submit" id="login-button" class="btn-primary">Login</button>
+                    </form>
                 </div>
-            <?php endif; ?>
-   <?php
-  include 'connect.php';
-  ?>
-   </div>          
-</div>
+            </div>
+        </div>
 
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-  
+        <!-- Results will be shown here -->
+        <div id="result"></div>
+    </div>
+</body>
 </html>
