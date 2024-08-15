@@ -8,6 +8,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Form Display</title>
+    <!-- Link to Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body{
         display: flex;
@@ -64,53 +67,43 @@
             text-align: center;
             font-size: 10px;
         }
-    </style>
+        </style>
 </head>
 <body>
     <div class="container">
-        <!-- Search Form -->
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Search Student</h2>
-                <form id="search-form">
-                    <div class="form-group">
-                        <label for="id">ID:</label>
-                        <input type="text" id="id" class="form-control" placeholder="Enter ID">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Last Name:</label>
-                        <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
-                    </div>
-                    <button type="button" id="search-button" class="btn btn-primary">Search</button>
-                </form>
-            </div>
+        <div class="form-container">
+            <!-- Search Form -->
+            <h2>Search Student</h2>
+            <form id="search-form">
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" class="form-control" placeholder="Enter ID">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
+                </div>
+                <button type="button" id="search-button" class="btn btn-primary">Search</button>
+            </form>
+            <!-- Results will be shown here -->
+            <div id="result"></div>
         </div>
+    </div>
 
         <!-- Results will be shown here -->
         <div id="result"></div>
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('#search-button').on('click', function() {
-                var id = $('#id').val();
-                var lastname = $('#lastname').val();
+        document.getElementById('search-button').addEventListener('click', function() {
+            // Retrieve values from input fields
+            const id = document.getElementById('id').value;
+            const lastname = document.getElementById('lastname').value;
 
-                $.ajax({
-                    type: 'POST',
-                    url: 'searchStudent.php',
-                    data: { id: id, lastname: lastname },
-                    beforeSend: function() {
-                        $("#result").html('Searching, please wait...');
-                    },
-                    success: function(response) {
-                        $("#result").html(response);
-                    },
-                    error: function() {
-                        $("#result").html('An error occurred while searching.');
-                    }
-                });
-            });
+            // For demonstration, show an alert with the entered values
+            alert('Search initiated!\nID: ' + id + '\nLast Name: ' + lastname);
+
+            // Here, you would add code to perform the actual search, e.g., make an API call or filter results
         });
     </script>
 </body>
