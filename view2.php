@@ -4,20 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Display</title>
-    <!-- Link to Bootstrap CSS for styling -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-            width: 100vw; /* Full viewport width */
-            margin: 0;
-            background-image: url('images/Mad.jpg.jpg');
-            background-repeat: no-repeat; /* Prevent tiling */
-            background-size: cover; /* Scale the image to cover the container */
-            background-position: center; /* Center the image */
+        input {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            border-bottom: 1px solid black;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .page-header {
+            margin-top: 20px;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-control {
+            height: 30px;
+            font-size: 12px;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .disabled-input {
+            text-align: center;
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        .table th, .table td {
+            text-align: center;
+            font-size: 10px;
         }
         .form-container {
             max-width: 600px;
@@ -26,7 +53,6 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background: #fff; /* Added background to improve text readability */
         }
         .form-container h2 {
             margin-bottom: 20px;
@@ -61,56 +87,29 @@
             background-color: #0056b3;
             border-color: #004085;
         }
-        /* Additional styling for the result display */
-        #result {
-            margin-top: 20px;
-            font-size: 16px;
-            color: #333;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Form Container -->
-        <div class="form-container">
-            <!-- Search Form -->
-            <h2>Search Student</h2>
-            <form id="search-form">
-                <div class="form-group">
-                    <label for="id">ID:</label>
-                    <input type="text" id="id" class="form-control" placeholder="Enter ID">
-                </div>
-                <div class="form-group">
-                    <label for="lastname">Last Name:</label>
-                    <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
-                </div>
-                <button type="button" id="search-button" class="btn btn-primary">Search</button>
-            </form>
-            <!-- Results will be shown here -->
-            <div id="result"></div>
-        </div>
+        <!-- Forms Container -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-container">
+                    <!-- Search Form -->
+                    <form id="search-form">
+                        <div class="form-group">
+                            <label for="id">ID:</label>
+                            <input type="text" id="id" class="form-control" placeholder="Enter ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" id="lastname" class="form-control" placeholder="Enter Last Name">
+                        </div>
+                        <button type="button" id="search-button" class="btn-primary">Search</button>
+                    </form>
+
+        <!-- Results will be shown here -->
+        <div id="result"></div>
     </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- JavaScript to handle the search button click -->
-    <script>
-        document.getElementById('search-button').addEventListener('click', function() {
-            // Retrieve values from input fields
-            const id = document.getElementById('id').value;
-            const lastname = document.getElementById('lastname').value;
-
-            // Display the entered values in the result div
-            document.getElementById('result').innerHTML = `
-                <p><strong>Search initiated!</strong></p>
-                <p>ID: ${id}</p>
-                <p>Last Name: ${lastname}</p>
-            `;
-        });
-    </script>
 </body>
 </html>
