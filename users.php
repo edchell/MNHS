@@ -92,21 +92,21 @@ success:function(data)
             <div class="form-group">
               <div class="cols-sm-4">
                 <div class="input-group">
-        <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="lname" placeholder="Enter Firstname" required>
+        <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="lname" placeholder="Enter Lastname" required>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="cols-sm-4">
                 <div class="input-group">
-        <input type="text" class="form-control" id="fname" name="user" placeholder="Enter Firstname" required>
+        <input type="text" class="form-control" id="fname" name="user" placeholder="Enter Username" required>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="cols-sm-4">
                 <div class="input-group">
-        <input type="password" class="form-control"" id="fname" name="pwd" placeholder="Enter Firstname" required>
+        <input type="password" class="form-control"" id="fname" name="pwd" placeholder="Enter Password" required>
                 </div>
               </div>
             </div>
