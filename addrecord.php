@@ -377,7 +377,7 @@
 <button onclick="window.history.back()" style="
     background-color: #6c757d; /* Custom gray background */
     color: white; /* White text */
-    padding: 10px 20px; /* Padding around text */
+    padding: 5px 10px; /* Padding around text */
     font-size: 16px; /* Font size */
     border: none; /* Remove border */
     border-radius: 5px; /* Rounded corners */
