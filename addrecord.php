@@ -370,7 +370,11 @@
          </tbody>
 
        </table> 
-     <button class="btn btn-success" type="submit">Save</button>
+       <form action="/your-endpoint" method="post">
+    <!-- Your form fields here -->
+    <button class="btn btn-success" type="submit">Save</button>
+</form>
+
      <form action="/your-server-endpoint" method="post">
     <input type="text" name="exampleField" required>
     <button type="submit" class="btn btn-success">
