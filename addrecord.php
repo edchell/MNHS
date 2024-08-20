@@ -375,13 +375,6 @@
     <button class="btn btn-success" type="submit">Save</button>
 </form>
 
-     <form action="/your-server-endpoint" method="post">
-    <input type="text" name="exampleField" required>
-    <button type="submit" class="btn btn-success">
-        <i class="fa fa-pencil-square" aria-hidden="true"></i> Update
-    </button>
-</form>
-
      </div>
 
     </form>
