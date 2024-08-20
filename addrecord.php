@@ -373,25 +373,12 @@
           
      <button class="btn btn-success" type="submit">Save</button>
      <form>
-    <!-- Your form fields here -->
-    <input 
-        type="reset" 
-        class="btn btn-info" 
-        id="reset" 
-        name="reset" 
-        value="Cancel"
-        style="
-            background-color: #dc3545;
-            border-color: #dc3545;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s;
-        "
-    >
+     <form action="/your-server-endpoint" method="post">
+    <input type="text" name="exampleField" required>
+    <!-- Add other form fields as needed -->
+    <button type="submit" class="btn btn-success">
+        <i class="fa fa-pencil-square" aria-hidden="true"></i> Update
+    </button>
 </form>
 
      </div>
