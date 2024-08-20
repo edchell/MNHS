@@ -273,7 +273,7 @@
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px">
       
               </td>
-              <td><a onclick="remtrr(<?php echo $i ?>)"  id="remtr">X</a></td>
+              
               </tr>
               <?php
               } ?>
