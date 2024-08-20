@@ -271,28 +271,27 @@
              <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px">
-      
+             <td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <td style="width:30px;text-align:center;height:30px;font-size:12px">
+              <input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" readonly="" >
+
               </td>
               <td><a onclick="remtrr(<?php echo $i ?>)"  id="remtr">X</a></td>
               </tr>
               <?php
-              } ?>
-           
+              } ?> 
          </tbody>
-
        </table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
        <div class="col-md-3">
         <br>
          <br>
-         <br>
-         <br>
        <table class="table-bordered">
          <thead>
            <tr class="text-center">
-         <br>
-         <br>
+           <br>
+           <br>
              <td>Months</td>
              <td>Days of Classes</td>
              <td>Days Present</td>
