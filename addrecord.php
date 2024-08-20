@@ -369,7 +369,7 @@
 
          </tbody>
 
-       </table>
+      
           
      <button class="btn btn-success" type="submit">Save</button>
      <form action="/your-server-endpoint" method="post">
