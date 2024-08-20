@@ -163,6 +163,7 @@ success:function(data)
     </div>
     </div>
     <div class="col-md-7 text-right">
+
 </form>
     <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
     while($sy = mysqli_fetch_assoc($query)){ ?>
