@@ -297,8 +297,6 @@
              <td>Days Present</td>
            </tr>
          </thead>
-
-         
          <tbody>
            <tr>
              <td><input type="text" name="month[]" value="June" readonly></td>
