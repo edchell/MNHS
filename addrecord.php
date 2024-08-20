@@ -271,11 +271,7 @@
              <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px">
-             <td style="width:30px;text-align:center;height:30px;font-size:12px">
-             <input style="width:30px" type="text" name="units[]"></td>
-             <td style="width:30px;text-align:center;height:30px;font-size:12px">
-              <input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" readonly="" >
-
+      
               </td>
               <td><a onclick="remtrr(<?php echo $i ?>)"  id="remtr">X</a></td>
               </tr>
