@@ -491,15 +491,5 @@ function acts($i){
     }
   }
     </script>
-     <script>
-        document.getElementById('myForm').addEventListener('submit', function(event) {
-            // Display alert on successful form submission
-            alert('Save successfully!');
-            
-            // Optionally, prevent form from actually submitting to test the alert
-            // Uncomment the line below to test without actual form submission
-            // event.preventDefault();
-        });
-    </script>
-
+ 
  
