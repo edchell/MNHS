@@ -46,6 +46,31 @@
             font-size: 10px;
         }
     </style>
+     <style>
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    <form action="/your-server-endpoint" method="post">
+        <input type="text" name="exampleField" required>
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-pencil-square" aria-hidden="true"></i> Update
+        </button>
+    </form>
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
 
     <script type="text/javascript">
