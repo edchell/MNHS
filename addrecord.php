@@ -287,7 +287,6 @@
          </tbody>
 
        </table>
-       <td><center><a onclick="update_sy(<?php echo $row["SY_ID"]?>)" class="btn btn-secondary" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
        <div class="col-md-3">
