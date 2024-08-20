@@ -153,6 +153,7 @@ success:function(data)
       <?php
     } ?>
     </div>
+    <button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
     <br>
     <br>
     <input type="text" style="width:100%;text-align:center"  disabled>
