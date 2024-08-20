@@ -249,10 +249,6 @@ success:function(data)
             <br>
           </div>
 
-          <form action="/your-server-endpoint" method="post">
-    <button type="submit">Submit</button>
-</form>
-
 
         </div>  
 
