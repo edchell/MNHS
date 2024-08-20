@@ -372,7 +372,11 @@
        </table> 
        <form action="/your-endpoint" method="post">
     <!-- Your form fields here -->
+    <form action="/your-endpoint" method="post">
+    <!-- Form fields here -->
     <button class="btn btn-success" type="submit">Save</button>
+</form>
+
 </form>
 <button onclick="window.history.back()" style="
     background-color: #6c757d; /* Custom gray background */
