@@ -372,7 +372,6 @@
        </table>
           
      <button class="btn btn-success" type="submit">Save</button>
-     <form>
      <form action="/your-server-endpoint" method="post">
     <input type="text" name="exampleField" required>
     <!-- Add other form fields as needed -->
