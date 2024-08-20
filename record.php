@@ -163,12 +163,6 @@ success:function(data)
     </div>
     </div>
     <div class="col-md-7 text-right">
-    <form action="/your-server-endpoint" method="post">
-    <input type="text" name="exampleField" required>
-    <!-- Add other form fields as needed -->
-    <button type="submit" class="btn btn-success">
-        <i class="fa fa-pencil-square" aria-hidden="true"></i> Update
-    </button>
 </form>
     <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
     while($sy = mysqli_fetch_assoc($query)){ ?>
