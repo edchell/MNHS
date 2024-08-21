@@ -161,7 +161,7 @@ $conn->close();
     <div class="row pb-10">
         <!-- Users Section -->
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-            <div class="card-box height-100-p widget-style3" style="background-color: #ffebcc;"> <!-- Light Orange color -->
+            <div class="card-box height-90-p widget-style3" style="background-color: #ffebcc;"> <!-- Light Orange color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
                         <div class="weight-500 font-24 text-dark"><?php echo $user_count; ?></div>
@@ -180,7 +180,7 @@ $conn->close();
 
         <!-- Total Male Students Section -->
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-            <div class="card-box height-100-p widget-style3" style="background-color: #e6f7ff;"> <!-- Light Blue color -->
+            <div class="card-box height-90-p widget-style3" style="background-color: #e6f7ff;"> <!-- Light Blue color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
                         <div class="weight-500 font-24 text-dark"><?php echo $male_count; ?></div>
@@ -199,7 +199,7 @@ $conn->close();
 
         <!-- Total Female Students Section -->
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-            <div class="card-box height-100-p widget-style3" style="background-color: #f9e6ff;"> <!-- Light Pink color -->
+            <div class="card-box height-90-p widget-style3" style="background-color: #f9e6ff;"> <!-- Light Pink color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
                         <div class="weight-500 font-24 text-dark"><?php echo $female_count; ?></div>
@@ -218,7 +218,7 @@ $conn->close();
 
         <!-- Total Students Section -->
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-            <div class="card-box height-100-p widget-style3" style="background-color: #dfffd6;"> <!-- Light Green color -->
+            <div class="card-box height-90-p widget-style3" style="background-color: #dfffd6;"> <!-- Light Green color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
                         <div class="weight-500 font-24 text-dark"><?php echo $male_count + $female_count; ?></div>
@@ -241,7 +241,7 @@ $conn->close();
 
  <!-- Subjects Section -->
 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-    <div class="card-box height-100-p widget-style3" style="background-color: #fde0e0;"> <!-- Soft peach color -->
+    <div class="card-box height-90-p widget-style3" style="background-color: #fde0e0;"> <!-- Soft peach color -->
         <div class="d-flex flex-wrap">
             <div class="widget-data">
                 <div class="weight-500 font-24 text-dark"><?php echo $subject_count; ?></div>
