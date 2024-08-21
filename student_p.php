@@ -7,7 +7,6 @@
         </script>
   <div class="row">
     <div class="col-md-1 text-right">
-      <a type="button" class="btn btn-info" href="rms.php?page=Students" ><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Back</a>
     </div>
     </div>
     <div class="row">
@@ -247,7 +246,7 @@
          <div class="row">
          <div class="col-md-8 text-right">
           <button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> Update</button>
-          
+          <a type="button" class="btn btn-info" href="rms.php?page=Students" ><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Back</a>
           </div>
 
          </div>
