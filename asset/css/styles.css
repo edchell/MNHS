@@ -12,7 +12,7 @@
 }
 .side-nav {
   background-color:#6096d3  !important;
-  border-right: 2px solid #d8d8d8fa;
+  border-right: 0px solid #d8d8d8fa;
 }.navbar-inverse .navbar-nav>li {
     color:rgb(105 151 210);
     background-color:rgb(102 150 212);
