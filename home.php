@@ -159,48 +159,43 @@ $conn->close();
     </div>
 
     <div class="row pb-10">
-      <!-- Users Section -->
-<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-    <div class="card-box height-30-p widget-style3" style="background-color: #e0f7fa;"> <!-- Soft Teal color -->
-        <div class="d-flex flex-wrap">
-            <div class="widget-data">
-                <div class="weight-500 font-24 text-dark"><?php echo $user_count; ?></div>
-                <div class="font-20 text-secondary weight-500">
-                <center>  Users  </center>
-                </div>
-            </div>
-            <div class="widget-icon">
-                <div class="icon" style="background: linear-gradient(135deg, #6a1b9a, #283593, #009688); /* Gradient colors */ 
-                                          -webkit-background-clip: text; 
-                                          -webkit-text-fill-color: transparent;">
-                    <i class="icon-copy fa fa-user-circle" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-       <!-- Total Male Students Section -->
-<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-    <div class="card-box height-30-p widget-style3" style="background-color: #e6f7ff;"> <!-- Light Blue color -->
-        <div class="d-flex flex-wrap">
-            <div class="widget-data">
-                <div class="weight-500 font-24 text-dark"><?php echo $male_count; ?></div>
-                <div class="font-18 text-secondary weight-500">
-                    <center> Total Male Students </center> 
-                </div>
-            </div>
-            <div class="widget-icon">
-                <div class="icon" style="background: linear-gradient(135deg, #ff6f61, #ffcc00, #00bcd4); /* Gradient colors */
-                                          -webkit-background-clip: text; 
-                                          -webkit-text-fill-color: transparent;">
-                    <i class="icon-copy fa fa-male" aria-hidden="true"></i>
+        <!-- Users Section -->
+        <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+            <div class="card-box height-30-p widget-style3" style="background-color: #ffebcc;"> <!-- Light Orange color -->
+                <div class="d-flex flex-wrap">
+                    <div class="widget-data">
+                        <div class="weight-500 font-24 text-dark"><?php echo $user_count; ?></div>
+                        <div class="font-20 text-secondary weight-500">
+                        <center>  Users  </center>
+                        </div>
+                    </div>
+                    <div class="widget-icon">
+                        <div class="icon" style="color: #ffa500;"> <!-- Orange color -->
+                            <i class="icon-copy fa fa-user-circle" aria-hidden="true"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+        <!-- Total Male Students Section -->
+        <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+            <div class="card-box height-30-p widget-style3" style="background-color: #e6f7ff;"> <!-- Light Blue color -->
+                <div class="d-flex flex-wrap">
+                    <div class="widget-data">
+                        <div class="weight-500 font-24 text-dark"><?php echo $male_count; ?></div>
+                        <div class="font-18 text-secondary weight-500">
+    <center> Total Male Students </center> 
+                        </div>
+                    </div>
+                    <div class="widget-icon">
+                        <div class="icon" style="color: DodgerBlue;"> <!-- DodgerBlue color -->
+                            <i class="icon-copy fa fa-male" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Total Female Students Section -->
         <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
