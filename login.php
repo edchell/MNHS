@@ -25,15 +25,15 @@
     <style>
       body{
         display: flex;
-        height: calc(50%);
-        width: calc(50%);
+        height: calc(100%);
+        width: calc(100%);
         justify-content: center;
         align-items: center;
         background-image: url('images/Mad.jpg.jpg');
         background-repeat: no-repeat; /* Prevent tiling */
         background-size: contain; /* Scale the image to fit within the container */
         background-position: center; /* Center the image */
-        width: 100%; /* Set the width of the container */
+        width: 50%; /* Set the width of the container */
         height: 600px; 
       }
       .login-form {
