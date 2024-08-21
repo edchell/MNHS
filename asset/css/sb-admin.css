@@ -8,7 +8,7 @@
 
 body {
     margin-top: 100px;
-    background-color: #e6e1e1;
+    background-color: #a98e8e;
 }
 
 @media(min-width:768px) {
@@ -24,7 +24,7 @@ body {
 #page-wrapper {
     width: 100%;
     padding: 0;
-    background-color: #e6e1e1;
+    background-color: #e1e1e145;
 }
 
 .huge {
