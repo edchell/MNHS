@@ -230,6 +230,8 @@ success:function(data)
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
           <br>
+            <label for="" style="font-size:6">Units</label>
+            <br>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
           
@@ -285,6 +287,8 @@ success:function(data)
         <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:20px;padding-left:1px">
            <?php echo $row2['FINAL_GRADES'] ?>
         </div>
+        <div class="col-xs-1 text-center" style="border:1px solid black;height:20px">
+          <?php echo $row2['UNITS'] ?>
         </div>
         <div class="col-xs-1 text-center" style="border:1px solid black;height:20px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">
           <?php echo $row2['PASSED_FAILED'] ?>
@@ -302,6 +306,14 @@ success:function(data)
    
        
     <div class="col-xs-3">  
+  <div class="row">
+     <label style="font-size:10px" for="">Has advance unit in</label>
+        <input type="text" style="width:162px;text-align:center" value="<?php echo $row['ADVANCE_UNIT'] ?>" disabled>
+   </div>
+   <div class="row">
+   <br><br>
+     <label style="font-size:10px" for="">lacks unit in</label>
+        <input type="text" style="width:200px;text-align:center" value="<?php echo $row['LACK_UNIT'] ?>" disabled>
         <br><br>
      <label style="font-size:10px" for="">To be classified as</label>
         <input type="text" style="width:170px;text-align:center" value="<?php echo $row['TO_BE_CLASSIFIED'] ?>" disabled>
@@ -381,7 +393,16 @@ success:function(data)
     <br>
     <br>
         <?php
-        
+        <button onclick="window.history.back()" style="
+        background-color: #6c757d; /* Custom gray background */
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding around text */
+        font-size: 16px; /* Font size */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition on hover */
+    ">Back</button>
 
   }  
 }
