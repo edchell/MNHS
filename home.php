@@ -164,7 +164,7 @@ $conn->close();
             <div class="card-box height-100-p widget-style3" style="background-color: #ffebcc;"> <!-- Light Orange color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark"><?php echo $user_count; ?></div>
+                        <div class="weight-500 font-24 text-dark"><?php echo $user_count; ?></div>
                         <div class="font-20 text-secondary weight-500">
                         <center>  Users  </center>
                         </div>
@@ -183,7 +183,7 @@ $conn->close();
             <div class="card-box height-100-p widget-style3" style="background-color: #e6f7ff;"> <!-- Light Blue color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark"><?php echo $male_count; ?></div>
+                        <div class="weight-500 font-24 text-dark"><?php echo $male_count; ?></div>
                         <div class="font-18 text-secondary weight-500">
     <center> Total Male Students </center> 
                         </div>
@@ -202,7 +202,7 @@ $conn->close();
             <div class="card-box height-100-p widget-style3" style="background-color: #f9e6ff;"> <!-- Light Pink color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark"><?php echo $female_count; ?></div>
+                        <div class="weight-500 font-24 text-dark"><?php echo $female_count; ?></div>
                         <div class="font-18 text-secondary weight-500">
                         <center>   Total Female Students </center> 
                         </div>
@@ -221,7 +221,7 @@ $conn->close();
             <div class="card-box height-100-p widget-style3" style="background-color: #dfffd6;"> <!-- Light Green color -->
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark"><?php echo $male_count + $female_count; ?></div>
+                        <div class="weight-500 font-24 text-dark"><?php echo $male_count + $female_count; ?></div>
                         <div class="font-18 text-secondary weight-500">
                         <center>  Total Students </center> 
                         </div>
@@ -244,7 +244,7 @@ $conn->close();
     <div class="card-box height-100-p widget-style3" style="background-color: #fde0e0;"> <!-- Soft peach color -->
         <div class="d-flex flex-wrap">
             <div class="widget-data">
-                <div class="weight-700 font-24 text-dark"><?php echo $subject_count; ?></div>
+                <div class="weight-500 font-24 text-dark"><?php echo $subject_count; ?></div>
                 <div class="font-18 text-secondary weight-500">
                 <center>   Subjects  </center> 
                 </div>
