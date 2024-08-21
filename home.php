@@ -170,7 +170,9 @@ $conn->close();
                 </div>
             </div>
             <div class="widget-icon">
-                <div class="icon" style="color: #ffa500;"> <!-- Orange color -->
+                <div class="icon" style="background: linear-gradient(135deg, #6a1b9a, #283593, #009688); /* Gradient colors */ 
+                                          -webkit-background-clip: text; 
+                                          -webkit-text-fill-color: transparent;">
                     <i class="icon-copy fa fa-user-circle" aria-hidden="true"></i>
                 </div>
             </div>
