@@ -19,9 +19,9 @@ $user = $_SESSION['ID'];
 
 ?>
 <head>
-    <link rel="icon" href="images/logo.jpg">
+    <link rel="icon" href="images/logo educ.jpg.png">
 
-    <title>Student Grading System</title>
+   
 
      <!-- Bootstrap Core CSS -->
     <link href="asset/css/bootstrap.min.css" rel="stylesheet">
@@ -108,12 +108,12 @@ $user = $_SESSION['ID'];
 <div id='print'>
 <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 
-		<p><center><b>Student Grading System</b></center></p>
-
+<p><center><b>REPUBLIC OF THE PHILIPPINES</b></center></p>
+<p><center><b>DEPARTMENT OF EDUCATION</b></center></p>
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
-		  <center><p><b><h4>SECONDARY STUDENT'S PERMANENT RECORDS</h4></b></p></center>
+		  <center><p><b><h4>SENIOR HIGH SCHOOL STUDENT PERMANENT RECORD</h4></b></p></center>
 		  </div>
           </div>
           <div class="row">
