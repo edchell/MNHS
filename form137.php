@@ -155,9 +155,10 @@ $user = $_SESSION['ID'];
 <br>
 <br>
 
-
+<br>
+<br>
 		<p><center><b>Madridejos National High School Student Grading System</b></center></p>
-
+<br>
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
