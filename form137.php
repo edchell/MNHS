@@ -305,9 +305,9 @@ $user = $_SESSION['ID'];
 		
 		<table style="border-collapse:collapse">
 		<tr>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Indicate if Subject is CORE, APPLIED, or SPECIALIZED</b></center></td>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Sem Final Grade</b></center></td>
 		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
 		</tr>
 		<?php
@@ -428,9 +428,9 @@ $user = $_SESSION['ID'];
 		</table>
 		<table style="border-collapse:collapse">
 		<tr>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Indicate if Subject is CORE, APPLIED, or SPECIALIZED</b></center></td>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Sem Final Grade</b></center></td>
 		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
 		</tr>
 		<?php
@@ -543,46 +543,6 @@ $user = $_SESSION['ID'];
 		<?php
 		}
 		}
-		 ?>
-			<table>
-			<tr>
-				<td align="left" style="width:500px">
-					<h5>REMARKS:</h5>
-				</td>
-				<td style="">
-					<table>
-						
-				
-					
-					<tr>
-						<td>
-							&nbsp
-						</td>
-					</tr>
-
-						<tr>
-							<td style="width:250px;border-bottom:1px solid black">
-								
-							</td>
-						</tr>
-						<tr>
-						<td style="width:250px;">
-							<center><h5>PRINCIPAL</h5></center>
-						</td>
-					</tr>
-					</table>
-				</td>
-
-			</tr>
-			</table>
-         	</td>
-         </tr>
-         </table>
-
-</div>
-</p>
-
-<?php
 
  mysqli_close($conn);
 ?>
