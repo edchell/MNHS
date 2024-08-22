@@ -86,8 +86,8 @@
     </div>
     <div class="form-group">        
         <div class="col-md-offset-6 col-md-9">
-        <center>  <button type="submit" class="btn btn-default">Login</button>
-         <a href="view2.php" class="btn btn-primary">Student View</a>  </center>
+        <center>  <button type="submit" class="btn btn-default">Login</button>  </center>
+        <center> <a href="view2.php" class="btn btn-primary">Student View</a>  </center>
         </div>
       </div>
 </form>
