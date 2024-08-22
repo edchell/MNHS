@@ -1,7 +1,7 @@
 .login-form {
   display: block;
   position: fixed;
-  border:2px solid rgb(230, 230, 230);
+  border:2px solid grey;
   border-radius: 5px;
   padding: 5px;
   background-color: white;
@@ -14,18 +14,18 @@
   background-color:#313335 !important;
   border-right: 2px solid #d8d8d8fa;
 }.navbar-inverse .navbar-nav>li {
-    color:#e2e1e1
+    color:black;
     background-color:white;
 }.navbar-inverse .navbar-nav>li>a {
     
     border-bottom: 1px solid #313335;
 }
 .side-nav a {
-  color: #e2e1e1 !important;
+  color: #000000 !important;
 }
 .side-nav a:hover, .side-nav .active a,.side-nav a:focus {
   color: white !important;
-  background-color: #e2e1e1 !important;
+  background-color: #000000 !important;
 }
 .navbar-inverse {
   background-color: #0077ff !important;
