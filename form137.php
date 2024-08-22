@@ -506,9 +506,6 @@ $user = $_SESSION['ID'];
          <table>
          <tr>
          	<td>
-
- mysqli_close($conn);
-?>
 </center>
 </body>
 <script>
