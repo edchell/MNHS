@@ -541,14 +541,6 @@ $user = $_SESSION['ID'];
 
 		</table>
 		
-		<?php 
-	
-
-		}
-	
-	
-
-		?>
 <?php
 
  mysqli_close($conn);
