@@ -154,23 +154,6 @@ $user = $_SESSION['ID'];
 		  <div class="col-md-12">
 		  <center><p><b><h4>SENIOR HIGH SCHOOL STUDENT PERMANENT RECORD</h4></b></p></center>
 
-<html>
-<head>
-<style>
-
-
-div {
-  background-color: darkgray;
-  color: white;
-}
-</style>
-</head>
-<body>
-
-<center><div>LEARNER'S INFORMATION</div></center>
-
-</body>
-</html>
 
 		  <p class="highlighted-heading">
     </p>
