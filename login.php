@@ -44,7 +44,7 @@
   padding: 30px;
   width: 500px;
   background-color: transparent;
-  left:600px;
+  left:500px;
   top:110px;
  } 
  .erlert{
@@ -87,7 +87,7 @@
     <div class="form-group">        
         <div class="col-md-offset-6 col-md-9">
        <button type="submit" class="btn btn-default">Login</button> 
-      <a href="view2.php" class="btn btn-primary">Student View</a> 
+      <a href="view2.php" class="btn btn-primary">Student Login</a> 
         </div>
       </div>
 </form>
