@@ -149,17 +149,6 @@ $user = $_SESSION['ID'];
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 		<p><center><b>REPUBLIC OF THE PHILIPPINES</b></center></p>
 		<p><center><b>DEPARTMENT OF EDUCATION</b></center></p>
 
