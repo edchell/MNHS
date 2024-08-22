@@ -146,9 +146,6 @@ $user = $_SESSION['ID'];
 
 <img style="position: absolute; margin-left: -330px;margin-top: -80px;" src="images/mnlogo.jpg" alt="images/mnlogo.jpg" width="120" height="120">
 <img style="position: absolute; right: 340px;margin-top: -80px;" src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="120" height="120">
-<br>
-<br>
-<br>
 		<p><center><b>REPUBLIC OF THE PHILIPPINES</b></center></p>
 		<p><center><b>DEPARTMENT OF EDUCATION</b></center></p>
 
@@ -276,7 +273,7 @@ $user = $_SESSION['ID'];
 		</table>
 	
 					
-					
+	<center>				
 		<table>
 		<tr style="width:100%">
 		<td  style="width:200px">
@@ -300,6 +297,7 @@ $user = $_SESSION['ID'];
 		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Indicate if Subject is CORE, APPLIED, or SPECIALIZED</b></center></td>
 		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
 		</tr>
+		</center>
 		<?php
 		$syi = $row1['SYI_ID'];
 		$sql2 = mysqli_query($conn,"SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT");
