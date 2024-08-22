@@ -156,11 +156,13 @@ $user = $_SESSION['ID'];
 <br>
 
 
-		<p><center><b>Madridejos National High Student Grading System</b></center></p>
+		<p><center><b>Madridejos National High School Student Grading System</b></center></p>
 
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
+			<br>
+			<br>
 		  <center><p><b><h4>Learner's Permanent Academic Record(SF10-HighSchool)</h4></b></p></center>
 		  <p class="highlighted-heading">
     </p>
@@ -491,7 +493,92 @@ $user = $_SESSION['ID'];
 
 		</td>
 		</tr>
-    
+
+		</table>
+		
+		<?php 
+	
+
+		}
+	
+	
+
+		?>
+      	<p>
+
+
+<p style="float:left;margin-left:15px;margin-bottom:20px;">
+<div class="col-md-12">
+          <hr style="border-color:black;border:1px solid black"></hr>
+
+         <table>
+         <tr>
+         	<td>
+		<center><h3 class="foo"><b>CERTIFICATION</b></h3></center>	
+		
+		<?php
+		$sql= mysqli_query($conn,"SELECT * FROM student_info where STUDENT_ID = '$id'");
+		while($row = mysqli_fetch_assoc($sql)){
+			$mid = $row['MIDDLENAME'];
+			$sql3 = mysqli_query($conn,"SELECT * FROM student_year_info where STUDENT_ID = '$id'");
+			$num = mysqli_num_rows($sql3) ; 
+			if($num > 0){
+		$sql2 = mysqli_query($conn,"SELECT * FROM student_year_info where STUDENT_ID = '$id' order by SYI_ID DESC limit 1 ");
+		while($row2 = mysqli_fetch_assoc($sql2)){
+
+		 ?>
+		
+		
+		<p class="p" style="text-align:justify;line-height:5mm;font-transform:capitalize"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp I hereby certify that this is the true record of &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <?php echo '<u>&nbsp&nbsp&nbsp&nbsp'  . $row['FIRSTNAME'] . ' ' .  substr("$mid", 0, 1) . '. ' . $row['LASTNAME'] . '&nbsp&nbsp&nbsp</u>' . '.' ?> This student is eligible on this &nbsp&nbsp&nbsp <?php echo date("d") . 'th'?> &nbsp&nbsp&nbsp day of &nbsp&nbsp&nbsp <?php echo date("M") . ',' . date("y")?> &nbsp&nbsp&nbsp for admission to &nbsp&nbsp&nbsp <?php echo $row2['TO_BE_CLASSIFIED'] ?>&nbsp&nbsp&nbsp year as (regular/irregular) student, and has no property responsibility in this school. </p>
+
+		<?php
+		}
+	}else{
+		?>
+		<p class="p" style="text-align:justify;line-height:5mm;font-transform:capitalize"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp I hereby certify that this is the true record of &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <?php echo '<u>&nbsp&nbsp&nbsp&nbsp'  . $row['FIRSTNAME'] . ' ' .  substr("$mid", 0, 1) . '. ' . $row['LASTNAME'] . '&nbsp&nbsp&nbsp</u>' . '.' ?> This student is eligible on this &nbsp&nbsp&nbsp <?php echo date("d") . 'th'?> &nbsp&nbsp&nbsp day of &nbsp&nbsp&nbsp <?php echo date("M") . ',' . date("y")?> &nbsp&nbsp&nbsp for admission to &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp year as (regular/irregular) student, and has no property responsibility in this school. </p>
+
+		
+		<?php
+		}
+		}
+		 ?>
+			<table>
+			<tr>
+				<td align="left" style="width:500px">
+					<h5>REMARKS:</h5>
+				</td>
+				<td style="">
+					<table>
+						
+				
+					
+					<tr>
+						<td>
+							&nbsp
+						</td>
+					</tr>
+
+						<tr>
+							<td style="width:250px;border-bottom:1px solid black">
+								
+							</td>
+						</tr>
+						<tr>
+						<td style="width:250px;">
+							<center><h5>PRINCIPAL</h5></center>
+						</td>
+					</tr>
+					</table>
+				</td>
+
+			</tr>
+			</table>
+         	</td>
+         </tr>
+         </table>
+
+</div>
+</p>
 
 <?php
 
