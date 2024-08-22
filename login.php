@@ -86,10 +86,10 @@
     </div>
     <div class="form-group">        
         <div class="col-md-offset-6 col-md-9">
-          <button type="submit" class="btn btn-default">Login</button>
-          <a href="view2.php" class="btn btn-primary">Student View</a> 
+        <center>  <button type="submit" class="btn btn-default">Login</button>
+         <a href="view2.php" class="btn btn-primary">Student View</a>  </center>
         </div>
-    </div>
+      </div>
 </form>
 
   <?php if (isset($error_message)): ?>
