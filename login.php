@@ -42,7 +42,7 @@
   border:2px solid grey;
   border-radius: 10px;
   padding: 30px;
-  width: 300px;
+  width: 400px;
   background-color: transparent;
   left:500px;
   top:110px;
