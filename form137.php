@@ -506,33 +506,6 @@ $user = $_SESSION['ID'];
          <table>
          <tr>
          	<td>
-		<center><h3 class="foo"><b>CERTIFICATION</b></h3></center>	
-		
-		<?php
-		$sql= mysqli_query($conn,"SELECT * FROM student_info where STUDENT_ID = '$id'");
-		while($row = mysqli_fetch_assoc($sql)){
-			$mid = $row['MIDDLENAME'];
-			$sql3 = mysqli_query($conn,"SELECT * FROM student_year_info where STUDENT_ID = '$id'");
-			$num = mysqli_num_rows($sql3) ; 
-			if($num > 0){
-		$sql2 = mysqli_query($conn,"SELECT * FROM student_year_info where STUDENT_ID = '$id' order by SYI_ID DESC limit 1 ");
-		while($row2 = mysqli_fetch_assoc($sql2)){
-
-		 ?>
-		
-		
-		<p class="p" style="text-align:justify;line-height:5mm;font-transform:capitalize"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp I hereby certify that this is the true record of &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <?php echo '<u>&nbsp&nbsp&nbsp&nbsp'  . $row['FIRSTNAME'] . ' ' .  substr("$mid", 0, 1) . '. ' . $row['LASTNAME'] . '&nbsp&nbsp&nbsp</u>' . '.' ?> This student is eligible on this &nbsp&nbsp&nbsp <?php echo date("d") . 'th'?> &nbsp&nbsp&nbsp day of &nbsp&nbsp&nbsp <?php echo date("M") . ',' . date("y")?> &nbsp&nbsp&nbsp for admission to &nbsp&nbsp&nbsp <?php echo $row2['TO_BE_CLASSIFIED'] ?>&nbsp&nbsp&nbsp year as (regular/irregular) student, and has no property responsibility in this school. </p>
-
-		<?php
-		}
-	}else{
-		?>
-		<p class="p" style="text-align:justify;line-height:5mm;font-transform:capitalize"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp I hereby certify that this is the true record of &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <?php echo '<u>&nbsp&nbsp&nbsp&nbsp'  . $row['FIRSTNAME'] . ' ' .  substr("$mid", 0, 1) . '. ' . $row['LASTNAME'] . '&nbsp&nbsp&nbsp</u>' . '.' ?> This student is eligible on this &nbsp&nbsp&nbsp <?php echo date("d") . 'th'?> &nbsp&nbsp&nbsp day of &nbsp&nbsp&nbsp <?php echo date("M") . ',' . date("y")?> &nbsp&nbsp&nbsp for admission to &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp year as (regular/irregular) student, and has no property responsibility in this school. </p>
-
-		
-		<?php
-		}
-		}
 
  mysqli_close($conn);
 ?>
