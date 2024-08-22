@@ -167,8 +167,6 @@ success:function(data)
             <br>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
-          <br>
-            <label for="" style="font-size:6">Units</label>
             <br>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
