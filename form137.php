@@ -1,516 +1,232 @@
-&nbsp<!DOCTYPE html>
-<html>
-<?php 
-include 'db.php';
-session_start();
-$user = $_SESSION['ID'];
-
-
-	$id = $_GET['id'];
-
-	$query = mysqli_query($conn,"SELECT * FROM student_info where STUDENT_ID = '$id' ");
-	$row = mysqli_fetch_assoc($query);
-	$student = $row['FIRSTNAME'].' '. $row['LASTNAME'];
-
-	mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
-		VALUES ('printed $student permanent record','$user',NOW() )");
-
-
-
-?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    
-     <!-- Bootstrap Core CSS -->
-    <link href="asset/css/bootstrap.min.css" rel="stylesheet">
-    <link href="asset/css/styles.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="asset/css/sb-admin.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepEd Form 137 - High School</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DepEd Form 137 - High School</h1>
+        <form action="submit_form.php" method="post"> <!-- Form action and method -->
+            
+            <!-- Learner's Information -->
+            <fieldset>
+                <legend>Learner's Information</legend>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
 
-    <!-- Morris Charts CSS -->
-    <link href="asset/css/plugins/morris.css" rel="stylesheet">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required>
 
-    <!-- Custom Fonts -->
-    <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+                <label for="middlename">Middle Name:</label>
+                <input type="text" id="middlename" name="middlename" required>
 
-    
-    <script src="datatables/jquery.dataTables.js"></script>
-    <script src="datatables/dataTables.bootstrap.js"></script>
-        <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
+                <label for="lrn">LRN (Learner Reference Number):</label>
+                <input type="text" id="lrn" name="lrn" required>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="asset/js/bootstrap.min.js" type="text/javascript"></script>
+                <label for="birth_date">Date of Birth:</label>
+                <input type="date" id="birth_date" name="birth_date" required>
 
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="assets/js/jq.js"></script>
-	<style>
-	@media print {  
-		@page {
-			size:8.5in 13in;
-		}
-		head{
-			height:0px;
-			display: none;
-		}
-		#head{
-			display: none;
-			height:0px;
-		}
-		#print{
-		position:fixed;
-		top:0px;
-		margin-top:20px;
-		margin-bottom:30px;
-		margin-right:50px;
-		margin-left:50px;
-		}
-		}
-		#print{
-		width:7.5in;
-		}
-		input {
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid black;
-}
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
 
-.foo{
-	font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
-	font-size: 24px;
-	font-style: italic;
-	font-variant: normal;
-	font-weight: bold;
-	line-height: 24px;
-	}
-	.p {
-	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-	font-size: 14px;
-	font-style: italic;
-	font-variant: normal;
-	font-weight: 550;
-	line-height: 20px;
-	 letter-spacing: 2px;
-}
-	</style>
+                <label for="shs_admission_date">Date of SHS Admission (MM/DD/YYYY):</label>
+                <input type="date" id="shs_admission_date" name="shs_admission_date" required>
+            </fieldset>
 
-</head> 
-<body style="background-color:white"> 
-<span id='returncode'></span>
-<div class="col-md-2" id="head">
-<button 
-    class="btn btn-info" 
-    onclick="print()"
-    style="
-        background-color: #007bff; /* Custom blue background */
-        color: white; /* White text */
-        padding: 10px 10px; /* Padding around text */
-        font-size: 16px; /* Font size */
-        border: none; /* Remove border */
-        border-radius: 5px; /* Rounded corners */
-        cursor: pointer; /* Pointer cursor on hover */
-        transition: background-color 0.3s; /* Smooth transition on hover */
-    "
->
-    <i class="glyphicon glyphicon-print"></i> PRINT
-</button>
+            <!-- Eligibility for SHS Enrollment -->
+            <fieldset>
+                <legend>Eligibility for SHS Enrollment</legend>
+                <label for="high_school_completer">High School Completer*:</label>
+                <input type="text" id="high_school_completer" name="high_school_completer" required>
 
-	<a 
-    class="btn btn-info" 
-    onclick="window.close()"
-    style="
-        background-color: #dc3545; /* Custom red background */
-        color: white; /* White text */
-        padding: 10px 20px; /* Padding around text */
-        font-size: 16px; /* Font size */
-        border: none; /* Remove border */
-        border-radius: 5px; /* Rounded corners */
-        text-decoration: none; /* Remove underline */
-        display: inline-block; /* Ensure proper button behavior */
-        cursor: pointer; /* Pointer cursor on hover */
-        transition: background-color 0.3s; /* Smooth background color transition */
-    "
->
-    Cancel
-</a>
+                <label for="gen_ave_hs">Gen. Ave.:</label>
+                <input type="text" id="gen_ave_hs" name="gen_ave_hs" required>
 
-	
-</div>
-<center>
-<div id='print'>
-<div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
+                <label for="junior_high_school_completer">Junior High School Completer:</label>
+                <input type="text" id="junior_high_school_completer" name="junior_high_school_completer" required>
 
-<background-position: left top;>
+                <label for="gen_ave_jh">Gen. Ave.:</label>
+                <input type="text" id="gen_ave_jh" name="gen_ave_jh" required>
 
-<img style="position: absolute; margin-left: -330px;margin-top: -80px;" src="images/mnlogo.jpg" alt="images/logo educ.jpg.png" width="120" height="120">
-<img style="position: absolute; right: 340px;margin-top: -80px;" src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="120" height="120">
-		<p><center><b>REPUBLIC OF THE PHILIPPINES</b></center></p>
-		<p><center><b>DEPARTMENT OF EDUCATION</b></center></p>
+                <label for="graduation_date">Date of Graduation/Completion (MM/DD/YYYY):</label>
+                <input type="date" id="graduation_date" name="graduation_date" required>
 
-		  </div>
-		  <div class="row">
-		  <div class="col-md-12">
-		  <center><p><b><h4>SENIOR HIGH SCHOOL STUDENT PERMANENT RECORD</h4></b></p></center>
+                <label for="school_name">Name of School:</label>
+                <input type="text" id="school_name" name="school_name" required>
 
+                <label for="school_address">School Address:</label>
+                <textarea id="school_address" name="school_address" rows="3" required></textarea>
 
+                <label for="pept_passer">PEPT Passer**:</label>
+                <input type="text" id="pept_passer" name="pept_passer">
 
-		  <p class="highlighted-heading">
-    </p>
-		  </div>
-          </div>
-          <div class="row">
-		  <div class="col-md-12">
+                <label for="pept_rating">Rating:</label>
+                <input type="text" id="pept_rating" name="pept_rating">
 
-		  <table style="line-height:5mm">
-		<?php 
-		include 'db.php';
-		$id = $_GET['id'];
-		$sql = mysqli_query($conn,"SELECT * from student_info where STUDENT_ID = '$id'");
-		while($row = mysqli_fetch_assoc($sql)){
-			$mid = $row['MIDDLENAME'];
-		?>
-			<tr>
-				<td style="width:600px;font-size:12px">
-					<label for="" style="">Name:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<b style="font-size:13px;text-transform: uppercase;"><?php echo $row['LASTNAME'].", " .  $row['FIRSTNAME']. " " .  substr("$mid",0,1) . "."; ?></b>
-					<br>
-					<label for="">Place of Birth:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px"><?php echo $row['BIRTH_PLACE'] ?></h>
-					
-				</td>
-				<td style="width:600px;font-size:12px">
-				<label for="">Date of Birth:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px"><?php echo date("F d,Y") ?></h>
-					<br>
-					<label for="">Town / City:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px"><?php echo $row['ADDRESS'] ?></h>
-				</td>
-				
-			</tr>
+                <label for="als_ae">ALS A&E:</label>
+                <input type="text" id="als_ae" name="als_ae">
 
-			
-			</table> 
-			<table>
-			<tr>
-			<td style="width:1000px;font-size:12px;align:left">
-				
-					<label for="">Parent or Guardian:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px;text-transform: capitalize"><?php echo $row['PARENT_GUARDIAN'] ?></h>
-				</td>
-				<td style="width:600px;font-size:12px;align:left">
-				
-					
-				</td>
-			</tr>
+                <label for="als_rating">Rating:</label>
+                <input type="text" id="als_rating" name="als_rating">
 
-			</table>
-			<table>
-			
-			<tr>
-			<td style="width:1000px;font-size:12px;align:left">
+                <label for="others_specify">Others (Pls. Specify):</label>
+                <input type="text" id="others_specify" name="others_specify">
 
-				
-					<label for="">Address of Parent or Guardian:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px;text-transform: capitalize"><?php echo $row['P_ADDRESS'] ?></h>
-				
-			</td>
-			</tr>
-			
-			</table> 
-			<table>
-			<tr>
+                <label for="exam_date">Date of Examination/Assessment (MM/DD/YYYY):</label>
+                <input type="date" id="exam_date" name="exam_date">
 
-			<td style="width:800px;font-size:12px">
+                <label for="community_learning_center">Name and Address of Community Learning Center:</label>
+                <textarea id="community_learning_center" name="community_learning_center" rows="3"></textarea>
+            </fieldset>
 
-				
-					<label for="">Intermediate Course Completed at:&nbsp</label>
-					<h style="text-transform: capitalize"><?php echo $row['INT_COURSE_COMP'] ?></h>
-				
-			</td>
-			<td style="width:200px;font-size:12px">
-				<label for="">Year:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="text-transform: capitalize"><?php echo $row['SCHOOL_YEAR'] ?></h>
-			</td>
-			<td style="width:200px;font-size:12px">
-				<label for="">Ave:&nbsp</label>
-					<h style="text-transform: capitalize"><?php echo $row['GEN_AVE'] ?></h>
-			</td>
-			
-			
-			</tr>
-		</table>
-		<?php } ?>
-		  </div>
-          </div>
-          <div class="row">
-          <div class="col-md-12">
-          <hr style="border-color:black;border:1px solid black"></hr>
-          </div>
-          
-          </div>
+            <!-- Scholastic Record -->
+            <fieldset>
+                <legend>Scholastic Record</legend>
+                <label for="school">SCHOOL:</label>
+                <input type="text" id="school" name="school" required>
 
-          <p style="">
-          <?php
-		$sql1 = mysqli_query($conn,"SELECT * FROM student_year_info left join grade on student_year_info.YEAR=grade.grade_id where STUDENT_ID = '$id'");
-		$num1 = mysqli_num_rows($sql1);
+                <label for="school_id">SCHOOL ID:</label>
+                <input type="text" id="school_id" name="school_id" required>
 
-		
+                <label for="grade_level">GRADE LEVEL:</label>
+                <input type="text" id="grade_level" name="grade_level" required>
 
-		while($row1 = mysqli_fetch_assoc($sql1)){
-		?>
-		<table style="float:left;margin-left:5px;margin-bottom:20px;">
-		<tr>
-		<td>  
-		<table>
-			<tr style="width:100%">
-			<td>
-         
-			<label style="font-size:12px">School:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-			</td>
-			<td style="border-bottom:1px solid black;width:280px">
-		<label style="font-size:12px"><?php echo $row1['SCHOOL'] ?> </label>
-		</td>
-		</tr>
-		</table>
-	
-					
-	<center>				
-		<table>
-		<tr style="width:100%">
-		<td  style="width:200px">
-		<label style="font-size:12px">Yr.& Sec:&nbsp&nbsp&nbsp&nbsp&nbsp
-					<?php echo $row1['grade'] . '-' . $row1['SECTION']  ?></label>
-		</td>
-		<td >
-		<label style="font-size:12px">Sch.Yr.:&nbsp&nbsp&nbsp&nbsp&nbsp
-					<?php echo $row1['SCHOOL_YEAR']?>
-						
-					</label>
-		</td>
-		</tr>
-		</table>
-	
+                <label for="school_year">SY (School Year):</label>
+                <input type="text" id="school_year" name="school_year" required>
 
-		<table style="border-collapse:collapse">
-		<tr>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><br>Indicate if Subject is CORE, APPLIED, or SPECIALIZED</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b></b>Subjects</center></td>
-		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Sem Final Grade</b></center></td>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
-		</tr>
-		</center>
-		<?php
-		$syi = $row1['SYI_ID'];
-		$sql2 = mysqli_query($conn,"SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT");
-		$num4 = mysqli_num_rows($sql2);
-		while($row2 = mysqli_fetch_assoc($sql2)){
-			$sub = $row2['SUBJECT'];
-		$sql3 = mysqli_query($conn,"SELECT * FROM subjects where SUBJECT_ID = '$sub'");
-		while($row3 = mysqli_fetch_assoc($sql3)){
+                <label for="semester">SEM (Semester):</label>
+                <input type="text" id="semester" name="semester" required>
 
-		?>
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:10px;height:15px">
-			<?php
-           if($row3['SUBJECT'] == "     *Music"){
-            echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];}
-            elseif($row3['SUBJECT'] == "     *Arts"){
-              echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];
-            }
-            elseif($row3['SUBJECT'] == "     *Physical Education"){
-              echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];
-            }
-            elseif($row3['SUBJECT'] == "     *Health"){
-              echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];
-            }	
-            else{
-              echo $row3['SUBJECT'];
+                <label for="track_strand">TRACK/STRAND:</label>
+                <input type="text" id="track_strand" name="track_strand" required>
 
-            }
-            ?>
-		</td>
-		<td style="width:60px;border:1px solid black;font-size:10px;height:15px;text-align:center"><?php echo $row2['FINAL_GRADES'] ?></td>
-		<td style="width:60px;border:1px solid black;font-size:10px;height:15px"><?php echo $row2['UNITS'] ?></td>
-		<td style="width:83px;border:1px solid black;font-size:10px;height:15px"><center><?php echo $row2['PASSED_FAILED'] ?></center></td>
-		</tr>
-		
-		<?php
-	}
-			
-	}	
-			for($q = $num4; $q < 15 ; $q++){
-		 ?>
-		
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
-		</tr>
-		<?php
-	
+                <label for="section">SECTION:</label>
+                <input type="text" id="section" name="section" required>
 
-}
-	
-		?>
-		<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of School:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TDAYS_OF_CLASSES'] ?></center></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">No. of Ye</td>
-		<td style="width:83px;font-size:12px;height:15px">ars in</td>
-		</tr>
-		<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of Present:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TDAYS_PRESENT'] ?></center></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">School</td>
-		<td style="width:83px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TOTAL_NO_OF_YEAR'] ?></center></td>
-		</tr>
+                <!-- Subjects Table -->
+                <h2>Subjects</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Indicate if Subject is CORE, APPLIED, or SPECIALIZED</th>
+                            <th>SUBJECTS</th>
+                            <th>Quarter First</th>
+                            <th>Quarter Second</th>
+                            <th>SEM FINAL GRADE</th>
+                            <th>ACTION TAKEN</th>
+                            <th>REMARK</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="subject_type_1" required></td>
+                            <td><input type="text" name="subject_1" required></td>
+                            <td><input type="text" name="quarter_first_1" required></td>
+                            <td><input type="text" name="quarter_second_1" required></td>
+                            <td><input type="text" name="sem_final_grade_1" required></td>
+                            <td><input type="text" name="action_taken_1" required></td>
+                            <td><input type="text" name="remark_1" required></td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
 
-		</table>
-		<table style="border-collapse:collapse">
-			<tr>
-		<td style="width:150px;font-size:12px;height:15px">To be classified as:</td>
-		<td style="width:120px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TO_BE_CLASSIFIED'] ?></center></td>
-		<td style="width:83px;font-size:12px;height:15px"></td>
-		</tr>
-		</table>
-		</td>
-		</tr>
+                <!-- Certification Section -->
+                <fieldset>
+                    <legend>Certification</legend>
+                    <label for="date_checked">Date Checked (MM/DD/YYYY):</label>
+                    <input type="date" id="date_checked" name="date_checked" required>
 
-		</table>
+                    <label for="certified_true">Certified True and Correct:</label>
+                    <input type="text" id="certified_true" name="certified_true" required>
 
+                    <label for="signature_adviser">Signature of Adviser over Printed Name:</label>
+                    <input type="text" id="signature_adviser" name="signature_adviser" required>
 
-		
-         
-          
-          <?php
-	}
-	?>
-	<?php
-	for($c =  $num1;$c < 4; $c++){
-		?>
-		<table style="float:left;margin-left:5px;margin-bottom:20px;">
-		<tr>
-		<td>
-		<table>
-			<tr style="width:100%">
-			<td>
-			<label style="font-size:12px">School:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-			</td>
-			<td style="border-bottom:1px solid black;width:280px">
-		<label style="font-size:12px"></label>
-		</td>
-		</tr>
-		</table>
-	
-					
-					
-		<table>
-		<tr style="width:100%">
-		<td  style="width:200px">
-		<label style="font-size:12px">Yr.& Sec:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-		</td>
-		<td >
-		<label style="font-size:12px">Sch.Yr.:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-		</td>
-		</tr>
-		</table>
-		<table style="border-collapse:collapse">
-		<tr>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Indicate if Subject is CORE, APPLIED, or SPECIALIZED</b></center></td>
-		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Sem Final Grade</b></center></td>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
-		</tr>
-		<?php
-		
-		for($p = 0 ; $p < 7 ; $p++){
-		 ?>
-		
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
-		</tr>
-		<?php 
-	}
-		?>
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;height:15px;font-size:11px;text-align:right"><b>*</b></td>
-		<td style="width:60px;height:15px;font-size:11px;text-align:right"><b>**** no &nbsp</b></td>
-		<td style="width:83px;border-right:1px solid black;font-size:11px;height:15px;text-align:left"><b>entry *****</b></td>
-		</tr>
+                    <label for="signature_authorized">Signature of Authorized Person over Printed Name:</label>
+                    <input type="text" id="signature_authorized" name="signature_authorized" required>
 
-		<?php
-		for($s = 0 ; $s < 7 ; $s++){
-		 ?>
-		
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
-		</tr>
-		<?php 
-		}
-	
+                    <label for="designation">Designation:</label>
+                    <input type="text" id="designation" name="designation" required>
 
-		?>
-<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of School:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">No. of Ye</td>
-		<td style="width:83px;font-size:12px;height:15px">ars in</td>
-		</tr>
-		<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of Present:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">School:</td>
-		<td style="width:83px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		</tr>
+                    <label for="conducted_from">Conducted from (MM/DD/YYYY):</label>
+                    <input type="date" id="conducted_from" name="conducted_from" required>
 
-		</table>
-		<table style="border-collapse:collapse">
-			<tr>
-		<td style="width:150px;font-size:12px;height:15px">To be classified as:</td>
-		<td style="width:120px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:83px;font-size:12px;height:15px"></td>
-		</tr>
-		</table>
-		</td>
-		</tr>
+                    <label for="conducted_to">to (MM/DD/YYYY):</label>
+                    <input type="date" id="conducted_to" name="conducted_to" required>
 
-		</td>
-		</tr>
+                    <label for="certification_school">SCHOOL:</label>
+                    <input type="text" id="certification_school" name="certification_school" required>
 
-		</table>
-		
-		<?php 
-	
+                    <label for="certification_school_id">SCHOOL ID:</label>
+                    <input type="text" id="certification_school_id" name="certification_school_id" required>
+                </fieldset>
+            </fieldset>
 
-		}
-	
-	
-
-		?>
-
-</center>
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
-<script>
-function printContent(el){
-	var restorepage = document.body.innerHTML;
-	var printcontent = document.getElementById(el).innerHTML;
-	document.body.innerHTML = printcontent;
-	window.print();
-	document.body.innerHTML = restorepage;
-
-	$.ajax({
-		url:'print_log.php?act=form137&id=<?php echo $_GET['id'] ?>',
-		success:function(html){
-			$('#returncode').html(html);
-		}
-	});
-}
-</script>
 </html>
