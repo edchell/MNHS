@@ -8,7 +8,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-   
+    <link rel="icon" href="images/Mad.jpg.jpg">
+
     <title>Student Grading System</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +34,7 @@
         background-repeat: no-repeat; /* Prevent tiling */
         background-size: contain; /* Scale the image to fit within the container */
         background-position: center; /* Center the image */
-        width: 50%; /* Set the width of the container */
+        width: 100%; /* Set the width of the container */
         height: 600px; 
       }
       .login-form {
@@ -86,10 +87,10 @@
     </div>
     <div class="form-group">        
         <div class="col-md-offset-6 col-md-9">
-      <button type="submit" class="btn btn-default">Login</button>  
-      <a href="view2.php" class="btn btn-primary">Student View</a> 
+          <button type="submit" class="btn btn-default">Login</button>
+          <a href="view2.php" class="btn btn-primary">Student View</a> 
         </div>
-      </div>
+    </div>
 </form>
 
   <?php if (isset($error_message)): ?>
