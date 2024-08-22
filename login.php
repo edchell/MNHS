@@ -33,7 +33,7 @@
         background-repeat: no-repeat; /* Prevent tiling */
         background-size: contain; /* Scale the image to fit within the container */
         background-position: center; /* Center the image */
-        width: 50%; /* Set the width of the container */
+        width: 60%; /* Set the width of the container */
         height: 600px; 
       }
       .login-form {
