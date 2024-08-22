@@ -179,16 +179,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="text" name="subject_type_1" required></td>
-                            <td><input type="text" name="subject_1" required></td>
-                            <td><input type="text" name="quarter_first_1" required></td>
-                            <td><input type="text" name="quarter_second_1" required></td>
-                            <td><input type="text" name="sem_final_grade_1" required></td>
-                            <td><input type="text" name="action_taken_1" required></td>
-                            <td><input type="text" name="remark_1" required></td>
-                        </tr>
-                        <!-- Add more rows as needed -->
+                        <?php
+                        // Example data rows; replace this with your dynamic data
+                        $rows = [
+                            [
+                                'subject_type' => 'CORE',
+                                'subject' => 'Mathematics',
+                                'quarter_first' => '85',
+                                'quarter_second' => '90',
+                                'sem_final_grade' => '87',
+                                'action_taken' => 'Passed',
+                                'remark' => 'Excellent'
+                            ],
+                            [
+                                'subject_type' => 'APPLIED',
+                                'subject' => 'Computer Science',
+                                'quarter_first' => '88',
+                                'quarter_second' => '92',
+                                'sem_final_grade' => '90',
+                                'action_taken' => 'Passed',
+                                'remark' => 'Good'
+                            ],
+                            // Add more rows as needed
+                        ];
+
+                        foreach ($rows as $index => $row) {
+                            echo '<tr>';
+                            echo '<td><input type="text" name="subject_type_' . ($index + 1) . '" value="' . htmlspecialchars($row['subject_type']) . '" required></td>';
+                            echo '<td><input type="text" name="subject_' . ($index + 1) . '" value="' . htmlspecialchars($row['subject']) . '" required></td>';
+                            echo '<td><input type="text" name="quarter_first_' . ($index + 1) . '" value="' . htmlspecialchars($row['quarter_first']) . '" required></td>';
+                            echo '<td><input type="text" name="quarter_second_' . ($index + 1) . '" value="' . htmlspecialchars($row['quarter_second']) . '" required></td>';
+                            echo '<td><input type="text" name="sem_final_grade_' . ($index + 1) . '" value="' . htmlspecialchars($row['sem_final_grade']) . '" required></td>';
+                            echo '<td><input type="text" name="action_taken_' . ($index + 1) . '" value="' . htmlspecialchars($row['action_taken']) . '" required></td>';
+                            echo '<td><input type="text" name="remark_' . ($index + 1) . '" value="' . htmlspecialchars($row['remark']) . '" required></td>';
+                            echo '</tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
 
