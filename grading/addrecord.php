@@ -1,4 +1,63 @@
 <!--$("#rowws").clone().appendTo("#table-body").show();-->
+<link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form with Save Button</h1>
+        <form action="submit_form.php" method="post"> <!-- Form action and method -->
+            <!-- Form fields -->
+            <fieldset>
+                <legend>Sample Section</legend>
+                <label for="sample_input">Sample Input:</label>
+                <input type="text" id="sample_input" name="sample_input" required>
+            </fieldset>
+            <!-- Save Button -->
+            <button class="btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>
     <script>
       $(document).ready(function(){
 
@@ -390,6 +449,19 @@
 
     </form>
     </div>
+    <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+        
+        // Perform custom actions here
+        console.log('Form submitted!');
+        
+        // Optionally, you can submit the form programmatically
+        // this.submit();
+    });
+</script>
+
     <script>
       $(document).ready(function() {
     
