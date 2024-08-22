@@ -74,13 +74,7 @@ while($row = mysqli_fetch_assoc($sql)) {
 	  <?php
 } mysqli_close($conn);
   ?>
-  <div class="col-md-5">
-  <div class="form-inline">
-  <div class="form-group">
-  <a href="rms.php?page=record&id=<?php  echo $_GET['id']?>" class="btn btn-success"> View All</a>
-  <label for="focusedInput">Select Grade:</label>
-  <select class="form-control" style="height:30px;font-size:12px" id="fetch">
-	<option > </option>
+  
 <?php 
 include 'db.php';
 $query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
@@ -235,36 +229,6 @@ while($row3 = mysqli_fetch_assoc($sql3)){
 	 ?>
 
 
-</div>
-</div>
-
-   
-<div class="col-xs-3">  
-<div class="row">
- <label style="font-size:10px" for="">Has advance unit in</label>
-	<input type="text" style="width:162px;text-align:center" value="<?php echo $row['ADVANCE_UNIT'] ?>" disabled>
-</div>
-<div class="row">
-<br><br>
- <label style="font-size:10px" for="">lacks unit in</label>
-	<input type="text" style="width:200px;text-align:center" value="<?php echo $row['LACK_UNIT'] ?>" disabled>
-	<br><br>
- <label style="font-size:10px" for="">To be classified as</label>
-	<input type="text" style="width:170px;text-align:center" value="<?php echo $row['TO_BE_CLASSIFIED'] ?>" disabled>
-	<br><br>
- <label style="font-size:10px" for="">Total Number of<br>years in school to date</label>
-	<input type="text" style="width:145px;text-align:center" value="<?php echo $row['TOTAL_NO_OF_YEAR'] ?>" disabled>
-	<br><br>
- <label style="font-size:10px" for="">Adviser:</label>
-	<input type="text" style="width:220px;text-align:center" 
-	value="<?php echo $row['name'] ?>" disabled>
-	<br><br>
- <label style="font-size:10px" for="">General Average:</label>
-	<input type="text" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>" disabled>
-	<br><br>
- <label style="font-size:10px" for="">Rank:</label>
-	<input type="text" style="width:232px;text-align:center" value="<?php echo $row['RANK'] ?>" disabled>
-	<BR><BR><BR><br>
 </div>
 </div>
 
