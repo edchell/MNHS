@@ -160,7 +160,6 @@ $user = $_SESSION['ID'];
 body {
 
 div {
-  background-color: darkgray;
   color: white;
 }
 </style>
