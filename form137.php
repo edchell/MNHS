@@ -161,6 +161,9 @@ $user = $_SESSION['ID'];
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
