@@ -25,8 +25,8 @@
     <style>
       body{
         display: flex;
-        height: calc(100%);
-        width: calc(100%);
+        height: calc(80%);
+        width: calc(80%);
         justify-content: center;
         align-items: center;
         background-image: url('images/Mad.jpg.jpg');
