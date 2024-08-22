@@ -496,16 +496,7 @@ $user = $_SESSION['ID'];
 	
 
 		?>
-      	<p>
 
-
-<p style="float:left;margin-left:15px;margin-bottom:20px;">
-<div class="col-md-12">
-          <hr style="border-color:black;border:1px solid black"></hr>
-
-         <table>
-         <tr>
-         	<td>
 </center>
 </body>
 <script>
