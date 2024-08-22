@@ -25,15 +25,15 @@
     <style>
       body{
         display: flex;
-        height: calc(50%);
-        width: calc(50%);
+        height: calc(100%);
+        width: calc(100%);
         justify-content: center;
         align-items: center;
         background-image: url('images/Mad.jpg.jpg');
         background-repeat: no-repeat; /* Prevent tiling */
         background-size: contain; /* Scale the image to fit within the container */
         background-position: center; /* Center the image */
-        width: 60%; /* Set the width of the container */
+        width: 50%; /* Set the width of the container */
         height: 600px; 
       }
       .login-form {
@@ -42,7 +42,7 @@
   border:2px solid grey;
   border-radius: 10px;
   padding: 30px;
-  width: 400px;
+  width: 500px;
   background-color: transparent;
   left:500px;
   top:110px;
@@ -86,8 +86,8 @@
     </div>
     <div class="form-group">        
         <div class="col-md-offset-6 col-md-9">
-       <button type="submit" class="btn btn-default">Login</button> 
-      <a href="view2.php" class="btn btn-primary">Student Login</a> 
+      <button type="submit" class="btn btn-default">Login</button>  
+      <a href="view2.php" class="btn btn-primary">Student View</a> 
         </div>
       </div>
 </form>
