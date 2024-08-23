@@ -391,106 +391,82 @@
     </form>
     </div>
     <script>
-      $(document).ready(function() {
-    
+    $(document).ready(function() {
+    // Calculate on page load to ensure initial values are set
     calculateSum();
-     calculateAVE();
-     acts();
+    calculateAVE();
+    acts();
 
-
-    $(".dc").on("keydown keyup", function() {
-        calculateSum();
-    });
-    $(".p").on("keydown keyup", function() {
-        calculateAVE();
-    });
-    $("#action").on("keydown keyup", function() {
-        acts();
+    // Recalculate on changes
+    $(".dc").on("keydown keyup", calculateSum);
+    $(".p").on("keydown keyup", calculateAVE);
+    $("#table-body").on("keydown keyup", "input", function() {
+        var rowId = $(this).closest('tr').attr('class');
+        calculateSum2(rowId);
     });
 });
 
 function calculateSum() {
     var sum = 0;
-    //iterate through each textboxes and add the values
     $(".dc").each(function() {
-        //add only if the value is number
         if (!isNaN(this.value) && this.value.length != 0) {
             sum += parseFloat(this.value);
-            ;
-        }
-        else if (this.value.length != 0){
+            $(this).css("background-color", "white");
+        } else if (this.value.length != 0) {
             $(this).css("background-color", "red");
         }
     });
- 
-  $("input#tdc").val(sum.toFixed(0));
+    $("input#tdc").val(sum.toFixed(0));
 }
 
-function calculateSum2($i) {
-    var sum = 0,
-    i = $i;
-    //iterate through each textboxes and add the values
-    $(".grade"+ i).each(function() {
-        //add only if the value is number
+function calculateSum2(i) {
+    var sum = 0;
+    $(".grade" + i).each(function() {
         if (!isNaN(this.value) && this.value.length != 0) {
-            sum += parseFloat(this.value)/ "4";
+            sum += parseFloat(this.value);
             $(this).css("background-color", "white");
-        }
-        else if (this.value.length != 0){
+        } else if (this.value.length != 0) {
             $(this).css("background-color", "rgba(255, 0, 0, 0.49)");
         }
-        if(this.value > 100){
-          $(this).css("background-color", "rgba(255, 0, 0, 0.49)");
-        }else{
-            $(this).css("background-color", "white");
-          
+        if (this.value > 100) {
+            $(this).css("background-color", "rgba(255, 0, 0, 0.49)");
         }
     });
- if(sum < 75){
-  $("input#action"+ i).val("FAILED");
- }else{
-  $("input#action"+ i).val("PASSED");
-
- }
-  $("input#fin"+i).val(sum.toFixed(2));
+    if (sum < 75) {
+        $("input#action" + i).val("FAILED");
+    } else {
+        $("input#action" + i).val("PASSED");
+    }
+    $("input#fin" + i).val((sum / 4).toFixed(2));
 }
+
 function calculateAVE() {
     var sum = 0;
-    //iterate through each textboxes and add the values
     $("input.p").each(function() {
-        //add only if the value is number
         if (!isNaN(this.value) && this.value.length != 0) {
-            sum += parseFloat(this.value) ;
-            ;
-        }
-        else if (this.value.length != 0){
+            sum += parseFloat(this.value);
+            $(this).css("background-color", "white");
+        } else if (this.value.length != 0) {
             $(this).css("background-color", "red");
         }
     });
- 
-  $("input#tp").val(sum.toFixed(0));
+    $("input#tp").val(sum.toFixed(0));
 }
-function acts($i){
-  var i = $i;
- $("input#action"+i).each(function() {
-        //add only if the value is number
-        if (!isNaN(this.value) && this.value == 'FAILED') {
-             $("input#stats").val('Retained');
-        }
-        else{
-           $("input#stats").val('Promoted');
+
+function acts() {
+    $("input#action").each(function() {
+        if ($(this).val() === 'FAILED') {
+            $("input#stats").val('Retained');
+        } else {
+            $("input#stats").val('Promoted');
         }
     });
-  
- }
+}
 
- function validate(i){
-    if($("#p"+i).val() > $("#dc"+i).val()){
-      $("#p"+i).css("background-color","rgba(255, 0, 0, 0.49)");
-    }else{
-      $("#p"+i).css("background-color","white");
+function validate(i) {
+    if ($("#p" + i).val() > $("#dc" + i).val()) {
+        $("#p" + i).css("background-color", "rgba(255, 0, 0, 0.49)");
+    } else {
+        $("#p" + i).css("background-color", "white");
     }
-  }
-    </script>
- 
- 
+}
