@@ -391,6 +391,30 @@
     </form>
     </div>
     <script>
+      $(document).ready(function() {
+    // Existing calculations
+    calculateSum();
+    calculateAVE();
+    acts();
+
+    // Recalculate on changes
+    $(".dc").on("keydown keyup", calculateSum);
+    $(".p").on("keydown keyup", calculateAVE);
+    $("#table-body").on("keydown keyup", "input", function() {
+        var rowId = $(this).closest('tr').attr('class');
+        calculateSum2(rowId);
+    });
+
+    // Save button click event
+    $("form").on("submit", function(e) {
+        e.preventDefault(); // Prevent default form submission
+        var confirmed = confirm("Do you want to save this record?");
+        if (confirmed) {
+            this.submit(); // Submit the form if confirmed
+        }
+    });
+});
+
     $(document).ready(function() {
     // Calculate on page load to ensure initial values are set
     calculateSum();
