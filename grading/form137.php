@@ -108,8 +108,12 @@ $user = $_SESSION['ID'];
 <div id='print'>
 <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 
-<p><center><b>REPUBLIC OF THE PHILIPPINES</b></center></p>
-<p><center><b>DEPARTMENT OF EDUCATION</b></center></p>
+
+<img style="position: absolute; margin-left: -330px;margin-top: -80px;" src="images/mnlogo.jpg" alt="images/logo educ.jpg.png" width="120" height="120">
+<img style="position: absolute; right: 340px;margin-top: -80px;" src="images/Deped-Logo.png" alt="images/Deped-Logo.png" width="120" height="120">
+		<p><center><b>REPUBLIC OF THE PHILIPPINES</b></center></p>
+		<p><center><b>DEPARTMENT OF EDUCATION</b></center></p>
+
 		  </div>
 		  <div class="row">
 		  <div class="col-md-12">
@@ -252,6 +256,10 @@ $user = $_SESSION['ID'];
 		<table style="border-collapse:collapse">
 		<tr>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
+        <td colspan="4" class="header center"><b>Periodic Table</b></td>
+            <br>
+            <label for="" style="font-size:6;width:43px;border-right:1px solid black;text-align:center">1</label>
+            <label for="" style="font-size:6;width:52px;border-right:1px solid black;text-align:center">2</label>
 		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
 		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
 		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
