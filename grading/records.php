@@ -10,6 +10,7 @@
   <table id="students" class="table table-bordered">
     <thead>
       <tr id="heads">
+      <th style="width:10%"> NO.</th>
         <th style="width:10%">LRN NO.</th>
         <th style="width:20%">Name</th>
         <th style="width:10%">Gender</th>
@@ -28,7 +29,7 @@
 
     ?>
       <tr>
-
+        <td><?php echo $row['NO'] ?></td>
         <td><?php echo $row['LRN_NO'] ?></td>
         <td><?php echo $row['LASTNAME'] . ' ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></td>
         <td><?php echo $row['GENDER'] ?></td>
