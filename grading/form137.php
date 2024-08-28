@@ -256,23 +256,6 @@ $user = $_SESSION['ID'];
 		<table style="border-collapse:collapse">
 		<tr>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		 <!-- Add more rows as needed -->
-		 </table>
-        
-        <!-- Periodic Table -->
-        <table class="periodic-table">
-            <tr>
-                <td colspan="18"><b>Periodic Table</b></td>
-            </tr>
-            <!-- Example rows for periodic table -->
-            <tr>
-                <td>H</td><td>He</td><td>Li</td><td>Be</td><td>B</td><td>C</td><td>N</td><td>O</td><td>F</td><td>Ne</td>
-            </tr>
-            <tr>
-                <td>Na</td><td>Mg</td><td>Al</td><td>Si</td><td>P</td><td>S</td><td>Cl</td><td>Ar</td>
-            </tr>
-            <!-- Add more rows as needed -->
-        </table>
 		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
 		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
 		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
