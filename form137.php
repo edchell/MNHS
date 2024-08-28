@@ -292,9 +292,9 @@ $user = $_SESSION['ID'];
 
 		<table style="border-collapse:collapse">
 		<tr>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><br>Indicate if Subject is CORE, APPLIED, or SPECIALIZED</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b></b>Subjects</center></td>
-		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Sem Final Grade</b></center></td>
+		<td style="width:10px;border:1px solid black;font-size:12px;"><center><br>Subjects</b></center></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b></b>Grade</center></td>
+		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Unit</b></center></td>
 		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
 		</tr>
 		</center>
