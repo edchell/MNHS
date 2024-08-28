@@ -126,26 +126,7 @@ $user = $_SESSION['ID'];
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Learner's Information</h1>
-        <div class="info">
-            <label for="name">Name:</label>
-            <p id="name">John Doe</p>
-        </div>
-        <div class="info">
-            <label for="age">Age:</label>
-            <p id="age">25</p>
-        </div>
-        <div class="info">
-            <label for="course">Course:</label>
-            <p id="course">Introduction to Programming</p>
-        </div>
-        <div class="info">
-            <label for="email">Email:</label>
-            <p id="email">johndoe@example.com</p>
-        </div>
-    </div>
-
+  
 </head> 
 <body style="background-color:white"> 
 <span id='returncode'></span>
@@ -170,6 +151,27 @@ $user = $_SESSION['ID'];
 		  <center><p><b><h4>SENIOR HIGH SCHOOL STUDENT PERMANENT RECORD</h4></b></p></center>
 		  </div>
           </div>
+		  <div class="container">
+        <h1>Learner's Information</h1>
+        <div class="info">
+            <label for="name">Name:</label>
+            <p id="name">John Doe</p>
+        </div>
+        <div class="info">
+            <label for="age">Age:</label>
+            <p id="age">25</p>
+        </div>
+        <div class="info">
+            <label for="course">Course:</label>
+            <p id="course">Introduction to Programming</p>
+        </div>
+        <div class="info">
+            <label for="email">Email:</label>
+            <p id="email">johndoe@example.com</p>
+        </div>
+    </div>
+
+
           <div class="row">
 		  <div class="col-md-12">
 
