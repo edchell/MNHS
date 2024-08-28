@@ -1,7 +1,7 @@
 .login-form {
   display: block;
   position: fixed;
-  border:2px solid grey;
+  border:2px solid rgb(255, 255, 255);
   border-radius: 5px;
   padding: 5px;
   background-color: white;
