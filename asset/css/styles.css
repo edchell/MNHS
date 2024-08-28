@@ -24,7 +24,7 @@
   color: #fbfdff  !important;
 }
 .side-nav a:hover, .side-nav .active a,.side-nav a:focus {
-  color: rgb(121, 155, 199) !important;
+  color: rgb(246, 246, 246) !important;
   background-color: #6096d3 !important;
 }
 .navbar-inverse {
