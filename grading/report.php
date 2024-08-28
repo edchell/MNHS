@@ -1,13 +1,35 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Student Records</title>
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-          <h1 class="page-header">Search Student Records</h1>
+    <!-- Bootstrap CSS (optional) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-          <div class="container">
-            <div class="col-sm-3">
-        <div class="input-group">
-    </div>
-    </div>
+    <!-- DataTables JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-header">Search Student Records</h1>
+
+        <!-- Search Bar -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="search" placeholder="Search for students...">
+                </div>
+            </div>
+        </div>
 
        <div class="col-md-12"> 
        <div class="panel panel-default">
@@ -67,4 +89,15 @@
       );
         });
     </script>
+ <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $("#students").DataTable({
+                "aaSorting": [[ 0, "asc" ]]
+            });
 
+            // Search functionality
+            $('#search').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+        });
+    </script>
