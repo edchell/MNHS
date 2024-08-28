@@ -95,38 +95,7 @@ $user = $_SESSION['ID'];
 	 letter-spacing: 2px;
 }
 	</style>
-	 <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light background color */
-            color: #333; /* Dark text color */
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff; /* White background for content */
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #0056b3; /* Dark blue color for headings */
-        }
-        .info {
-            margin-bottom: 15px;
-        }
-        .info label {
-            font-weight: bold;
-        }
-        .info p {
-            margin: 5px 0;
-        }
-    </style>
-</head>
-<body>
-  
+
 </head> 
 <body style="background-color:white"> 
 <span id='returncode'></span>
@@ -151,27 +120,6 @@ $user = $_SESSION['ID'];
 		  <center><p><b><h4>SENIOR HIGH SCHOOL STUDENT PERMANENT RECORD</h4></b></p></center>
 		  </div>
           </div>
-		  <div class="container">
-        <h1>Learner's Information</h1>
-        <div class="info">
-            <label for="name">Name:</label>
-            <p id="name">John Doe</p>
-        </div>
-        <div class="info">
-            <label for="age">Age:</label>
-            <p id="age">25</p>
-        </div>
-        <div class="info">
-            <label for="course">Course:</label>
-            <p id="course">Introduction to Programming</p>
-        </div>
-        <div class="info">
-            <label for="email">Email:</label>
-            <p id="email">johndoe@example.com</p>
-        </div>
-    </div>
-
-
           <div class="row">
 		  <div class="col-md-12">
 
