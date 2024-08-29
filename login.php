@@ -44,7 +44,7 @@
   border-radius: 10px;
   padding: 30px;
   width: 500px;
-  background-color: lightblue;
+  background-color: transparent;
   left:500px;
   top:110px;
  } 
