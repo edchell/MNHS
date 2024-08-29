@@ -36,7 +36,7 @@
   border-radius: 20px;
   padding: 30px;
   width: 500px;
-  background-color: white;
+  background-color: yellowgreen;
   left:500px;
   top:250px;
  } 
