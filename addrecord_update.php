@@ -124,7 +124,6 @@
        <div class="row">
        <label class="col-md-4 te" for="school">School</label>
        <div class="col-md-6">
-         <input type="text" name="school" class="form-control" id ="school" value="<?php echo htmlspecialchars($row['SCHOOL']); ?>" required>
          <?php
 include 'db.php'; 
 
@@ -151,6 +150,7 @@ if ($row = mysqli_fetch_assoc($result)) {
 
         if ($row2 = mysqli_fetch_assoc($result3)) {
 ?>
+<input type="text" name="school" class="form-control" id ="school" value="<?php echo htmlspecialchars($row['SCHOOL']); ?>" required>
 <?php
         }
     }
