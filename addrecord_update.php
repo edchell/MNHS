@@ -120,13 +120,50 @@
 
      <form action="newrecord.php" method="post">
      <input name="id" type="hidden" value="<?php echo $_GET["id"] ?>">
-     <div class="col-md-6">
-       <div class="row">
-       <label class="col-md-4 te" for="school">School</label>
-       <div class="col-md-6">
-         <input type="text" name="school" class="form-control" id ="school" value="<?php echo $row['SCHOOL'] ?>" required>
-       </div>
-       </div>
+     <?php
+include 'db.php'; // Ensure this file contains the correct database connection setup
+
+$id = $_GET['id'];
+
+// Sanitize the input to prevent SQL injection
+$id = mysqli_real_escape_string($conn, $id);
+
+// Query to get student year info and related tables
+$sql = "SELECT * 
+        FROM student_year_info 
+        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
+        WHERE STUDENT_ID = '$id'";
+$result = mysqli_query($conn, $sql);
+
+if ($row = mysqli_fetch_assoc($result)) {
+    $syi = $row['SYI_ID'];
+
+    // Query to get student info
+    $sql1 = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
+    $result1 = mysqli_query($conn, $sql1);
+
+    if ($row1 = mysqli_fetch_assoc($result1)) {
+        // Query to get program info
+        $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
+        $result3 = mysqli_query($conn, $sql3);
+
+        if ($row2 = mysqli_fetch_assoc($result3)) {
+            // Output HTML form with the data
+?>
+<div class="col-md-6">
+    <div class="row">
+        <label class="col-md-4 te" for="school">School</label>
+        <div class="col-md-6">
+            <input type="text" name="school" class="form-control" id="school" value="<?php echo htmlspecialchars($row['SCHOOL']); ?>" required>
+        </div>
+    </div>
+</div>
+<?php
+        }
+    }
+}
+?>
        <br>
        <div class="row">
        <label class="col-md-4 te" for="yr">Grade</label>
