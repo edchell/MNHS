@@ -126,18 +126,14 @@
        <div class="col-md-6">
          <?php
 include 'db.php'; 
-
 $id = $_GET['id'];
-
 $id = mysqli_real_escape_string($conn, $id);
-
 $sql = "SELECT * 
         FROM student_year_info 
         LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
         LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
         WHERE STUDENT_ID = '$id'";
 $result = mysqli_query($conn, $sql);
-
 if ($row = mysqli_fetch_assoc($result)) {
     $syi = $row['SYI_ID'];
 
@@ -147,7 +143,6 @@ if ($row = mysqli_fetch_assoc($result)) {
     if ($row1 = mysqli_fetch_assoc($result1)) {
         $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
         $result3 = mysqli_query($conn, $sql3);
-
         if ($row2 = mysqli_fetch_assoc($result3)) {
 ?>
 <input type="text" name="school" class="form-control" id ="school" value="<?php echo htmlspecialchars($row['SCHOOL']); ?>" required>
@@ -199,7 +194,33 @@ if ($row = mysqli_fetch_assoc($result)) {
        <div class="row">
        <label class="col-md-4 te" for="sec">Section</label>
        <div class="col-md-6">
-         <input type="text" name="sec" class="form-control" id ="sec"required>
+       <?php
+include 'db.php'; 
+$id = $_GET['id'];
+$id = mysqli_real_escape_string($conn, $id);
+$sql = "SELECT * 
+        FROM student_year_info 
+        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
+        WHERE STUDENT_ID = '$id'";
+$result = mysqli_query($conn, $sql);
+if ($row = mysqli_fetch_assoc($result)) {
+    $syi = $row['SYI_ID'];
+
+    $sql1 = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
+    $result1 = mysqli_query($conn, $sql1);
+
+    if ($row1 = mysqli_fetch_assoc($result1)) {
+        $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
+        $result3 = mysqli_query($conn, $sql3);
+        if ($row2 = mysqli_fetch_assoc($result3)) {
+?>
+         <input type="text" name="sec" class="form-control" value="<?php echo htmlspecialchars($row['SECTION']); ?>" id ="sec"required>
+         <?php
+        }
+    }
+}
+?>
        </div>
        </div>
        <br>
