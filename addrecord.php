@@ -238,7 +238,6 @@
              <th style="width:50px;text-align:center">3</th>
              <th style="width:50px;text-align:center">4</th>
              <th style="width:60px;text-align:center">Final</th>
-             <th style="width:60px;text-align:center">Unit</th>
              <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
              <th style="width:50px;text-align:center"></th>
            </tr>
@@ -271,7 +270,6 @@
              <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px">
-             <td style="width:30px;text-align:center;height:30px;font-size:12px">
              <td style="width:30px;text-align:center;height:30px;font-size:12px">
               <input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" readonly="" >
 
