@@ -373,7 +373,7 @@ if ($row = mysqli_fetch_assoc($result)) {
 include 'db.php'; 
 $id = $_GET['id'];
 $id = mysqli_real_escape_string($conn, $id);
-$sql = "SELECT * FROM total_grades_subjects where SYI_ID = '$id' order by SUBJECT ";
+$sql = "SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT ";
 $result = mysqli_query($conn, $sql);
 if ($row = mysqli_fetch_assoc($result)) {
 ?>
