@@ -400,7 +400,7 @@ if ($row = mysqli_fetch_assoc($result)) {
        <div class="mt-2">
         <br>
          <br>
-       <table class="table-bordered text-end">
+       <table class="table-bordered">
          <thead>
            <tr class="text-center">
            <br>
