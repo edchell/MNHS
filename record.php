@@ -136,22 +136,6 @@ success:function(data)
           <?php
     } mysqli_close($conn);
       ?>
-      <div class="col-md-5">
-      <div class="form-inline">
-      <div class="form-group">
-      <label for="focusedInput">Select Grade:</label>
-      <select class="form-control" style="height:30px;font-size:12px" id="fetch">
-    <?php 
-    include 'db.php';
-    $query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
-    while($row=mysqli_fetch_assoc($query)){
-    ?>
-    <option value="<?php echo $row['grade_id'] ?>"><?php echo $row['grade'] ?> </option>
-    <?php }  ?>
-      </select>
-    </div>
-    </div>
-    </div>
     <div class="col-md-7 text-right">
 
 </form>

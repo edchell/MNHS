@@ -10,7 +10,7 @@
   <table id="students" class="table table-bordered">
     <thead>
       <tr id="heads">
-      <th style="width:10%"> NO.</th>
+        <th style="width:10%"> NO.</th>
         <th style="width:10%">LRN NO.</th>
         <th style="width:20%">Name</th>
         <th style="width:10%">Gender</th>
