@@ -158,6 +158,7 @@ success:function(data)
     <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
     while($sy = mysqli_fetch_assoc($query)){ ?>
       <a class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>&prog=<?php echo $_GET['prog'] ?>"><i class="fa fa-plus"> Add Record</i></a>
+      <a class='btn btn-primary' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>&prog=<?php echo $_GET['prog'] ?>"><i class="fa fa-plus"> Update Record</i></a>
       <?php
     } ?>
     </div>
