@@ -360,7 +360,7 @@ $sql = "SELECT * FROM subjects where FOR = 'ALL'";
 $result = mysqli_query($conn, $sql);
 if ($row = mysqli_fetch_assoc($result)) {
 ?>
-             <input style="width:50px" value="<?php echo htmlspecialchars($row['SUBJECT']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" value="<?php echo htmlspecialchars($row['SUBJECT']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="subject"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
              <?php
 }
 ?>
