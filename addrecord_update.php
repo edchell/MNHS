@@ -330,7 +330,7 @@ if ($row = mysqli_fetch_assoc($result)) {
         <br>
      </div>
 
-     <div class="col-md-7">
+     <div class="mt-5">
      <br>
      <br>
        <table class="table-bordered">
