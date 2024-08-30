@@ -384,7 +384,6 @@ if ($row = mysqli_fetch_assoc($result)) {
 }
 ?>
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px">
-             <td style="width:30px;text-align:center;height:30px;font-size:12px">
               <input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" readonly="" >
 
               </td>
