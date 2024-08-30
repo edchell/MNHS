@@ -397,10 +397,10 @@ if ($row = mysqli_fetch_assoc($result)) {
        </table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
-       <div class="mt-2 text-end">
+       <div class="mt-2">
         <br>
          <br>
-       <table class="table-bordered">
+       <table class="table-bordered text-end">
          <thead>
            <tr class="text-center">
            <br>
