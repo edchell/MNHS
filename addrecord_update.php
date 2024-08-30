@@ -343,7 +343,6 @@ if ($row = mysqli_fetch_assoc($result)) {
              <th style="width:50px;text-align:center">4</th>
              <th style="width:60px;text-align:center">Final</th>
              <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
-             <th style="width:50px;text-align:center"></th>
            </tr>
          </thead>
          <tbody id="table-body">
@@ -389,7 +388,6 @@ if ($row = mysqli_fetch_assoc($result)) {
               <input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" readonly="" >
 
               </td>
-              <td><a onclick="remtrr(<?php echo $i ?>)"  id="remtr">X</a></td>
               </tr>
               <?php
               } ?> 
