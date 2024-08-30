@@ -356,7 +356,7 @@ if ($row = mysqli_fetch_assoc($result)) {
              <option></option>
              <?php
               include 'db.php';
-              $sql = mysqli_query($conn, " SELECT * from subjects where `FOR`='All' OR `FOR`= '".$_GET['prog']."' ");
+              $sql = mysqli_query($conn, " SELECT * from subjects where FOR='All' OR FOR = '".$_GET['prog']."' ");
               while($row=mysqli_fetch_assoc($sql)){
                 $id = $row['SUBJECT_ID'];
                 $subj = $row['SUBJECT'];
