@@ -352,22 +352,19 @@ if ($row = mysqli_fetch_assoc($result)) {
           ?>
          <tr id="rowws" class="<?php echo $i ?>">
            <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <select name="subj[]" onchange="newrow(<?php echo $i ?>)">
-             <option></option>
-             <?php
-              include 'db.php';
-              $sql = mysqli_query($conn, " SELECT * from subjects where `FOR`='All' OR `FOR`= '".$_GET['prog']."' ");
-              while($row=mysqli_fetch_assoc($sql)){
-                $id = $row['SUBJECT_ID'];
-                $subj = $row['SUBJECT'];
+           <?php
+include 'db.php'; 
+$id = $_GET['id'];
+$id = mysqli_real_escape_string($conn, $id);
+$sql = "SELECT * FROM subjects where FOR = 'ALL'";
+$result = mysqli_query($conn, $sql);
+if ($row = mysqli_fetch_assoc($result)) {
 ?>
-                <option value="<?php echo $id ?>"><?php echo $subj ?> </option>
-                <?php
-              }
-              mysqli_close($conn);
-              ?>
-
-            </select> </td>
+             <input style="width:50px" value="<?php echo htmlspecialchars($row['SUBJECT']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <?php
+}
+?>
+              </td>
              <td style="width:30px;text-align:center;height:30px;font-size:12px">
              <?php
 include 'db.php'; 
