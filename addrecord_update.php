@@ -369,10 +369,21 @@ if ($row = mysqli_fetch_assoc($result)) {
 
             </select> </td>
              <td style="width:30px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <?php
+include 'db.php'; 
+$id = $_GET['id'];
+$id = mysqli_real_escape_string($conn, $id);
+$sql = "SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT ";
+$result = mysqli_query($conn, $sql);
+if ($row = mysqli_fetch_assoc($result)) {
+?>
+             <input style="width:50px" value="<?php echo htmlspecialchars($row['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" value="<?php echo htmlspecialchars($row['RANK']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" value="<?php echo htmlspecialchars($row['RANK']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" value="<?php echo htmlspecialchars($row['RANK']); ?>" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px">
+             <?php
+}
+?>
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px">
              <td style="width:30px;text-align:center;height:30px;font-size:12px">
               <input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" readonly="" >
