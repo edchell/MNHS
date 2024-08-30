@@ -397,7 +397,7 @@ if ($row = mysqli_fetch_assoc($result)) {
        </table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
-       <div class="col-md-4 mt-5" style="position:fixed;right:0;">
+       <div class="col-md-4 mt-5">
         <br>
          <br>
        <table class="table-bordered">
