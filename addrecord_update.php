@@ -124,7 +124,7 @@
        <div class="row">
        <label class="col-md-4 te" for="school">School</label>
        <div class="col-md-6">
-         <input type="text" name="school" class="form-control" id ="school" value="School" required>
+         <input type="text" name="school" class="form-control" id ="school" value="<?php echo $_GET['SCHOOL'] ?>" required>
        </div>
        </div>
        <br>
