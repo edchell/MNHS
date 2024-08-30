@@ -282,7 +282,7 @@
        </table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
-       <div class="col-md-3">
+       <div class="col-md-4">
         <br>
          <br>
        <table class="table-bordered">
