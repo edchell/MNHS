@@ -50,9 +50,9 @@ success:function(data)
                 <tr id="heads">
                     <th style="width:10%; text-align:center;">No.</th>
                     <th style="width:30%; text-align:center;">Name</th>
-                    <th style="width:20%; text-align:center;">User</th>
+                    <th style="width:10%; text-align:center;">User</th>
                     <th style="width:20%; text-align:center;">Type</th>
-                    <th style="width:10%; text-align:center;">Action</th>
+                    <th style="width:20%; text-align:center;">Action</th>
                 </tr>
             </thead>
             <tbody>
