@@ -41,7 +41,7 @@ success:function(data)
        <div class="col-md-12">        
        <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Students List</h3>
+          <h3 class="panel-title">Students Archived</h3>
 
         </div> 
         <div class="panel-body"> 
@@ -51,7 +51,6 @@ success:function(data)
                     <th style="width:10%; text-align:center;">No.</th>
                     <th style="width:10%; text-align:center;">LRN No.</th>
                     <th style="width:30%; text-align:center;">Name</th>
-                    <th style="width:20%; text-align:center;">Curriculum</th>
                     <th style="width:20%; text-align:center;">Level</th>
                     <th style="width:10%;"></th>
                 </tr>
