@@ -133,8 +133,8 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-
-
+          </div>
+          
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -159,7 +159,6 @@ if (!empty($page)) {
 
             </div>
         </div>
-    </div>
     <div class="modal fade" id="new_user" role="dialog">
     <div class="modal-dialog">
     
