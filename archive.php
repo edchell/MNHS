@@ -52,7 +52,7 @@ success:function(data)
                     <th style="width:30%; text-align:center;">Name</th>
                     <th style="width:20%; text-align:center;">User</th>
                     <th style="width:20%; text-align:center;">Type</th>
-                    <th style="width:10%; text-align:center;">Action</th>
+                    <th style="width:10%;"></th>
                 </tr>
             </thead>
             <tbody>
