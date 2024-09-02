@@ -46,10 +46,6 @@ $(document).ready(function() {
 });
 </script>
 
-<?php
-include 'newstudent.php';
-?>
-
 <div class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
