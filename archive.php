@@ -49,16 +49,15 @@ success:function(data)
             <thead>
                 <tr id="heads">
                     <th style="width:10%; text-align:center;">No.</th>
-                    <th style="width:10%; text-align:center;">LRN No.</th>
                     <th style="width:30%; text-align:center;">Name</th>
-                    <th style="width:20%; text-align:center;">Level</th>
+                    <th style="width:20%; text-align:center;">User Type</th>
                     <th style="width:10%;"></th>
                 </tr>
             </thead>
             <tbody>
     <?php
     include 'db.php';
-    $sql=  mysqli_query($conn, "SELECT * FROM student_info order by INT_COURSE_COMP ");
+    $sql=  mysqli_query($conn, "SELECT * FROM user ");
     while($row = mysqli_fetch_assoc($sql)) {
       $sid = $row['STUDENT_ID'];
       $sql2=  mysqli_query($conn, "SELECT * FROM program WHERE PROGRAM_ID = '".$row['PROGRAM']."' ");
@@ -68,10 +67,9 @@ success:function(data)
     ?>
       <tr>
 
-        <td><?php echo $row['STUDENT_ID'] ?></td>
-        <td><?php echo $row['LRN_NO'] ?></td>
-        <td><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></td>
-        <td><?php echo $row['INT_COURSE_COMP'] ?></td>
+        <td><?php echo $row['USER_ID'] ?></td>
+        <td><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']?></td>
+        <td><?php echo $row['USER_TYPE'] ?></td>
         
      
       <td style="text-align:center"> 
