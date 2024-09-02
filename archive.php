@@ -108,30 +108,3 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
-
-<div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content modal-lg">
-            <div class="modal-header">
-                <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    style="
-                        background-color: #dc3545; /* Custom background color */
-                        color: white; /* Text color */
-                        border: none; /* Remove border */
-                        font-size: 24px; /* Font size */
-                        border-radius: 50%; /* Round button */
-                        padding: 10px; /* Padding around the content */
-                        opacity: 0.8; /* Slightly transparent */
-                    "
-                >
-                    &times;
-                </button>
-                <h4 class="modal-title">PROFILE</h4>
-            </div>
-            <div id="content"></div>
-        </div>
-    </div>
-</div>
