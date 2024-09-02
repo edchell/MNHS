@@ -44,6 +44,9 @@ $school_year=$s['school_year'];
     <a href="rms.php?page=users"><i class="fa fa-users"></i> Users</a>
 </li>
 <li>
+    <a href="rms.php?page=archive"><i class="fa fa-users"></i> Archived</a>
+</li>
+<li>
     <a href="javascript:void(0)" data-toggle="collapse" data-target="#maintenanceCollapse"><i class="fa fa-fw fa-gears"></i> Maintenance       <i class="fa fa-fw fa-caret-down"></i></a>
     <ul id="maintenanceCollapse" class="collapse">
         <li>
