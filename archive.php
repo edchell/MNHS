@@ -57,7 +57,7 @@ success:function(data)
             <tbody>
     <?php
     include 'db.php';
-    $sql=  mysqli_query($conn, "SELECT * FROM user ");
+    $sql=  mysqli_query($conn, "SELECT * FROM user");
     while($row = mysqli_fetch_assoc($sql)) {
       $sid = $row['STUDENT_ID'];
       $sql2=  mysqli_query($conn, "SELECT * FROM program WHERE PROGRAM_ID = '".$row['PROGRAM']."' ");
