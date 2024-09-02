@@ -60,9 +60,7 @@ success:function(data)
     include 'db.php';
     $sql=  mysqli_query($conn, "SELECT * FROM user WHERE STATUS = 'Archived' ORDER BY STATUS");
     while($row = mysqli_fetch_assoc($sql)) {
-      $sid = $row['USER_ID'];
-      $sql2=  mysqli_query($conn, "SELECT * FROM program WHERE PROGRAM_ID = '".$row['PROGRAM']."' ");
-         while($row2 = mysqli_fetch_assoc($sql2)) {    
+      $sid = $row['USER_ID'];   
 
 
     ?>
@@ -88,7 +86,6 @@ success:function(data)
 
 
       <?php
-    }
     } mysqli_close($conn);
       ?>
     </tbody>
