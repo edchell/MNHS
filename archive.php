@@ -50,8 +50,9 @@ success:function(data)
                 <tr id="heads">
                     <th style="width:10%; text-align:center;">No.</th>
                     <th style="width:30%; text-align:center;">Name</th>
-                    <th style="width:20%; text-align:center;">User Type</th>
-                    <th style="width:10%;"></th>
+                    <th style="width:20%; text-align:center;">User</th>
+                    <th style="width:20%; text-align:center;">Type</th>
+                    <th style="width:10%; text-align:center;">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,7 +69,8 @@ success:function(data)
       <tr>
 
         <td><?php echo $row['USER_ID'] ?></td>
-        <td><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']?></td>
+        <td><?php echo $row['FIRSTNAME']." ".$row['LASTNAME'] ?></td>
+        <td><?php echo $row['USER'] ?></td>
         <td><?php echo $row['USER_TYPE'] ?></td>
         
      
