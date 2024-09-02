@@ -71,8 +71,6 @@ success:function(data)
         <td><?php echo $row['STUDENT_ID'] ?></td>
         <td><?php echo $row['LRN_NO'] ?></td>
         <td><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></td>
-        
-        <td style="text-align:center"><?php echo $row2['PROGRAM'] ?></td>
         <td><?php echo $row['INT_COURSE_COMP'] ?></td>
         
      
