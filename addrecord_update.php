@@ -157,7 +157,6 @@ if ($row = mysqli_fetch_assoc($result)) {
        <div class="row">
        <label class="col-md-4 te" for="yr">Grade</label>
        <div class="col-md-6">
-         <select type="text" name="yr" class="form-control" id ="yr" readonly required>
         <?php 
        include 'db.php';
        $id = $_GET['id'];
@@ -170,23 +169,8 @@ if ($row = mysqli_fetch_assoc($result)) {
        while($row1 = mysqli_fetch_assoc($query1)){
 
        ?>
-         <option value="<?php echo $row1['grade_id'] ?>"><?php echo $row1['grade']  ?></option>
-         <?php } 
-          ?>
-          <?php 
-             $query2=mysqli_query($conn,"SELECT * from grade where grade != '$g'");
-       while($row2 = mysqli_fetch_assoc($query2)){
-          ?>
-            <option value="<?php echo $row2['grade_id'] ?>"><?php echo $row2['grade']  ?></option>
-          <?php } }
-          }else{ ?>
-
-         <?php 
-             $query2=mysqli_query($conn,"SELECT * from grade order by ABS(grade) asc limit 1");
-       while($row2 = mysqli_fetch_assoc($query2)){
-          ?>
-            <option value="<?php echo $row2['grade_id'] ?>"><?php echo $row2['grade']  ?></option>
-            <?php } } ?>
+            <input type="text" name="grade" class="form-control" id ="grade" value="<?php echo htmlspecialchars($row['grade']); ?>" readonly required>
+            <?php } }} ?>
           </select>
        </div>
        </div>
