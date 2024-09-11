@@ -157,21 +157,33 @@ if ($row = mysqli_fetch_assoc($result)) {
        <div class="row">
        <label class="col-md-4 te" for="yr">Grade</label>
        <div class="col-md-6">
-        <?php 
-       include 'db.php';
-       $id = $_GET['id'];
-       $query=mysqli_query($conn,"SELECT * from student_year_info where STUDENT_ID = '$id' order by SYI_ID DESC limit 1");
-       $count = mysqli_num_rows($query);
-       if($count > 0){
-       while($row = mysqli_fetch_assoc($query)){
-        $g=$row['TO_BE_CLASSIFIED'] ;
-        $query1=mysqli_query($conn,"SELECT * from grade where grade = '$g'");
-       while($row1 = mysqli_fetch_assoc($query1)){
+       <?php
+include 'db.php'; 
+$id = $_GET['id'];
+$id = mysqli_real_escape_string($conn, $id);
+$sql = "SELECT * 
+        FROM student_year_info 
+        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
+        WHERE STUDENT_ID = '$id'";
+$result = mysqli_query($conn, $sql);
+if ($row = mysqli_fetch_assoc($result)) {
+    $syi = $row['SYI_ID'];
 
-       ?>
-            <input type="text" name="grade" class="form-control" id ="grade" value="<?php echo htmlspecialchars($row['grade']); ?>" readonly required>
-            <?php } }} ?>
-          </select>
+    $sql1 = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
+    $result1 = mysqli_query($conn, $sql1);
+
+    if ($row1 = mysqli_fetch_assoc($result1)) {
+        $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
+        $result3 = mysqli_query($conn, $sql3);
+        if ($row2 = mysqli_fetch_assoc($result3)) {
+?>
+<input type="text" name="grade" class="form-control" id ="grade" value="<?php echo htmlspecialchars($row['TO_BE_CLASSIFIED']); ?>" readonly required>
+<?php
+        }
+    }
+}
+?>
        </div>
        </div>
        <br>
