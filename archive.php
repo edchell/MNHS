@@ -34,6 +34,7 @@
                         while($row = mysqli_fetch_assoc($sql)) {
                             $sid = $row['USER_ID'];
                         ?>
+                        <form method="post" action="update_subject.php">
                         <tr>
                             <td><?php echo $row['USER_ID'] ?></td>
                             <td><?php echo $row['FIRSTNAME']." ".$row['LASTNAME'] ?></td>
@@ -41,6 +42,7 @@
                             <td><?php echo $row['USER_TYPE'] ?></td>
                             <td><center><a class="btn btn-primary text-white" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="unarchivedUser(<?php echo $row['USER_ID'] ?>)">Unarchived</a></center></td>
                         </tr>
+                        </form>
                         <?php } mysqli_close($conn); ?>
                     </tbody>
                 </table>
@@ -81,39 +83,54 @@
         });
     });
 
-    function unarchivedUser(userId) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, unarchived it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: 'delete_user.php',
-                    type: 'POST',
-                    data: { action: 'unarchived', user_id: userId },
-                    success: function(response) {
-                        Swal.fire(
-                            'Unarchived!',
-                            'User has been unarchived.',
-                            'success'
-                        ).then(() => {
-                            location.reload(); // Optionally, refresh the page
-                        });
-                    },
-                    error: function() {
-                        Swal.fire(
-                            'Error!',
-                            'There was an error unarchived the user.',
-                            'error'
-                        );
-                    }
-                });
-            }
-        });
-    }
+    function deleteUser(userId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, unarchived it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Create an AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "delete_user.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Define what happens on successful data submission
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    Swal.fire(
+                        'Unarchived!',
+                        'User has been unarchived.',
+                        'success'
+                    ).then(() => {
+                        // Optionally, you can refresh the page or remove the user row from the table
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire(
+                        'Error!',
+                        'There was an error unarchived the user.',
+                        'error'
+                    );
+                }
+            };
+
+            // Define what happens in case of error
+            xhr.onerror = function () {
+                Swal.fire(
+                    'Error!',
+                    'Request failed.',
+                    'error'
+                );
+            };
+
+            // Set up our request
+            xhr.send("action=unarchived&user_id=" + userId);
+        }
+    });
+}
     </script>
