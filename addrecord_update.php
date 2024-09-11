@@ -357,11 +357,11 @@ if ($row = mysqli_fetch_assoc($result)) {
     <tr>
       <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check2['SUBJECT']); ?>" readonly></td>
       <td><input style="width:50px" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
-      <td><!-- Placeholder for data column 2 --></td>
-      <td><!-- Placeholder for data column 3 --></td>
-      <td><!-- Placeholder for data column 4 --></td>
-      <td><!-- Placeholder for Final --></td>
-      <td><!-- Placeholder for Passed or Failed --></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
+      <td><input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px"></td>
+      <td><input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly="" ></td>
     </tr>
     <?php
     }
