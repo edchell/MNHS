@@ -332,13 +332,13 @@ if ($row = mysqli_fetch_assoc($result)) {
      <table class="table-bordered">
   <thead>
     <tr>
-      <th>Subject</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>Final</th>
-      <th>Passed<br>or<br>Failed</th>
+      <th style="width:140px;text-align:center">Subject</th>
+      <th style="width:50px;text-align:center">1</th>
+      <th style="width:50px;text-align:center">2</th>
+      <th style="width:50px;text-align:center">3</th>
+      <th style="width:50px;text-align:center">4</th>
+      <th style="width:60px;text-align:center">Final</th>
+      <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
     </tr>
   </thead>
   <tbody>
@@ -356,11 +356,11 @@ if ($row = mysqli_fetch_assoc($result)) {
     ?>
     <tr>
       <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check2['SUBJECT']); ?>" readonly></td>
-      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
-      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
-      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
-      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
-      <td><input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td><td style="width:60px;text-align:center;height:30px;font-size:12px"></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade<?php echo $i ?>"onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td>
+      <td><input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td>
       <td><input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly="" ></td>
     </tr>
     <?php
