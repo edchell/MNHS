@@ -341,7 +341,16 @@ if ($row = mysqli_fetch_assoc($result)) {
              <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
            </tr>
          </thead>
-         
+         <tbody>
+          <?php
+          $check_query = "SELECT * FROM total_grades_subjects WHERE SYI_ID = '$syi' GROUP BY SUBJECT";
+          $check_query_result = mysqli_query($conn, $check_query);
+          $check = mysqli-fetch-assoc($check_query_result);
+          ?>
+          <tr>
+            <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check['SUBJECT']); ?>" readonly></td>
+          </tr>
+         </tbody>
        </table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
