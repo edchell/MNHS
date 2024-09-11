@@ -82,7 +82,7 @@ success:function(data)
         border-radius: 5px; /* Rounded corners */
         cursor: pointer; /* Pointer cursor on hover */
         transition: background-color 0.3s; /* Smooth transition on hover */
-    "  class="btn btn-default" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">Unarchived</a>
+    "  class="btn btn-default" data-id="<?php echo $sid ?>" id="getUser" onclick="unarchivedUser(<?php echo $row['USER_ID'] ?>)">Unarchived</a>
 
 
       <?php
@@ -94,45 +94,60 @@ success:function(data)
 </div> 
 </div>
 
-       <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog"> 
-               <div class="modal-content modal-lg">  
-             
-                  <div class="modal-header"> 
-                  <button 
-    type="button" 
-    class="close" 
-    data-dismiss="modal" 
-    style="
-        background-color: #dc3545; /* Custom background color */
-        color: white;              /* Text color */
-        border: none;              /* Remove border */
-        font-size: 24px;           /* Font size */
-        border-radius: 50%;        /* Round button */
-        padding: 10px;             /* Padding around the content */
-        opacity: 0.8;              /* Slightly transparent */
-    "
->
-    &times;
-</button>
-
-
-                     <h4 class="modal-title">
-                     <i class=""></i> PROFILE
-                     </h4> 
-                  </div> 
-                       <div id="content">
-                      
-                     </div>
-                  
-                                 
-              </div> 
-            </div>
-          </div>  
-
 
 
           <script type="text/javascript">
+            function unarchivedUser(userId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, unarchived it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Create an AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "delete_user.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Define what happens on successful data submission
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    Swal.fire(
+                        'Unarchived!',
+                        'User has been unarchived.',
+                        'success'
+                    ).then(() => {
+                        // Optionally, you can refresh the page or remove the user row from the table
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire(
+                        'Error!',
+                        'There was an error unarchived the user.',
+                        'error'
+                    );
+                }
+            };
+
+            // Define what happens in case of error
+            xhr.onerror = function () {
+                Swal.fire(
+                    'Error!',
+                    'Request failed.',
+                    'error'
+                );
+            };
+
+            // Set up our request
+            xhr.send("action=unarchived&user_id=" + userId);
+        }
+    });
+}
+
 $(document).ready(function() {
     // Define custom sorting for grades
     $.fn.dataTable.ext.order['grade-order'] = function(settings, column, order) {
