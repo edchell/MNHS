@@ -90,7 +90,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editUserForm" method="post" action="delete_user.php">
+                <form id="editUserForm" method="post" action="update_user.php">
                     <input type="hidden" id="editUserId" name="user_id">
                     <div class="form-group">
                         <label for="editFname">Firstname</label>
