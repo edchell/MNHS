@@ -110,10 +110,13 @@ function unarchiveUser(userId) {
                         });
                     } else {
                         Swal.fire(
-                            'Error!',
-                            'There was an error unarchiving the user.',
-                            'error'
-                        );
+                            'Unarchived!',
+                            'User has been unarchived.',
+                            'success'
+                        ).then(() => {
+                            // Refresh the page or update the table
+                            location.reload();
+                        });
                     }
                 },
                 error: function() {
