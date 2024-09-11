@@ -170,10 +170,13 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Manage Account</h4>
             </div>
+            <form class="form-group" method="POST" action="edit_user.php"> 
             <div class="modal-body" id="e_user"> 
                 <!-- Content will be loaded here from the AJAX request -->
             </div> 
             <div class="modal-footer">
+            <button type="submit" class="btn btn-default">Save</button>
+            </form>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
             </div> 
         </div>
