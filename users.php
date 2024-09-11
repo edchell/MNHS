@@ -205,6 +205,23 @@ function deleteUser(userId) {
     });
 }
 
+$(document).ready(function() {
+            $(document).on('click', '#getUser', function() {
+                var userId = $(this).data('id');
+                $.ajax({
+                    url: 'view_user.php',
+                    type: 'POST',
+                    data: { id: userId },
+                    beforeSend: function() {
+                        $("#e_user").html('Working on Please wait ..');
+                    },
+                    success: function(data) {
+                        $("#e_user").html(data);
+                    }
+                });
+            });
+        });
+
 $('#edit_user').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var userId = button.data('id');
