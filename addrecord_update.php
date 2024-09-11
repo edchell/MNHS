@@ -349,10 +349,14 @@ if ($row = mysqli_fetch_assoc($result)) {
     // Check if query was successful
     if ($check_query_result) {
         while ($check = mysqli_fetch_assoc($check_query_result)) {
+          $sub = $check['SUBJECT'];
+
+          $check1=  mysqli_query($conn, "SELECT * FROM subjects where SUBJECT_ID = '$sub' ");
+    while($check2 = mysqli_fetch_assoc($check1)){
     ?>
     <tr>
-      <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check['SUBJECT']); ?>" readonly></td>
-      <td><input style="width:50px" value="<?php echo htmlspecialchars($row['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
+      <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check2['SUBJECT']); ?>" readonly></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
       <td><!-- Placeholder for data column 2 --></td>
       <td><!-- Placeholder for data column 3 --></td>
       <td><!-- Placeholder for data column 4 --></td>
@@ -360,6 +364,7 @@ if ($row = mysqli_fetch_assoc($result)) {
       <td><!-- Placeholder for Passed or Failed --></td>
     </tr>
     <?php
+    }
         }
     } else {
         // Handle query error
