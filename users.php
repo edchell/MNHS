@@ -165,10 +165,12 @@ function deleteUser(userId) {
 
 $(document).ready(function() {
     // Fetch user data and populate the modal when the "Edit" button is clicked
-    $('#getUser').on('click', function() {
-        var userId = $(this).data('id');
+    $('#edit_user').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var userId = button.data('id'); // Extract info from data-* attributes
+
         $.ajax({
-            url: 'delete_user.php',
+            url: 'get_user.php',
             type: 'POST',
             data: { user_id: userId },
             dataType: 'json',
@@ -178,7 +180,7 @@ $(document).ready(function() {
                     $('#editFname').val(response.FIRSTNAME);
                     $('#editLname').val(response.LASTNAME);
                     $('#editUser').val(response.USER);
-                    $('#editPwd').val(response.PASSWORD);
+                    $('#editPwd').val(response.PASSWORD); // Ensure that the password field is properly handled
                     $('#editType').val(response.USER_TYPE);
                 } else {
                     Swal.fire('Error!', 'Unable to fetch user details.', 'error');
