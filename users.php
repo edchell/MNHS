@@ -30,8 +30,8 @@
                         <td><?php echo htmlspecialchars($row['USER']); ?></td>
                         <td><?php echo htmlspecialchars($row['USER_TYPE']); ?></td>
                         <td>
-                            <a class="btn btn-primary" data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
-                            <a class="btn btn-danger" href="#" onclick="deleteUser(<?php echo $row['USER_ID']; ?>)"><i class="icon-copy fa fa-times-rectangle" aria-hidden="true"></i></a>
+                            <a class="btn btn-primary text-white" data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser">EDIT</a>
+                            <a class="btn btn-danger text-white" href="#" onclick="deleteUser(<?php echo $row['USER_ID']; ?>)">DELETE</a>
                         </td>
                     </tr>
                     <?php
