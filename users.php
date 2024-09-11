@@ -174,9 +174,36 @@ success:function(data)
         <div class="modal-body"> 
                   <form class="form-group" method="POST" action="edit_user.php"> 
                       <div class="container">                 
-                     <div id="e_user">
-                      
-                      </div>
+                      <div class="form-group">
+              <div class="cols-sm-4">
+                <div class="input-group">
+        <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $row['FIRSTNAME'] ?>" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="cols-sm-4">
+                <div class="input-group">
+        <input type="text" class="form-control" id="fname" name="lname" value="<?php echo $row['LASTNAME'] ?>" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="cols-sm-4">
+                <div class="input-group">
+        <input type="text" class="form-control" id="fname" name="user" value="<?php echo $row['USER'] ?>" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="cols-sm-4">
+                <div class="input-group">
+        <select class="form-control" name="type" id="sel1" required>
+        <option></option>
+          <option value="<?php echo $row['USER_TYPE'] ?>"><?php echo $row['USER_TYPE'] ?></option>
+        </select>                </div>
+              </div>
+            </div>
                      </div>
                   </div> 
                                   
