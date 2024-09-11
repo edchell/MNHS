@@ -348,7 +348,7 @@ if ($row = mysqli_fetch_assoc($result)) {
        <div class="mt-2">
         <br>
          <br>
-       <table class="table-bordered">
+       <!-- <table class="table-bordered">
          <thead>
            <tr class="text-center">
            <br>
@@ -427,7 +427,7 @@ if ($row = mysqli_fetch_assoc($result)) {
 
          </tbody>
 
-       </table> 
+       </table>  -->
        <button class="btn btn-success" type="submit">Save</button>
 </form>
 <button onclick="window.history.back()" style="
