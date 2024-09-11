@@ -1,53 +1,73 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'delete') {
-    $userId = $_POST['user_id'];
+// Define database connection details
+$servername = '127.0.0.1';
+$username = 'u510162695_grading_db';
+$password = '1Grading_db';
+$dbname = 'u510162695_grading_db';
 
-    // Database connection
-    $conn = new mysqli('127.0.0.1', 'u510162695_grading_db', '1Grading_db', 'u510162695_grading_db');
-
-    // Check connection
+// Function to connect to the database
+function getDbConnection() {
+    global $servername, $username, $password, $dbname;
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // SQL to delete a record
-    $sql = "UPDATE user SET STATUS = 'Archived' WHERE USER_ID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $userId);
-
-    if ($stmt->execute()) {
-        echo "User deleted successfully.";
-    } else {
-        echo "Error deleting user: " . $conn->error;
-    }
-
-    $stmt->close();
-    $conn->close();
+    return $conn;
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'unarchive') {
-    $userId = $_POST['user_id'];
+// Handle POST request for deletion
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
+    $userId = isset($_POST['user_id']) ? (int)$_POST['user_id'] : 0;
 
-    // Database connection
-    $conn = new mysqli('127.0.0.1', 'u510162695_grading_db', '1Grading_db', 'u510162695_grading_db');
+    if ($action === 'delete') {
+        // Delete user (archive user)
+        $conn = getDbConnection();
+        $sql = "UPDATE user SET STATUS = 'Archived' WHERE USER_ID = ?";
+        $stmt = $conn->prepare($sql);
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+        if ($stmt === false) {
+            die("Prepare failed: " . $conn->error);
+        }
 
-    // SQL to delete a record
-    $sql = "UPDATE user SET STATUS = '' WHERE USER_ID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $userId);
+        $stmt->bind_param("i", $userId);
 
-    if ($stmt->execute()) {
-        echo "User unarchived successfully.";
+        if ($stmt->execute()) {
+            echo "User archived successfully.";
+        } else {
+            echo "Error archiving user: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+
+    } elseif ($action === 'unarchive') {
+        // Unarchive user
+        $conn = getDbConnection();
+        $sql = "UPDATE user SET STATUS = '' WHERE USER_ID = ?";
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+
+        $stmt->bind_param("i", $userId);
+
+        if ($stmt->execute()) {
+            echo "User unarchived successfully.";
+        } else {
+            echo "Error unarchiving user: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+
     } else {
-        echo "Error unarchived user: " . $conn->error;
+        echo "Invalid action.";
     }
-
-    $stmt->close();
-    $conn->close();
+} else {
+    echo "Invalid request.";
 }
 ?>
