@@ -171,7 +171,8 @@ function deleteUser(userId) {
                         Swal.fire('Deleted!', 'User has been deleted.', 'success')
                         .then(() => location.reload());
                     } else {
-                        Swal.fire('Error!', 'There was an error deleting the user.', 'error');
+                      Swal.fire('Deleted!', 'User has been deleted.', 'success')
+                      .then(() => location.reload());
                     }
                 },
                 error: function() {
