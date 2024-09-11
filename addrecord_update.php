@@ -332,13 +332,13 @@ if ($row = mysqli_fetch_assoc($result)) {
      <table class="table-bordered">
   <thead>
     <tr>
-      <th style="width:140px;text-align:center">Subject</th>
-      <th style="width:50px;text-align:center">1</th>
-      <th style="width:50px;text-align:center">2</th>
-      <th style="width:50px;text-align:center">3</th>
-      <th style="width:50px;text-align:center">4</th>
-      <th style="width:60px;text-align:center">Final</th>
-      <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
+      <th>Subject</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>Final</th>
+      <th>Passed<br>or<br>Failed</th>
     </tr>
   </thead>
   <tbody>
