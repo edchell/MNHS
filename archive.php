@@ -82,7 +82,7 @@ success:function(data)
         border-radius: 5px; /* Rounded corners */
         cursor: pointer; /* Pointer cursor on hover */
         transition: background-color 0.3s; /* Smooth transition on hover */
-    "  class="btn btn-default" data-id="<?php echo $sid ?>" id="getUser" onclick="unarchivedUser(<?php echo $row['USER_ID'] ?>)">Unarchived</a>
+    "  class="btn btn-default" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="unarchivedUser(<?php echo $row['USER_ID'] ?>)">Unarchived</a>
 
 
       <?php
