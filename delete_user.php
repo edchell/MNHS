@@ -70,4 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
 } else {
     echo "Invalid request.";
 }
+
+if (isset($_POST['id'])) {
+    $id = intval($_POST['id']);
+    $sql = mysqli_query($conn, "SELECT * FROM user WHERE USER_ID = $id");
+    if ($row = mysqli_fetch_assoc($sql)) {
+        echo json_encode($row);
+    }
+    mysqli_close($conn);
+}
 ?>
