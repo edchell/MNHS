@@ -329,30 +329,45 @@ if ($row = mysqli_fetch_assoc($result)) {
      <div class="mt-5">
      <br>
      <br>
-       <table class="table-bordered">
-         <thead>
-           <tr>
-             <th style="width:140px;text-align:center">Subject</th>
-             <th style="width:50px;text-align:center">1</th>
-             <th style="width:50px;text-align:center">2</th>
-             <th style="width:50px;text-align:center">3</th>
-             <th style="width:50px;text-align:center">4</th>
-             <th style="width:60px;text-align:center">Final</th>
-             <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
-           </tr>
-         </thead>
-         <tbody>
-          <?php
-          $check_query = "SELECT * FROM total_grades_subjects WHERE SYI_ID = '$syi' GROUP BY SUBJECT";
-          $check_query_result = mysqli_query($conn, $check_query);
-          if($check = mysqli-fetch-assoc($check_query_result)){
-          ?>
-          <tr>
-            <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check['SUBJECT']); ?>" readonly></td>
-          </tr>
-          <?php } ?>
-         </tbody>
-       </table>
+     <table class="table-bordered">
+  <thead>
+    <tr>
+      <th style="width:140px;text-align:center">Subject</th>
+      <th style="width:50px;text-align:center">1</th>
+      <th style="width:50px;text-align:center">2</th>
+      <th style="width:50px;text-align:center">3</th>
+      <th style="width:50px;text-align:center">4</th>
+      <th style="width:60px;text-align:center">Final</th>
+      <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $check_query = "SELECT * FROM total_grades_subjects WHERE SYI_ID = '$syi' GROUP BY SUBJECT";
+    $check_query_result = mysqli_query($conn, $check_query);
+    
+    // Check if query was successful
+    if ($check_query_result) {
+        while ($check = mysqli_fetch_assoc($check_query_result)) {
+    ?>
+    <tr>
+      <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check['SUBJECT']); ?>" readonly></td>
+      <td><input style="width:50px" value="<?php echo htmlspecialchars($row['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:30px;text-align:center;height:30px;font-size:12px"></td>
+      <td><!-- Placeholder for data column 2 --></td>
+      <td><!-- Placeholder for data column 3 --></td>
+      <td><!-- Placeholder for data column 4 --></td>
+      <td><!-- Placeholder for Final --></td>
+      <td><!-- Placeholder for Passed or Failed --></td>
+    </tr>
+    <?php
+        }
+    } else {
+        // Handle query error
+        echo "<tr><td colspan='7'>Error fetching data: " . mysqli_error($conn) . "</td></tr>";
+    }
+    ?>
+  </tbody>
+</table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
        <div class="mt-2">
