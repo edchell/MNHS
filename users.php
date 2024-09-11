@@ -28,226 +28,129 @@
 // })
   </script>
      <?php include 'newaccount.php' ?>
-       <div class="col-md-8">   
-              <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">List of Users</h3>
-        </div> 
-        <div class="panel-body">  
-
-  <table id="students" class="table table-hover table-bordered">
-    <thead>
-      <tr id="heads">
-      <th style="width:20%">No.</th>
-        <th style="width:20%">Name</th>
-        <th style="width:10%">User</th>
-        <th style="width:10%">Type</th>
-        <th style="width:30%"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-    include 'db.php';
-    $sql=  mysqli_query($conn, "SELECT * FROM user WHERE STATUS = ''");
-    while($row = mysqli_fetch_assoc($sql)) {
-
-
-    ?>
-    <form method="post" action="update_subject.php">
-      <tr>
-      <td><?php echo $row['USER_ID'] ?></td>
-        <td><?php echo $row['FIRSTNAME']." ".$row['LASTNAME'] ?></td>
-        <td><?php echo $row['USER'] ?></td>
-        <td><?php echo $row['USER_TYPE'] ?></td>
-        <td><a class="btn btn-primary" data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
-        <a class="btn btn-danger" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="deleteUser(<?php echo $row['USER_ID'] ?>)"><i class="icon-copy fa fa-times-rectangle" aria-hidden="true"></i></a></td>
-      </tr>
-      </form>
-      <?php
-    } mysqli_close($conn);
-      ?>
-      
-    </tbody>
-  </table>
-</div>
-</div>
-</div>
-
-
-      <div class="col-md-4">
-        
-            <div class="container frm-new">
-      <div class="row main">
-        <div class="main-login main-center">
-        <h3>Add New Users</h3>
-          <form class="" method="post">
-            
-            <div class="form-group">
-              <div class="cols-sm-4">
-                <div class="input-group">
-        <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="fname" placeholder="Enter Firstname" required>
+     <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">List of Users</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="students" class="table table-hover table-bordered">
+                            <thead>
+                                <tr id="heads">
+                                    <th style="width:20%">No.</th>
+                                    <th style="width:20%">Name</th>
+                                    <th style="width:10%">User</th>
+                                    <th style="width:10%">Type</th>
+                                    <th style="width:30%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                include 'db.php';
+                                $sql = mysqli_query($conn, "SELECT * FROM user WHERE STATUS = ''");
+                                while ($row = mysqli_fetch_assoc($sql)) {
+                                ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($row['USER_ID']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['FIRSTNAME'] . " " . $row['LASTNAME']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['USER']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['USER_TYPE']); ?></td>
+                                    <td>
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a class="btn btn-danger" data-id="<?php echo $row['USER_ID']; ?>" onclick="deleteUser(<?php echo $row['USER_ID']; ?>)"><i class="icon-copy fa fa-times-rectangle" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                                <?php
+                                }
+                                mysqli_close($conn);
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="form-group">
-              <div class="cols-sm-4">
-                <div class="input-group">
-        <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="lname" placeholder="Enter Lastname" required>
+
+
+            <div class="col-md-4">
+                <div class="container frm-new">
+                    <div class="row main">
+                        <div class="main-login main-center">
+                            <h3>Add New Users</h3>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="fname" placeholder="Enter Firstname" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" style="text-transform: capitalize;" id="lname" name="lname" placeholder="Enter Lastname" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="user" name="user" placeholder="Enter Username" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" required>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" name="type" id="sel1" required>
+                                        <option value="" disabled selected>Select User Type</option>
+                                        <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+                                        <option value="FACULTY">FACULTY</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" style="background-color: #28a745; border-color: #28a745;">Add</button>
+                                    <input type="reset" class="btn btn-info" id="reset" name="reset" value="Cancel" style="background-color: #dc3545; border-color: #dc3545;">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="form-group">
-              <div class="cols-sm-4">
-                <div class="input-group">
-        <input type="text" class="form-control" id="fname" name="user" placeholder="Enter Username" required>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="cols-sm-4">
-                <div class="input-group">
-        <input type="password" class="form-control" id="fname" name="pwd" placeholder="Enter Password" required>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="cols-sm-4">
-                <div class="input-group">
-        <select class="form-control" name="type" id="sel1" required>
-        <option></option>
-          <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-          <option value="FACULTY">FACULTY</option>
-        </select>                </div>
-              </div>
-            </div>
-            
-
-
-
-            <div class="form-group ">
-            <button 
-    class="btn btn-primary" 
-    style="background-color: #28a745; border-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;"
->
-    Add
-</button>
-
-<input 
-    type="reset" 
-    class="btn btn-info" 
-    id="reset" 
-    name="reset" 
-    value="Cancel"
-    style="
-        background-color: #dc3545; /* Custom red background */
-        border-color: #dc3545; /* Red border */
-        color: white; /* White text */
-        padding: 10px 20px; /* Padding around text */
-        font-size: 16px; /* Font size */
-        border-radius: 5px; /* Rounded corners */
-        cursor: pointer; /* Pointer cursor on hover */
-        text-align: center; /* Center text */
-        transition: background-color 0.3s; /* Smooth background color transition */
-    "
->
-
-
-
-             
-            </div>
-            
-          </form>
         </div>
-      </div>
 
-    </div>
-
-    <div class="modal fade" id="edit_user" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Manage Acount</h4>
-        </div>
-        <div class="modal-body"> 
-                  <form class="form-group" method="POST" action="edit_user.php"> 
-                      <div class="container">                 
-                        
-
- <?php
-    include 'db.php';
-    if($_POST['id']){
-      $id = $_POST['id'];
-    $sql=  mysqli_query($conn, "SELECT * FROM user where USER_ID = '$id'");
-    while($row = mysqli_fetch_assoc($sql)) {
-
-
-    ?>
-       <div class="form-group">
-        <label class="control-label col-sm-1" for="fname">Firstname:</label>
-      <div class="col-sm-3">  
-              <input type="hidden" class="form-control" name="id" value="<?php echo $row['USER_ID'] ?>" >
-        
-          <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $row['FIRSTNAME'] ?>" >
-      </div>
-    </div> 
-    <br>
-    <br>
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="lname">Lastname:</label>
-      <div class="col-sm-3">          
-        <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $row['LASTNAME'] ?>" >
-      </div>
-    </div>
-    <br>
-
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="user">User:</label>
-      <div class="col-sm-3">          
-        <input type="text" class="form-control" id="user" name="user" value="<?php echo $row['USER'] ?>" >
-      </div>
-    </div>
-    <br>    
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="pwd">Password:</label>
-      <div class="col-sm-3">          
-        <input type="password" class="form-control" id="pwd" name="pwd" value="" >
-      </div>
-    </div>
-    <br>
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="pwd">User Type:</label>
-      <div class="col-sm-3">   
-        <select class="form-control" name="type" id="sel1">
-        <option><?php echo $row['USER_TYPE']?></option>
-        <?php
-        if($row['USER_TYPE'] == "FACULTY"){ ?>
-          <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-        <?php }else{?>
-          <option value="FACULTY">FACULTY</option>
-        <?php } ?>
-        </select>
-      </div>
-    </div>
-    <br>
-   
-
-
-<?php } }
-mysqli_close($conn); ?>
-                     </div>
-                  </div> 
-                                  
-                  <div class="modal-footer">
-                   
-                  <button type="submit" class="btn btn-default">Save</button>
-                  </form>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
-                  </div> 
-    </div>
-        </div>
+        <div class="modal fade" id="edit_user" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Manage Account</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" method="POST" action="edit_user.php">
+                            <div class="container">
+                                <div class="form-group">
+                                    <label for="fname">Firstname:</label>
+                                    <input type="hidden" name="id" id="editUserId">
+                                    <input type="text" class="form-control" id="editFname" name="fname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lname">Lastname:</label>
+                                    <input type="text" class="form-control" id="editLname" name="lname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user">User:</label>
+                                    <input type="text" class="form-control" id="editUser" name="user" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" id="editPwd" name="pwd">
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">User Type:</label>
+                                    <select class="form-control" name="type" id="editUserType" required>
+                                        <option value="" disabled>Select User Type</option>
+                                        <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+                                        <option value="FACULTY">FACULTY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
       
  <script type="text/javascript">
@@ -302,4 +205,23 @@ function deleteUser(userId) {
     });
 }
 
+$('#edit_user').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var userId = button.data('id');
+
+            var modal = $(this);
+            $.ajax({
+                url: 'view_user.php',
+                type: 'POST',
+                data: { id: userId },
+                success: function(response) {
+                    var user = JSON.parse(response);
+                    modal.find('#editUserId').val(user.USER_ID);
+                    modal.find('#editFname').val(user.FIRSTNAME);
+                    modal.find('#editLname').val(user.LASTNAME);
+                    modal.find('#editUser').val(user.USER);
+                    modal.find('#editUserType').val(user.USER_TYPE);
+                }
+            });
+        });
 </script>
