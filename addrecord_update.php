@@ -145,7 +145,7 @@ if ($row = mysqli_fetch_assoc($result)) {
         $result3 = mysqli_query($conn, $sql3);
         if ($row2 = mysqli_fetch_assoc($result3)) {
 ?>
-<input type="text" name="school" class="form-control" id ="school" value="<?php echo htmlspecialchars($row['SCHOOL']); ?>" required>
+<input type="text" name="school" class="form-control" id ="school" value="<?php echo htmlspecialchars($row['SCHOOL']); ?>" readonly required>
 <?php
         }
     }
@@ -157,7 +157,7 @@ if ($row = mysqli_fetch_assoc($result)) {
        <div class="row">
        <label class="col-md-4 te" for="yr">Grade</label>
        <div class="col-md-6">
-         <select type="text" name="yr" class="form-control" id ="yr" required>
+         <select type="text" name="yr" class="form-control" id ="yr" readonly required>
         <?php 
        include 'db.php';
        $id = $_GET['id'];
@@ -215,7 +215,7 @@ if ($row = mysqli_fetch_assoc($result)) {
         $result3 = mysqli_query($conn, $sql3);
         if ($row2 = mysqli_fetch_assoc($result3)) {
 ?>
-         <input type="text" name="sec" class="form-control" value="<?php echo htmlspecialchars($row['SECTION']); ?>" id ="sec"required>
+         <input type="text" name="sec" class="form-control" value="<?php echo htmlspecialchars($row['SECTION']); ?>" readonly id ="sec"required>
          <?php
         }
     }
@@ -247,14 +247,14 @@ if ($row = mysqli_fetch_assoc($result)) {
        <div class="row">
        <label class="col-md-4 te" for="sy">School Year</label>
        <div class="col-md-6">
-         <input type="text" name="sy" class="form-control" id ="sy" value="<?php echo $_GET['sy'] ?>"  >
+         <input type="text" name="sy" class="form-control" id ="sy" readonly value="<?php echo $_GET['sy'] ?>"  >
        </div>
        </div>
        <br>
        <div class="row" style="display:none">
        <label class="col-md-4 te" for="class">To be classified as</label>
        <div class="col-md-6">
-         <input type="text" name="class" class="form-control" id ="" readonly="">
+         <input type="text" name="class" readonly class="form-control" id ="" readonly="">
        </div>
        </div>
      </div>
@@ -285,7 +285,7 @@ if ($row = mysqli_fetch_assoc($result)) {
         $result3 = mysqli_query($conn, $sql3);
         if ($row2 = mysqli_fetch_assoc($result3)) {
 ?>
-         <input type="text" name="adviser" class="form-control" value="<?php echo htmlspecialchars($row['ADVISER']); ?>" id ="adviser" >
+         <input type="text" name="adviser" class="form-control" value="<?php echo htmlspecialchars($row['ADVISER']); ?>" readonly id ="adviser" >
          <?php
         }
     }
@@ -319,7 +319,7 @@ if ($row = mysqli_fetch_assoc($result)) {
         $result3 = mysqli_query($conn, $sql3);
         if ($row2 = mysqli_fetch_assoc($result3)) {
 ?>
-         <input type="text" name="rank" class="form-control" id ="ra" value="<?php echo htmlspecialchars($row['RANK']); ?>">
+         <input type="text" name="rank" class="form-control" id ="ra" readonly value="<?php echo htmlspecialchars($row['RANK']); ?>">
          <?php
         }
     }
