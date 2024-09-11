@@ -116,7 +116,7 @@ success:function(data)
         <select class="form-control" name="type" id="sel1" required>
         <option></option>
           <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-          <option value="STAFF">STAFF</option>
+          <option value="FACULTY">FACULTY</option>
         </select>                </div>
               </div>
             </div>
