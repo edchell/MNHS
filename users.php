@@ -136,8 +136,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="type">User Type:</label>
-                                <select class="form-control" name="type" id="editUserType" value="<?php echo htmlspecialchars($row['USER_TYPE']); ?>" required>
-                                    <option value="" disabled>Select User Type</option>
+                                <select class="form-control" name="type" id="editUserType" required>
+                                    <option value="" disabled><?php echo htmlspecialchars($row['USER_TYPE']); ?></option>
                                     <option value="ADMINISTRATOR">ADMINISTRATOR</option>
                                     <option value="FACULTY">FACULTY</option>
                                 </select>
