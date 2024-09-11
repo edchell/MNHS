@@ -119,24 +119,24 @@
                         <div class="container">
                             <div class="form-group">
                                 <label for="fname">Firstname:</label>
-                                <input type="hidden" name="id" id="editUserId">
-                                <input type="text" class="form-control" id="editFname" name="fname" required>
+                                <input type="hidden" name="id" id="editUserId" value="<?php echo htmlspecialchars($row['USER_ID']); ?>">
+                                <input type="text" class="form-control" id="editFname" name="fname" value="<?php echo htmlspecialchars($row['FIRSTNAME']); ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="lname">Lastname:</label>
-                                <input type="text" class="form-control" id="editLname" name="lname" required>
+                                <input type="text" class="form-control" id="editLname" name="lname" value="<?php echo htmlspecialchars($row['LASTNAME']); ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="user">User:</label>
-                                <input type="text" class="form-control" id="editUser" name="user" required>
+                                <input type="text" class="form-control" id="editUser" name="user" value="<?php echo htmlspecialchars($row['USER_']); ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="editPwd" name="pwd">
+                                <input type="password" class="form-control" id="editPwd" name="pwd" value="<?php echo htmlspecialchars($row['PASSWORD']); ?>">
                             </div>
                             <div class="form-group">
                                 <label for="type">User Type:</label>
-                                <select class="form-control" name="type" id="editUserType" required>
+                                <select class="form-control" name="type" id="editUserType" value="<?php echo htmlspecialchars($row['USER_TYPE']); ?>" required>
                                     <option value="" disabled>Select User Type</option>
                                     <option value="ADMINISTRATOR">ADMINISTRATOR</option>
                                     <option value="FACULTY">FACULTY</option>
