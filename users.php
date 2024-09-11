@@ -105,10 +105,6 @@
                         <input type="text" class="form-control" id="editUser" name="user" placeholder="Enter Username" required>
                     </div>
                     <div class="form-group">
-                        <label for="editPwd">Password</label>
-                        <input type="password" class="form-control" id="editPwd" name="pwd" placeholder="Enter Password" required>
-                    </div>
-                    <div class="form-group">
                         <label for="editType">User Type</label>
                         <select class="form-control" name="type" id="editType" required>
                             <option value="" disabled>Select User Type</option>
@@ -180,7 +176,6 @@ $(document).ready(function() {
                     $('#editFname').val(response.FIRSTNAME);
                     $('#editLname').val(response.LASTNAME);
                     $('#editUser').val(response.USER);
-                    $('#editPwd').val(response.PASSWORD); // Ensure that the password field is properly handled
                     $('#editType').val(response.USER_TYPE);
                 } else {
                     Swal.fire('Error!', 'Unable to fetch user details.', 'error');

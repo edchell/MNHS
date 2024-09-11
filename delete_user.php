@@ -76,13 +76,9 @@ if (isset($_POST['user_id'])) {
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
     $user = mysqli_real_escape_string($conn, $_POST['user']);
-    $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
     $type = mysqli_real_escape_string($conn, $_POST['type']);
 
-    // Hash the password if necessary
-    $hashed_pwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-    $sql = "UPDATE user SET FIRSTNAME = '$fname', LASTNAME = '$lname', USER = '$user', PASSWORD = '$hashed_pwd', USER_TYPE = '$type' WHERE USER_ID = '$user_id'";
+    $sql = "UPDATE user SET FIRSTNAME = '$fname', LASTNAME = '$lname', USER = '$user', USER_TYPE = '$type' WHERE USER_ID = '$user_id'";
     
     if (mysqli_query($conn, $sql)) {
         echo 'success';
@@ -94,15 +90,4 @@ if (isset($_POST['user_id'])) {
 } else {
     echo 'error';
 }
-
-if (isset($_POST['user_id'])) {
-    $user_id = $_POST['user_id'];
-    $sql = mysqli_query($conn, "SELECT * FROM user WHERE USER_ID = '$user_id'");
-    $row = mysqli_fetch_assoc($sql);
-    echo json_encode($row);
-} else {
-    echo json_encode(array('error' => 'No user ID provided'));
-}
-
-mysqli_close($conn);
 ?>
