@@ -39,7 +39,7 @@
                             <td><?php echo $row['FIRSTNAME']." ".$row['LASTNAME'] ?></td>
                             <td><?php echo $row['USER'] ?></td>
                             <td><?php echo $row['USER_TYPE'] ?></td>
-                            <td><center><a class="btn btn-primary" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="unarchivedUser(<?php echo $row['USER_ID'] ?>)">Unarchived</a></center></td>
+                            <td><center><a class="btn btn-primary text-white" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="unarchivedUser(<?php echo $row['USER_ID'] ?>)">Unarchived</a></center></td>
                         </tr>
                         <?php } mysqli_close($conn); ?>
                     </tbody>
