@@ -79,45 +79,46 @@
     </div>
 </div>
 
-<div class="modal fade" id="edit_user" role="dialog">
-    <div class="modal-dialog">
+<!-- Edit User Modal -->
+<div class="modal fade" id="edit_user" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Manage Account</h4>
+                <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-                <form class="form-group" method="POST" action="edit_user.php">
-                    <div class="container">
-                        <div class="form-group">
-                            <label for="fname">Firstname:</label>
-                            <input type="hidden" name="id" id="editUserId">
-                            <input type="text" class="form-control" id="editFname" name="fname" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lname">Lastname:</label>
-                            <input type="text" class="form-control" id="editLname" name="lname" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="user">User:</label>
-                            <input type="text" class="form-control" id="editUser" name="user" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="editPwd" name="pwd">
-                        </div>
-                        <div class="form-group">
-                            <label for="type">User Type:</label>
-                            <select class="form-control" name="type" id="editUserType" required>
-                                <option value="" disabled selected>Select User Type</option>
-                                <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-                                <option value="FACULTY">FACULTY</option>
-                            </select>
-                        </div>
+                <form id="editUserForm" method="post" action="delete_user.php">
+                    <input type="hidden" id="editUserId" name="user_id">
+                    <div class="form-group">
+                        <label for="editFname">Firstname</label>
+                        <input type="text" class="form-control" id="editFname" name="fname" placeholder="Enter Firstname" required>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">Save</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="form-group">
+                        <label for="editLname">Lastname</label>
+                        <input type="text" class="form-control" id="editLname" name="lname" placeholder="Enter Lastname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editUser">Username</label>
+                        <input type="text" class="form-control" id="editUser" name="user" placeholder="Enter Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPwd">Password</label>
+                        <input type="password" class="form-control" id="editPwd" name="pwd" placeholder="Enter Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editType">User Type</label>
+                        <select class="form-control" name="type" id="editType" required>
+                            <option value="" disabled>Select User Type</option>
+                            <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+                            <option value="FACULTY">FACULTY</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="background-color: #28a745; border-color: #28a745;">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #dc3545; border-color: #dc3545;">Close</button>
                     </div>
                 </form>
             </div>
@@ -130,27 +131,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    // Load user data into the modal when the edit button is clicked
-    $(document).on('click', '#getUser', function() {
-        var userId = $(this).data('id');
-        $.ajax({
-            url: 'delete_user.php', // PHP file to fetch user data
-            type: 'POST',
-            data: { id: userId },
-            success: function(response) {
-                var data = JSON.parse(response);
-                $('#editUserId').val(data.USER_ID);
-                $('#editFname').val(data.FIRSTNAME);
-                $('#editLname').val(data.LASTNAME);
-                $('#editUser').val(data.USER);
-                $('#editPwd').val(data.PASSWORD);
-                $('#editUserType').val(data.USER_TYPE);
-            }
-        });
-    });
-});
-
 function deleteUser(userId) {
     Swal.fire({
         title: 'Are you sure?',
@@ -182,4 +162,53 @@ function deleteUser(userId) {
         }
     });
 }
+
+$(document).ready(function() {
+    // Fetch user data and populate the modal when the "Edit" button is clicked
+    $('#getUser').on('click', function() {
+        var userId = $(this).data('id');
+        $.ajax({
+            url: 'delete_user.php',
+            type: 'POST',
+            data: { user_id: userId },
+            dataType: 'json',
+            success: function(response) {
+                if (response) {
+                    $('#editUserId').val(response.USER_ID);
+                    $('#editFname').val(response.FIRSTNAME);
+                    $('#editLname').val(response.LASTNAME);
+                    $('#editUser').val(response.USER);
+                    $('#editPwd').val(response.PASSWORD);
+                    $('#editType').val(response.USER_TYPE);
+                } else {
+                    Swal.fire('Error!', 'Unable to fetch user details.', 'error');
+                }
+            },
+            error: function() {
+                Swal.fire('Error!', 'Request failed.', 'error');
+            }
+        });
+    });
+
+    // Handle form submission for editing user
+    $('#editUserForm').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                if (response.trim() === 'success') {
+                    Swal.fire('Updated!', 'User details have been updated.', 'success')
+                    .then(() => location.reload());
+                } else {
+                    Swal.fire('Error!', 'Failed to update user details.', 'error');
+                }
+            },
+            error: function() {
+                Swal.fire('Error!', 'Request failed.', 'error');
+            }
+        });
+    });
+});
 </script>
