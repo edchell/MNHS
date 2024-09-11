@@ -128,7 +128,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="user">User:</label>
-                                <input type="text" class="form-control" id="editUser" name="user" value="<?php echo htmlspecialchars($row['USER_']); ?>" required>
+                                <input type="text" class="form-control" id="editUser" name="user" value="<?php echo htmlspecialchars($row['USER']); ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
@@ -204,41 +204,4 @@ function deleteUser(userId) {
         }
     });
 }
-
-$(document).ready(function() {
-            $(document).on('click', '#getUser', function() {
-                var userId = $(this).data('id');
-                $.ajax({
-                    url: 'view_user.php',
-                    type: 'POST',
-                    data: { id: userId },
-                    beforeSend: function() {
-                        $("#e_user").html('Working on Please wait ..');
-                    },
-                    success: function(data) {
-                        $("#e_user").html(data);
-                    }
-                });
-            });
-
-            $('#edit_user').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var userId = button.data('id');
-
-                $.ajax({
-                    url: 'view_user.php',
-                    type: 'POST',
-                    data: { id: userId },
-                    success: function(response) {
-                        var user = JSON.parse(response);
-                        var modal = $('#edit_user');
-                        modal.find('#editUserId').val(user.USER_ID);
-                        modal.find('#editFname').val(user.FIRSTNAME);
-                        modal.find('#editLname').val(user.LASTNAME);
-                        modal.find('#editUser').val(user.USER);
-                        modal.find('#editUserType').val(user.USER_TYPE);
-                    }
-                });
-            });
-        });
 </script>
