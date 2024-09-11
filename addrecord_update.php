@@ -345,11 +345,12 @@ if ($row = mysqli_fetch_assoc($result)) {
           <?php
           $check_query = "SELECT * FROM total_grades_subjects WHERE SYI_ID = '$syi' GROUP BY SUBJECT";
           $check_query_result = mysqli_query($conn, $check_query);
-          $check = mysqli-fetch-assoc($check_query_result);
+          if($check = mysqli-fetch-assoc($check_query_result)){
           ?>
           <tr>
             <td><input type="text" name="subject[]" value="<?php echo htmlspecialchars($check['SUBJECT']); ?>" readonly></td>
           </tr>
+          <?php } ?>
          </tbody>
        </table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
