@@ -39,22 +39,7 @@
                             <td><?php echo $row['FIRSTNAME']." ".$row['LASTNAME'] ?></td>
                             <td><?php echo $row['USER'] ?></td>
                             <td><?php echo $row['USER_TYPE'] ?></td>
-                            <td style="text-align:center">
-                                <a href="#" 
-                                   class="btn btn-default"
-                                   style="
-                                       background-color: #007bff; 
-                                       color: white; 
-                                       padding: 10px 20px; 
-                                       font-size: 16px; 
-                                       border: none; 
-                                       border-radius: 5px; 
-                                       cursor: pointer; 
-                                       transition: background-color 0.3s;
-                                   "
-                                   data-id="<?php echo $row['USER_ID'] ?>" 
-                                   id="getUser">Unarchived</a>
-                            </td>
+                            <a class="btn btn-primary" data-id="<?php echo $row['USER_ID'] ?>" id="getUser" onclick="unarchivedUser(<?php echo $row['USER_ID'] ?>)">Unarchived</a></td>
                         </tr>
                         <?php } mysqli_close($conn); ?>
                     </tbody>
