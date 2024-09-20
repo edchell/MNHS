@@ -225,7 +225,7 @@
         <br>
      </div>
 
-     <div class="col-md-5">
+     <div class="col-md-7">
      <br>
      <br>
        <table class="table-bordered">
@@ -288,7 +288,7 @@
        </table>
       <!-- <div class="btn btn-success" id="addnew">Add</div>-->
        </div>
-       <div class="col-md-3">
+       <div class="col-md-6">
         <br>
          <br>
        <table class="table-bordered">
