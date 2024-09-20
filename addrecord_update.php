@@ -135,6 +135,7 @@ include 'db.php';
           <input type="text" name="sy" class="form-control" id ="sy" readonly value="<?php echo $_GET['sy'] ?>"  >
         </div>
     </div>
+  </div>
 <br>
      <div class="col-md-6">
        <br>
