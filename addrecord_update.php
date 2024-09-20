@@ -15,13 +15,6 @@
           };
     
 });
-      function adds(){
-
-      }
-      function remtrr($i){
-        var i = $i;
-       $("."+ i).remove();
-      }
     </script>
   
     <?php
