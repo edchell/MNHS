@@ -225,7 +225,7 @@
         <br>
      </div>
 
-     <div class="col-md-7">
+     <div class="col-md-5">
      <br>
      <br>
        <table class="table-bordered">
