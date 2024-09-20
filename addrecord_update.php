@@ -1,21 +1,14 @@
     <?php
     include 'db.php';
-
-
     $sql=  mysqli_query($conn, "SELECT * FROM student_info where STUDENT_ID = '".$_GET['id']."' ");
     while($row = mysqli_fetch_assoc($sql)) {
-
-
+    ?>
+          <h1 class="page-header"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></h1>
+    <?php
+      } mysqli_close($conn);
     ?>
 
-          <h1 class="page-header"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></h1>
-          
-          <?php
-    } mysqli_close($conn);
-      ?>
 
-
-     <form action="newrecord.php" method="post">
      <input name="id" type="hidden" value="<?php echo $_GET["id"] ?>">
      <div class="col-md-6">
        <div class="row">
@@ -226,6 +219,7 @@ if ($row = mysqli_fetch_assoc($result)) {
      <div class="mt-5">
      <br>
      <br>
+     <form action="newrecord.php" method="post">
      <table class="table-bordered">
   <thead>
     <tr>
