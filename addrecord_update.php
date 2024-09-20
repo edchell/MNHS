@@ -139,6 +139,7 @@ include 'db.php';
 <br>
      <div class="col-md-6">
        <br>
+       <div id="en_adv">
        <div class="row">
        <label class="col-md-2 te" for="adviser">Adviser</label>
        <div class="col-md-6">
