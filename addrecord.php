@@ -207,21 +207,6 @@
        </div>
      </div>
      <div class="col-md-6">
-
-       <div class="row">
-       <label class="col-md-2 te" for="au">Advance unit in</label>
-       <div class="col-md-6">
-         <input type="text" name="au" class="form-control" id ="au" >
-       </div>
-       </div>
-       <br>
-       <div class="row">
-       <label class="col-md-2 te" for="lu">Lacks unit in</label>
-       <div class="col-md-6">
-         <input type="text" name="lu" class="form-control" id ="lu" >
-       </div>
-       </div>
-       <br>
        <div id="en_adv">
        <div class="row">
        <label class="col-md-2 te" for="adviser">Adviser</label>
