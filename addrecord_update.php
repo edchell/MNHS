@@ -228,48 +228,72 @@ function getDbConnection() {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the SYI_ID from the student_year_info table
+    $conn = getDbConnection(); // Ensure the connection is established
     $id = mysqli_real_escape_string($conn, $_GET['id']);
+    
     $sql = "SELECT SYI_ID FROM student_year_info WHERE STUDENT_ID = '$id'";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $syi_id = $row['SYI_ID'];
+    
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        $syi_id = $row['SYI_ID'];
 
-    // Update grades
-    $subjects = $_POST['subject'];
-    $firstGrading = $_POST['1st'];
-    $secondGrading = $_POST['2nd'];
-    $thirdGrading = $_POST['3rd'];
-    $fourthGrading = $_POST['4th'];
-    $finalGrades = $_POST['final'];
-    $actions = $_POST['action'];
+        // Update grades
+        $subjects = $_POST['subject'];
+        $firstGrading = $_POST['1st'];
+        $secondGrading = $_POST['2nd'];
+        $thirdGrading = $_POST['3rd'];
+        $fourthGrading = $_POST['4th'];
+        $finalGrades = $_POST['final'];
+        $actions = $_POST['action'];
 
-    foreach ($subjects as $index => $subject) {
-        $first = mysqli_real_escape_string($conn, $firstGrading[$index]);
-        $second = mysqli_real_escape_string($conn, $secondGrading[$index]);
-        $third = mysqli_real_escape_string($conn, $thirdGrading[$index]);
-        $fourth = mysqli_real_escape_string($conn, $fourthGrading[$index]);
-        $final = mysqli_real_escape_string($conn, $finalGrades[$index]);
-        $action = mysqli_real_escape_string($conn, $actions[$index]);
-
+        // Prepare the update statement once
         $update_query = "UPDATE total_grades_subjects 
                          SET 
-                             1ST_GRADING = '$first',
-                             2ND_GRADING = '$second',
-                             3RD_GRADING = '$third',
-                             4TH_GRADING = '$fourth',
-                             FINAL_GRADES = '$final',
-                             PASSED_FAILED = '$action'
+                             1ST_GRADING = ?, 
+                             2ND_GRADING = ?, 
+                             3RD_GRADING = ?, 
+                             4TH_GRADING = ?, 
+                             FINAL_GRADES = ?, 
+                             PASSED_FAILED = ? 
                          WHERE 
-                             SYI_ID = '$syi_id' AND SUBJECT = '$subject'";
+                             SYI_ID = ? AND SUBJECT = ?";
 
-        mysqli_query($conn, $update_query);
+        $stmt = $conn->prepare($update_query);
+        
+        if ($stmt === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+
+        foreach ($subjects as $index => $subject) {
+            $first = mysqli_real_escape_string($conn, $firstGrading[$index]);
+            $second = mysqli_real_escape_string($conn, $secondGrading[$index]);
+            $third = mysqli_real_escape_string($conn, $thirdGrading[$index]);
+            $fourth = mysqli_real_escape_string($conn, $fourthGrading[$index]);
+            $final = mysqli_real_escape_string($conn, $finalGrades[$index]);
+            $action = mysqli_real_escape_string($conn, $actions[$index]);
+
+            // Bind parameters
+            $stmt->bind_param('ssssssss', $first, $second, $third, $fourth, $final, $action, $syi_id, $subject);
+            
+            // Execute the statement
+            if ($stmt->execute()) {
+                echo "Updated Successfully for subject: $subject.<br>";
+            } else {
+                echo "Error updating for subject $subject: " . $stmt->error . "<br>";
+            }
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error fetching SYI_ID: " . mysqli_error($conn);
     }
 
+    $conn->close();
+    
     // Redirect or display success message
     echo "<script>alert('Grades updated successfully!'); window.location.href='rms.php?page=addrecord_update&id=" . $_GET['id'] . "&sy=" . $sy['school_year'] . "&prog=" . $_GET['prog'] . "';</script>";
-
 }
-
 ?>
 <!-- Grades Table -->
   <form action="" method="post">
