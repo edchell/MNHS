@@ -207,7 +207,7 @@ include 'db.php';
 <div class="mt-5">
 <br>
 <br>
-  <form action="newrecord.php" method="post">
+  <form action="" method="post">
     <table class="table-bordered">
       <thead>
         <tr>
