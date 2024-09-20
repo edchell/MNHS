@@ -251,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <!-- Grades Table -->
-  <form action="" method="post">
+  <form action="addrecord_update.php" method="post">
     <table class="table-bordered">
       <thead>
         <tr>
