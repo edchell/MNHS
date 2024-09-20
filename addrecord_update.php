@@ -227,27 +227,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $finalGrades = $_POST['final'];
     $actions = $_POST['action'];
 
-    foreach ($subjects as $index => $subject) {
-        $first = mysqli_real_escape_string($conn, $firstGrading[$index]);
-        $second = mysqli_real_escape_string($conn, $secondGrading[$index]);
-        $third = mysqli_real_escape_string($conn, $thirdGrading[$index]);
-        $fourth = mysqli_real_escape_string($conn, $fourthGrading[$index]);
-        $final = mysqli_real_escape_string($conn, $finalGrades[$index]);
-        $action = mysqli_real_escape_string($conn, $actions[$index]);
-
         $update_query = "UPDATE total_grades_subjects 
                          SET 
-                             1ST_GRADING = '$first',
-                             2ND_GRADING = '$second',
-                             3RD_GRADING = '$third',
-                             4TH_GRADING = '$fourth',
-                             FINAL_GRADES = '$final',
-                             PASSED_FAILED = '$action'
+                             1ST_GRADING = '$firstGrading',
+                             2ND_GRADING = '$secondGrading',
+                             3RD_GRADING = '$thirdGrading',
+                             4TH_GRADING = '$fourthGrading',
+                             FINAL_GRADES = '$finalGrades',
+                             PASSED_FAILED = '$actions'
                          WHERE 
-                             SYI_ID = '$syi_id' AND SUBJECT = '$subject'";
+                             SYI_ID = '$syi_id' AND SUBJECT = '$subjects'";
 
         mysqli_query($conn, $update_query);
-    }
 
     // Redirect or display success message
     echo "<script>alert('Grades updated successfully!'); window.location.href='rms.php?page=addrecord_update&id=" . $_GET['id'] . "&sy=" . $sy['school_year'] . "&prog=" . $_GET['prog'] . "';</script>";
