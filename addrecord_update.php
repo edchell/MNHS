@@ -211,14 +211,12 @@ include 'db.php';
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the SYI_ID from the student_year_info table
     $id = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "SELECT SYI_ID FROM student_year_info WHERE STUDENT_ID = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $syi_id = $row['SYI_ID'];
 
-    // Update grades
     $subjects = $_POST['subject'];
     $firstGrading = $_POST['1st'];
     $secondGrading = $_POST['2nd'];
@@ -240,7 +238,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         mysqli_query($conn, $update_query);
 
-    // Redirect or display success message
     echo "<script>alert('Grades updated successfully!'); window.location.href='rms.php?page=addrecord_update&id=" . $_GET['id'] . "&sy=" . $sy['school_year'] . "&prog=" . $_GET['prog'] . "';</script>";
 }
 
