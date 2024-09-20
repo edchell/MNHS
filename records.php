@@ -1,6 +1,6 @@
 <style>
     #students {
-        font-size: 14px; /* Adjust this value to your desired font size */
+        font-size: 24px; /* Adjust this value to your desired font size */
     }
 </style>
           <!-- DataTables CSS -->
