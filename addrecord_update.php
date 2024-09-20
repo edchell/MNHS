@@ -266,27 +266,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         foreach ($subjects as $index => $subject) {
-          $first = mysqli_real_escape_string($conn, $firstGrading[$index]);
-          $second = mysqli_real_escape_string($conn, $secondGrading[$index]);
-          $third = mysqli_real_escape_string($conn, $thirdGrading[$index]);
-          $fourth = mysqli_real_escape_string($conn, $fourthGrading[$index]);
-          $final = mysqli_real_escape_string($conn, $finalGrades[$index]);
-          $action = mysqli_real_escape_string($conn, $actions[$index]);
-      
-          // Debug output
-          echo "Updating subject: $subject with grades: $first, $second, $third, $fourth, $final, action: $action<br>";
-      
-          // Bind parameters
-          $stmt->bind_param('ssssssss', $first, $second, $third, $fourth, $final, $action, $syi_id, $subject);
-          
-          // Execute the statement
-          if ($stmt->execute()) {
-              echo "Updated Successfully for subject: $subject.<br>";
-           else {
-              echo "Error updating for subject $subject: " . $stmt->error . "<br>";
-          }
-      }
-      
+            $first = mysqli_real_escape_string($conn, $firstGrading[$index]);
+            $second = mysqli_real_escape_string($conn, $secondGrading[$index]);
+            $third = mysqli_real_escape_string($conn, $thirdGrading[$index]);
+            $fourth = mysqli_real_escape_string($conn, $fourthGrading[$index]);
+            $final = mysqli_real_escape_string($conn, $finalGrades[$index]);
+            $action = mysqli_real_escape_string($conn, $actions[$index]);
+
+            // Bind parameters
+            $stmt->bind_param('ssssssss', $first, $second, $third, $fourth, $final, $action, $syi_id, $subject);
+            
+            // Execute the statement
+            if ($stmt->execute()) {
+                echo "Updated Successfully for subject: $subject.<br>";
+            } else {
+                echo "Error updating for subject $subject: " . $stmt->error . "<br>";
+            }
+        }
 
         $stmt->close();
     } else {
