@@ -15,45 +15,6 @@
           };
     
 });
-      function newrow($i){
-
-        var data, i = $i +1;
-        data = '<tr id="rowws" class="'+i+'">'+
-           '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-             '<select name="subj[]" onchange="newrow('+i+')">'+
-             '<option></option>'+
-             ' <?php
-                           include 'db.php';
-                           $sql = mysqli_query($conn, " SELECT * from subjects where `FOR`='All' OR `FOR`= '".$_GET['prog']."' ");
-              while($row=mysqli_fetch_assoc($sql)){
-                             $id = $row['SUBJECT_ID'];
-                             $subj = $row['SUBJECT'];
-             ?>'+
-                '<option value="<?php echo $id ?>"><?php echo $subj ?> </option>'+
-                '<?php
-                              }
-                              mysqli_close($conn);
-                              ?>'+
-            '</select> </td>'+
-             '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-             '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="1st[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-            ' <input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="2nd[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-             '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+'>)" onkeydown="calculateSum2('+i+')" type="text" name="3rd[]"></td>'+
-             '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-             '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="4th[]"></td>'+
-             '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
-            '<input style="width:50px;text-align:center" id="fin'+i+'" type="number" name="final[]" readonly=""></td>'+
-             '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
-             '<input style="width:50px" type="text" name="units[]"></td>'+
-             '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
-              '<input type="text" name="action[]" id="action'+i+'" style="text-align:center" readonly="" >'+
-
-              '</td>'+
-             ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
-              '</tr>';
-
-              $("#table-body").append(data);
-      }
       function adds(){
 
       }
