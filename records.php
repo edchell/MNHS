@@ -1,7 +1,5 @@
 <style>
-    #students {
-        font-size: 24px; /* Adjust this value to your desired font size */
-    }
+    dataTables_length, .dataTables_length select{ font-size: 2em;}
 </style>
           <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
