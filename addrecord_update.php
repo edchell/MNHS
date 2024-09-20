@@ -9,6 +9,7 @@ include 'db.php';
     ?>
 
 <!-- School -->
+<form action="newrecord_update.php" method="post">
 <input name="id" type="hidden" value="<?php echo $_GET["id"] ?>">
   <div class="col-md-6">
     <div class="row">
@@ -207,51 +208,7 @@ include 'db.php';
 <div class="mt-5">
 <br>
 <br>
-<?php
-include 'db.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Assuming you are submitting subjects and grades in arrays
-    $subjects = $_POST['subject'];
-    $firstGrading = $_POST['1st'];
-    $secondGrading = $_POST['2nd'];
-    $thirdGrading = $_POST['3rd'];
-    $fourthGrading = $_POST['4th'];
-    $finalGrades = $_POST['final'];
-    $actions = $_POST['action'];
-
-    // Loop through each subject and update the grades
-    foreach ($subjects as $index => $subject) {
-        $subjectId = mysqli_real_escape_string($conn, $subject); // Assuming subject ID is passed
-        $first = mysqli_real_escape_string($conn, $firstGrading[$index]);
-        $second = mysqli_real_escape_string($conn, $secondGrading[$index]);
-        $third = mysqli_real_escape_string($conn, $thirdGrading[$index]);
-        $fourth = mysqli_real_escape_string($conn, $fourthGrading[$index]);
-        $final = mysqli_real_escape_string($conn, $finalGrades[$index]);
-        $action = mysqli_real_escape_string($conn, $actions[$index]);
-        
-        // Prepare the update query
-        $updateQuery = "UPDATE total_grades_subjects 
-                        SET 
-                            1ST_GRADING = '$first', 
-                            2ND_GRADING = '$second', 
-                            3RD_GRADING = '$third', 
-                            4TH_GRADING = '$fourth', 
-                            FINAL_GRADES = '$final', 
-                            PASSED_FAILED = '$action' 
-                        WHERE 
-                            SUBJECT = '$subjectId' AND SYI_ID = '$syi'";
-        
-        // Execute the update query
-        mysqli_query($conn, $updateQuery);
-    }
-
-    // Redirect or display success message after updating
-    echo "<script>alert('Grades updated successfully!');</script>";
-}
-?>
 <!-- Grades Table -->
-  <form action="" method="post">
     <table class="table-bordered">
       <thead>
         <tr>
