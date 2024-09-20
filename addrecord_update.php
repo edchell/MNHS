@@ -217,13 +217,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $row = mysqli_fetch_assoc($result);
     $syi_id = $row['SYI_ID'];
 
-    $subjects = $_POST['subject'];
-    $firstGrading = $_POST['1st'];
-    $secondGrading = $_POST['2nd'];
-    $thirdGrading = $_POST['3rd'];
-    $fourthGrading = $_POST['4th'];
-    $finalGrades = $_POST['final'];
-    $actions = $_POST['action'];
+    $subjects = mysqli_real_escape_string($conn, $_POST['subject']);
+    $firstGrading = mysqli_real_escape_string($conn, $_POST['1st']);
+    $secondGrading = mysqli_real_escape_string($conn, $_POST['2nd']);
+    $thirdGrading = mysqli_real_escape_string($conn, $_POST['3rd']);
+    $fourthGrading = mysqli_real_escape_string($conn, $_POST['4th']);
+    $finalGrades = mysqli_real_escape_string($conn, $_POST['final']);
+    $actions = mysqli_real_escape_string($conn, $_POST['action']);
 
         $update_query = "UPDATE total_grades_subjects 
                          SET 
