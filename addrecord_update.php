@@ -207,6 +207,31 @@ include 'db.php';
 <div class="mt-5">
 <br>
 <br>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include 'db.php';
+    $grades = $_POST['1st'];
+    $grades2 = $_POST['2nd'];
+    $grades3 = $_POST['3rd'];
+    $grades4 = $_POST['4th'];
+    $finalGrades = $_POST['final'];
+    $actions = $_POST['action'];
+
+    foreach ($grades as $index => $grade) {
+        $sql = "UPDATE total_grades_subjects SET 
+                    1ST_GRADING = '" . mysqli_real_escape_string($conn, $grades[$index]) . "',
+                    2ND_GRADING = '" . mysqli_real_escape_string($conn, $grades2[$index]) . "',
+                    3RD_GRADING = '" . mysqli_real_escape_string($conn, $grades3[$index]) . "',
+                    4TH_GRADING = '" . mysqli_real_escape_string($conn, $grades4[$index]) . "',
+                    FINAL_GRADES = '" . mysqli_real_escape_string($conn, $finalGrades[$index]) . "',
+                    PASSED_FAILED = '" . mysqli_real_escape_string($conn, $actions[$index]) . "'
+                WHERE SUBJECT = '" . mysqli_real_escape_string($conn, $_POST['subject'][$index]) . "' AND SYI_ID = '$syi'";
+
+        mysqli_query($conn, $sql);
+    }
+    mysqli_close($conn);
+}
+?>
   <form action="" method="post">
     <table class="table-bordered">
       <thead>
