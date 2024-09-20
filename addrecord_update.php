@@ -210,12 +210,12 @@ include 'db.php';
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'db.php';
-    $grades = $_POST['1st'];
-    $grades2 = $_POST['2nd'];
-    $grades3 = $_POST['3rd'];
-    $grades4 = $_POST['4th'];
-    $finalGrades = $_POST['final'];
-    $actions = $_POST['action'];
+    $grades = $_POST['1st[]'];
+    $grades2 = $_POST['2nd[]'];
+    $grades3 = $_POST['3rd[]'];
+    $grades4 = $_POST['4th[]'];
+    $finalGrades = $_POST['final[]'];
+    $actions = $_POST['action[]'];
 
     foreach ($grades as $index => $grade) {
         $sql = "UPDATE total_grades_subjects SET 
