@@ -239,13 +239,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $syi_id = $row['SYI_ID'];
 
         // Update grades
-        $subjects = $_POST['subject'];
-        $firstGrading = $_POST['1st'];
-        $secondGrading = $_POST['2nd'];
-        $thirdGrading = $_POST['3rd'];
-        $fourthGrading = $_POST['4th'];
-        $finalGrades = $_POST['final'];
-        $actions = $_POST['action'];
+        $subjects = $_POST['subject[]'];
+        $firstGrading = $_POST['1st[]'];
+        $secondGrading = $_POST['2nd[]'];
+        $thirdGrading = $_POST['3rd[]'];
+        $fourthGrading = $_POST['4th[]'];
+        $finalGrades = $_POST['final[]'];
+        $actions = $_POST['action[]'];
 
         // Prepare the update statement once
         $update_query = "UPDATE total_grades_subjects 
