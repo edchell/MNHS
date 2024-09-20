@@ -494,3 +494,47 @@ function validate(i) {
         $("#p" + i).css("background-color", "white");
     }
 }
+
+$(document).ready(function() {
+    // Calculate final grades on input change
+    $(".grade").on("input", function() {
+        calculateFinalGrades();
+    });
+
+    // Initial calculation for existing grades
+    calculateFinalGrades();
+});
+
+function calculateFinalGrades() {
+    $("tbody tr").each(function() {
+        var sum = 0;
+        var count = 0;
+        
+        // Get all grading inputs in the current row
+        $(this).find("input[name='1st[]'], input[name='2nd[]'], input[name='3rd[]'], input[name='4th[]']").each(function() {
+            var value = parseFloat($(this).val());
+            if (!isNaN(value)) {
+                sum += value;
+                count++;
+            }
+        });
+
+        // Calculate the final grade if there are valid grades
+        if (count > 0) {
+            var finalGrade = sum / count;
+            $(this).find("input[name='final[]']").val(finalGrade.toFixed(2));
+
+            // Update Passed/Failed status
+            var actionInput = $(this).find("input[name='action[]']");
+            if (finalGrade < 75) {
+                actionInput.val("FAILED");
+            } else {
+                actionInput.val("PASSED");
+            }
+        } else {
+            $(this).find("input[name='final[]']").val(""); // Clear final if no grades
+            $(this).find("input[name='action[]']").val(""); // Clear action if no grades
+        }
+    });
+}
+</script>
