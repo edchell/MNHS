@@ -1,22 +1,3 @@
-<!--$("#rowws").clone().appendTo("#table-body").show();-->
-    <script>
-      $(document).ready(function(){
-
-          $("#rowwss").hide();
-
-          if($('#yr').val() == '1'){
-            $('#class').val('Grade 8');
-          }else if($('#yr').val() == '2'){
-            $('#class').val('Grade 9');
-          }else if($('#yr').val() == '3'){
-            $('#class').val('Grade 10');
-          }else if($('#yr').val() == '4'){
-            $('#class').val('Grade 11');
-          };
-    
-});
-    </script>
-  
     <?php
     include 'db.php';
 
