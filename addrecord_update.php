@@ -232,12 +232,12 @@ include 'db.php';
         ?>
         <tr>
           <td><input type="text" style="text-align:center;" name="subject[]" value="<?php echo htmlspecialchars($check2['SUBJECT']); ?>" readonly></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade<?php echo $i ?>" type="text" name="1st[]"></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade<?php echo $i ?>" type="text" name="2nd[]"></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade<?php echo $i ?>" type="text" name="3rd[]"></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade<?php echo $i ?>" type="text" name="4th[]"></td>
-          <td><input style="width:60px;text-align:center;" id="fin<?php echo $i ?>" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td>
-          <td><input type="text" name="action[]" id="action<?php echo $i ?>" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly="" ></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade" type="text" name="1st[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade" type="text" name="2nd[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade" type="text" name="3rd[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade" type="text" name="4th[]"></td>
+          <td><input style="width:60px;text-align:center;" id="fin" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td>
+          <td><input type="text" name="action[]" id="action" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly="" ></td>
         </tr>
         <?php
               }
@@ -366,6 +366,50 @@ function acts($i){
       $("#p"+i).css("background-color","white");
     }
   }
+
+  $(document).ready(function() {
+    // Calculate final grades on input change
+    $(".grade").on("input", function() {
+        calculateFinalGrades();
+    });
+
+    // Initial calculation for existing grades
+    calculateFinalGrades();
+});
+
+function calculateFinalGrades() {
+    $("tbody tr").each(function() {
+        var sum = 0;
+        var count = 0;
+        
+        // Get all grading inputs in the current row
+        $(this).find("input[name='1st[]'], input[name='2nd[]'], input[name='3rd[]'], input[name='4th[]']").each(function() {
+            var value = parseFloat($(this).val());
+            if (!isNaN(value)) {
+                sum += value;
+                count++;
+            }
+        });
+
+        // Calculate the final grade if there are valid grades
+        if (count > 0) {
+            var finalGrade = sum / count;
+            $(this).find("input[name='final[]']").val(finalGrade.toFixed(2));
+
+            // Update Passed/Failed status
+            var actionInput = $(this).find("input[name='action[]']");
+            if (finalGrade < 75) {
+                actionInput.val("FAILED");
+            } else {
+                actionInput.val("PASSED");
+            }
+        } else {
+            $(this).find("input[name='final[]']").val(""); // Clear final if no grades
+            $(this).find("input[name='action[]']").val(""); // Clear action if no grades
+        }
+    });
+}
+
     </script>
  
  
