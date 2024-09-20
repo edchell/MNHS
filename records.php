@@ -1,5 +1,7 @@
 <style>
-    dataTables_length, .dataTables_length font{ font-size: 2em;}
+    table.dataTable td {
+  font-size: 1em;
+}
 </style>
           <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
