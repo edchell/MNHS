@@ -138,6 +138,7 @@ include 'db.php';
   </div>
   <div class="col-md-6">
     <div id="en_adv">
+      <!-- Adviser -->
       <div class="row">
         <label class="col-md-2 te" for="adviser">Adviser</label>
           <div class="col-md-6">
@@ -170,6 +171,7 @@ include 'db.php';
       </div>
     </div>
 <br>
+      <!-- Rank -->
       <div class="row">
         <label class="col-md-2 te" for="ra">Rank</label>
           <div class="col-md-6">
