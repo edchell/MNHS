@@ -240,7 +240,7 @@ include 'db.php';
                 <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade" type="text" name="4th[]"></td>
                 <td><input style="width:60px;text-align:center;" id="fin" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td>
                 <td><input type="text" name="action[]" id="action" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly=""></td>
-                <input type="hidden" name="subject_id[]" value="<?php echo htmlspecialchars($check['SUBJECT_ID']); ?>"> <!-- Assuming SUBJECT_ID is the unique identifier -->
+                <input type="hidden" name="subject_id[]" value="<?php echo htmlspecialchars($check2['SUBJECT_ID']); ?>"> <!-- Assuming SUBJECT_ID is the unique identifier -->
             </tr>
             <?php
                     }
