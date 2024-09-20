@@ -167,9 +167,10 @@ include 'db.php';
                 }
               }
             ?>
-       </div>
-       </div>
-       </div>
+        </div>
+      </div>
+    </div>
+  </div>
        <br>
         <div class="row">
        <label class="col-md-2 te" for="ra">Rank</label>
