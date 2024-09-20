@@ -207,6 +207,38 @@ include 'db.php';
 <div class="mt-5">
 <br>
 <br>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include 'db.php';
+    $subject = intval($_POST['subject']);
+    $grades = intval($_POST['1st']);
+    $grades2 = intval($_POST['2nd']);
+    $grades3 = intval($_POST['3rd']);
+    $grades4 = intval($_POST['4th']);
+    $finalGrades = intval($_POST['final']);
+    $actions = intval($_POST['action']);
+
+    $sql = "UPDATE total_grades_subjects t
+            LEFT JOIN subjects s ON t.SUBJECT = s.SUBJECT_ID
+            SET t.1ST_GRADING = ?,
+                t.2ND_GRADING = ?,
+                t.3RD_GRADING = ?,
+                t.4TH_GRADING = ?',
+                FINAL_GRADES = ?,
+                PASSED_FAILED = ? 
+            WHERE t.SYI_ID = ? AND t.SUBJECT = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iiiiiiii", $grades, $grades2, $grades3, $grades4, $finalGrades, $actions, $syi, $subject);
+    if ($stmt->execute()) {
+      alert "Updated Successfully.";
+    } else {
+      alert "Error updating:" . $stmt->error;
+    }
+
+    $stmt->close();
+}
+$conn->close();
+?>
   <form action="" method="post">
     <table class="table-bordered">
       <thead>
