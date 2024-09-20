@@ -78,44 +78,6 @@
           <?php
     } mysqli_close($conn);
       ?>
-<table>
-
-           <tr id="rowwss">
-           <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <select name="subj[]">
-
-             <?php
-              include 'db.php';
-              $sql = mysqli_query($conn, " SELECT * from subjects where `FOR` ='All' ");
-              while($row=mysqli_fetch_assoc($sql)){
-                $id = $row['SUBJECT_ID'];
-                $subj = $row['SUBJECT'];
-?>
-                <option value="<?php echo $id ?>"><?php echo $subj ?> </option>
-                <?php
-              }
-              mysqli_close($conn);
-              ?>
-
-            </select> </td>
-             <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade" type="text" name="1st[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade" type="text" name="2nd[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade" type="text" name="3rd[]"></td>
-             <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade" type="text" name="4th[]"></td>
-             <td style="width:60px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" id="fin" type="text" name="final[]" readonly=""></td>
-             <td style="width:60px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" type="text" name="units[]"></td>
-             <td style="width:60px;text-align:center;height:30px;font-size:12px">
-              <select name="action[]" id="">
-               <option value="Passed">Passed</option>
-               <option value="Failed">Failed</option>
-             </select></td>
-          </tr>
-          </table>
-
 
 
      <form action="newrecord.php" method="post">
