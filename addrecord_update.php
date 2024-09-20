@@ -258,7 +258,7 @@ include 'db.php';
 </form>
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Loop through submitted grades and update database
     $subjects = $_POST['subject_id'];
     $first_grading = $_POST['1st'];
