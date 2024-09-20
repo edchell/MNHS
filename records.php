@@ -1,4 +1,8 @@
-
+<style>
+    #students {
+        font-size: 14px; /* Adjust this value to your desired font size */
+    }
+</style>
           <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
