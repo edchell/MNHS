@@ -210,106 +210,77 @@ include 'db.php';
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'db.php';
-    
-    // Assuming $syi is defined and available
-    $syi = $_POST['syi']; // Make sure to get this value from a safe source
-    
+    $subject = $_POST['subject']
     $grades = $_POST['1st'];
     $grades2 = $_POST['2nd'];
     $grades3 = $_POST['3rd'];
     $grades4 = $_POST['4th'];
     $finalGrades = $_POST['final'];
     $actions = $_POST['action'];
-    $subjects = $_POST['subject'];
 
-    // Prepare the SQL statement
-    $sql = "UPDATE total_grades_subjects SET 
-                1ST_GRADING = ?, 
-                2ND_GRADING = ?, 
-                3RD_GRADING = ?, 
-                4TH_GRADING = ?, 
-                FINAL_GRADES = ?, 
-                PASSED_FAILED = ? 
-            WHERE SUBJECT = ? AND SYI_ID = ?";
-    
-    $stmt = mysqli_prepare($conn, $sql);
-    
-    // Loop through grades and execute the prepared statement
-    foreach ($grades as $index => $grade) {
-        mysqli_stmt_bind_param(
-            $stmt,
-            "sssssssi",
-            $grades[$index],
-            $grades2[$index],
-            $grades3[$index],
-            $grades4[$index],
-            $finalGrades[$index],
-            $actions[$index],
-            $subjects[$index],
-            $syi
-        );
-        
-        mysqli_stmt_execute($stmt);
-        
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            alert "Record updated successfully for subject: " . htmlspecialchars($subjects[$index]);
-        } else {
-            alert "No changes made for subject: " . htmlspecialchars($subjects[$index]);
-        }
+    $sql = "UPDATE total_grades_subjects t
+            LEFT JOIN subjects s ON t.SUBJECT = s.SUBJECT_ID
+            SET t.1ST_GRADING = '$grades',
+                t.2ND_GRADING = '$grades2',
+                t.3RD_GRADING = '$grades3',
+                t.4TH_GRADING = '$grades4',
+                FINAL_GRADES = '$finalGrades',
+                PASSED_FAILED = '$actions' 
+            WHERE SYI_ID = '$syi' AND SUBJECT = $subject";
+    if ($conn->query($sql) === TRUE) {
+      alert 'Updated Successfully.';
+    } else {
+      alert 'Error updating:' . $conn->error;
     }
-
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
+    $conn->close();
 }
 ?>
-
-<form action="" method="post">
-    <input type="hidden" name="syi" value="<?php echo htmlspecialchars($syi); ?>">
+  <form action="" method="post">
     <table class="table-bordered">
-        <thead>
-            <tr>
-                <th style="width:140px;text-align:center">Subject</th>
-                <th style="width:50px;text-align:center">1</th>
-                <th style="width:50px;text-align:center">2</th>
-                <th style="width:50px;text-align:center">3</th>
-                <th style="width:50px;text-align:center">4</th>
-                <th style="width:60px;text-align:center">Final</th>
-                <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $check_query = "SELECT * FROM total_grades_subjects WHERE SYI_ID = '$syi' GROUP BY SUBJECT";
-            $check_query_result = mysqli_query($conn, $check_query);
-            if ($check_query_result) {
-                while ($check = mysqli_fetch_assoc($check_query_result)) {
-                    $sub = $check['SUBJECT'];
-                    $check1 = mysqli_query($conn, "SELECT * FROM subjects WHERE SUBJECT_ID = '$sub'");
-                    while ($check2 = mysqli_fetch_assoc($check1)) {
-            ?>
-            <tr>
-                <td><input type="text" style="text-align:center;" name="subject[]" value="<?php echo htmlspecialchars($check2['SUBJECT']); ?>" readonly></td>
-                <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade" type="text" name="1st[]"></td>
-                <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade" type="text" name="2nd[]"></td>
-                <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade" type="text" name="3rd[]"></td>
-                <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade" type="text" name="4th[]"></td>
-                <td><input style="width:60px;text-align:center;" id="fin" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly></td>
-                <td><input type="text" name="action[]" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly></td>
-            </tr>
-            <?php
-                    }
-                }
-            } else {
-                echo "<tr><td colspan='7'>Error fetching data: " . mysqli_error($conn) . "</td></tr>";
+      <thead>
+        <tr>
+          <th style="width:140px;text-align:center">Subject</th>
+          <th style="width:50px;text-align:center">1</th>
+          <th style="width:50px;text-align:center">2</th>
+          <th style="width:50px;text-align:center">3</th>
+          <th style="width:50px;text-align:center">4</th>
+          <th style="width:60px;text-align:center">Final</th>
+          <th style="width:120px;text-align:center">Passed<br>or<br>Failed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          $check_query = "SELECT * FROM total_grades_subjects WHERE SYI_ID = '$syi' GROUP BY SUBJECT";
+          $check_query_result = mysqli_query($conn, $check_query);
+          if ($check_query_result) {
+            while ($check = mysqli_fetch_assoc($check_query_result)) {
+              $sub = $check['SUBJECT'];
+              $check1=  mysqli_query($conn, "SELECT * FROM subjects where SUBJECT_ID = '$sub' ");
+                while($check2 = mysqli_fetch_assoc($check1)){
+        ?>
+        <tr>
+          <td><input type="text" style="text-align:center;" name="subject[]" value="<?php echo htmlspecialchars($check2['SUBJECT']); ?>" readonly></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade" type="text" name="1st[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade" type="text" name="2nd[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade" type="text" name="3rd[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade" type="text" name="4th[]"></td>
+          <td><input style="width:60px;text-align:center;" id="fin" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td>
+          <td><input type="text" name="action[]" id="action" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly="" ></td>
+        </tr>
+        <?php
+              }
             }
-            ?>
-        </tbody>
+          } else {
+            echo "<tr><td colspan='7'>Error fetching data: " . mysqli_error($conn) . "</td></tr>";
+          }
+        ?>
+      </tbody>
     </table>
-    <div class="mt-2">
-        <br>
-        <button class="btn btn-success" type="submit">Save</button>
-    </div>
-</form>
+</div>
+<div class="mt-2">
+<br>
+  <button class="btn btn-success" type="submit">Save</button>
+  </form>
   <button onclick="window.history.back()" style="
     background-color: #6c757d; /* Custom gray background */
     color: white; /* White text */
