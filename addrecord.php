@@ -243,7 +243,7 @@
        <div class="row">
        <label class="col-md-4 te" for="sy">School Year</label>
        <div class="col-md-6">
-         <input type="text" name="sy" class="form-control" id ="sy" value="<?php echo $_GET['sy'] ?>"  >
+         <input type="text" name="sy" class="form-control" id ="sy" value="<?php echo $_GET['sy'] ?>" readonly >
        </div>
        </div>
        <br>
