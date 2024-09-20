@@ -136,7 +136,6 @@ include 'db.php';
         </div>
     </div>
   </div>
-<br>
   <div class="col-md-6">
     <div id="en_adv">
       <div class="row">
