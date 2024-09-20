@@ -211,12 +211,14 @@ include 'db.php';
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the SYI_ID from the student_year_info table
     $id = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "SELECT SYI_ID FROM student_year_info WHERE STUDENT_ID = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $syi_id = $row['SYI_ID'];
 
+    // Update grades
     $subjects = $_POST['subject'];
     $firstGrading = $_POST['1st'];
     $secondGrading = $_POST['2nd'];
@@ -225,20 +227,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $finalGrades = $_POST['final'];
     $actions = $_POST['action'];
 
+    foreach ($subjects as $index => $subject) {
+        $first = mysqli_real_escape_string($conn, $firstGrading[$index]);
+        $second = mysqli_real_escape_string($conn, $secondGrading[$index]);
+        $third = mysqli_real_escape_string($conn, $thirdGrading[$index]);
+        $fourth = mysqli_real_escape_string($conn, $fourthGrading[$index]);
+        $final = mysqli_real_escape_string($conn, $finalGrades[$index]);
+        $action = mysqli_real_escape_string($conn, $actions[$index]);
+
         $update_query = "UPDATE total_grades_subjects 
                          SET 
-                             1ST_GRADING = '$firstGrading',
-                             2ND_GRADING = '$secondGrading',
-                             3RD_GRADING = '$thirdGrading',
-                             4TH_GRADING = '$fourthGrading',
-                             FINAL_GRADES = '$finalGrades',
-                             PASSED_FAILED = '$actions'
+                             1ST_GRADING = '$first',
+                             2ND_GRADING = '$second',
+                             3RD_GRADING = '$third',
+                             4TH_GRADING = '$fourth',
+                             FINAL_GRADES = '$final',
+                             PASSED_FAILED = '$action'
                          WHERE 
-                             SYI_ID = '$syi_id' AND SUBJECT = '$subjects'";
+                             SYI_ID = '$syi_id' AND SUBJECT = '$subject'";
 
         mysqli_query($conn, $update_query);
+    }
 
+    // Redirect or display success message
     echo "<script>alert('Grades updated successfully!'); window.location.href='rms.php?page=addrecord_update&id=" . $_GET['id'] . "&sy=" . $sy['school_year'] . "&prog=" . $_GET['prog'] . "';</script>";
+
 }
 
 ?>
@@ -268,12 +281,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ?>
         <tr>
           <td><input type="text" style="text-align:center;" name="subject[]" value="<?php echo htmlspecialchars($check2['SUBJECT']); ?>" readonly></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade" type="text" name="1st"></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade" type="text" name="2nd"></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade" type="text" name="3rd"></td>
-          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade" type="text" name="4th"></td>
-          <td><input style="width:60px;text-align:center;" id="fin" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final" readonly=""></td>
-          <td><input type="text" name="action" id="action" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly="" ></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['1ST_GRADING']); ?>" class="grade" type="text" name="1st[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['2ND_GRADING']); ?>" class="grade" type="text" name="2nd[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['3RD_GRADING']); ?>" class="grade" type="text" name="3rd[]"></td>
+          <td><input style="width:50px;text-align:center;" value="<?php echo htmlspecialchars($check['4TH_GRADING']); ?>" class="grade" type="text" name="4th[]"></td>
+          <td><input style="width:60px;text-align:center;" id="fin" type="number" value="<?php echo htmlspecialchars($check['FINAL_GRADES']); ?>" name="final[]" readonly=""></td>
+          <td><input type="text" name="action[]" id="action" style="text-align:center" value="<?php echo htmlspecialchars($check['PASSED_FAILED']); ?>" readonly="" ></td>
         </tr>
         <?php
               }
@@ -419,7 +432,7 @@ function calculateFinalGrades() {
         var count = 0;
         
         // Get all grading inputs in the current row
-        $(this).find("input[name='1st'], input[name='2nd'], input[name='3rd'], input[name='4th']").each(function() {
+        $(this).find("input[name='1st[]'], input[name='2nd[]'], input[name='3rd[]'], input[name='4th[]']").each(function() {
             var value = parseFloat($(this).val());
             if (!isNaN(value)) {
                 sum += value;
@@ -430,18 +443,18 @@ function calculateFinalGrades() {
         // Calculate the final grade if there are valid grades
         if (count > 0) {
             var finalGrade = sum / count;
-            $(this).find("input[name='final']").val(finalGrade.toFixed(2));
+            $(this).find("input[name='final[]']").val(finalGrade.toFixed(2));
 
             // Update Passed/Failed status
-            var actionInput = $(this).find("input[name='action']");
+            var actionInput = $(this).find("input[name='action[]']");
             if (finalGrade < 75) {
                 actionInput.val("FAILED");
             } else {
                 actionInput.val("PASSED");
             }
         } else {
-            $(this).find("input[name='final']").val(""); // Clear final if no grades
-            $(this).find("input[name='action']").val(""); // Clear action if no grades
+            $(this).find("input[name='final[]']").val(""); // Clear final if no grades
+            $(this).find("input[name='action[]']").val(""); // Clear action if no grades
         }
     });
 }
