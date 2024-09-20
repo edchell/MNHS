@@ -146,7 +146,7 @@ include 'db.php';
        <br>
        <div id="en_adv">
        <div class="row">
-       <label class="col-md-4 te" for="adviser">Adviser</label>
+       <label class="col-md-2 te" for="adviser">Adviser</label>
        <div class="col-md-6">
        <?php
 include 'db.php'; 
