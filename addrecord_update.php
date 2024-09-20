@@ -136,12 +136,6 @@ include 'db.php';
         </div>
     </div>
 <br>
-    <div class="row" style="display:none">
-      <label class="col-md-4 te" for="class">To be classified as</label>
-        <div class="col-md-6">
-          <input type="text" name="class" readonly class="form-control" id ="" readonly="">
-        </div>
-    </div>
      <div class="col-md-6">
        <br>
        <div id="en_adv">
