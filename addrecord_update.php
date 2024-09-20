@@ -8,6 +8,7 @@ include 'db.php';
       } mysqli_close($conn);
     ?>
 
+<!-- School -->
 <input name="id" type="hidden" value="<?php echo $_GET["id"] ?>">
   <div class="col-md-6">
     <div class="row">
@@ -41,111 +42,111 @@ include 'db.php';
         </div>
     </div>
 <br>
-       <div class="row">
-       <label class="col-md-4 te" for="yr">Grade</label>
-       <div class="col-md-6">
-       <?php
-include 'db.php'; 
-$id = $_GET['id'];
-$id = mysqli_real_escape_string($conn, $id);
-$sql = "SELECT * 
-        FROM student_year_info 
-        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
-        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
-        WHERE STUDENT_ID = '$id'";
-$result = mysqli_query($conn, $sql);
-if ($row = mysqli_fetch_assoc($result)) {
-    $syi = $row['SYI_ID'];
-
-    $sql1 = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
-    $result1 = mysqli_query($conn, $sql1);
-
-    if ($row1 = mysqli_fetch_assoc($result1)) {
-        $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
-        $result3 = mysqli_query($conn, $sql3);
-        if ($row2 = mysqli_fetch_assoc($result3)) {
-?>
-<input type="text" name="grade" class="form-control" id ="grade" value="<?php echo htmlspecialchars($row['TO_BE_CLASSIFIED']); ?>" readonly required>
-<?php
-        }
-    }
-}
-?>
-       </div>
-       </div>
-       <br>
-       <div class="row">
-       <label class="col-md-4 te" for="sec">Section</label>
-       <div class="col-md-6">
-       <?php
-include 'db.php'; 
-$id = $_GET['id'];
-$id = mysqli_real_escape_string($conn, $id);
-$sql = "SELECT * 
-        FROM student_year_info 
-        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
-        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
-        WHERE STUDENT_ID = '$id'";
-$result = mysqli_query($conn, $sql);
-if ($row = mysqli_fetch_assoc($result)) {
-    $syi = $row['SYI_ID'];
-
-    $sql1 = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
-    $result1 = mysqli_query($conn, $sql1);
-
-    if ($row1 = mysqli_fetch_assoc($result1)) {
-        $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
-        $result3 = mysqli_query($conn, $sql3);
-        if ($row2 = mysqli_fetch_assoc($result3)) {
-?>
-         <input type="text" name="sec" class="form-control" value="<?php echo htmlspecialchars($row['SECTION']); ?>" readonly id ="sec"required>
-         <?php
-        }
-    }
-}
-?>
-       </div>
-       </div>
-       <br>
-       <div class="row">
-       <label class="col-md-4 te" for="tny">Total no. of yrs</label>
-       <div class="col-md-6">
-        <?php 
-       include 'db.php';
-       $tquery = mysqli_query($conn,"SELECT * from student_year_info where STUDENT_ID = '".$_GET['id']."' group by TOTAL_NO_OF_YEAR order by TOTAL_NO_OF_YEAR DESC limit 1");
-       $tcount = mysqli_num_rows($tquery);
-       $trow=mysqli_fetch_assoc($tquery);
-       if($tcount < 1){
-        $squery = mysqli_query($conn,"SELECT * from student_info where STUDENT_ID = '".$_GET['id']."'");
-        $srow=mysqli_fetch_assoc($squery);
-       ?>
-         <input type="text" name="tny" class="form-control" id ="" value="<?php echo $srow['TOTAL_NO_OF_YEARS']+1 ?>" readonly>
+    <!-- Grade -->
+    <div class="row">
+      <label class="col-md-4 te" for="yr">Grade</label>
+        <div class="col-md-6">
+          <?php
+            include 'db.php'; 
+              $id = $_GET['id'];
+                $id = mysqli_real_escape_string($conn, $id);
+                  $sql = "SELECT * 
+                          FROM student_year_info 
+                          LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+                          LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
+                          WHERE STUDENT_ID = '$id'";
+                  $result = mysqli_query($conn, $sql);
+                    if ($row = mysqli_fetch_assoc($result)) {
+                      $syi = $row['SYI_ID'];
+                        $sql1 = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
+                          $result1 = mysqli_query($conn, $sql1);
+                            if ($row1 = mysqli_fetch_assoc($result1)) {
+                              $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
+                                $result3 = mysqli_query($conn, $sql3);
+                                  if ($row2 = mysqli_fetch_assoc($result3)) {
+          ?>
+            <input type="text" name="grade" class="form-control" id ="grade" value="<?php echo htmlspecialchars($row['TO_BE_CLASSIFIED']); ?>" readonly required>
+          <?php
+                }
+              }
+            }
+          ?>
+        </div>
+    </div>
+<br>
+    <!-- Section -->
+    <div class="row">
+      <label class="col-md-4 te" for="sec">Section</label>
+        <div class="col-md-6">
+          <?php
+            include 'db.php'; 
+              $id = $_GET['id'];
+                $id = mysqli_real_escape_string($conn, $id);
+                  $sql = "SELECT * 
+                          FROM student_year_info 
+                          LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+                          LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
+                          WHERE STUDENT_ID = '$id'";
+                  $result = mysqli_query($conn, $sql);
+                    if ($row = mysqli_fetch_assoc($result)) {
+                      $syi = $row['SYI_ID'];
+                        $sql1 = "SELECT * FROM student_info WHERE STUDENT_ID = '$id'";
+                          $result1 = mysqli_query($conn, $sql1);
+                            if ($row1 = mysqli_fetch_assoc($result1)) {
+                              $sql3 = "SELECT * FROM program WHERE PROGRAM_ID = '".$row1['PROGRAM']."'";
+                                $result3 = mysqli_query($conn, $sql3);
+                                  if ($row2 = mysqli_fetch_assoc($result3)) {
+          ?>
+            <input type="text" name="sec" class="form-control" value="<?php echo htmlspecialchars($row['SECTION']); ?>" readonly id ="sec"required>
+          <?php
+                }
+              }
+            }
+          ?>
+        </div>
+    </div>
+<br>
+    <!-- Total no. of yrs -->
+    <div class="row">
+      <label class="col-md-4 te" for="tny">Total no. of yrs</label>
+        <div class="col-md-6">
+          <?php 
+            include 'db.php';
+              $tquery = mysqli_query($conn,"SELECT * from student_year_info where STUDENT_ID = '".$_GET['id']."' group by TOTAL_NO_OF_YEAR order by TOTAL_NO_OF_YEAR DESC limit 1");
+              $tcount = mysqli_num_rows($tquery);
+              $trow=mysqli_fetch_assoc($tquery);
+              if($tcount < 1){
+                $squery = mysqli_query($conn,"SELECT * from student_info where STUDENT_ID = '".$_GET['id']."'");
+                $srow=mysqli_fetch_assoc($squery);
+          ?>
+            <input type="text" name="tny" class="form-control" id ="" value="<?php echo $srow['TOTAL_NO_OF_YEARS']+1 ?>" readonly>
           <?php }else{ ?>
-          <input type="text" name="tny" class="form-control" id ="" value="<?php echo $trow['TOTAL_NO_OF_YEAR']+1 ?>" readonly>
-            <?php
-            } ?>
-       </div>
-       </div>
-       <br>
-       <div class="row">
-       <label class="col-md-4 te" for="sy">School Year</label>
-       <div class="col-md-6">
-         <input type="text" name="sy" class="form-control" id ="sy" readonly value="<?php echo $_GET['sy'] ?>"  >
-       </div>
-       </div>
-       <br>
-       <div class="row" style="display:none">
-       <label class="col-md-4 te" for="class">To be classified as</label>
-       <div class="col-md-6">
-         <input type="text" name="class" readonly class="form-control" id ="" readonly="">
-       </div>
-       </div>
-     </div>
+            <input type="text" name="tny" class="form-control" id ="" value="<?php echo $trow['TOTAL_NO_OF_YEAR']+1 ?>" readonly>
+          <?php
+            } 
+          ?>
+        </div>
+    </div>
+<br>
+    <!-- School Year -->
+    <div class="row">
+      <label class="col-md-4 te" for="sy">School Year</label>
+        <div class="col-md-6">
+          <input type="text" name="sy" class="form-control" id ="sy" readonly value="<?php echo $_GET['sy'] ?>"  >
+        </div>
+    </div>
+<br>
+    <div class="row" style="display:none">
+      <label class="col-md-4 te" for="class">To be classified as</label>
+        <div class="col-md-6">
+          <input type="text" name="class" readonly class="form-control" id ="" readonly="">
+        </div>
+    </div>
      <div class="col-md-6">
        <br>
        <div id="en_adv">
        <div class="row">
-       <label class="col-md-2 te" for="adviser">Adviser</label>
+       <label class="col-md-4 te" for="adviser">Adviser</label>
        <div class="col-md-6">
        <?php
 include 'db.php'; 
