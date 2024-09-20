@@ -247,11 +247,11 @@ include 'db.php';
       </tbody>
     </table>
 </div>
-       <div class="mt-2">
-        <br>
-       <button class="btn btn-success" type="submit">Save</button>
-</form>
-<button onclick="window.history.back()" style="
+<div class="mt-2">
+<br>
+  <button class="btn btn-success" type="submit">Save</button>
+  </form>
+  <button onclick="window.history.back()" style="
     background-color: #6c757d; /* Custom gray background */
     color: white; /* White text */
     padding: 5px 10px; /* Padding around text */
@@ -260,11 +260,9 @@ include 'db.php';
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s; /* Smooth transition on hover */
-">Back</button>
-     </div>
-
-    </form>
-    </div>
+    ">Back</button>
+</div>
+  </div>
     <script>
       $(document).ready(function() {
     
