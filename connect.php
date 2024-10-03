@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include('db.php'); // Assuming this includes your database connection
+    include('boxes.php'); // Assuming this includes your database connection
 
     $user = mysqli_real_escape_string($conn, $_POST['user']); // Sanitize input
     $pwd = md5($_POST['pwd']); // Hash the password
