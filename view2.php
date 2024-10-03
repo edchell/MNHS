@@ -78,6 +78,19 @@
                 var id = $('#id').val();
                 var lastname = $('#lastname').val();
 
+                // Basic validation: Allow only alphanumeric characters
+                var validId = /^[a-zA-Z0-9]*$/.test(id);
+                var validLastName = /^[a-zA-Z0-9 ]*$/.test(lastname);
+
+                if (!validId || !validLastName) {
+                    $("#result").html('Invalid input. Please use only alphanumeric characters.');
+                    return;
+                }
+
+                // Escape user input to prevent XSS
+                id = escapeHtml(id);
+                lastname = escapeHtml(lastname);
+
                 $.ajax({
                     type: 'POST',
                     url: 'searchStudent.php',
@@ -93,6 +106,13 @@
                     }
                 });
             });
+
+            // Function to escape HTML special characters
+            function escapeHtml(text) {
+                var div = document.createElement('div');
+                div.appendChild(document.createTextNode(text));
+                return div.innerHTML;
+            }
         });
     </script>
 </body>
