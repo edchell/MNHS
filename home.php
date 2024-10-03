@@ -1,5 +1,16 @@
 <?php
-include 'boxes.php';
+$servername = "127.0.0.1";
+$username = "u510162695_grading_db";
+$password = "1Grading_db";
+$dbname = "u510162695_grading_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // Initialize variables
 $user_count = 0;
