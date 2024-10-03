@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include('db.php'); // Assuming this includes your database connection
+    include('boxes.php'); // Assuming this includes your database connection
 
     // Use prepared statements to prevent SQL injection
     $user = $_POST['user'];
@@ -35,6 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $log_stmt->execute();
 
                 // Redirect to home page after a short delay
+                $error_message = '<div class="alert alert-success" role="alert">
+                    Login Successful.
+                  </div>';
+                echo $error_message;
                 header("refresh:2;url=rms.php?page=home");
                 exit();
             } else {
