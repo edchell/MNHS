@@ -29,7 +29,7 @@
     </thead>
     <tbody>
     <?php
-    include 'boxes.php';
+    include 'db.php';
 
     $sql=  mysqli_query($conn, "SELECT * FROM student_info left join program on student_info.PROGRAM=program.PROGRAM_ID WHERE STUDENT_ID Not IN (SELECT STUDENT_ID FROM promotion_candidates) ");
     while($row = mysqli_fetch_assoc($sql)) {

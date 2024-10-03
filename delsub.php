@@ -1,5 +1,5 @@
 <?php 
-include 'boxes.php';
+include 'db.php';
 $id = $_GET['id'];
 
 $sql = "DELETE FROM subjects WHERE SUBJECT_ID='$id'";

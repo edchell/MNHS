@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    include 'boxes.php';
+                    include 'db.php';
                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE STATUS = ''");
                     while ($row = mysqli_fetch_assoc($sql)) {
                     ?>

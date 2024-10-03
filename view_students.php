@@ -55,7 +55,7 @@
 
 <div class="modal-body">
     <?php
-    include 'boxes.php';
+    include 'db.php';
     $id = $_POST['id'];
 
     if ($_POST['id']) {

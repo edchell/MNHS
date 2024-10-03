@@ -22,7 +22,7 @@
     </thead>
     <tbody>
     <?php
-    include 'boxes.php';
+    include 'db.php';
 
     
     $sql=  mysqli_query($conn, "SELECT * FROM school_year Order by school_year DESC ");

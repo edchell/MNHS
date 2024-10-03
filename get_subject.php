@@ -9,7 +9,7 @@ $prog = $_POST['prog'];
     </tr>
     <tbody>
     <?php 
-    include 'boxes.php';
+    include 'db.php';
     $query = mysqli_query($conn,"SELECT * FROM subjects Where `FOR`= '$prog' order by SUBJECT ");
     $count = mysqli_num_rows($query);
     if($count > 0){

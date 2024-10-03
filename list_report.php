@@ -46,7 +46,7 @@
 		<td style="width:20%;">
 			<br>
 			<?php
-			include 'boxes.php';
+			include 'db.php';
 			$id = $_GET['id'];
 			$sql = mysqli_query($conn,"SELECT * from student_info where STUDENT_ID = '$id'");
 			while($row = mysqli_fetch_assoc($sql)){
@@ -70,7 +70,7 @@
     </thead>
     <tbody>
     <?php
-    include 'boxes.php';
+    include 'db.php';
     $sy = $_POST['sy'];
     $stats = $_POST['stats'];
     $user = $_SESSION['ID'];

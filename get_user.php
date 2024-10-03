@@ -1,5 +1,5 @@
 <?php
-include 'boxes.php';
+include 'db.php';
 
 if (isset($_POST['user_id'])) {
     $user_id = mysqli_real_escape_string($conn, $_POST['user_id']);

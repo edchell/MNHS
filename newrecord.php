@@ -1,6 +1,6 @@
  	<?php
 
-include 'boxes.php';
+include 'db.php';
 
 $id = $_POST['id'];
 $school = $_POST['school'];

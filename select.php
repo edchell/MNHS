@@ -1,5 +1,5 @@
    <?php
-             include 'boxes.php';
+             include 'db.php';
              $id=$_GET['id'];
              $qur=mysqli_query($conn,"SELECT * FROM student_info where STUDENT_ID='$id'");
              $r=mysqli_fetch_assoc($qur);

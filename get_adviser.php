@@ -1,6 +1,6 @@
 <?php 
 	if($_POST['grade'] && $_POST['sec'] && $_POST['sy']){
-		include 'boxes.php';
+		include 'db.php';
 
 		$grade = $_POST['grade'];
 		$sec = $_POST['sec'];

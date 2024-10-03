@@ -23,7 +23,7 @@
              '<select name="subj[]" onchange="newrow('+i+')">'+
              '<option></option>'+
              ' <?php
-                           include 'boxes.php';
+                           include 'db.php';
                            $sql = mysqli_query($conn, " SELECT * from subjects where `FOR`='All' OR `FOR`= '".$_GET['prog']."' ");
               while($row=mysqli_fetch_assoc($sql)){
                              $id = $row['SUBJECT_ID'];
@@ -64,7 +64,7 @@
     </script>
   
     <?php
-    include 'boxes.php';
+    include 'db.php';
 
 
     $sql=  mysqli_query($conn, "SELECT * FROM student_info where STUDENT_ID = '".$_GET['id']."' ");
@@ -85,7 +85,7 @@
              <select name="subj[]">
 
              <?php
-              include 'boxes.php';
+              include 'db.php';
               $sql = mysqli_query($conn, " SELECT * from subjects where `FOR` ='All' ");
               while($row=mysqli_fetch_assoc($sql)){
                 $id = $row['SUBJECT_ID'];
@@ -125,7 +125,7 @@
        <label class="col-md-4 te" for="school">School</label>
        <div class="col-md-6">
        <?php
-            include 'boxes.php'; 
+            include 'db.php'; 
               $id = $_GET['id'];
               $id = mysqli_real_escape_string($conn, $id);
               $sql = "SELECT * 
@@ -157,7 +157,7 @@
        <div class="col-md-6">
          <select type="text" name="yr" class="form-control" id ="yr" readonly required>
         <?php 
-       include 'boxes.php';
+       include 'db.php';
        $id = $_GET['id'];
        $query=mysqli_query($conn,"SELECT * from student_year_info where STUDENT_ID = '$id' order by SYI_ID DESC limit 1");
        $count = mysqli_num_rows($query);
@@ -193,7 +193,7 @@
        <label class="col-md-4 te" for="sec">Section</label>
        <div class="col-md-6">
        <?php
-            include 'boxes.php'; 
+            include 'db.php'; 
               $id = $_GET['id'];
                 $id = mysqli_real_escape_string($conn, $id);
                   $sql = "SELECT * 
@@ -224,7 +224,7 @@
        <label class="col-md-4 te" for="tny">Total no. of yrs</label>
        <div class="col-md-6">
         <?php 
-       include 'boxes.php';
+       include 'db.php';
        $tquery = mysqli_query($conn,"SELECT * from student_year_info where STUDENT_ID = '".$_GET['id']."' group by TOTAL_NO_OF_YEAR order by TOTAL_NO_OF_YEAR DESC limit 1");
        $tcount = mysqli_num_rows($tquery);
        $trow=mysqli_fetch_assoc($tquery);
@@ -260,7 +260,7 @@
        <label class="col-md-2 te" for="adviser">Adviser</label>
        <div class="col-md-6">
        <?php
-              include 'boxes.php'; 
+              include 'db.php'; 
                 $id = $_GET['id'];
                 $id = mysqli_real_escape_string($conn, $id);
                 $sql = "SELECT * 
@@ -292,7 +292,7 @@
        <label class="col-md-2 te" for="ra">Rank</label>
        <div class="col-md-6">
        <?php
-              include 'boxes.php'; 
+              include 'db.php'; 
                 $id = $_GET['id'];
                 $id = mysqli_real_escape_string($conn, $id);
                 $sql = "SELECT * 
@@ -347,7 +347,7 @@
              <select name="subj[]" onchange="newrow(<?php echo $i ?>)">
              <option></option>
              <?php
-              include 'boxes.php';
+              include 'db.php';
               $sql = mysqli_query($conn, " SELECT * from subjects where `FOR`='All' OR `FOR`= '".$_GET['prog']."' ");
               while($row=mysqli_fetch_assoc($sql)){
                 $id = $row['SUBJECT_ID'];

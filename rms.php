@@ -94,7 +94,7 @@
                     <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     <?php 
-            include 'boxes.php';
+            include 'db.php';
 
             $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
             $row = mysqli_fetch_assoc($sql);
@@ -120,7 +120,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
             <?php 
-            include 'boxes.php';
+            include 'db.php';
 
             $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
             $row = mysqli_fetch_assoc($sql);
@@ -172,7 +172,7 @@ if (!empty($page)) {
         <div class="modal-body">
         <div class="container">
          <?php
-    include 'boxes.php';
+    include 'db.php';
     $sql=  mysqli_query($conn, "SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
     while($row = mysqli_fetch_assoc($sql)) {
 
@@ -260,7 +260,7 @@ if (!empty($page)) {
                        <select class="form-control" name="sy" id="pd">
                         <option ></option>
                         <?php
-                        include 'boxes.php';
+                        include 'db.php';
                         $query= mysqli_query($conn,"SELECT SCHOOL_YEAR as sy FROM student_year_info GROUP BY SCHOOL_YEAR Order By SCHOOL_YEAR DESC");
                         while($row = mysqli_fetch_assoc($query)){
                         ?>
@@ -312,7 +312,7 @@ if (!empty($page)) {
                        <select class="form-control" name="sy" id="pd">
                         <option ></option>
                         <?php
-                        include 'boxes.php';
+                        include 'db.php';
                         $query= mysqli_query($conn,"SELECT SCHOOL_YEAR as sy FROM student_year_info GROUP BY SCHOOL_YEAR Order By SCHOOL_YEAR DESC");
                         while($row = mysqli_fetch_assoc($query)){
                         ?>

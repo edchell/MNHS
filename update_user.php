@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include 'db.php';
 
 if (isset($_POST['user_id'])) {
     $user_id = $_POST['user_id'];

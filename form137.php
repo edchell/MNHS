@@ -1,7 +1,7 @@
 &nbsp<!DOCTYPE html>
 <html>
 <?php 
-include 'boxes.php';
+include 'db.php';
 session_start();
 $user = $_SESSION['ID'];
 
@@ -162,7 +162,7 @@ $user = $_SESSION['ID'];
 
 		  <table style="line-height:5mm">
 		<?php 
-		include 'boxes.php';
+		include 'db.php';
 		$id = $_GET['id'];
 		$sql = mysqli_query($conn,"SELECT * from student_info where STUDENT_ID = '$id'");
 		while($row = mysqli_fetch_assoc($sql)){

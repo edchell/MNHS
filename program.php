@@ -45,7 +45,7 @@ success:function(data)
     </thead>
     <tbody>
     <?php
-    include 'boxes.php';
+    include 'db.php';
     $sql=  mysqli_query($conn, "SELECT * FROM program Order by PROGRAM");
     while($row = mysqli_fetch_assoc($sql)) {
 
