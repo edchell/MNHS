@@ -2,71 +2,43 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include('boxes.php'); // Assuming this includes your database connection
+    include('db.php'); // Assuming this includes your database connection
 
-    // Use prepared statements to prevent SQL injection
-    $user = $_POST['user'];
-    $pwd = $_POST['pwd'];
+    $user = mysqli_real_escape_string($conn, $_POST['user']); // Sanitize input
+    $pwd = md5($_POST['pwd']); // Hash the password
 
-    // Prepare the statement
-    $stmt = $conn->prepare("SELECT USER_ID, FIRSTNAME, PASSWORD FROM user WHERE USER = ?");
-    $stmt->bind_param("s", $user); // 's' specifies the variable type => 'string'
-
-    // Execute the statement
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $qry = "SELECT * FROM user WHERE USER = '$user' AND PASSWORD = '$pwd'";
+    $result = mysqli_query($conn, $qry);
 
     if ($result) {
         if (mysqli_num_rows($result) > 0) {
-            $use = $result->fetch_assoc();
+            // Login Successful
+            session_regenerate_id(); // Regenerate session ID for security
+            $use = mysqli_fetch_assoc($result);
 
-            // Verify the password using password_verify
-            if (password_verify($pwd, $use['PASSWORD'])) {
-                // Login Successful
-                session_regenerate_id(); // Regenerate session ID for security
-                $_SESSION['ID'] = htmlspecialchars($use['USER_ID'], ENT_QUOTES, 'UTF-8'); // XSS protection
-                $_SESSION['fname'] = htmlspecialchars($use['FIRSTNAME'], ENT_QUOTES, 'UTF-8');
+            $_SESSION['ID'] = $use['USER_ID'];
+            $_SESSION['fname'] = $use['FIRSTNAME'];
+            $id = $use['USER_ID'];
+            
+            // Log login activity
+            mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged in', '$id', NOW())");
 
-                // Log login activity
-                $id = $use['USER_ID'];
-                $log_stmt = $conn->prepare("INSERT INTO history_log (transaction, user_id, date_added) VALUES (?, ?, NOW())");
-                $transaction = 'logged in';
-                $log_stmt->bind_param("si", $transaction, $id); // 'i' for integer
-                $log_stmt->execute();
 
-                // Redirect to home page after a short delay
-                $error_message = '<div class="alert alert-success" role="alert">
-                    Login Successful.
-                  </div>';
-                echo $error_message;
-                header("refresh:2;url=rms.php?page=home");
-                exit();
-            } else {
-                // Incorrect username or password
-                $error_message = '<div class="alert alert-danger" role="alert">
-                    Login Failed! Incorrect username or password.
-                  </div>';
-                echo $error_message; // Return error message for AJAX handling
-                exit();
-            }
+            // Redirect to home page after a short delay
+            header("refresh:2;url=rms.php?page=home");
+            exit();
         } else {
-            // Incorrect username
-            $error_message = '<div class="alert alert-danger" role="alert">
-                Login Failed! Username not found.
-              </div>';
+            // Incorrect username or password
+			$error_message = '<div class="alert alert-success" role="alert">
+                    Login Failed!
+                  </div>';
             echo $error_message; // Return error message for AJAX handling
             exit();
         }
     } else {
         // Query execution failed
-        $error_message = '<div class="alert alert-danger" role="alert">
-            Query execution failed.
-          </div>';
-        echo $error_message; // Return error message for AJAX handling
-        exit();
+        $error_message = "Query failed";
     }
-
-    $stmt->close();
-    $conn->close();
 }
+
 ?>
