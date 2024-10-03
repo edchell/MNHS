@@ -62,7 +62,7 @@
     </thead>
     <tbody>
     <?php
-    include 'db.php';
+    include 'boxes.php';
     $sy = $_GET['school_year'];
     $sql= mysqli_query($conn,"SELECT *,CONCAT(LASTNAME,', ',FIRSTNAME, ' ', MIDDLENAME) as name from promotion_candidates left join student_info on promotion_candidates.STUDENT_ID=student_info.STUDENT_ID   left join program on student_info.PROGRAM = program.PROGRAM_ID where SY = '$sy' order by name");
          while($row = mysqli_fetch_assoc($sql)) {

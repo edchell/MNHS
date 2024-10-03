@@ -32,7 +32,7 @@ include 'newstudent.php';
                 </thead>
                 <tbody>
                     <?php
-                    include 'db.php';
+                    include 'boxes.php';
                     $sql = mysqli_query($conn, "SELECT * FROM user WHERE STATUS = 'Archived' ORDER BY USER_ID");
                     while ($row = mysqli_fetch_assoc($sql)) {
                         $sid = $row['USER_ID'];

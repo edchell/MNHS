@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'boxes.php';
   $sql=  mysqli_query($conn, "SELECT * FROM student_info where STUDENT_ID = '".$_GET['id']."' ");
     while($row = mysqli_fetch_assoc($sql)) {
 ?>
@@ -15,7 +15,7 @@ include 'db.php';
       <label class="col-md-4 te" for="school">School</label>
         <div class="col-md-6">
           <?php
-            include 'db.php'; 
+            include 'boxes.php'; 
               $id = $_GET['id'];
               $id = mysqli_real_escape_string($conn, $id);
               $sql = "SELECT * 
@@ -47,7 +47,7 @@ include 'db.php';
       <label class="col-md-4 te" for="yr">Grade</label>
         <div class="col-md-6">
           <?php
-            include 'db.php'; 
+            include 'boxes.php'; 
               $id = $_GET['id'];
                 $id = mysqli_real_escape_string($conn, $id);
                   $sql = "SELECT * 
@@ -79,7 +79,7 @@ include 'db.php';
       <label class="col-md-4 te" for="sec">Section</label>
         <div class="col-md-6">
           <?php
-            include 'db.php'; 
+            include 'boxes.php'; 
               $id = $_GET['id'];
                 $id = mysqli_real_escape_string($conn, $id);
                   $sql = "SELECT * 
@@ -111,7 +111,7 @@ include 'db.php';
       <label class="col-md-4 te" for="tny">Total no. of yrs</label>
         <div class="col-md-6">
           <?php 
-            include 'db.php';
+            include 'boxes.php';
               $tquery = mysqli_query($conn,"SELECT * from student_year_info where STUDENT_ID = '".$_GET['id']."' group by TOTAL_NO_OF_YEAR order by TOTAL_NO_OF_YEAR DESC limit 1");
               $tcount = mysqli_num_rows($tquery);
               $trow=mysqli_fetch_assoc($tquery);
@@ -143,7 +143,7 @@ include 'db.php';
         <label class="col-md-2 te" for="adviser">Adviser</label>
           <div class="col-md-6">
             <?php
-              include 'db.php'; 
+              include 'boxes.php'; 
                 $id = $_GET['id'];
                 $id = mysqli_real_escape_string($conn, $id);
                 $sql = "SELECT * 
@@ -176,7 +176,7 @@ include 'db.php';
         <label class="col-md-2 te" for="ra">Rank</label>
           <div class="col-md-6">
             <?php
-              include 'db.php'; 
+              include 'boxes.php'; 
                 $id = $_GET['id'];
                 $id = mysqli_real_escape_string($conn, $id);
                 $sql = "SELECT * 

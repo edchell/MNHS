@@ -21,7 +21,7 @@
     </thead>
     <tbody>
     <?php
-    include 'db.php';
+    include 'boxes.php';
 
     
     $sql=  mysqli_query($conn, "SELECT * FROM grade Order by grade_id ASC ");

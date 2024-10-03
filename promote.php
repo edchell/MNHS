@@ -1,5 +1,5 @@
 <?php 
-include 'db.php';
+include 'boxes.php';
 $id = $_POST['id'];
 $sy = $_POST['sy'];
 $iid = count($id);

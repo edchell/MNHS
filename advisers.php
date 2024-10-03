@@ -22,7 +22,7 @@
     </thead>
     <tbody>
     <?php
-    include 'db.php';
+    include 'boxes.php';
 
     
     $sql=  mysqli_query($conn, "SELECT * FROM advisers left join grade on advisers.grade_id=grade.grade_id left join program
@@ -104,7 +104,7 @@
                   <select name='prog' id="prog" class="form-control">
                     <option id='p_handle'></option>
                     <?php
-                    include 'db.php';
+                    include 'boxes.php';
                     $query = mysqli_query($conn,"SELECT * From program order by PROGRAM");
                     while($row=mysqli_fetch_assoc($query)){
                      ?>
@@ -124,7 +124,7 @@
                   <select name='grade' id="grade" class="form-control cols-sm-12">
                     <option id='g_handle'></option>
                     <?php
-                    include 'db.php';
+                    include 'boxes.php';
                     $query = mysqli_query($conn,"SELECT * From grade order by grade_id");
                     while($row=mysqli_fetch_assoc($query)){
                      ?>

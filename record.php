@@ -124,7 +124,7 @@ success:function(data)
     </style>
  
     <?php
-    include 'db.php';
+    include 'boxes.php';
     $id = $_GET['id'];
     $sql=  mysqli_query($conn, "SELECT * FROM student_info where STUDENT_ID = '$id' ");
     while($row = mysqli_fetch_assoc($sql)) {
@@ -142,7 +142,7 @@ success:function(data)
       <label for="focusedInput">Select Grade:</label>
       <select class="form-control" style="height:30px;font-size:12px" id="fetch">
     <?php 
-    include 'db.php';
+    include 'boxes.php';
     $query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
     while($row=mysqli_fetch_assoc($query)){
     ?>
@@ -169,7 +169,7 @@ success:function(data)
     <br>
  
  <?php
-    include 'db.php';
+    include 'boxes.php';
     $id = $_GET['id'];
     $sql=  mysqli_query($conn, "SELECT * FROM student_year_info left join grade on student_year_info.YEAR = grade.grade_id 
     left join advisers on student_year_info.ADVISER=advisers.adviser_id where STUDENT_ID = '$id' ");

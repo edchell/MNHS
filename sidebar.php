@@ -1,5 +1,5 @@
 <?php 
-include 'db.php';
+include 'boxes.php';
 
 $query = mysqli_query($conn,"SELECT * FROM school_year where status='No' ");
 $s = mysqli_fetch_assoc($query);

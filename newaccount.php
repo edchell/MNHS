@@ -1,6 +1,6 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-include 'db.php';
+include 'boxes.php';
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
 	$user = $_POST['user'];

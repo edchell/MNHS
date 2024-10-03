@@ -27,7 +27,7 @@
     </thead>
     <tbody>
     <?php
-    include 'db.php';
+    include 'boxes.php';
     $sql=  mysqli_query($conn, "SELECT * FROM student_info ");
     while($row = mysqli_fetch_assoc($sql)) {
        $sql2=  mysqli_query($conn, "SELECT * FROM program WHERE PROGRAM_ID = '".$row['PROGRAM']."' ");
