@@ -8,7 +8,7 @@
     <div class="col-md-12">
 
    <?php
-    include 'db.php';
+    include 'boxes.php';
     $req=$_POST['request'];
     $id = $_POST['id'];
     $sql=  mysqli_query($conn, "SELECT * FROM student_year_info left join grade on student_year_info.YEAR = grade.grade_id left join advisers on student_year_info.ADVISER=advisers.adviser_id where STUDENT_ID = '$id' and YEAR = '$req' ");

@@ -22,7 +22,7 @@
     
 
     <?php
-    include 'db.php';
+    include 'boxes.php';
     $id = $_GET['id'];
 
     $sql = mysqli_query($conn, "SELECT * From student_info left join program on student_info.PROGRAM=program.PROGRAM_ID where STUDENT_ID = '$id' ");

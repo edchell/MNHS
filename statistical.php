@@ -48,7 +48,7 @@
     <td style="width:20%;">
       <br>
       <?php
-      include 'db.php';
+      include 'boxes.php';
       $id = $_GET['id'];
       $sy = $_POST['sy'];
       $user = $_SESSION['ID'];
@@ -130,7 +130,7 @@
                 borderWidth: 1,
                 data: [
                     '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id WHERE ACTION='Retained' And grade = 'Grade 7' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -138,7 +138,7 @@
                        echo $row;
                      ?>',
                     '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' And grade = 'Grade 8' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -146,7 +146,7 @@
                        echo $row;
                      ?>',
                     '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' And grade = 'Grade 9' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -154,7 +154,7 @@
                        echo $row;
                      ?>',
                    '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' And grade = 'Grade 10' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -169,7 +169,7 @@
                 borderWidth: 1,
                 data: [
                     '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' And grade = 'Grade 7' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -177,7 +177,7 @@
                        echo $row;
                      ?>',
                     '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' And grade = 'Grade 8' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -185,7 +185,7 @@
                        echo $row;
                      ?>',
                     '<?php
-                      include 'db.php';
+                      include 'dboxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' And grade = 'Grade 9' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -193,7 +193,7 @@
                        echo $row;
                      ?>',
                    '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' And grade = 'Grade 10' AND SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -212,7 +212,7 @@
                 borderColor: window.chartColors.red,
                 borderWidth: 1,
                 data: [ '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' AND GENDER = 'FEMALE' And grade = 'Grade 7' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -220,7 +220,7 @@
                        echo $row;
                      ?>',
                       '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' AND GENDER = 'FEMALE' And grade = 'Grade 7' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -235,7 +235,7 @@
                 borderWidth: 1,
                 data: [
                     - '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id WHERE ACTION='Promoted' AND GENDER = 'MALE' And grade = 'Grade 7' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -243,7 +243,7 @@
                        echo $row;
                      ?>',
                       '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id WHERE ACTION='Retained' AND GENDER = 'MALE' And grade = 'Grade 7' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -262,7 +262,7 @@
                 borderColor: window.chartColors.red,
                 borderWidth: 1,
                 data: [ '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' AND GENDER = 'FEMALE' And grade = 'Grade 8' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -270,7 +270,7 @@
                        echo $row;
                      ?>',
                       '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' AND GENDER = 'FEMALE' And grade = 'Grade 8' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -285,7 +285,7 @@
                 borderWidth: 1,
                 data: [
                     - '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' AND GENDER = 'MALE' And grade = 'Grade 8' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -293,7 +293,7 @@
                        echo $row;
                      ?>',
                       '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' AND GENDER = 'MALE' And grade = 'Grade 8' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -313,7 +313,7 @@
                 borderColor: window.chartColors.red,
                 borderWidth: 1,
                 data: [ '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' AND GENDER = 'FEMALE' And grade = 'Grade 9' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -321,7 +321,7 @@
                        echo $row;
                      ?>',
                       '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' AND GENDER = 'FEMALE' And grade = 'Grade 9' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -336,7 +336,7 @@
                 borderWidth: 1,
                 data: [
                     - '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' AND GENDER = 'MALE' And grade = 'Grade 9' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -344,7 +344,7 @@
                        echo $row;
                      ?>',
                       '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Retained' AND GENDER = 'MALE' And grade = 'Grade 9' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);
@@ -363,7 +363,7 @@
                 borderColor: window.chartColors.red,
                 borderWidth: 1,
                 data: [ '<?php
-                      include 'db.php';
+                      include 'boxes.php';
 
                       $query = mysqli_query($conn,"SELECT * from student_year_info LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID left join grade on student_year_info.YEAR=grade.grade_id  WHERE ACTION='Promoted' AND GENDER = 'FEMALE' And grade = 'Grade 10' AND student_year_info.SCHOOL_YEAR='".$_POST['sy']."'");
                       $row = mysqli_num_rows($query);

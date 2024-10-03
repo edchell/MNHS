@@ -1,5 +1,5 @@
 <?php 
-include 'db.php';
+include 'boxes.php';
 $id = $_POST['id'];
 $subj = $_POST['subj'];
 $para = $_POST['para'];

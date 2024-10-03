@@ -20,7 +20,7 @@
 			<p style="align:center;text-align:center;"><img src="images/deped.png" style="height:50px;width:50px;" alt=""></p>
 			<br>
 			<?php
-			include 'db.php';
+			include 'boxes.php';
 			$id = $_GET['id'];
 			$sql = mysqli_query($conn,"SELECT * from student_info where STUDENT_ID = '$id'");
 			while($row = mysqli_fetch_assoc($sql)){

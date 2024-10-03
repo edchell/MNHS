@@ -1,7 +1,7 @@
 
 
  <?php
-    include 'db.php';
+    include 'boxes.php';
     if($_POST['id']){
       $id = $_POST['id'];
     $sql=  mysqli_query($conn, "SELECT * FROM user where USER_ID = '$id'");

@@ -18,7 +18,7 @@ $ave=$_POST['ave'];
 $prog = $_POST['prog'];
 $user = $_SESSION['ID'];
 
-include 'db.php';
+include 'boxes.php';
 
 $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '$lrn' and STUDENT_ID != '$id' ");
 		$num_row = mysqli_num_rows($search_query);

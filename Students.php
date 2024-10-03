@@ -206,7 +206,7 @@ success:function(data)
     <select id="prog" name="prog" class="form-control input-xs" required="">
     <option></option>
     <?php
-    include 'db.php';
+    include 'boxes.php';
     $sql = mysqli_query($conn,"SELECT * from program Order by PROGRAM ASC");
     while($row=mysqli_fetch_assoc($sql)){
     ?>
@@ -296,7 +296,7 @@ success:function(data)
             </thead>
             <tbody>
     <?php
-    include 'db.php';
+    include 'boxes.php';
     $sql=  mysqli_query($conn, "SELECT * FROM student_info order by INT_COURSE_COMP ");
     while($row = mysqli_fetch_assoc($sql)) {
       $sid = $row['STUDENT_ID'];
