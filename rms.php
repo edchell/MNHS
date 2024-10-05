@@ -3,7 +3,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,112 +10,70 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="images/logo.jpg"> -->
     <title>Student Grading System</title>
-    <link href="/asset/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/asset/css/sb-admin.css" rel="stylesheet">
-    <link href="/asset/css/plugins/morris.css" rel="stylesheet">
-    <link href="/asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="/datatables/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="/asset/css/styles.css" rel="stylesheet">
+    <link href="asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="asset/css/sb-admin.css" rel="stylesheet">
+    <link href="asset/css/plugins/morris.css" rel="stylesheet">
+    <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="asset/css/styles.css" rel="stylesheet">
     
-    
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/datatables/jquery.dataTables.js"></script>
-    <script src="/datatables/dataTables.bootstrap.js"></script>
-    <script src="/asset/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="datatables/jquery.dataTables.js"></script>
+    <script src="datatables/dataTables.bootstrap.js"></script>
+    <script src="asset/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
 
-		<script src="/vendors/scripts/core.js"></script>
-		<script src="/vendors/scripts/script.min.js"></script>
-		<script src="/vendors/scripts/process.js"></script>
-		<script src="/vendors/scripts/layout-settings.js"></script>
-		<script src="/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
-		<script src="/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
-		<script src="/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
-		<script src="/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-		<script src="/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-		<script src="/vendors/scripts/dashboard2.js"></script>
-
-    <!-- bootstrap of deskapp-->
-    <link rel="stylesheet" type="text/css" href="/vendors/styles/core.css" />
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="/vendors/styles/icon-font.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			type="text/css"
-			href="/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css"
-		/>
-		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
-    <script
-			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
-		></script>
-		<script
-			async
-			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
-			crossorigin="anonymous"
-		></script>
-		<!-- Google Font -->
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-			rel="stylesheet"
-		/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </head>
 
 <body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="col-md-1">
-                  <!-- <img src="" style="height:48px;width:50px;align:center" alt=""> -->
-                </div>
-                                
-                <a class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; Student Grading System</b></a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
-                <?php echo $_SESSION['fname']?>
-                    <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    <?php 
-            include 'db.php';
-
-            $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
-            $row = mysqli_fetch_assoc($sql);
-            if($row['USER_TYPE'] == 'ADMINISTRATOR'){
-                ?>
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- Navbar Header -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="col-md-1">
+            <!-- <img src="" style="height:48px;width:50px;align:center" alt=""> -->
+        </div>
+        <a class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; Student Grading System</b></a>
+      </div>
+      <!-- End Navbar Header -->
+      <!-- Top Menu Items -->
+      <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
+            <?php echo $_SESSION['fname']?>
+              <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <?php 
+                    include 'db.php';
+                      
+                    $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
+                    $row = mysqli_fetch_assoc($sql);
+                      if($row['USER_TYPE'] == 'ADMINISTRATOR'){
+                    ?>
                     <li>
-                         <a href="" data-toggle="modal" data-target="#new_user"><i class="fa fa-fw fa-pencil"></i>Account</a>
+                      <a href="" data-toggle="modal" data-target="#new_user"><i class="fa fa-fw fa-pencil"></i>Account</a>
                     </li>
-                   <li class="divider"></li>
-                   <?php
-                   }else{}
-
-                   ?>
-               
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    <li class="divider"></li>
+                    <?php
+                    }else{}
+                    ?>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+        </li>
+      </ul>
+  </li>
+</ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
             <?php 
@@ -143,7 +100,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 $page = $_GET['page'];
-$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','addrecord_update','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs', 'archive');
+$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs');
 if (!empty($page)) {
     if(in_array($page,$pages)) {
         $page .= '.php';
@@ -178,53 +135,51 @@ if (!empty($page)) {
 
 
     ?>
-        <form class="form-horizontal" method="post" action="update_account.php">
-              <div class="form-group">
-      <label class="control-label col-sm-1" for="fname">Firstname:</label>
-      <div class="col-sm-3">  
-              <input type="hidden" class="form-control" name="id" value="<?php echo $row['USER_ID'] ?>" >
-        
-        <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $row['FIRSTNAME'] ?>" >
-      </div>
+    <form class="form-horizontal" method="post" action="update_account.php" onsubmit="return sanitizeForm()">
+    <div class="form-group">
+        <label class="control-label col-sm-1" for="fname">Firstname:</label>
+        <div class="col-sm-3">  
+            <input type="hidden" class="form-control" name="id" value="<?php echo htmlspecialchars($row['USER_ID'], ENT_QUOTES, 'UTF-8'); ?>">
+            <input type="text" class="form-control" id="fname" name="fname" value="<?php echo htmlspecialchars($row['FIRSTNAME'], ENT_QUOTES, 'UTF-8'); ?>">
+        </div>
     </div> 
     <div class="form-group">
-      <label class="control-label col-sm-1" for="lname">Lastname:</label>
-      <div class="col-sm-3">          
-        <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $row['LASTNAME'] ?>" >
-      </div>
+        <label class="control-label col-sm-1" for="lname">Lastname:</label>
+        <div class="col-sm-3">          
+            <input type="text" class="form-control" id="lname" name="lname" value="<?php echo htmlspecialchars($row['LASTNAME'], ENT_QUOTES, 'UTF-8'); ?>">
+        </div>
     </div>  
     <div class="form-group">
-      <label class="control-label col-sm-1" for="user">User:</label>
-      <div class="col-sm-3">          
-        <input type="text" class="form-control" id="user" name="user" value="<?php echo $row['USER'] ?>" >
-      </div>
+        <label class="control-label col-sm-1" for="user">User:</label>
+        <div class="col-sm-3">          
+            <input type="text" class="form-control" id="user" name="user" value="<?php echo htmlspecialchars($row['USER'], ENT_QUOTES, 'UTF-8'); ?>">
+        </div>
     </div>    
     <div class="form-group">
-      <label class="control-label col-sm-1" for="pwd">Password:</label>
-      <div class="col-sm-3">          
-        <input type="password" class="form-control" id="pwd" name="pwd" value="<?php echo $row['PASSWORD'] ?>" >
-      </div>
+        <label class="control-label col-sm-1" for="pwd">Password:</label>
+        <div class="col-sm-3">          
+            <input type="password" class="form-control" id="pwd" name="pwd" value="<?php echo htmlspecialchars($row['PASSWORD'], ENT_QUOTES, 'UTF-8'); ?>">
+        </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-1" for="pwd">User Type:</label>
-      <div class="col-sm-3">   
-        <select class="form-control" name="type" id="sel1">
-        <option><?php echo $row['USER_TYPE']?></option>
-        <?php
-        if($row['USER_TYPE'] == "STAFF"){ ?>
-          <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-        <?php }else{?>
-          <option value="STAFF">STAFF</option>
-        <?php } ?>
-        </select>
-      </div>
+        <label class="control-label col-sm-1" for="pwd">User Type:</label>
+        <div class="col-sm-3">   
+            <select class="form-control" name="type" id="sel1">
+                <option><?php echo htmlspecialchars($row['USER_TYPE'], ENT_QUOTES, 'UTF-8'); ?></option>
+                <?php if ($row['USER_TYPE'] == "STAFF") { ?>
+                    <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+                <?php } else { ?>
+                    <option value="STAFF">STAFF</option>
+                <?php } ?>
+            </select>
+        </div>
     </div>
     <?php } ?>
     <div class="form-group">
-      <label class="control-label col-sm-1" for="admin">Current Password</label>
-      <div class="col-sm-3">          
-        <input type="password" class="form-control" name="admin" required="">
-      </div>
+        <label class="control-label col-sm-1" for="admin">Current Password</label>
+        <div class="col-sm-3">          
+            <input type="password" class="form-control" name="admin" required="">
+        </div>
     </div> 
           
         </div>
@@ -354,12 +309,40 @@ function showSlides() {
     dots[slideIndex-1].className += " active";
     setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
+
+function sanitizeForm() {
+    const fields = ['fname', 'lname', 'user', 'pwd', 'admin'];
+    let containsXSS = false;
+
+    for (let field of fields) {
+        const input = document.getElementById(field);
+        if (input) {
+            const value = input.value;
+            // Check for potential XSS tags
+            if (/</.test(value) || />/.test(value)) {
+                containsXSS = true;
+            }
+        }
+    }
+
+    if (containsXSS) {
+        // Use SweetAlert to display the alert
+        swal({
+            title: "Invalid Input!",
+            text: "XSS tags detected! Please remove any invalid characters.",
+            icon: "warning",
+            button: "Okay",
+        });
+    }
+
+    return !containsXSS; // Prevent submission if XSS tags were found
+}
 </script>
 
 
-    <script src="/assets/js/holder.min.js"></script>
+    <script src="assets/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 
 
 </body>
