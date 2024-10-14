@@ -92,7 +92,17 @@
 							<span class="user-icon">
 								<img src="vendors/images/photo1.jpg" alt="" />
 							</span>
-							<span class="user-name text-white">Administrator</span>
+							<span class="user-name text-white">
+							<?php
+								session_start(); // Start session to access user data
+								// Check if user is logged in
+								if (isset($_SESSION['FIRSTNAME']) && isset($_SESSION['LASTNAME'])) {
+									echo htmlspecialchars($_SESSION['FIRSTNAME'] . ' ' . $_SESSION['LASTNAME']);
+								} else {
+									echo 'Guest'; // Default name if user is not logged in
+								}
+							?>
+							</span>
 						</a>
 						<div
 							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
