@@ -5,7 +5,7 @@ include('include/topnav.php');
 include('include/sidebar.php');
 
 // Check if the user is not logged in
-if (!isset($_SESSION['USER'])) { 
+if (!isset($_SESSION['FIRSTNAME']) && !isset($_SESSION['LASTNAME'])) { 
     header("HTTP/1.0 404 Not Found"); // Set the response status to 404
     include("404.php"); // Include your 404 page
     exit();
