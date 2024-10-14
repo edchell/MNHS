@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Optionally store email or other user info
             $_SESSION['USER'] = $email;
 
-            echo json_encode(['status' => 'success', 'redirect' => 'admin/db.php?page=dashboard']);
+            echo json_encode(['status' => 'success', 'redirect' => 'admin/dashboard.php']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid email or password.']);
         }
