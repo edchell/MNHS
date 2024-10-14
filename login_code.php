@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['PASSWORD'])) {
             $_SESSION['user_id'] = $user['USER_ID'];
             $_SESSION['user_email'] = $user['USER'];
-            $_SESSION['user_type'] = $user['USER_TYPE']; 
 
             header("Location: db.php?page=dashboard");
             exit();
