@@ -1,53 +1,40 @@
 <?php
-// login_code.php
+include('includes/config.php');
 
-// Include database connection
-include('includes/config.php'); // Adjust the path as needed
+session_start();
 
-session_start(); // Start a new session
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $conn->real_escape_string(trim($_POST['email']));
+    $password = trim($_POST['password']);
 
-function sanitizeInput($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get and sanitize form data
-    $email = sanitizeInput($_POST['email']);
-    $password = sanitizeInput($_POST['password']);
-
-    // Check for potential SQL injection patterns
-    if (preg_match('/(union|select|insert|delete|update|drop|--|#)/i', $email)) {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid input detected.']);
+    if (empty($email) || empty($password)) {
+        $_SESSION['error'] = "Please fill in all fields.";
+        header("Location: index.php");
         exit();
     }
 
-    // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT FIRSTNAME, LASTNAME, PASSWORD FROM user WHERE USER = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
+    $query = "SELECT * FROM user WHERE USER = '$email'";
+    $result = $conn->query($query);
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($firstName, $lastName, $hashedPassword);
-        $stmt->fetch();
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
 
-        if (password_verify($password, $hashedPassword)) {
-            // Store user's first name and last name in session
-            $_SESSION['FIRSTNAME'] = $firstName;
-            $_SESSION['LASTNAME'] = $lastName;
+        if (password_verify($password, $user['PASSWORD'])) {
+            $_SESSION['user_id'] = $user['USER_ID'];
+            $_SESSION['user_email'] = $user['USER'];
+            $_SESSION['user_type'] = $user['USER_TYPE']; 
 
-            // Optionally store email or other user info
-            $_SESSION['USER'] = $email;
-
-            echo json_encode(['status' => 'success', 'redirect' => 'admin/db.php?page=dashboard']);
+            header("Location: db.php?page=dashboard");
+            exit();
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Invalid email or password.']);
+            $_SESSION['error'] = "Invalid password.";
+            header("Location: index.php");
+            exit();
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid email or password.']);
+        $_SESSION['error'] = "No user found with that email.";
+        header("Location: index.php");
+        exit();
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>

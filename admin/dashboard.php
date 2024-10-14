@@ -4,10 +4,10 @@ include('../includes/header.php');
 include('include/topnav.php');
 include('include/sidebar.php');
 
-// Check if the user is not logged in
-if (!isset($_SESSION['USER'])) { 
-    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
-    include("404.php"); // Include your 404 page
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // If not logged in, redirect to the login page
+    header("Location: index.php");
     exit();
 }
 ?>
