@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['USER'])) { 
+    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
+    exit();
+}
+
 include('../includes/header.php');
 include('include/topnav.php');
 include('include/sidebar.php');
@@ -15,7 +23,7 @@ include('student_code.php');
 									<div class="tab height-100-p">
 										<ul class="nav nav-tabs customtab p-3 d-flex align-items-center justify-content-between" role="tablist">
 											<h3 class="text-primary">Student Personal Details</h3>
-											<a href="db.php?page=student_list" class="btn btn-primary">BACK</a>
+											<a href="student_list.php" class="btn btn-primary">BACK</a>
 										</ul>
 										<div class="tab-content">
 

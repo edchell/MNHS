@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = sanitizeInput($_POST['email']);
     $password = sanitizeInput($_POST['password']);
 
-    // Check for potential SQL injection patterns
-    if (preg_match('/(union|select|insert|delete|update|drop|--|#)/i', $email)) {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid input detected.']);
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid email format.']);
         exit();
     }
 
@@ -31,15 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_result($firstName, $lastName, $hashedPassword);
         $stmt->fetch();
 
+        // Verify the password using Argon2i
         if (password_verify($password, $hashedPassword)) {
+            // Regenerate session ID
+            session_regenerate_id(true);
+
             // Store user's first name and last name in session
             $_SESSION['FIRSTNAME'] = $firstName;
             $_SESSION['LASTNAME'] = $lastName;
-
-            // Optionally store email or other user info
             $_SESSION['USER'] = $email;
 
-            echo json_encode(['status' => 'success', 'redirect' => 'admin/db.php?page=dashboard']);
+            echo json_encode(['status' => 'success', 'redirect' => 'admin/dashboard.php']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid email or password.']);
         }

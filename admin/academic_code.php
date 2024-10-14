@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['USER'])) { 
+    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
+    exit();
+}
+
 include '../includes/config.php';
 
 // Assuming you are fetching a specific student's information based on STUDENT_ID passed via GET

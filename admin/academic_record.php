@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['USER'])) { 
+    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
+    exit();
+}
+
 include('../includes/header.php');
 include('include/topnav.php');
 include('include/sidebar.php');
@@ -41,7 +49,7 @@ include('include/sidebar.php');
         
      
       <td style="text-align:center"> 
-      <a href="db.php?page=academic_view&student_id=<?php echo urlencode($sid); ?>" class="btn btn-primary">View Record</a>
+      <a href="academic_view.php?student_id=<?php echo urlencode($sid); ?>" class="btn btn-primary">View Record</a>
 
 
       <?php

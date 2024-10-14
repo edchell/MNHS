@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['USER'])) { 
+    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
+    exit();
+}
 include '../includes/config.php';
 
 // Check if the form is submitted
@@ -33,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Success message
             echo "<script>
                     alert('Student added successfully.');
-                    window.location.href = 'db.php?page=student_list';
+                    window.location.href = 'student_list.php';
                 </script>";
             exit(); 
         } else {

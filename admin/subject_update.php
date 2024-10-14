@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['USER'])) { 
+    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
+    exit();
+}
+
 include '../includes/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,6 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     mysqli_close($conn);
-    header("Location: db.php?page=subject_list"); // Redirect back to the main page after updating
+    header("Location: subject_list.php"); // Redirect back to the main page after updating
 }
 ?>

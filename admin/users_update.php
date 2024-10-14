@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['USER'])) { 
+    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
+    exit();
+}
+
 include('../includes/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         // Redirect or show success message
-        header("Location: db.php?page=users"); // Redirect back to user list
+        header("Location: users.php"); // Redirect back to user list
         exit();
     } else {
         echo "Error updating user: " . $stmt->error;

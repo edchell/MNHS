@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['USER'])) { 
+    header("HTTP/1.0 404 Not Found"); // Set the response status to 404
+    exit();
+}
+
 include('../includes/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
