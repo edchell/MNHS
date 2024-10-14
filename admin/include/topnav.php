@@ -100,7 +100,7 @@
 							<a class="dropdown-item" href="profile.html"
 								><i class="dw dw-user1"></i> Profile</a
 							>
-							<a class="dropdown-item" href="../login.php"
+							<a class="dropdown-item" href="../index.php"
 								><i class="dw dw-logout"></i> Log Out</a>
 						</div>
 					</div>
