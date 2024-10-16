@@ -7,14 +7,19 @@
    
     <div class="col-md-12">
 
-   <?php
-    include 'db.php';
-    $req=$_POST['request'];
-    $id = $_POST['id'];
-    $sql=  mysqli_query($conn, "SELECT * FROM student_year_info left join grade on student_year_info.YEAR = grade.grade_id left join advisers on student_year_info.ADVISER=advisers.adviser_id where STUDENT_ID = '$id' and YEAR = '$req' ");
-    $NUM= mysqli_num_rows($sql);
-    if($NUM > 0){
-    while($row = mysqli_fetch_assoc($sql)) {
+    <?php
+include 'db.php';
+$req = $_POST['request'];
+$id = $_POST['id'];
+
+$sql = mysqli_query($conn, "SELECT * FROM student_year_info 
+    LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+    LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
+    WHERE STUDENT_ID = '$id' AND YEAR = '$req'");
+
+$NUM = mysqli_num_rows($sql);
+if ($NUM > 0) {
+    while ($row = mysqli_fetch_assoc($sql)) {
       $syi= $row['SYI_ID'];
 
     ?>
