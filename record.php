@@ -32,10 +32,6 @@ $(document).ready(function() {
             },
             success: function(data) {
                 $("#fetch-feild").html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX Error: " + status + " " + error);
-                $("#fetch-feild").html("Error occurred. Please try again.");
             }
         });
     });
