@@ -33,10 +33,8 @@ include('auth.php');
         <td><?php echo $row['GENDER'] ?></td>
         <td><?php echo $row['ADDRESS'] ?></td>
         <td>
-          <center>
               <a class="btn btn-info" href="rms.php?page=record&id=<?php echo $row['STUDENT_ID'] ?>">View Records</a>
               <a class="btn btn-danger" href="delete.php?id=<?php echo $row['STUDENT_ID'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
-          </center>
         </td>
       </tr>
       <?php
