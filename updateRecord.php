@@ -1,6 +1,4 @@
-<?php
-include('auth.php');
-?>
+
  <?php
  if($_POST['id'] && $_POST['request'])
  {
