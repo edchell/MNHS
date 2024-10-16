@@ -34,7 +34,7 @@ include('auth.php');
         <td><?php echo $row['ADDRESS'] ?></td>
         <td>
               <a class="btn btn-info" href="rms.php?page=record&id=<?php echo $row['STUDENT_ID'] ?>">View Records</a>
-              <a class="btn btn-danger" href="delete.php?id=<?php echo $row['STUDENT_ID'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+              <!-- <a class="btn btn-danger" href="delete.php?id=<?php echo $row['STUDENT_ID'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a> -->
         </td>
       </tr>
       <?php
