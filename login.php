@@ -80,9 +80,11 @@
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-md-offset-9  col-md-12">
+      <div class="col-md-offset-4 col-md-12">
+        <a href="" class="text-decoration-none">Forgot password?</a>
       <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New</button>-->
         <button type="hidden"  class="btn btn-default">Login</button>
+        <button type="hidden"  class="btn btn-primary">Student View</button>
        
       </div>
     </div>
