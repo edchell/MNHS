@@ -23,14 +23,14 @@
 		VALUES ( '$sub', '$des' )")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('added $sub in the subject list','$user',NOW() )");
-	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>New Subject Successfully Added.</h4></center></div>";
 	echo "<script>
-	document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
-	setTimeout(function(){	window.location.href='rms.php?page=subjects';  }, 2000);</script>";
+				alert('New Subject Added successfully');
+				window.location.href = 'rms.php?page=subjects';
+		</script>";
 	} else {
 		echo "<script>
-		alert('New subject failed to record!" .$sql."');
-		window.location.href='rms.php?page=subjects';
+				alert('New subject failed to record!" .$sql."');
+				window.location.href = 'rms.php?page=subjects';
 		</script>";
 		unset($_POST);
 
@@ -42,11 +42,10 @@
 		VALUES ('updated $id in the subject list','$user',NOW() )");
 
 		if (mysqli_query($conn, $sql)) {
-			echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Subject Successfully Updated.</h4></center></div>";
 			echo "<script>
-			document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
-			setTimeout(function(){	window.location.href='rms.php?page=subjects';  }, 2000);</script>";
-
+				alert('Subject Successfully Updated.');
+				window.location.href = 'rms.php?page=subjects';
+		</script>";
 		} else {
     echo "Error updating record: " . mysqli_error($conn);
 		}

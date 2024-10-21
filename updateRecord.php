@@ -46,14 +46,19 @@ if ($NUM > 0) {
 
       <label style="font-size:6" for="">School Year</label>
         <input type="text" name="sy" style="width:150px;text-align:center" value="<?php echo $row["SCHOOL_YEAR"] ?>" >
+<br>
+        <label style="font-size:6" for="">Adviser:</label>
+        <input type="text" name="adviser" style="width:220px;text-align:center" 
+        value="<?php echo $row['ADVISER'] ?>" >
 
-
+        <label style="font-size:6" for="">General Average:</label>
+    <input type="text" name="gen_ave" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>">
 
 
     
         <br><br><br>
 
-        <div class="col-xs-9" style="width:690px">
+        <div class="col-xs-9" style="width:690px;margin-left:150px;">
 
         <div class="row"  >
           <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
@@ -158,36 +163,6 @@ if ($NUM > 0) {
 
    
        
-    <div class="col-xs-3">  
-    <br><br>
-  <div class="row">
-     <label style="font-size:10px" for="">Has advance unit in</label>
-        <input type="text" name="au" style="width:162px;text-align:center" value="<?php echo $row['ADVANCE_UNIT'] ?>" >
-   </div>
-   <div class="row">
-   <br><br>
-     <label style="font-size:10px" for="">lacks unit in</label>
-        <input type="text" name="lu" style="width:200px;text-align:center" value="<?php echo $row['LACK_UNIT'] ?>" >
-        <br><br>
-     <label style="font-size:10px" for="">To be classified as</label>
-        <input type="text" name="class" style="width:170px;text-align:center" value="<?php echo $row['TO_BE_CLASSIFIED'] ?>" >
-        <br><br>
-     <label style="font-size:10px" for="">Total Number of<br>years in school to date</label>
-        <input type="text"  style="width:145px;text-align:center" value="<?php echo $row['TOTAL_NO_OF_YEAR'] ?>" >
-        <br><br>
-     <label style="font-size:10px" for="">Adviser:</label>
-        <input type="text" name="adviser" style="width:220px;text-align:center" 
-        value="<?php echo $row['name'] ?>" >
-        <br><br>
-       <label style="font-size:10px" for="stats">Action</label>
-         <select style="width:232px;text-align:center; border: 0;outline: 0;background: transparent;border-bottom:1px solid black;" type="text" name="stats" id ="stats" >
-         <option><?php echo $row['ACTION'] ?></option>
-         <option>Promoted</option>
-         <option>Conditional(Promoted)</option>
-         <option>Retained</option>
-         </select>
-            
-   </div>
     </div>
 
 

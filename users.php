@@ -36,13 +36,13 @@ $(document).ready(function() {
                         <th style="width:20%">Name</th>
                         <th style="width:10%">User</th>
                         <th style="width:10%">Type</th>
-                        <th style="width:10%"></th>
+                        <th style="width:20%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     include 'db.php';
-                    $sql = mysqli_query($conn, "SELECT * FROM user");
+                    $sql = mysqli_query($conn, "SELECT * FROM user WHERE STATUS = ''");
                     while ($row = mysqli_fetch_assoc($sql)) {
                     ?>
                         <tr>
@@ -52,6 +52,9 @@ $(document).ready(function() {
                             <td>
                                 <a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser">
                                     <i class="fa fa-pencil-square" aria-hidden="true"></i> edit
+                                </a>
+                                <a href="#" class="text-danger deleteUser" data-id="<?php echo $row['USER_ID']; ?>">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                 </a>
                             </td>
                         </tr>
@@ -88,10 +91,10 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="user" class="cols-sm-2 control-label">User</label>
+                        <label for="user" class="cols-sm-2 control-label">Email</label>
                         <div class="cols-sm-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="user" name="user" placeholder="Enter Username" required>
+                                <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" required>
                             </div>
                         </div>
                     </div>
@@ -100,6 +103,10 @@ $(document).ready(function() {
                         <div class="cols-sm-4">
                             <div class="input-group">
                                 <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" required>
+                                <div class="input-group-append">
+                                    <input type="checkbox" id="showPwd" style="margin-left: 10px;">
+                                    <label for="showPwd" style="margin-left: 5px;"><small>Show Password</small></label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -152,5 +159,20 @@ $(document).ready(function() {
                 "aaSorting": [[0, "asc"]]
             });
         });
+
+        $(document).on('click', '.deleteUser', function() {
+        const userId = $(this).data('id');
+        if (confirm("Are you sure you want to delete this user?")) {
+            $.post('user_delete.php', { id: userId }, function(response) {
+                alert(response);
+                location.reload(); // Refresh the page to see the changes
+            });
+        }
+    });
+
+    document.getElementById('showPwd').addEventListener('change', function() {
+        const pwdInput = document.getElementById('pwd');
+        pwdInput.type = this.checked ? 'text' : 'password';
+    });
     </script>
 </div>

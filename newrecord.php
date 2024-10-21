@@ -9,10 +9,7 @@ $yr = $_POST['yr'];
 $sec = $_POST['sec'];
 $tny = $_POST['tny'];
 $sy = $_POST['sy'];
-$au = $_POST['au'];
-$lu = $_POST['lu'];
 $adv = $_POST['adviser'];
-$tbca = $_POST['class'];
 $subject = $_POST['subj'];
 $una = $_POST['1st'];
 $ikaduwa = $_POST['2nd'];
@@ -45,8 +42,8 @@ if ($num_row >= 1) {
 } else {
     // Insert new record
     $sql = mysqli_query($conn, "INSERT INTO student_year_info
-        (STUDENT_ID, SCHOOL, YEAR, SECTION, TOTAL_NO_OF_YEAR, SCHOOL_YEAR, ADVANCE_UNIT, LACK_UNIT, ADVISER, TO_BE_CLASSIFIED, TDAYS_OF_CLASSES, TDAYS_PRESENT, ACTION)
-        VALUES('$id','$school', '$yr', '$sec', '$tny', '$sy', '$au', '$lu', '$adv',  '$tbca', '$Tdc', '$Tp', 'Promoted')");
+        (STUDENT_ID, SCHOOL, YEAR, SECTION, TOTAL_NO_OF_YEAR, SCHOOL_YEAR, ADVISER, TDAYS_OF_CLASSES, TDAYS_PRESENT, ACTION)
+        VALUES('$id','$school', '$yr', '$sec', '$tny', '$sy', '$adv', '$Tdc', '$Tp', 'Promoted')");
 
     $last_id = mysqli_insert_id($conn);
     $sc = count($subject);
@@ -73,22 +70,7 @@ if ($num_row >= 1) {
         $ga = $row['fin_grade'] / $row['tg_count'];
         mysqli_query($conn, "UPDATE student_year_info SET GEN_AVE = '$ga' WHERE SYI_ID = '".$row['SYI_ID']."'");
     }
-
-    // Handle failures
-    $query2 = mysqli_query($conn, "SELECT * FROM total_grades_subjects WHERE SYI_ID = '$last_id' AND PASSED_FAILED='FAILED'");
-    $counts = mysqli_num_rows($query2); // Move outside the loop
-    while ($row2 = mysqli_fetch_assoc($query2)) {
-        $query3 = mysqli_query($conn, "SELECT * FROM grade WHERE grade_id = '$yr'");
-        $row3 = mysqli_fetch_assoc($query3);
-        $tbca2 = $row3['grade'];
-
-        if ($counts > 2) {
-            mysqli_query($conn, "UPDATE student_year_info SET ACTION = 'Retained', TO_BE_CLASSIFIED='$tbca2' WHERE SYI_ID = '".$row2['SYI_ID']."'");
-        } else {
-            mysqli_query($conn, "UPDATE student_year_info SET ACTION = 'Conditional(Promoted)', TO_BE_CLASSIFIED='$tbca2' WHERE SYI_ID = '".$row2['SYI_ID']."'");
-        }
-    }
-
+    
     header('location:rms.php?page=record&id=' . $id);
 }
 

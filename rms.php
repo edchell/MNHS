@@ -54,22 +54,10 @@
                 <?php echo $_SESSION['fname']?>
                     <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                    <?php 
-            include 'db.php';
-
-            $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
-            $row = mysqli_fetch_assoc($sql);
-            if($row['USER_TYPE'] == 'ADMINISTRATOR'){
-                ?>
                     <li>
                          <a href="" data-toggle="modal" data-target="#new_user"><i class="fa fa-fw fa-pencil"></i>Account</a>
                     </li>
                    <li class="divider"></li>
-                   <?php
-                   }else{}
-
-                   ?>
-               
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -159,12 +147,6 @@ if (!empty($page)) {
       </div>
     </div>    
     <div class="form-group">
-      <label class="control-label col-sm-1" for="pwd">Password:</label>
-      <div class="col-sm-3">          
-        <input type="password" class="form-control" id="pwd" name="pwd" value="<?php echo $row['PASSWORD'] ?>" >
-      </div>
-    </div>
-    <div class="form-group">
       <label class="control-label col-sm-1" for="pwd">User Type:</label>
       <div class="col-sm-3">   
         <select class="form-control" name="type" id="sel1">
@@ -179,12 +161,6 @@ if (!empty($page)) {
       </div>
     </div>
     <?php } ?>
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="admin">Current Password</label>
-      <div class="col-sm-3">          
-        <input type="password" class="form-control" name="admin" required="">
-      </div>
-    </div> 
           
         </div>
           

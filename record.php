@@ -72,7 +72,7 @@ while($row = mysqli_fetch_assoc($sql)) {
   <div class="col-md-5">
   <div class="form-inline">
   <div class="form-group">
-  <a href="rms.php?page=record&id=<?php  echo $_GET['id']?>" class="btn btn-success"> View All</a>
+  <!-- <a href="rms.php?page=record&id=<?php  echo $_GET['id']?>" class="btn btn-success"> View All</a> -->
   <label for="focusedInput">Select Grade:</label>
   <select class="form-control" style="height:30px;font-size:12px" id="fetch">
     <option > </option>
@@ -134,11 +134,15 @@ while($row1 = mysqli_fetch_assoc($sql1)) {
 
   <label style="font-size:6" for="">School Year</label>
     <input type="text" style="width:150px;text-align:center" value="<?php echo $row["SCHOOL_YEAR"] ?>" disabled>
-
-
-
+<br>
+<label style="font-size:6" for="">Adviser:</label>
+    <input type="text" style="width:220px;text-align:center" 
+    value="<?php echo $row['ADVISER'] ?>">
+ <label style="font-size:6" for="">General Average:</label>
+    <input type="text" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>" disabled>
     <br>
-    <div class="col-xs-9" style="width:690px">
+    <br>
+    <div class="col-xs-9" style="width:690px;margin-left:150px;">
 
     <div class="row">
       <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
@@ -237,34 +241,8 @@ while($row3 = mysqli_fetch_assoc($sql3)){
 </div>
 </div>
 
-   
-<div class="col-xs-3">  
-<div class="row">
- <label style="font-size:10px" for="">Has advance unit in</label>
-    <input type="text" style="width:162px;text-align:center" value="<?php echo $row['ADVANCE_UNIT'] ?>" disabled>
-</div>
-<div class="row">
-<br><br>
- <label style="font-size:10px" for="">lacks unit in</label>
-    <input type="text" style="width:200px;text-align:center" value="<?php echo $row['LACK_UNIT'] ?>" disabled>
-    <br><br>
- <label style="font-size:10px" for="">To be classified as</label>
-    <input type="text" style="width:170px;text-align:center" value="<?php echo $row['TO_BE_CLASSIFIED'] ?>" disabled>
-    <br><br>
- <label style="font-size:10px" for="">Total Number of<br>years in school to date</label>
-    <input type="text" style="width:145px;text-align:center" value="<?php echo $row['TOTAL_NO_OF_YEAR'] ?>" disabled>
-    <br><br>
- <label style="font-size:10px" for="">Adviser:</label>
-    <input type="text" style="width:220px;text-align:center" 
-    value="<?php echo $row['name'] ?>" disabled>
-    <br><br>
- <label style="font-size:10px" for="">General Average:</label>
-    <input type="text" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>" disabled>
-    <br><br>
-</div>
-</div>
-
 <div class="col-xs-12">
+  <br><br>
   <table class="table" style="width:940px" >
    
       <tr>

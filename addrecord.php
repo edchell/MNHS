@@ -183,8 +183,9 @@ include('auth.php');
          <input type="text" name="sec" class="form-control" id ="sec"required>
        </div>
        </div>
-       <br>
-       <div class="row">
+     </div>
+     <div class="col-md-6">
+     <div class="row">
        <label class="col-md-4 te" for="tny">Total no. of yrs</label>
        <div class="col-md-6">
         <?php 
@@ -204,39 +205,16 @@ include('auth.php');
        </div>
        </div>
        <br>
-       <div class="row">
+     <div class="row">
        <label class="col-md-4 te" for="sy">School Year</label>
        <div class="col-md-6">
          <input type="text" name="sy" class="form-control" id ="sy" value="<?php echo $_GET['sy'] ?>" readonly >
        </div>
        </div>
        <br>
-       <div class="row" style="display:none">
-       <label class="col-md-4 te" for="class">To be classified as</label>
-       <div class="col-md-6">
-         <input type="text" name="class" class="form-control" id ="" readonly="">
-       </div>
-       </div>
-     </div>
-     <div class="col-md-6">
-
-       <div class="row">
-       <label class="col-md-2 te" for="au">Advance unit in</label>
-       <div class="col-md-6">
-         <input type="text" name="au" class="form-control" id ="au" >
-       </div>
-       </div>
-       <br>
-       <div class="row">
-       <label class="col-md-2 te" for="lu">Lacks unit in</label>
-       <div class="col-md-6">
-         <input type="text" name="lu" class="form-control" id ="lu" >
-       </div>
-       </div>
-       <br>
        <div id="en_adv">
        <div class="row">
-       <label class="col-md-2 te" for="adviser">Adviser</label>
+       <label class="col-md-4 te" for="adviser">Adviser</label>
        <div class="col-md-6">
          <input type="text" name="adviser" class="form-control" id ="adviser" >
        </div>

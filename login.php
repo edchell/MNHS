@@ -61,11 +61,11 @@
 
   <form class="form-horizontal" method="post">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="user">Username:</label>
+      <label class="control-label col-sm-2" for="user">Email:</label>
       <div class="col-md-10">
       <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-        <input type="email" class="form-control" id="user" name="user" placeholder="Enter Username" autocomplete="off">
+        <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off">
       </div>
       </div>
     </div>
