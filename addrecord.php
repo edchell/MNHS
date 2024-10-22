@@ -27,7 +27,7 @@ include('auth.php');
              '<option></option>'+
              ' <?php
                            include 'db.php';
-                           $sql = mysqli_query($conn, " SELECT * from subjects where `FOR`='All'");
+                           $sql = mysqli_query($conn, " SELECT * from subjects");
               while($row=mysqli_fetch_assoc($sql)){
                              $id = $row['SUBJECT_ID'];
                              $subj = $row['SUBJECT'];
@@ -90,7 +90,7 @@ include('auth.php');
 
              <?php
               include 'db.php';
-              $sql = mysqli_query($conn, " SELECT * from subjects where `FOR` ='All' ");
+              $sql = mysqli_query($conn, " SELECT * from subjects");
               while($row=mysqli_fetch_assoc($sql)){
                 $id = $row['SUBJECT_ID'];
                 $subj = $row['SUBJECT'];

@@ -42,8 +42,7 @@ $(document).ready(function() {
                 <tbody>
                     <?php
                     include 'db.php';
-                    // $sql = mysqli_query($conn, "SELECT * FROM user WHERE STATUS = ''");
-                    $sql = mysqli_query($conn, "SELECT * FROM user");
+                    $sql = mysqli_query($conn, "SELECT * FROM user WHERE STATUS = ''");
                     while ($row = mysqli_fetch_assoc($sql)) {
                     ?>
                         <tr>
@@ -54,9 +53,9 @@ $(document).ready(function() {
                                 <a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser">
                                     <i class="fa fa-pencil-square" aria-hidden="true"></i> edit
                                 </a>
-                                <!-- <a href="#" class="text-danger deleteUser" data-id="<?php echo $row['USER_ID']; ?>">
+                                <a href="#" class="text-danger deleteUser" data-id="<?php echo $row['USER_ID']; ?>">
                                     <i class="fa fa-trash" aria-hidden="true"></i> Delete
-                                </a> -->
+                                </a>
                             </td>
                         </tr>
                     <?php
