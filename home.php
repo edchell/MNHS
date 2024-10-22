@@ -37,7 +37,7 @@ include('auth.php');
     <small>Student Grading System</small>
 </h1>
 <div class="card-container">
-    <div class="card">
+    <div class="card" style="background-color:#91ef91;">
         <?php
         include 'db.php';
 
@@ -60,20 +60,20 @@ include('auth.php');
         mysqli_close($conn);
         ?>
         <h2><?php echo $total_students; ?></h2>
-        <p>Total Students</p>
+        <p style="color: black;">Total Students</p>
     </div>
-    <div class="card">
+    <div class="card" style="background-color: #1883cb;">
         <h2><?php echo $total_male; ?></h2>
-        <p>Total Male Students</p>
+        <p style="color: black;">Total Male Students</p>
     </div>
-    <div class="card">
+    <div class="card" style="background-color: #fad5e6;">
         <h2><?php echo $total_female; ?></h2>
-        <p>Total Female Students</p>
+        <p style="color: black;">Total Female Students</p>
     </div>
 </div>
 <br>
 <div class="card-container">
-    <div class="card">
+    <div class="card" style="background-color:#dfbbfe;">
         <?php
         include 'db.php';
         
@@ -84,9 +84,9 @@ include('auth.php');
         mysqli_close($conn);
         ?>
         <h2><?php echo $total_users; ?></h2>
-        <p>Total Users</p>
+        <p style="color: black;">Total Users</p>
     </div>
-    <div class="card">
+    <div class="card" style="background-color:#f4f04f;">
         <?php
         include 'db.php';
         
@@ -97,6 +97,6 @@ include('auth.php');
         mysqli_close($conn);
         ?>
         <h2><?php echo $total_subjects; ?></h2>
-        <p>Total Subjects</p>
+        <p style="color: black;">Total Subjects</p>
     </div>
 </div>
