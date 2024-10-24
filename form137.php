@@ -307,7 +307,7 @@ $user = $_SESSION['ID'];
 
 		?>
 		<tr>
-		<td style="width:150px;border:1px solid black;font-size:10px;height:15px">
+		<td style="width:150px;border:1px solid black;font-size:10px;height:15px;text-align:center;">
 			<?php
            if($row3['SUBJECT'] == "     *Music"){
             echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];}
