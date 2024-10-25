@@ -118,7 +118,7 @@ $user = $_SESSION['ID'];
 <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 			<div style="display:flex;align-items:center;justify-content:space-between;">
 				<div>
-					<img src="images/mnhs.png" alt="" style="width:90px;height:90px;">
+					<img src="images/logo.png" alt="" style="width:90px;height:90px;">
 				</div>
 				<div>
 					<center><p style="font-size:12px;margin-bottom:13px;">Department of Education</p></center>
