@@ -45,7 +45,7 @@ include('auth.php');
         if($row['USER_TYPE'] == "STAFF"){ ?>
           <option value="ADMINISTRATOR">ADMINISTRATOR</option>
         <?php }else{?>
-          <option value="STAFF">STAFF</option>
+          <option value="FACULTY TEACHER">FACULTY TEACHER</option>
         <?php } ?>
         </select>
       </div>

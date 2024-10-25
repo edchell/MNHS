@@ -152,10 +152,10 @@ if (!empty($page)) {
         <select class="form-control" name="type" id="sel1">
         <option><?php echo $row['USER_TYPE']?></option>
         <?php
-        if($row['USER_TYPE'] == "STAFF"){ ?>
+        if($row['USER_TYPE'] == "FACULTY TEACHER"){ ?>
           <option value="ADMINISTRATOR">ADMINISTRATOR</option>
         <?php }else{?>
-          <option value="STAFF">STAFF</option>
+          <option value="FACULTY TEACHER">FACULTY TEACHER</option>
         <?php } ?>
         </select>
       </div>

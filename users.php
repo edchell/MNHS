@@ -117,7 +117,7 @@ $(document).ready(function() {
                                 <select class="form-control" name="type" id="type" required>
                                     <option value="">Select User Type</option>
                                     <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-                                    <option value="STAFF">STAFF</option>
+                                    <option value="FACULTY TEACHER">FACULTY TEACHER</option>
                                 </select>
                             </div>
                         </div>
