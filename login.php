@@ -29,18 +29,18 @@
         align-items: center;
         background:url('images/bg.png');
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 1400px 600px;
       }
       .login-form {
   display: block;
   position: fixed;
-  border:5px solid grey;
   border-radius: 20px;
   padding: 30px;
   width: 500px;
-  background-color: white;
+  background-color: transparent;
   left:450px;
-  top:100px;
+  top:125px;
+  color: black;
  } 
  .erlert{
   display:block;
