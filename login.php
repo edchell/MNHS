@@ -27,9 +27,9 @@
         width: calc(100%);
         justify-content: center;
         align-items: center;
-        background:url('images/bg.png');
+        background:url('images/bg.jpg');
         background-repeat: no-repeat;
-        background-size: 1400px 600px;
+        background-size: 1400px 800px;
       }
       .login-form {
   display: block;
@@ -40,7 +40,7 @@
   width: 500px;
   background-color: transparent;
   left:450px;
-  top:150px;
+  top:100px;
   color: black;
  } 
  .erlert{
