@@ -78,7 +78,7 @@ include('auth.php');
         include 'db.php';
         
         // Fetch total users
-        $sql = mysqli_query($conn, "SELECT COUNT(*) as total_users FROM user");
+        $sql = mysqli_query($conn, "SELECT COUNT(*) as total_users FROM user WHERE STATUS = ''");
         $row = mysqli_fetch_assoc($sql);
         $total_users = $row['total_users'];
         mysqli_close($conn);
