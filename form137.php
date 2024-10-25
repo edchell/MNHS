@@ -128,7 +128,7 @@ $user = $_SESSION['ID'];
 					<center><p style="font-size:12px;margin-top:13px;">Poblacion, Madridejos, Cebu</p></center>
 				</div>
 				<div>
-					<img src="images/deped.png" alt="" style="width:80px;height:120px;">
+					<img src="images/deped.png" alt="" style="width:120px;height:120px;">
 				</div>
 			</div>
 </div>
