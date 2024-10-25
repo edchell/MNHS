@@ -22,8 +22,8 @@ include('auth.php');
       <tr id="heads">
         <th style="width:10%">LRN NO.</th>
         <th style="width:20%">Name</th>
-        <th style="width:10%">Gender</th>
-        <th style="width:10%"></th>
+        <th style="width:5%">Gender</th>
+        <th style="width:5%"></th>
       </tr>
     </thead>
     <tbody>
@@ -39,9 +39,9 @@ include('auth.php');
         <td><?php echo $row['LASTNAME'] . ' ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></td>
         <td><?php echo $row['GENDER'] ?></td>
         <td>
-    <a class="btn btn-info" onclick='window.open("form137.php?id=<?php echo $row['STUDENT_ID']; ?>")'>
+    <center><a class="btn btn-info" onclick='window.open("form137.php?id=<?php echo $row['STUDENT_ID']; ?>")'>
         <i class="fa fa-fw fa-print"></i>Printable Report
-    </a>
+    </a></center>
 </td>
       </tr>
       <?php

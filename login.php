@@ -34,12 +34,13 @@
       .login-form {
   display: block;
   position: fixed;
+  border:5px solid grey;
   border-radius: 20px;
   padding: 30px;
   width: 500px;
   background-color: transparent;
   left:450px;
-  top:125px;
+  top:150px;
   color: black;
  } 
  .erlert{
@@ -58,7 +59,7 @@
   <div class="login-form" id="login_modal" role="dialog" >
 
 
-  <center><h3 style="background:grey;color:black;border-radius:5px"><b>Please Login</b></h3></center>
+  <center><h3 style="color:black;border-radius:5px"><b>Please Login</b></h3></center>
   
   
 
