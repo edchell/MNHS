@@ -59,42 +59,31 @@
   <div class="login-form" id="login_modal" role="dialog" >
 
 
-  <center><h3 style="color:black;border-radius:5px"><b>Please Login</b></h3></center>
+  <center><h3 style="color:black;border-radius:5px"><b>Send Reset Password</b></h3></center>
   
   
 
   <form class="form-horizontal" method="post">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="user">Email:</label>
+      <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-md-10">
       <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-        <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off">
-      </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password:</label>
-      <div class="col-md-10">
-      <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
-          
-        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" autocomplete="off">
       </div>
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-md-offset-4 col-md-12">
-        <a href="reset-password.php" class="text-decoration-none">Forgot password?</a>
+      <div class="col-md-offset-7 col-md-12">
       <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New</button>-->
-        <button type="hidden"  class="btn btn-default">Login</button>
-        <button type="hidden"  class="btn btn-primary">Student View</button>
+        <button type="hidden" name="submit" class="btn btn-default">Submit</button>
+        <a href="login.php" class="btn btn-primary">Back</a>
        
       </div>
     </div>
   </form>
    <?php
-  include 'connect.php';
+  include 'reset-submit.php';
   ?>
    </div>          
 </div>

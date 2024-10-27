@@ -164,11 +164,6 @@ while($row1 = mysqli_fetch_assoc($sql1)) {
         <label for="" style="font-size:6">Final</label>
         <br>
       </div>
-      <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
-      <br>
-        <label for="" style="font-size:6">Units</label>
-        <br>
-      </div>
       <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
       
         <label for="" style="font-size:15px;text-align:center">Passed or Failed</label>
@@ -224,9 +219,6 @@ while($row3 = mysqli_fetch_assoc($sql3)){
     <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:20px;padding-left:1px">
        <?php echo $row2['FINAL_GRADES'] ?>
     </div>
-    <div class="col-xs-1 text-center" style="border:1px solid black;height:20px">
-      <?php echo $row2['UNITS'] ?>
-    </div>
     <div class="col-xs-1 text-center" style="border:1px solid black;height:20px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">
       <?php echo $row2['PASSED_FAILED'] ?>
     </div>
@@ -246,20 +238,20 @@ while($row3 = mysqli_fetch_assoc($sql3)){
   <table class="table" style="width:940px" >
    
       <tr>
-        <th style="font-size:10px;text-align:center;width:130px">Months</td>
-        <th style="font-size:10px;text-align:center;width:50px">Jun</td>
-        <th style="font-size:10px;text-align:center;width:50px">Jul</td>
-        <th style="font-size:10px;text-align:center;width:50px">Aug</td>
-        <th style="font-size:10px;text-align:center;width:50px">Sept</td>
-        <th style="font-size:10px;text-align:center;width:50px">Oct</td>
-        <th style="font-size:10px;text-align:center;width:50px">Nov</td>
-        <th style="font-size:10px;text-align:center;width:50px">Dec</td>
-        <th style="font-size:10px;text-align:center;width:50px">Jan</td>
-        <th style="font-size:10px;text-align:center;width:50px">Feb</td>
-        <th style="font-size:10px;text-align:center;width:50px">March</td>
-        <th style="font-size:10px;text-align:center;width:50px">April</td>
-        <th style="font-size:10px;text-align:center;width:50px">May</td>
-        <th style="font-size:10px;text-align:center;width:130px">Total</td>
+        <th style="font-size:10px;text-align:center;width:130px;border:1px solid black">Months</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jun</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jul</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Aug</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Sept</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Oct</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Nov</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Dec</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jan</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">Feb</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">March</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">April</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:50px">May</td>
+        <th style="font-size:10px;border:1px solid black;text-align:center;width:130px">Total</td>
       </tr>
       <tr>
         <td style="font-size:10px;text-align:center;width:130px">Days of School</td>

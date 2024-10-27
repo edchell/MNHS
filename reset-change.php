@@ -59,42 +59,71 @@
   <div class="login-form" id="login_modal" role="dialog" >
 
 
-  <center><h3 style="color:black;border-radius:5px"><b>Please Login</b></h3></center>
+  <center><h3 style="color:black;border-radius:5px"><b>Send Reset Password</b></h3></center>
   
   
 
   <form class="form-horizontal" method="post">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="user">Email:</label>
+  <div class="form-group">
       <div class="col-md-10">
       <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-        <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off">
+        <?php
+        include 'db.php';
+        $token = $_GET['token'];
+
+        $token_query = "SELECT * FROM user WHERE TOKEN = ? AND TOKEN_USED = 0";
+        $stmt = mysqli_prepare($conn, $token_query);
+        mysqli_stmt_bind_param($stmt, 's', $token);
+        mysqli_stmt_execute($stmt);
+        $token_result = mysqli_stmt_get_result($stmt);
+
+        if($token_result) {
+            if(mysqli_num_rows($token_result) > 0) {
+                $user = mysqli_fetch_assoc($token_result);
+        ?>
+        <input type="hidden" class="form-control" name="email" value="<?php echo $user['USER'] ?>" autocomplete="off">
+        <?php
+            }
+        }
+        ?>
       </div>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password:</label>
+      <label class="control-label col-sm-2" for="new_password">New Password:</label>
       <div class="col-md-10">
       <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
-          
-        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password">
+      <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+        <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Enter New Password" autocomplete="off">
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="con_password">Confirm Password:</label>
+      <div class="col-md-10">
+      <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+        <input type="password" class="form-control" id="con_password" name="con_password" placeholder="Enter Confirm Password" autocomplete="off">
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-10">
+      <div class="input-group" style="font-weight:bold;">
+      <input type="checkbox" style="margin-left:80px;margin-top:-20px;" id="togglePassword">&nbspShow Password
       </div>
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-md-offset-4 col-md-12">
-        <a href="reset-password.php" class="text-decoration-none">Forgot password?</a>
+      <div class="col-md-offset-6 col-md-12">
       <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New</button>-->
-        <button type="hidden"  class="btn btn-default">Login</button>
-        <button type="hidden"  class="btn btn-primary">Student View</button>
-       
+        <button type="hidden" name="change" class="btn btn-default">Change</button>
+        <a href="login.php" class="btn btn-primary">Back to Login</a>       
       </div>
     </div>
   </form>
    <?php
-  include 'connect.php';
+  include 'reset-submit.php';
   ?>
    </div>          
 </div>
@@ -106,4 +135,15 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
   
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+    const newPasswordInput = document.getElementById('new_password');
+    const conPasswordInput = document.getElementById('con_password');
+
+    togglePassword.addEventListener('change', () => {
+        const type = togglePassword.checked ? 'text' : 'password';
+        newPasswordInput.setAttribute('type', type);
+        conPasswordInput.setAttribute('type', type);
+    });
+    </script>
 </html>
