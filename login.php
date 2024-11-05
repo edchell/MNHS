@@ -84,12 +84,10 @@
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-md-offset-4 col-md-12">
-        <a href="reset-password.php" class="text-decoration-none">Forgot password?</a>
+      <div class="col-md-offset-6 col-md-12">
       <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New</button>-->
-        <button type="hidden"  class="btn btn-default">Login</button>
-        <button type="hidden"  class="btn btn-primary">Student View</button>
-       
+        <button type="hidden"  class="btn btn-default">Login</button>       
+        <a href="reset-password.php" class="text-decoration-none btn btn-primary">Forgot password?</a>
       </div>
     </div>
   </form>

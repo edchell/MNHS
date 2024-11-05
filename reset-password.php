@@ -74,10 +74,10 @@
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-md-offset-7 col-md-12">
+      <div class="col-md-offset-6 col-md-12">
       <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New</button>-->
         <button type="hidden" name="submit" class="btn btn-default">Submit</button>
-        <a href="login.php" class="btn btn-primary">Back</a>
+        <a href="login.php" class="btn btn-primary">Back to login</a>
        
       </div>
     </div>
