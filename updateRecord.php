@@ -1,59 +1,44 @@
+<?php
+if ($_POST['id'] && $_POST['request']) {
+    include 'db.php';
 
- <?php
- if($_POST['id'] && $_POST['request'])
- {
-  ?>
+    $req = mysqli_real_escape_string($conn, $_POST['request']);
+    $id = mysqli_real_escape_string($conn, $_POST['id']);
 
-   
-    <div class="col-md-12">
+    $sql = mysqli_query($conn, "SELECT * FROM student_year_info 
+        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
+        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
+        WHERE STUDENT_ID = '$id' AND YEAR = '$req'");
 
-    <?php
-include 'db.php';
-$req = $_POST['request'];
-$id = $_POST['id'];
+    $NUM = mysqli_num_rows($sql);
+    if ($NUM > 0) {
+        while ($row = mysqli_fetch_assoc($sql)) {
+            $syi = $row['SYI_ID'];
 
-$sql = mysqli_query($conn, "SELECT * FROM student_year_info 
-    LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
-    LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
-    WHERE STUDENT_ID = '$id' AND YEAR = '$req'");
-
-$NUM = mysqli_num_rows($sql);
-if ($NUM > 0) {
-    while ($row = mysqli_fetch_assoc($sql)) {
-      $syi= $row['SYI_ID'];
-
-    ?>
-    <?php
-    include 'addrow_grades.php';
-    ?>
+            include 'addrow_grades.php';
+?>
     <form method="POST" action="uprec.php">
     <input type="hidden" name="syi" value="<?php echo $row["SYI_ID"] ?>" >
     <input type="hidden" name="id" value="<?php echo $row1['STUDENT_ID'] ?>" >
       <label style="font-size:6" for="">School</label>
-        <input type="text" name="school" style="width:450px;text-align:center" value="<?php echo $row["SCHOOL"] ?>" >
+        <input type="text" name="school" style="width:450px;text-align:center" value="<?php echo $row["SCHOOL"] ?>" readonly>
 
       <label style="font-size:6" for="">Grade</label>
-        <select type="text" name="yr" style="width:100px;text-align:center;border:0px solid white;border-bottom:1px solid black" > 
-        <option value="<?php echo $row["grade_id"] ?>"><?php echo $row["grade"] ?></option>
-        </select>     
+      <input type="text" name="yr" value="<?php echo $row["grade"] ?>" style="width:100px;text-align:center;border:0px solid white;border-bottom:1px solid black" readonly>    
 
       <label style="font-size:6" for="">Section</label>
-        <input type="text" name="sec" style="width:100px;text-align:center" value="<?php echo $row["SECTION"] ?>" >  
+        <input type="text" name="sec" style="width:100px;text-align:center" value="<?php echo $row["SECTION"] ?>" readonly>  
         <br>
 
       <label style="font-size:6" for="">Total number of years in school to date</label>
-        <input type="text" name="tny" style="width:290px;text-align:center" value="<?php echo $row["TOTAL_NO_OF_YEAR"] ?>" >
+        <input type="text" name="tny" style="width:290px;text-align:center" value="<?php echo $row["TOTAL_NO_OF_YEAR"] ?>" readonly>
 
       <label style="font-size:6" for="">School Year</label>
-        <input type="text" name="sy" style="width:150px;text-align:center" value="<?php echo $row["SCHOOL_YEAR"] ?>" >
+        <input type="text" name="sy" style="width:150px;text-align:center" value="<?php echo $row["SCHOOL_YEAR"] ?>" readonly>
 <br>
         <label style="font-size:6" for="">Adviser:</label>
         <input type="text" name="adviser" style="width:220px;text-align:center" 
         value="<?php echo $row['ADVISER'] ?>" >
-
-        <label style="font-size:6" for="">General Average:</label>
-    <input type="text" name="gen_ave" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>">
-
 
     
         <br><br><br>
@@ -78,11 +63,6 @@ if ($NUM > 0) {
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
           <br>
             <label for="" style="font-size:6">Final</label>
-            <br>
-          </div>
-          <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
-          <br>
-            <label for="" style="font-size:6">Units</label>
             <br>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
@@ -138,9 +118,6 @@ if ($NUM > 0) {
         </div>    
         <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">
         <input type="text" style="border-bottom:0px" name="final[]" value="<?php echo $row2['FINAL_GRADES'] ?>" id="fin<?php echo $row2['TGS_ID'] ?>" readonly>
-        </div>
-        <div class="col-xs-1 text-center" style="border:1px solid black;height:25px">
-       <input style="border-bottom:0px" type="text" name="units[]" value="<?php echo $row2['UNITS'] ?>">
         </div>
         <div class="col-xs-1 text-center" style="border:1px solid black;height:25px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">
       <input style="border-bottom:0px" type="text" name="action[]" value="<?php echo $row2['PASSED_FAILED'] ?>" id="action<?php echo $row2['TGS_ID'] ?>">
@@ -246,12 +223,12 @@ if ($NUM > 0) {
 
   }  
 }
-}
 else{
   echo "<br><br><br>";
   echo "<h3>This student does not have record in selected grade.</h3>";
 }
 mysqli_close($conn);
+ }
      ?> 
      <script>
       $(document).ready(function() {
@@ -350,17 +327,5 @@ function calculateAVE() {
  
   $("input#tp").val(sum.toFixed(0));
 }
-function acts($i){
-  var i = $i;
- $("input#action"+i).each(function() {
-        //add only if the value is number
-        if (!isNaN(this.value) && this.value == 'FAILED') {
-             $("input#stats").val('Retained');
-        }
-        else{
-           $("input#stats").val('Promoted');
-        }
-    });
-  
- }
+
     </script>

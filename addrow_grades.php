@@ -54,9 +54,6 @@ include('auth.php');
         <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">
         <input type="text" style="border-bottom:0px" name="fin[]" id="fina<?php echo $i ?>"  >
         </div>
-        <div class="col-xs-1 text-center" style="border:1px solid black;height:25px">
-       <input style="border-bottom:0px" type="text" name="unit[]"  >
-        </div>
         <div class="col-xs-1 text-center" style="border:1px solid black;height:25px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">
       <input style="border-bottom:0px" type="text" name="act[]" id="act<?php echo $i ?>" >
           
@@ -104,9 +101,6 @@ include('auth.php');
        ' <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">'+
         '<input type="text" style="border-bottom:0px" name="fin[]" id="fina'+i +'"  >'+
         '</div>'+
-        '<div class="col-xs-1 text-center" style="border:1px solid black;height:25px">'+
-       '<input style="border-bottom:0px" type="text" name="unit[]"  >'+
-       ' </div>'+
         '<div class="col-xs-1 text-center" style="border:1px solid black;height:25px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">'+
      ' <input style="border-bottom:0px" type="text" name="act[]" id="act'+i +'" >'+
           

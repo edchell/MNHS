@@ -17,30 +17,31 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-$(document).ready(function() {
-    $('#fetch').on('change', function() {
+$(document).ready(function()
+{
+
+    $('#fetch').on('change',function()
+    {
         var value = $(this).val();
         var id = getParameterByName('id');
-        var val = { id: id, request: value };
-
-        $.ajax({
-            type: 'POST',
-            url: 'updateRecord.php', // Removed the student ID from URL
-            data: val,
-            beforeSend: function() {
-                $("#fetch-feild").html('Working on Please wait ..');
+        var val = 'id='+ encodeURIComponent(id) + '&request='+ encodeURIComponent(value);
+        
+        
+            $.ajax({
+                type:'POST',
+                url:'updateRecord.php',
+                data:val, 
+                beforeSend:function()
+            {
+              $("#fetch-feild").html('Working on Please wait ..');
             },
-            success: function(data) {
-                $("#fetch-feild").html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX Error: " + status + " " + error);
-                $("#fetch-feild").html("Error occurred. Please try again.");
-            }
-        });
+              success:function(data)
+            {
+              $("#fetch-feild").html(data);
+            },        
+            }); 
     });
 });
-
 </script>
 
 <style>
@@ -138,8 +139,6 @@ while($row1 = mysqli_fetch_assoc($sql1)) {
 <label style="font-size:6" for="">Adviser:</label>
     <input type="text" style="width:220px;text-align:center" 
     value="<?php echo $row['ADVISER'] ?>">
- <label style="font-size:6" for="">General Average:</label>
-    <input type="text" style="width:175px;text-align:center" value="<?php echo $row['GEN_AVE'] ?>" disabled>
     <br>
     <br>
     <div class="col-xs-9" style="width:690px;margin-left:150px;">

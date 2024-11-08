@@ -15,7 +15,6 @@ $una = $_POST['1st'];
 $ikaduwa = $_POST['2nd'];
 $ikatlo = $_POST['3rd'];
 $ikaapat = $_POST['4th'];
-$u = $_POST['units'];
 $f = $_POST['final'];
 $a = $_POST['action'];
 $month = $_POST['month'];
@@ -42,8 +41,8 @@ if ($num_row >= 1) {
 } else {
     // Insert new record
     $sql = mysqli_query($conn, "INSERT INTO student_year_info
-        (STUDENT_ID, SCHOOL, YEAR, SECTION, TOTAL_NO_OF_YEAR, SCHOOL_YEAR, ADVISER, TDAYS_OF_CLASSES, TDAYS_PRESENT, ACTION)
-        VALUES('$id','$school', '$yr', '$sec', '$tny', '$sy', '$adv', '$Tdc', '$Tp', 'Promoted')");
+        (STUDENT_ID, SCHOOL, YEAR, SECTION, TOTAL_NO_OF_YEAR, SCHOOL_YEAR, ADVISER, TDAYS_OF_CLASSES, TDAYS_PRESENT)
+        VALUES('$id','$school', '$yr', '$sec', '$tny', '$sy', '$adv', '$Tdc', '$Tp')");
 
     $last_id = mysqli_insert_id($conn);
     $sc = count($subject);
@@ -52,8 +51,8 @@ if ($num_row >= 1) {
 
     for ($w = 0; $w < $sc; $w++) {
         if ($subject[$w] != '') {
-            mysqli_query($conn, "INSERT INTO total_grades_subjects (STUDENT_ID, SYI_ID, SUBJECT, 1ST_GRADING, 2ND_GRADING, 3RD_GRADING, 4TH_GRADING, UNITS, FINAL_GRADES, PASSED_FAILED)
-            VALUES('$id', '$last_id', '$subject[$w]', '$una[$w]', '$ikaduwa[$w]', '$ikatlo[$w]', '$ikaapat[$w]', '$u[$w]', '$f[$w]', '$a[$w]')");
+            mysqli_query($conn, "INSERT INTO total_grades_subjects (STUDENT_ID, SYI_ID, SUBJECT, 1ST_GRADING, 2ND_GRADING, 3RD_GRADING, 4TH_GRADING, FINAL_GRADES, PASSED_FAILED)
+            VALUES('$id', '$last_id', '$subject[$w]', '$una[$w]', '$ikaduwa[$w]', '$ikatlo[$w]', '$ikaapat[$w]', '$f[$w]', '$a[$w]')");
         }
     }
 

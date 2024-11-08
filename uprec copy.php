@@ -2,23 +2,27 @@
 
 include 'db.php';
 
-$syi_id = $_POST['syi'];
 $id = $_POST['id'];
+$school = $_POST['school'];
+$yr = $_POST['yr'];
+$sec = $_POST['sec'];
+$tny = $_POST['tny'];
+$sy = $_POST['sy'];
 $adv= $_POST['adviser'];
-$tg_id = $_POST['tg_id'];
 $subject = $_POST['subj'];
 $una = $_POST['1st'];
 $ikaduwa = $_POST['2nd'];
 $ikatlo = $_POST['3rd'];
 $ikaapat = $_POST['4th'];
 $f = $_POST['final'];
-$action = $_POST['action'];
-$att_id = $_POST['att_id'];
 $dc = $_POST['dc'];
-$Tdc = $_POST['Tdc'];
-$att_d = $_POST['att_d'];
 $pp = $_POST['pp'];
+$Tdc = $_POST['Tdc'];
 $Tp = $_POST['Tp'];
+$att_id = $_POST['att_id'];
+$att_d = $_POST['att_d'];
+$syi_id = $_POST['syi'];
+$tg_id = $_POST['tg_id'];
 $user= $_SESSION["ID"];
 
 if(isset($_POST['sub']	)){
@@ -28,7 +32,7 @@ $two = $_POST['duwa'];
 $three = $_POST['tatlo'];
 $four = $_POST['apat'];
 $fin = $_POST['fin'];
-$act = $_POST['action'];
+$act = $_POST['act'];
 
 $subc= count($sub);
 		
@@ -45,7 +49,7 @@ $subc= count($sub);
 
 
 			$query = mysqli_query($conn,"SELECT * FROM student_info Where STUDENT_ID = '$id' ");
-			$row = mysqli_fetch_assoc($query);
+			$row = mysqli_fetch_assoc['$query'];
 			$student = $row['FIRSTNAME'] . ' ' . $row['LASTNAME'];
 			mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('updated $student academic record','$user',NOW() )");
@@ -58,7 +62,7 @@ $subc= count($sub);
 
 			for($w=0;$w < $sc;$w++){
 				
-				mysqli_query($conn,"UPDATE total_grades_subjects set  SUBJECT='$subject[$w]', 1ST_GRADING ='$una[$w]', 2ND_GRADING='$ikaduwa[$w]', 3RD_GRADING ='$ikatlo[$w]', 4TH_GRADING='$ikaapat[$w]', FINAL_GRADES='$f[$w]', PASSED_FAILED ='$action[$w]' where TGS_ID = '$tg_id[$w]' ");
+				mysqli_query($conn,"UPDATE total_grades_subjects set  SUBJECT='$subject[$w]', 1ST_GRADING ='$una[$w]', 2ND_GRADING='$ikaduwa[$w]', 3RD_GRADING ='$ikatlo[$w]', 4TH_GRADING='$ikaapat[$w]', FINAL_GRADES='$f[$w]', PASSED_FAILED ='$a[$w]' where TGS_ID = '$tg_id[$w]' ");
 			}
 			
 		
@@ -86,7 +90,7 @@ $subc= count($sub);
 		$ga = $fgen['fin_gra'] / $fgen['gra_count'];
 
 
-		$sql= mysqli_query($conn,"UPDATE student_year_info set ADVISER='$adv',TDAYS_OF_CLASSES='$Tdc',TDAYS_PRESENT='$Tp' where SYI_ID='$syi_id' ");
+		$sql= mysqli_query($conn,"UPDATE student_year_info set SCHOOL='$school', SECTION ='$sec', TOTAL_NO_OF_YEAR ='$tny',SCHOOL_YEAR ='$sy', ADVISER='$adv',GEN_AVE= '$ga',TDAYS_OF_CLASSES='$Tdc',TDAYS_PRESENT='$Tp' where SYI_ID='$syi_id' ");
 
 
 		header("location:".$_SERVER['HTTP_REFERER']); 
