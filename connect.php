@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pwd = $_POST['pwd']; // Get the plain text password
 
     // Prepare the SQL statement to prevent SQL injection
-    $qry = "SELECT * FROM user WHERE USER = ?";
+    $qry = "SELECT * FROM user WHERE USER = ? AND STATUS = ''";
     $stmt = mysqli_prepare($conn, $qry);
     mysqli_stmt_bind_param($stmt, 's', $user);
     mysqli_stmt_execute($stmt);

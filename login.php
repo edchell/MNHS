@@ -46,7 +46,7 @@
  .erlert{
   display:block;
   border-radius:5px;
-  background-color:rgba(230, 103, 42, 0.37);
+  background-color:rgba(230, 42, 42, 1);
   padding: 5px;
 }
     </style>
