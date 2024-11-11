@@ -25,12 +25,14 @@ $Tp = $_POST['Tp'];
 $user = $_SESSION['ID'];
 
 // Query to check for existing records
-$search_qry = mysqli_query($conn, "SELECT * FROM student_year_info 
+$search_qry = mysqli_query($conn, "SELECT student_info.FIRSTNAME, student_info.LASTNAME, student_year_info.* FROM student_year_info 
 LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID 
 WHERE student_year_info.STUDENT_ID = '$id' AND YEAR ='$yr'");
 
 $row = mysqli_fetch_assoc($search_qry);
-$student = $row['FIRSTNAME'] . ' ' . $row['LASTNAME'];
+$student_firstname = $row['FIRSTNAME'];
+$student_lastname = $row['LASTNAME'];
+$student = $student_firstname . ' ' . $student_lastname;
 $num_row = mysqli_num_rows($search_qry);
 
 if ($num_row >= 1) {
@@ -39,16 +41,15 @@ if ($num_row >= 1) {
     location.replace(document.referrer);
     </script>";
 } else {
-    // Insert new record
+    // Insert new student record
     $sql = mysqli_query($conn, "INSERT INTO student_year_info
         (STUDENT_ID, SCHOOL, YEAR, SECTION, TOTAL_NO_OF_YEAR, SCHOOL_YEAR, ADVISER, TDAYS_OF_CLASSES, TDAYS_PRESENT)
         VALUES('$id','$school', '$yr', '$sec', '$tny', '$sy', '$adv', '$Tdc', '$Tp')");
 
-    $last_id = mysqli_insert_id($conn);
+    $last_id = mysqli_insert_id($conn); // Get the ID of the new record
     $sc = count($subject);
-    mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) 
-    VALUES ('added record of $student', '$user', NOW())");
-
+    
+    // Insert subject grades for the student
     for ($w = 0; $w < $sc; $w++) {
         if ($subject[$w] != '') {
             mysqli_query($conn, "INSERT INTO total_grades_subjects (STUDENT_ID, SYI_ID, SUBJECT, 1ST_GRADING, 2ND_GRADING, 3RD_GRADING, 4TH_GRADING, FINAL_GRADES, PASSED_FAILED)
@@ -69,7 +70,18 @@ if ($num_row >= 1) {
         $ga = $row['fin_grade'] / $row['tg_count'];
         mysqli_query($conn, "UPDATE student_year_info SET GEN_AVE = '$ga' WHERE SYI_ID = '".$row['SYI_ID']."'");
     }
-    
+
+    // Insert notification after the new student record is added
+    $users_query = mysqli_query($conn, "SELECT USER_ID FROM user WHERE USER_ID != '$user' AND STATUS = ''");
+while ($user = mysqli_fetch_assoc($users_query)) {
+    $user_id = $user['USER_ID'];
+
+    // Insert a notification for each user except the one who added the record
+    mysqli_query($conn, "INSERT INTO notifications (user_id, student_id, status) 
+        VALUES ('$user_id', '$id', 'New')");
+}
+
+    // Redirect to the record page
     header('location:rms.php?page=record&id=' . $id);
 }
 

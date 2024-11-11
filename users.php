@@ -91,6 +91,14 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="phone" class="cols-sm-2 control-label">Phone No.</label>
+                        <div class="cols-sm-4">
+                            <div class="input-group">
+                                <input type="text" maxlength="11" class="form-control" style="text-transform: capitalize;" id="phone" name="phone" placeholder="Enter Phone No." required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="user" class="cols-sm-2 control-label">Email</label>
                         <div class="cols-sm-4">
                             <div class="input-group">

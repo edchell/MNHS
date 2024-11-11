@@ -28,6 +28,14 @@ include('auth.php');
       </div>
     </div>
     <br>
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="phone">Phone No.:</label>
+      <div class="col-sm-3">          
+        <input type="text" maxlength="11" class="form-control" id="phone" name="phone" value="<?php echo $row['PHONE'] ?>" >
+      </div>
+    </div>
+    <br>
+    <br>
 
     <div class="form-group">
       <label class="control-label col-sm-1" for="user">User:</label>

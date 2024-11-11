@@ -49,7 +49,42 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+               <!-- Notifications Dropdown -->
+        <li class="dropdown notifications">
+            <?php
+            include 'db.php';
+                // Count the number of new notifications
+                $notifications_query = mysqli_query($conn, "SELECT COUNT(*) as new_count FROM notifications WHERE user_id = '".$_SESSION['ID']."' AND status = 'New'");
+                $notification_row = mysqli_fetch_assoc($notifications_query);
+                $new_notifications_count = $notification_row['new_count'];
+            ?>
+
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell"></i> 
+                <?php if($new_notifications_count > 0): ?>
+                    <span class="badge" style="background-color:red;"><?php echo $new_notifications_count; ?></span>
+                <?php endif; ?>
+            </a>
+
+            <ul class="dropdown-menu" style="width:300px;">
+            <h6 style="text-align:center;padding-bottom:5px;border-bottom:2px solid black;">You have new notifications</h6> <!-- Header for notifications -->
+                <?php
+                    // Get the list of notifications
+                    $notifications = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id = '".$_SESSION['ID']."' AND status = 'New' ORDER BY created_at DESC LIMIT 5");
+                    while ($notification = mysqli_fetch_assoc($notifications)) {
+                      $id = $notification['student_id'];
+                      $notification_id = $notification['notification_id'];
+                      $query = mysqli_query($conn, "SELECT * FROM student_info WHERE STUDENT_ID = '$id'");
+                      $row = mysqli_fetch_assoc($query);
+                      $student = $row['FIRSTNAME']. ' ' .$row['LASTNAME'];
+                      echo '<li style="font-size:14px;border-bottom:1px solid gray;">';
+                      echo '<a href="rms.php?page=record&id='.$id.'" class="mark-as-read" data-notification-id="'.$notification_id.'">New student record added for <b>'. $student .'</b></a>';
+                      echo '</li>';
+                    }
+                ?>
+            </ul>
+        </li>
+              <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
                 <?php echo $_SESSION['fname']?>
                     <b class="caret"></b></a>
@@ -64,7 +99,7 @@
                             <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
-                </li>
+              </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -289,13 +324,42 @@ function showSlides() {
     dots[slideIndex-1].className += " active";
     setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
+
 </script>
 
 
     <script src="assets/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+  // Wait for the document to be ready
+  $(document).ready(function() {
+        // Add a click event handler for all links with the class 'mark-as-read'
+        $('.mark-as-read').on('click', function(e) {
+            e.preventDefault();  // Prevent the default link behavior
+
+            var notificationId = $(this).data('notification-id');  // Get the notification ID from the data attribute
+
+            // Send an AJAX request to mark the notification as read
+            $.ajax({
+                url: 'mark_as_read.php',  // The PHP script that handles the update
+                type: 'POST',
+                data: { notification_id: notificationId },
+                success: function(response) {
+                    // Optionally, handle success (e.g., show a message, change notification style, etc.)
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error: ' + error);
+                }
+            });
+
+            // Optionally, you can redirect to the page after marking the notification as read
+            window.location.href = $(this).attr('href');
+        });
+    });
+</script>
 
 </body>
 
