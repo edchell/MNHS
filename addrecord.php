@@ -23,7 +23,7 @@ include('auth.php');
         var data, i = $i +1;
         data = '<tr id="rowws" class="'+i+'">'+
            '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-             '<select name="subj[]" onchange="newrow('+i+')">'+
+             '<select name="subj[]" onchange="handleSubjectChange()">'+
              '<option></option>'+
              ' <?php
                            include 'db.php';
@@ -54,14 +54,41 @@ include('auth.php');
               '</tr>';
 
               $("#table-body").append(data);
-      }
-      function adds(){
 
+              // Re-enable disableSubject for each select
+              disableSubject(i);
       }
-      function remtrr($i){
-        var i = $i;
-       $("."+ i).remove();
-      }
+      // Function to disable selected subjects across all dropdowns
+function disableSubject() {
+    var allSelects = document.querySelectorAll('select[name="subj[]"]');
+    var selectedSubjects = [];
+
+    // Collect selected subjects from all dropdowns
+    allSelects.forEach(select => {
+        if (select.value) {
+            selectedSubjects.push(select.value);
+        }
+    });
+
+    // Reset and disable options in all selects based on selected subjects
+    allSelects.forEach(select => {
+        var options = select.querySelectorAll('option');
+        options.forEach(option => {
+            option.disabled = selectedSubjects.includes(option.value) && option.value !== select.value;
+        });
+    });
+}
+
+// Function to handle subject change in any dropdown
+function handleSubjectChange() {
+    disableSubject(); // Re-apply disabled subjects across all dropdowns
+}
+
+// Function to remove a row and update disabled subjects
+function remtrr(i) {
+    $("." + i).remove();
+    disableSubject(); // Recalculate disabled subjects after removing a row
+}
     </script>
   
     <?php
@@ -241,7 +268,7 @@ include('auth.php');
           ?>
          <tr id="rowws" class="<?php echo $i ?>">
            <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <select name="subj[]" onchange="newrow(<?php echo $i ?>)">
+           <select name="subj[]" id="subj<?php echo $i ?>" onchange="handleSubjectChange(<?php echo $i ?>)">
              <option></option>
              <?php
               include 'db.php';
@@ -250,7 +277,7 @@ include('auth.php');
                 $id = $row['SUBJECT_ID'];
                 $subj = $row['SUBJECT'];
 ?>
-                <option value="<?php echo $id ?>"><?php echo $subj ?> </option>
+                <option value="<?php echo $id ?>" data-subject="<?php echo $subj ?>"><?php echo $subj ?> </option>
                 <?php
               }
               mysqli_close($conn);
@@ -467,6 +494,46 @@ function acts($i){
       $("#p"+i).css("background-color","white");
     }
   }
+
+  // Disable subjects that are already selected in other selects
+function disableSubject(currentIndex) {
+  var allSelects = document.querySelectorAll('select[name="subj[]"]');
+  var selectedSubjects = [];
+
+  // Get all selected subjects and store them
+  allSelects.forEach((select, index) => {
+    if (index !== currentIndex && select.value) {
+      selectedSubjects.push(select.value);
+    }
+  });
+
+  // Enable all options before disabling the new ones
+  allSelects.forEach((select, index) => {
+    var options = select.querySelectorAll('option');
+    options.forEach(option => {
+      option.disabled = false;
+    });
+  });
+
+  // Disable selected options in other selects
+  allSelects.forEach((select, index) => {
+    var options = select.querySelectorAll('option');
+    options.forEach(option => {
+      if (selectedSubjects.includes(option.value)) {
+        option.disabled = true;
+      }
+    });
+  });
+}
+
+// Handle both subject change and new row creation
+function handleSubjectChange(currentIndex) {
+  // Call disableSubject() to disable options
+  disableSubject(currentIndex);
+
+  // Call newrow() to handle any other logic you had for adding a new row
+  newrow(currentIndex);
+}
     </script>
  
  
