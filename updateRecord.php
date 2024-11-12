@@ -1,8 +1,8 @@
 <?php
-if ($_POST['id'] && $_POST['request']) {
+if ($_POST['id'] && $_POST['gradeId']) {
     include 'db.php';
 
-    $req = mysqli_real_escape_string($conn, $_POST['request']);
+    $req = mysqli_real_escape_string($conn, $_POST['gradeId']);
     $id = mysqli_real_escape_string($conn, $_POST['id']);
 
     $sql = mysqli_query($conn, "SELECT * FROM student_year_info 

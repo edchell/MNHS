@@ -4,6 +4,7 @@ include('auth.php');
 
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
 function getParameterByName(name, url) {
     if (!url) {
@@ -17,29 +18,31 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-$(document).ready(function()
-{
+$(document).ready(function() {
+    // When the grade dropdown changes
+    $('#fetch').on('change', function() {
+        var gradeId = $(this).val(); // Get selected grade ID
+        var studentId = getParameterByName('id'); // Get student ID from URL
+        var data = {
+            id: studentId,
+            gradeId: gradeId // Send the selected grade ID
+        };
 
-    $('#fetch').on('change',function()
-    {
-        var value = $(this).val();
-        var id = getParameterByName('id');
-        var val = 'id='+ encodeURIComponent(id) + '&request='+ encodeURIComponent(value);
-        
-        
-            $.ajax({
-                type:'POST',
-                url:'updateRecord.php',
-                data:val, 
-                beforeSend:function()
-            {
-              $("#fetch-feild").html('Working on Please wait ..');
+        $.ajax({
+            type: 'POST',
+            url: 'updateRecord.php',
+            data: data, 
+            beforeSend: function() {
+                $("#fetch-feild").html('Working on Please wait..');
             },
-              success:function(data)
-            {
-              $("#fetch-feild").html(data);
-            },        
-            }); 
+            success: function(response) {
+                // Update the content dynamically in the "fetch-feild" div
+                $("#fetch-feild").html(response);
+            },
+            error: function() {
+                $("#fetch-feild").html('Error fetching data.');
+            }
+        });
     });
 });
 </script>
