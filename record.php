@@ -82,7 +82,7 @@ while($row = mysqli_fetch_assoc($sql)) {
     <option > </option>
 <?php 
 include 'db.php';
-$query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
+$query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id desc");
 while($row=mysqli_fetch_assoc($query)){
 ?>
 <option value="<?php echo $row['grade_id'] ?>"><?php echo $row['grade'] ?> </option>
