@@ -29,6 +29,11 @@ include('auth.php');
     .card p {
         color: #555;
     }
+
+    #chart-container {
+        width: 50%;
+        margin: 30px auto;
+    }
 </style>
 
 <h1 class="page-header">
@@ -100,3 +105,69 @@ include('auth.php');
         <p style="color: black;">Total Subjects</p>
     </div>
 </div>
+
+<!-- Pie Chart Section -->
+<div id="chart-container">
+    <canvas id="gradeChart"></canvas>
+</div>
+
+<?php
+include 'db.php';
+
+// Fetch grade-level data
+$grade_levels = [];
+$student_count = [];
+
+// Loop through grade levels and fetch count
+for ($grade = 7; $grade <= 12; $grade++) {
+    $grade_key = "grade" . $grade; // Construct the database value (e.g., 'grade7', 'grade8')
+    $sql = mysqli_query($conn, "SELECT COUNT(*) as total_students FROM student_info WHERE PROGRAM = '$grade_key'");
+    $row = mysqli_fetch_assoc($sql);
+    $grade_levels[] = "Grade $grade"; // Label for chart
+    $student_count[] = $row['total_students']; // Student count for chart
+}
+
+mysqli_close($conn);
+?>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Data from PHP
+    const gradeLevels = <?php echo json_encode($grade_levels); ?>;
+    const studentCounts = <?php echo json_encode($student_count); ?>;
+
+    // Chart.js Pie Chart
+    const ctx = document.getElementById('gradeChart').getContext('2d');
+    const gradeChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: gradeLevels,
+            datasets: [{
+                data: studentCounts,
+                backgroundColor: [
+                    '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#9966ff'
+                ],
+                hoverBackgroundColor: [
+                    '#ff4d73', '#2d99e4', '#b24dfa', '#ffc94d', '#3aadad', '#8d5dfb'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            const index = tooltipItem.dataIndex;
+                            const count = studentCounts[index];
+                            return `${gradeLevels[index]}: ${count} students`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>

@@ -18,7 +18,22 @@ $school_year=$s['school_year'];
 <a id=demo1 href="javascript:void(0)" data-toggle="collapse" data-target="#masterlistCollapse"><i class="fa fa-fw fa-files-o"></i> Master List <i class="fa fa-fw fa-caret-down"></i></a>
 <ul id="masterlistCollapse" class="collapse">
     <li style="background-color: transparent;">
-        <a href="rms.php?page=Students"><i class="fa fa-fw fa-users"></i> Students List</a>
+        <a href="rms.php?page=grade7"><i class="fa fa-fw fa-minus"></i> Grade 7</a>
+    </li>
+    <li style="background-color: transparent;">
+        <a href="rms.php?page=grade8"><i class="fa fa-fw fa-minus"></i> Grade 8</a>
+    </li>
+    <li style="background-color: transparent;">
+        <a href="rms.php?page=grade9"><i class="fa fa-fw fa-minus"></i> Grade 9</a>
+    </li>
+    <li style="background-color: transparent;">
+        <a href="rms.php?page=grade10"><i class="fa fa-fw fa-minus"></i> Grade 10</a>
+    </li>
+    <li style="background-color: transparent;">
+        <a href="rms.php?page=grade11"><i class="fa fa-fw fa-minus"></i> Grade 11</a>
+    </li>
+    <li style="background-color: transparent;">
+        <a href="rms.php?page=grade12"><i class="fa fa-fw fa-minus"></i> Grade 12</a>
     </li>
     <li class="" style="background-color: transparent;">
         <a href="rms.php?page=subjects"><i class="fa fa-fw fa-book"></i> Subjects List</a>
