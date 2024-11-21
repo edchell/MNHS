@@ -198,7 +198,7 @@ success:function(data)
                         <a class="btn btn-info" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">
                             View Profile
                         </a>
-                        <button class="btn btn-danger deleteStudent" data-id="<?php echo $sid ?>">Delete</button>
+                        <!-- <button class="btn btn-danger deleteStudent" data-id="<?php echo $sid ?>">Delete</button> -->
                     </td>
                 </tr>
             <?php
