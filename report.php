@@ -42,10 +42,6 @@ include('auth.php');
               <a class="btn btn-info" onclick='window.open("form137.php?id=<?php echo $row["STUDENT_ID"]; ?>")'>
                   <i class="fa fa-fw fa-print"></i> Printable Report
               </a>
-              <a href="report_delete.php?id=<?php echo $row['STUDENT_ID']; ?>" class="btn btn-danger" 
-                onclick="return confirm('Are you sure you want to delete this record?');">
-                Delete
-              </a>
           </center>
         </td>
       </tr>
