@@ -198,6 +198,7 @@ success:function(data)
                         <a class="btn btn-info" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">
                             View Profile
                         </a>
+                        <button class="btn btn-danger deleteStudent" data-id="<?php echo $sid ?>">Delete</button>
                     </td>
                 </tr>
             <?php
@@ -247,6 +248,31 @@ success:function(data)
 </style>
 
 <script>
-        new DataTable('#example');
-    </script>
+    new DataTable('#example');
+
+    $(document).ready(function () {
+        // Handle delete button click
+        $(document).on('click', '.deleteStudent', function () {
+            const sid = $(this).data('id'); // Get student ID
+            if (confirm("Are you sure you want to delete this student?")) {
+                $.ajax({
+                    url: 'Students_delete.php', // PHP file for handling deletion
+                    type: 'POST',
+                    data: { id: sid },
+                    success: function (response) {
+                        if (response.trim() === "success") {
+                            alert("Student deleted successfully!");
+                            location.reload(); // Reload the page to update the table
+                        } else {
+                            alert("Error: Unable to delete student.");
+                        }
+                    },
+                    error: function () {
+                        alert("An error occurred while processing the request.");
+                    },
+                });
+            }
+        });
+    });
+</script>
 
