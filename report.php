@@ -6,7 +6,6 @@ include('auth.php');
           <h1 class="page-header">Search Student Records</h1>
 
           <div class="container">
-            <div class="col-sm-3">
         <div class="input-group">
     </div>
     </div>
@@ -17,7 +16,7 @@ include('auth.php');
           <h3 class="panel-title">Students List</h3>
         </div> 
         <div class="panel-body">  
-  <table id="students" class="table table-bordered">
+        <table id="example" class="display" style="width:100%">
     <thead>
       <tr id="heads">
         <th style="width:10%">LRN NO.</th>
@@ -61,10 +60,6 @@ include('auth.php');
 
 
      <script type="text/javascript">
-        $(function() {
-            $("#students").dataTable(
-        { "aaSorting": [[ 0, "asc" ]] }
-      );
-        });
+        new DataTable('#example');
     </script>
 

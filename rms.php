@@ -17,12 +17,15 @@
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="asset/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
     
     <script src="assets/js/jquery.min.js"></script>
     <script src="datatables/jquery.dataTables.js"></script>
     <script src="datatables/dataTables.bootstrap.js"></script>
     <script src="asset/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 
 </head>

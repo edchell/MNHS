@@ -168,42 +168,44 @@ success:function(data)
           <h3 class="panel-title">Students List</h3>
 
         </div> 
+      
         <div class="panel-body"> 
-  <table id="students" class="table table-bordered table-condensed">
-    <thead>
-      <tr id="heads">
-        <th style="width:10%;text-align:center">LRN NO.</th>
-        <th style="width:30%;text-align:center">Name</th>
-        <th style="width:20%;text-align:center">Gender</th>
-        <th style="width:20%;text-align:center">Address</th>
-        <th style="width:10%"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-    include 'db.php';
-    $sql=  mysqli_query($conn, "SELECT * FROM student_info order by LASTNAME ");
-    while($row = mysqli_fetch_assoc($sql)) {
-      $sid = $row['STUDENT_ID'];  
-    ?>
-      <tr>
-
-        <td style="text-align:center"><?php echo $row['LRN_NO'] ?></td>
-        <td style="text-align:center"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></td>
-        
-        <td style="text-align:center"><?php echo $row['GENDER'] ?></td>
-        <td style="text-align:center"><?php echo $row['ADDRESS'] ?></td>
-     
-      <td style="text-align:center"> 
-     <a  class="btn btn-info" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">View Profile</a>
-     </td>
-       </tr>
-
-      <?php
-    } mysqli_close($conn);
-      ?>
-    </tbody>
-  </table>
+        <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr id="heads">
+                <th style="width:10%;text-align:center">LRN NO.</th>
+                <th style="width:30%;text-align:center">Name</th>
+                <th style="width:20%;text-align:center">Gender</th>
+                <th style="width:20%;text-align:center">Address</th>
+                <th style="width:10%;text-align:center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            include 'db.php';
+            $sql = mysqli_query($conn, "SELECT * FROM student_info ORDER BY LASTNAME");
+            while ($row = mysqli_fetch_assoc($sql)) {
+                $sid = $row['STUDENT_ID'];
+            ?>
+                <tr>
+                    <td style="text-align:center"><?php echo $row['LRN_NO'] ?></td>
+                    <td style="text-align:center">
+                        <?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME'] . ' ' . $row['MIDDLENAME'] ?>
+                    </td>
+                    <td style="text-align:center"><?php echo $row['GENDER'] ?></td>
+                    <td style="text-align:center"><?php echo $row['ADDRESS'] ?></td>
+                    <td style="text-align:center">
+                        <a class="btn btn-info" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">
+                            View Profile
+                        </a>
+                    </td>
+                </tr>
+            <?php
+            }
+            mysqli_close($conn);
+            ?>
+        </tbody>
+    </table>
 </div>
 </div> 
 </div>
@@ -244,13 +246,7 @@ success:function(data)
 }
 </style>
 
-
-
-
-<script type="text/javascript">
-        $(function() {
-            $("#students").dataTable(
-        { "aaSorting": [[ 2, "asc" ]] }
-      );
-        });
+<script>
+        new DataTable('#example');
     </script>
+

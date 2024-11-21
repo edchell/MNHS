@@ -13,7 +13,7 @@ include 'newstudent.php';
             <h3 class="panel-title">Archived List</h3>
         </div> 
         <div class="panel-body"> 
-  <table id="archive" class="table table-bordered table-condensed">
+        <table id="example" class="display" style="width:100%">
     <thead>
       <tr id="heads">
         <th style="width:20%">Name</th>
@@ -50,11 +50,7 @@ include 'newstudent.php';
 </div>
 
 <script type="text/javascript">
-        $(function() {
-            $("#archive").dataTable(
-        { "aaSorting": [[ 0, "asc" ]] }
-      );
-        });
+        new DataTable('#example');
 
         $(document).on('click', '.restoreUser', function() {
         const userId = $(this).data('id');
