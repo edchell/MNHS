@@ -13,11 +13,11 @@
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end; /* Align the login form to the right */
+            align-items: center;
             background: url('images/bg.jpg') no-repeat center center fixed;
             background-size: cover;
         }
@@ -27,6 +27,7 @@
             border-radius: 20px;
             padding: 30px;
             width: 400px;
+            margin-right: 150px; /* Add space from the right edge */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         .error-message {
