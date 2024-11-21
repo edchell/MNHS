@@ -59,7 +59,7 @@ include('auth.php');
     </div>
 
 
-     <script type="text/javascript">
+     <script>
         new DataTable('#example');
     </script>
 
