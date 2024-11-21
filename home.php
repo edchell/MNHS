@@ -145,10 +145,20 @@ mysqli_close($conn);
             datasets: [{
                 data: studentCounts,
                 backgroundColor: [
-                    '#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0', '#9966ff'
+                    '#28a745', // Grade 7 - Simple Green
+                    '#ffc107', // Grade 8 - Simple Yellow
+                    '#dc3545', // Grade 9 - Simple Red
+                    '#007bff', // Grade 10 - Simple Blue
+                    '#800000', // Grade 11 - Simple Maroon
+                    '#87ceeb'  // Grade 12 - Sky Blue
                 ],
                 hoverBackgroundColor: [
-                    '#ff4d73', '#2d99e4', '#b24dfa', '#ffc94d', '#3aadad', '#8d5dfb'
+                    '#218838', // Grade 7 Hover - Slightly Darker Green
+                    '#e0a800', // Grade 8 Hover - Slightly Darker Yellow
+                    '#c82333', // Grade 9 Hover - Slightly Darker Red
+                    '#0056b3', // Grade 10 Hover - Slightly Darker Blue
+                    '#6a0000', // Grade 11 Hover - Darker Maroon
+                    '#6fb6d6'  // Grade 12 Hover - Slightly Darker Sky Blue
                 ]
             }]
         },
@@ -171,3 +181,4 @@ mysqli_close($conn);
         }
     });
 </script>
+
