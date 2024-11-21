@@ -1,3 +1,13 @@
+<?php
+$request = $_SERVER['REQUEST_URI'];
+
+if (strpos($request, '.php') !== false) {
+    // Redirect to remove .php extension
+    $new_url = str_replace('.php', '', $request);
+    header("Location: $new_url", true, 301);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -118,7 +128,7 @@
       <div class="col-md-offset-6 col-md-12">
       <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New</button>-->
         <button type="hidden" name="change" class="btn btn-default">Change</button>
-        <a href="login.php" class="btn btn-primary">Back to Login</a>       
+        <a href="." class="btn btn-primary">Back to Login</a>       
       </div>
     </div>
   </form>

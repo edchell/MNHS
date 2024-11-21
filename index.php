@@ -1,84 +1,131 @@
 <?php
-include('auth.php');
+$request = $_SERVER['REQUEST_URI'];
+
+if (strpos($request, '.php') !== false) {
+    // Redirect to remove .php extension
+    $new_url = str_replace('.php', '', $request);
+    header("Location: $new_url", true, 301);
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
+    <meta name="description" content="Student Grading System Login Page">
+    <meta name="author" content="Your Name">
+    <link rel="icon" href="images/logo.jpg">
     <title>Student Grading System</title>
-
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="assets/css/sticky-footer-navbar.css" rel="stylesheet">
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-
-  </head>
-
-  <body>
-
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <h2>DOÑA MONSTERRAT LOPEZ MEMORIAL HIGH SCHOOL RECORD MANAGEMEN SYSTEM</h2>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-
-        <div class="col-md-2">
-          <ul class="nav navbar-nav navbar-right">
-          
-            <li class="active"><a href="#">Home</a></li>
-            <li class="dropdown">
-              <a href="#" class="nav navbar dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master List <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="students.php">Students</a></li>
-                <li><a href="#">Subjects</a></li>
-              </ul>
-            </li>
-            <li><a href="logout.php">Logout</a></li>
-          </ul>
-        </div>
-          
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <!-- Begin page content -->
-    <div class="container">
-      <div class="page-header">
-        <h1>Sticky footer with fixed navbar</h1>
-      </div>
-      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
-      <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="asset/css/style.css" rel="stylesheet">
+    <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end; /* Align the login form to the right */
+            align-items: center;
+            background: url('images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid grey;
+            border-radius: 20px;
+            padding: 30px;
+            width: 400px;
+            margin-right: 150px; /* Add space from the right edge */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .error-message {
+            display: none;
+            border-radius: 5px;
+            background-color: #e62a2a;
+            padding: 10px;
+            color: white;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form" id="login_modal" role="dialog">
+        <center><h3><b>Please Login</b></h3></center>
+        <div class="error-message" id="error-message">Location access is required to use this form.</div>
+        <form class="form-horizontal" method="post" action="connect.php">
+            <div class="form-group">
+                <label for="user">Email:</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="login" class="btn btn-primary btn-block" disabled>Login</button>
+            </div>
+            <div class="form-group text-center">
+                <a href="reset-password.php" class="btn btn-link">Forgot password?</a>
+            </div>
+        </form>
     </div>
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-      </div>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formInputs = document.querySelectorAll('#user, #pwd');
+            const loginButton = document.querySelector('#login');
+            const errorMessage = document.querySelector('#error-message');
+            let watchId;
 
+            function enableForm() {
+                formInputs.forEach(input => input.disabled = false);
+                loginButton.disabled = false;
+                errorMessage.style.display = 'none';
+            }
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+            function disableForm(message) {
+                formInputs.forEach(input => input.disabled = true);
+                loginButton.disabled = true;
+                errorMessage.textContent = message || "Location access is required to use this form.";
+                errorMessage.style.display = 'block';
+            }
+
+            if (navigator.geolocation) {
+                watchId = navigator.geolocation.watchPosition(
+                    position => {
+                        console.log('Location access granted');
+                        enableForm();
+                    },
+                    error => {
+                        console.error('Location error:', error.message);
+                        if (error.code === error.PERMISSION_DENIED) {
+                            disableForm("Please allow location access to enable login.");
+                        } else {
+                            disableForm("Unable to retrieve location. Please try again.");
+                        }
+                    },
+                    { enableHighAccuracy: true }
+                );
+            } else {
+                disableForm("Geolocation is not supported by this browser.");
+            }
+
+            // Clean up the geolocation watch when the user navigates away
+            window.addEventListener('beforeunload', () => {
+                if (watchId) {
+                    navigator.geolocation.clearWatch(watchId);
+                }
+            });
+        });
+    </script>
+</body>
 </html>

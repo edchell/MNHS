@@ -100,7 +100,7 @@ include 'db.php';
                 if($update_password_run) {
                     echo "<script>
                     alert('Password Successfully Changed.');
-                    window.location.href = 'login.php';
+                    window.location.href = '.';
                     </script>";
                 } else {
                     echo "<script>
