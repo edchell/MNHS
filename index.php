@@ -7,6 +7,21 @@ if (strpos($request, '.php') !== false) {
     header("Location: $new_url", true, 301);
     exit();
 }
+
+// Error handling
+$error_message = '';
+if (isset($_GET['error'])) {
+    switch ($_GET['error']) {
+        case 'captcha_failed':
+            $error_message = 'Captcha verification failed. Please try again.';
+            break;
+        case 'invalid_credentials':
+            $error_message = 'Invalid email or password. Please try again.';
+            break;
+        default:
+            $error_message = 'An unknown error occurred. Please try again.';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +36,8 @@ if (strpos($request, '.php') !== false) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="asset/css/style.css" rel="stylesheet">
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             margin: 0;
@@ -68,7 +85,13 @@ if (strpos($request, '.php') !== false) {
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
                     <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" disabled>
+                    <span class="input-group-addon" id="toggle-password" style="cursor: pointer;">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </span>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
             </div>
             <div class="form-group">
                 <button type="submit" id="login" class="btn btn-primary btn-block" disabled>Login</button>
@@ -127,5 +150,33 @@ if (strpos($request, '.php') !== false) {
             });
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        <?php if (!empty($error_message)): ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '<?php echo $error_message; ?>',
+                confirmButtonText: 'Retry'
+            });
+        <?php endif; ?>
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const togglePassword = document.querySelector('#toggle-password');
+        const passwordField = document.querySelector('#pwd');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+
+            // Toggle eye icon
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
 </body>
 </html>

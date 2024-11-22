@@ -10,13 +10,12 @@ if (strpos($request, '.php') !== false) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Student Grading System">
+    <meta name="author" content="Your Name">
     <link rel="icon" href="images/logo.jpg">
 
     <title>Student Grading System</title>
@@ -25,84 +24,62 @@ if (strpos($request, '.php') !== false) {
     <link href="asset/css/style.css" rel="stylesheet">
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="assets/css/sticky-footer-navbar.css" rel="stylesheet">
-        <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.js"></script>
     <style>
-      body{
-        display: flex;
-        height: calc(100%);
-        width: calc(100%);
-        justify-content: center;
-        align-items: center;
-        background:url('images/bg.jpg');
-        background-repeat: no-repeat;
-        background-size: 1400px 800px;
-      }
-      .login-form {
-  display: block;
-  position: fixed;
-  border:5px solid grey;
-  border-radius: 20px;
-  padding: 30px;
-  width: 500px;
-  background-color: transparent;
-  left:450px;
-  top:100px;
-  color: black;
- } 
- .erlert{
-  display:block;
-  border-radius:5px;
-  background-color:rgba(230, 103, 42, 0.37);
-  padding: 5px;
-}
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: url('images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid grey;
+            border-radius: 20px;
+            padding: 30px;
+            width: 400px;
+            margin-right: 150px; /* Add space from the right edge */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .error-message {
+            display: none;
+            border-radius: 5px;
+            background-color: #e62a2a;
+            padding: 10px;
+            color: white;
+            margin-bottom: 10px;
+            text-align: center;
+        }
     </style>
-  </head>
+</head>
 <body>
-  
-
-<div class="container-fluid">
-
-  <div class="login-form" id="login_modal" role="dialog" >
-
-
-  <center><h3 style="color:black;border-radius:5px"><b>Send Reset Password</b></h3></center>
-  
-  
-
-  <form class="form-horizontal" method="post">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
-      <div class="col-md-10">
-      <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" autocomplete="off">
-      </div>
-      </div>
+    <div class="login-form" id="login_modal" role="dialog">
+        <center><h3><b>Send Reset Password</b></h3></center>
+        <form class="form-horizontal" method="post" action="reset-submit.php">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+            <div class="form-group text-center">
+                <a href="." class="btn btn-default">Back to login</a>
+            </div>
+        </form>
     </div>
-    <div class="form-group">        
-      <div class="col-md-offset-6 col-md-12">
-      <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New</button>-->
-        <button type="hidden" name="submit" class="btn btn-default">Submit</button>
-        <a href="." class="btn btn-primary">Back to login</a>
-       
-      </div>
-    </div>
-  </form>
-   <?php
-  include 'reset-submit.php';
-  ?>
-   </div>          
-</div>
 
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-  
+<script src="assets/js/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+<script src="js/bootstrap.min.js"></script>
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
 </html>
