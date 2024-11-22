@@ -2,16 +2,20 @@
 $request = $_SERVER['REQUEST_URI'];
 
 if (strpos($request, '.php') !== false) {
-    // Redirect to remove .php extension
-    $new_url = str_replace('.php', '', $request);
+    $new_url = str_replace('.php', '', strtok($request, '?'));
+    if ($_SERVER['QUERY_STRING']) {
+        $new_url .= '?' . $_SERVER['QUERY_STRING'];
+    }
     header("Location: $new_url", true, 301);
     exit();
 }
 
+
 // Error handling
 $error_message = '';
 if (isset($_GET['error'])) {
-    switch ($_GET['error']) {
+    $error = htmlspecialchars($_GET['error']);
+    switch ($error) {
         case 'captcha_failed':
             $error_message = 'Captcha verification failed. Please try again.';
             break;
