@@ -7,7 +7,6 @@ error_reporting(E_ALL);
 ?>
 
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function () {
