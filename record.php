@@ -33,14 +33,14 @@ $(document).ready(function() {
             url: 'updateRecord.php',
             data: data, 
             beforeSend: function() {
-                $("content-field").html('Working on Please wait..');
+                $("#content-field").html('Working on Please wait..');
             },
             success: function(response) {
                 // Update the content dynamically in the "fetch-feild" div
-                $("content-field").html(response);
+                $("#content-field").html(response);
             },
             error: function() {
-                $("content-field").html('Error fetching data.');
+                $("#content-field").html('Error fetching data.');
             }
         });
     });
