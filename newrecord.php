@@ -81,8 +81,11 @@ while ($user = mysqli_fetch_assoc($users_query)) {
         VALUES ('$user_id', '$id', 'New')");
 }
 
-    // Redirect to the record page
-    header('location:rms.php?page=record&id=' . $id);
+        echo "<script>
+        alert('Student Record Added Successfully!');
+        window.location.href = 'rms.php?page=record&id={$id}';
+        </script>";
+        exit;
 }
 
 mysqli_close($conn);
