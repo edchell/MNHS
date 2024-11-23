@@ -3,7 +3,7 @@
 include 'db.php'; // Adjust the filename as needed
 
 // Prepare the SQL statement to delete all records
-$stmt = $conn->prepare("DELETE FROM `student_year_info`");
+$stmt = $conn->prepare("DELETE FROM `notifications`");
 
 // Execute the statement
 if ($stmt->execute()) {
