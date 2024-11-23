@@ -72,7 +72,7 @@ if ($num_row >= 1) {
     }
 
     // Insert notification after the new student record is added
-    $users_query = mysqli_query($conn, "SELECT USER_ID FROM user WHERE USER_ID = 'ADMINISTRATOR' AND STATUS = ''");
+    $users_query = mysqli_query($conn, "SELECT USER_ID FROM user WHERE USER_TYPE = 'ADMINISTRATOR' AND STATUS = ''");
 while ($user = mysqli_fetch_assoc($users_query)) {
     $user_id = $user['USER_ID'];
 
