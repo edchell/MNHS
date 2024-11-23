@@ -39,8 +39,8 @@ border-collapse: collapse;
 <br>
 <br>
     <form method="POST" action="uprec.php">
-    <input type="hidden" name="syi" value="<?php echo $row["SYI_ID"] ?>">
-    <input type="hidden" name="id" value="<?php echo $row1['STUDENT_ID'] ?>" >
+    <input type="hidden" name="syi" value="<?php echo $syi ?>">
+    <input type="hidden" name="id" value="<?php echo $id ?>" >
       <label style="font-size:6;margin-left:10%;" for="">School</label>
         <input type="text" name="school" style="width:450px;text-align:center" value="<?php echo $row["SCHOOL"] ?>" readonly>
 
