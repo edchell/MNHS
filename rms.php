@@ -140,7 +140,7 @@ if (strpos($request, '.php') !== false) {
 error_reporting(E_ALL ^ E_NOTICE);
 
 $page = $_GET['page'];
-$pages = array('home', 'grade7', 'grade8', 'grade9', 'grade10', 'grade11', 'grade12', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs', 'archive');
+$pages = array('home', 'grade7', 'grade8', 'grade9', 'grade10', 'grade11', 'grade12', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs', 'archive', 'updateRecord');
 if (!empty($page)) {
     if(in_array($page,$pages)) {
         $page .= '.php';

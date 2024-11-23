@@ -45,11 +45,12 @@ while($row = mysqli_fetch_assoc($sql)) {
     ?>
   </select>
 </div>
-<div class="col-md-7 text-right">
+<div class="col-md-9 text-right">
   <a href="rms.php?page=records" class="btn btn-primary">Back</a>
 <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
 while($sy = mysqli_fetch_assoc($query)){ ?>
-  <a class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>"><i class="fa fa-plus"> Add Record</i></a>
+  <a class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>">Add Record</a>
+  <a id="editRecordBtn" class="btn btn-warning" style="display:none;" href="#">Edit Record</a>
   <?php
 } ?>
 </div>
@@ -268,20 +269,28 @@ mysqli_close($conn);
 </div>
 
 <script>
+  // This function is triggered when the grade dropdown is changed
   function filterByGrade() {
     var gradeId = $('#gradeSelect').val();
     
+    // Show or hide the "Edit Record" button based on grade selection
     if (gradeId) {
+      // Fetch the new data based on the selected grade
       $.ajax({
-        url: 'get_student_by_grade.php', // This is where you will fetch the content based on selected grade
+        url: 'get_student_by_grade.php', // This will fetch data based on selected grade
         type: 'GET',
         data: { grade_id: gradeId, student_id: '<?php echo $id; ?>' },
         success: function(response) {
           $('#content-field').html(response);
+          // After successful data fetch, show the Edit Record button
+          $('#editRecordBtn').show(); // Show the "Edit Record" button
+          $('#editRecordBtn').attr('href', 'rms.php?page=updateRecord&id=<?php echo $_GET['id'] ?>&gradeid=' + gradeId); // Set the link for the "Edit Record" button dynamically
         }
       });
     } else {
-      $('#content-field').empty(); // Clear content if no grade is selected
+      // If no grade is selected, hide the "Edit Record" button
+      $('#editRecordBtn').hide();
+      $('#content-field').empty(); // Clear the content if no grade is selected
     }
   }
 </script>

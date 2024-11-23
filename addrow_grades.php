@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 include('auth.php');
 ?>
 
@@ -11,29 +12,37 @@ include('auth.php');
         // Clone the initial row on button click and show it
         $("#new_add").click(function() {
             $("#new_row").clone().appendTo("#t_rows").show();
-            $("#new_add").hide();
             disableSubject();  // Ensure the disablement applies to new row as well
         });
     });
 
     // Function to disable subjects already selected in other dropdowns
     function disableSubject() {
-        var allSelects = document.querySelectorAll('select[name="sub[]"]');
-        var selectedSubjects = [];
+        let selects = document.querySelectorAll("select");
+        let selectedValues = [];
 
-        // Collect all selected subjects
-        allSelects.forEach(select => {
-            if (select.value) {
-                selectedSubjects.push(select.value);
+        // Collect selected values from all select elements
+        selects.forEach(select => {
+            let selectedOption = select.options[select.selectedIndex];
+            if (selectedOption.value) {
+                selectedValues.push(selectedOption.value);
             }
         });
 
-        // Disable selected subjects in each dropdown except the one it's selected in
-        allSelects.forEach(select => {
-            var options = select.querySelectorAll('option');
-            options.forEach(option => {
-                option.disabled = selectedSubjects.includes(option.value) && option.value !== select.value;
-            });
+        // Enable all options first
+        selects.forEach(select => {
+            for (let option of select.options) {
+                option.disabled = false;
+            }
+        });
+
+        // Disable the selected options in other dropdowns
+        selects.forEach(select => {
+            for (let option of select.options) {
+                if (selectedValues.includes(option.value) && option.value !== "") {
+                    option.disabled = true;
+                }
+            }
         });
     }
 
@@ -47,7 +56,7 @@ include('auth.php');
         var i = $i + 1;
         var data = '<div id="new_row" class="tr' + i + '" >' +
             '<div class="col-xs-4" style="border:1px solid black;height:25px">' +
-            '<select name="sub[]" onchange="handleSubjectChange()">' +  // Call handleSubjectChange on selection
+            '<select name="sub[]" onchange="handleSubjectChange()" required>' +  // Call handleSubjectChange on selection
             '<option></option>' +
             '<?php
                 $sql4 = mysqli_query($conn, "SELECT * from SUBJECTS");
@@ -60,22 +69,22 @@ include('auth.php');
             '</select>' +
             '</div>' +
             '<div class="col-xs-4" style="border:1px solid black;width:59px;height:25px;font-size:12px; padding-left:5px;">' +
-            '<input type="text" style="border-bottom:0px" name="una[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '">' +
+            '<input type="text" style="border-bottom:0px" name="una[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '" oninput="validateNumber(event)">' +
             '</div>' +
             '<div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px; padding-left:5px;">' +
-            '<input type="text" style="border-bottom:0px" name="duwa[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '">' +
+            '<input type="text" style="border-bottom:0px" name="duwa[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '" oninput="validateNumber(event)">' +
             '</div>' +
             '<div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px; padding-left:5px;">' +
-            '<input type="text" style="border-bottom:0px" name="tatlo[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '">' +
+            '<input type="text" style="border-bottom:0px" name="tatlo[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '" oninput="validateNumber(event)">' +
             '</div>' +
             '<div class="col-xs-4" style="border:1px solid black;width:54px;height:25px;font-size:12px; padding-left:5px;">' +
-            '<input type="text" style="border-bottom:0px" name="apat[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '">' +
+            '<input type="text" style="border-bottom:0px" name="apat[]" onkeyup="ave2(' + i + ')" onkeydown="ave2(' + i + ')" class="grad' + i + '" oninput="validateNumber(event)">' +
             '</div>' +
             '<div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">' +
-            '<input type="text" style="border-bottom:0px" name="fin[]" id="fina' + i + '">' +
+            '<input type="text" style="border-bottom:0px" name="fin[]" id="fina' + i + '" readonly>' +
             '</div>' +
             '<div class="col-xs-1 text-center" style="border:1px solid black;height:25px; padding-left:2px;text-align:center;font-size:12px;width:100px">' +
-            '<input style="border-bottom:0px" type="text" name="act[]" id="act' + i + '">' +
+            '<input style="border-bottom:0px" type="text" name="act[]" id="act' + i + '" readonly>' +
             '</div>' +
             '</div>';
         
@@ -89,7 +98,7 @@ for ($i = 0; $i < 1; $i++) {
 ?>
 <div id="new_row" class="tr<?php echo $i ?>">
     <div class="col-xs-4" style="border:1px solid black;height:25px">
-        <select name="sub[]" onchange="handleSubjectChange()">
+        <select name="sub[]" onchange="handleSubjectChange()" required>
             <option></option>
             <?php
             $sql4 = mysqli_query($conn, "SELECT * from SUBJECTS");
@@ -103,22 +112,29 @@ for ($i = 0; $i < 1; $i++) {
     </div>
     
     <div class="col-xs-4" style="border:1px solid black;width:59px;height:25px;font-size:12px; padding-left:5px;">
-        <input type="text" style="border-bottom:0px" name="una[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>">
+        <input type="text" style="border-bottom:0px" name="una[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>" oninput="validateNumber(event)" required>
     </div>
     <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px; padding-left:5px;">
-        <input type="text" style="border-bottom:0px" name="duwa[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>">
+        <input type="text" style="border-bottom:0px" name="duwa[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>" oninput="validateNumber(event)" required>
     </div>
     <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px; padding-left:5px;">
-        <input type="text" style="border-bottom:0px" name="tatlo[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>">
+        <input type="text" style="border-bottom:0px" name="tatlo[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>" oninput="validateNumber(event)" required>
     </div>
     <div class="col-xs-4" style="border:1px solid black;width:54px;height:25px;font-size:12px; padding-left:5px;">
-        <input type="text" style="border-bottom:0px" name="apat[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>">
+        <input type="text" style="border-bottom:0px" name="apat[]" onkeyup="ave2(<?php echo $i ?>)" onkeydown="ave2(<?php echo $i ?>)" class="grad<?php echo $i ?>" oninput="validateNumber(event)" required>
     </div>
     <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">
-        <input type="text" style="border-bottom:0px" name="fin[]" id="fina<?php echo $i ?>">
+        <input type="text" style="border-bottom:0px" name="fin[]" id="fina<?php echo $i ?>" readonly>
     </div>
     <div class="col-xs-1 text-center" style="border:1px solid black;height:25px; padding-left:2px;text-align:center;font-size:12px;width:100px">
-        <input style="border-bottom:0px" type="text" name="act[]" id="act<?php echo $i ?>">
+        <input style="border-bottom:0px" type="text" name="act[]" id="act<?php echo $i ?>" readonly>
     </div>
 </div>
 <?php } ?>
+
+<script>
+    function validateNumber(event) {
+    const input = event.target;
+    input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+}
+</script>

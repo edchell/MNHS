@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'db.php';
 
 $syi_id = $_POST['syi'];
@@ -43,25 +43,20 @@ $subc= count($sub);
 		}
 			}
 
+			$query = mysqli_query($conn, "SELECT * FROM student_info Where STUDENT_ID = '$id' ");
+			while ($row = mysqli_fetch_assoc($query)) {
+				$student = $row['FIRSTNAME'] . ' ' . $row['LASTNAME'];
 
-			$query = mysqli_query($conn,"SELECT * FROM student_info Where STUDENT_ID = '$id' ");
-			$row = mysqli_fetch_assoc($query);
-			$student = $row['FIRSTNAME'] . ' ' . $row['LASTNAME'];
-			mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
-		VALUES ('updated $student academic record','$user',NOW() )");
+				mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added)
+				VALUES ('Updated $student academic record', '$user', NOW())");
+			}
 
-
-
-			
 			$sc= count($tg_id);
-
 
 			for($w=0;$w < $sc;$w++){
 				
 				mysqli_query($conn,"UPDATE total_grades_subjects set  SUBJECT='$subject[$w]', 1ST_GRADING ='$una[$w]', 2ND_GRADING='$ikaduwa[$w]', 3RD_GRADING ='$ikatlo[$w]', 4TH_GRADING='$ikaapat[$w]', FINAL_GRADES='$f[$w]', PASSED_FAILED ='$action[$w]' where TGS_ID = '$tg_id[$w]' ");
 			}
-			
-		
 
 		$mc = count($att_id);
 
@@ -89,11 +84,10 @@ $subc= count($sub);
 		$sql= mysqli_query($conn,"UPDATE student_year_info set ADVISER='$adv',TDAYS_OF_CLASSES='$Tdc',TDAYS_PRESENT='$Tp' where SYI_ID='$syi_id' ");
 
 
-		header("location:".$_SERVER['HTTP_REFERER']); 
+		echo "<script type='text/javascript'>
+        alert('Student record updated successfully');
+        window.location.href = '" . $_SERVER['HTTP_REFERER'] . "';
+      </script>"; 
 			 
-			
-			
-
-		
 		mysqli_close($conn);
 ?>

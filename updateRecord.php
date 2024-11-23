@@ -1,26 +1,52 @@
 <?php
-if ($_POST['id'] && $_POST['gradeId']) {
-    include 'db.php';
+if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
+    include 'db.php';  // Including the database connection file
 
-    $req = mysqli_real_escape_string($conn, $_POST['gradeId']);
-    $id = mysqli_real_escape_string($conn, $_POST['id']);
+    // Using mysqli_real_escape_string to sanitize the inputs (good practice)
+    $req = mysqli_real_escape_string($conn, $_GET['gradeid']);
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
 
+    // Query to fetch the grade from the 'grade' table based on the provided 'gradeid'
+    $grade_sql = mysqli_query($conn, "SELECT grade FROM grade WHERE grade_id = '$req'");
+    while ($grade = mysqli_fetch_assoc($grade_sql)) {
+        $grade_id = $grade['grade'];  // Extracting the grade value
+    }
+
+    // Query to fetch student details from 'student_year_info' based on the student's 'id' and 'grade_id'
     $sql = mysqli_query($conn, "SELECT * FROM student_year_info 
         LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
         LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
         WHERE STUDENT_ID = '$id' AND YEAR = '$req'");
 
-    $NUM = mysqli_num_rows($sql);
-    if ($NUM > 0) {
+    $NUM = mysqli_num_rows($sql);  // Checking if any rows were returned
+    if ($NUM > 0) {  // If rows were found, process the result
         while ($row = mysqli_fetch_assoc($sql)) {
-            $syi = $row['SYI_ID'];
+            $syi = $row['SYI_ID'];  // Extracting the 'SYI_ID' value for use later
 
-            include 'addrow_grades.php';
+            include 'addrow_grades.php';  // Including another PHP file for further processing
 ?>
+<script src="assets/js/ie-emulation-modes-warning.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+  input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+}
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+</style>
+<a href="rms.php?page=record&id=<?php echo $id ?>" class="btn btn-primary" style="margin-top:20px;margin-left:20px;margin-bottom:10px;">BACK</a> 
+<br>
+<br>
     <form method="POST" action="uprec.php">
-    <input type="hidden" name="syi" value="<?php echo $row["SYI_ID"] ?>" >
+    <input type="hidden" name="syi" value="<?php echo $row["SYI_ID"] ?>">
     <input type="hidden" name="id" value="<?php echo $row1['STUDENT_ID'] ?>" >
-      <label style="font-size:6" for="">School</label>
+      <label style="font-size:6;margin-left:10%;" for="">School</label>
         <input type="text" name="school" style="width:450px;text-align:center" value="<?php echo $row["SCHOOL"] ?>" readonly>
 
       <label style="font-size:6" for="">Grade</label>
@@ -30,22 +56,22 @@ if ($_POST['id'] && $_POST['gradeId']) {
         <input type="text" name="sec" style="width:100px;text-align:center" value="<?php echo $row["SECTION"] ?>" readonly>  
         <br>
 
-      <label style="font-size:6" for="">Total number of years in school to date</label>
+      <label style="font-size:6;margin-left:10%;" for="">Total number of years in school to date</label>
         <input type="text" name="tny" style="width:290px;text-align:center" value="<?php echo $row["TOTAL_NO_OF_YEAR"] ?>" readonly>
 
       <label style="font-size:6" for="">School Year</label>
         <input type="text" name="sy" style="width:150px;text-align:center" value="<?php echo $row["SCHOOL_YEAR"] ?>" readonly>
 <br>
-        <label style="font-size:6" for="">Adviser:</label>
+        <label style="font-size:6;margin-left:10%;" for="">Adviser:</label>
         <input type="text" name="adviser" style="width:220px;text-align:center" 
-        value="<?php echo $row['ADVISER'] ?>" >
+        value="<?php echo $row['ADVISER'] ?>" required>
 
     
         <br><br><br>
 
-        <div class="col-xs-9" style="width:690px;margin-left:150px;">
+        <div class="col-xs-9" style="width:700px;margin-left:150px;">
 
-        <div class="row"  >
+        <div class="row" style="margin-left:10%" >
           <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
           <br>
             <label for="" style="font-size:6">Subjects</label>
@@ -77,7 +103,7 @@ if ($_POST['id'] && $_POST['gradeId']) {
          
 
       
-        <div class="row" id="t_row" >
+        <div class="row" id="t_row" style="margin-left:10%">
    <?php     $sql2=  mysqli_query($conn, "SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT ");
     while($row2 = mysqli_fetch_assoc($sql2)){
       $subj =  $row2['SUBJECT'];
@@ -103,24 +129,24 @@ if ($_POST['id'] && $_POST['gradeId']) {
 </div>
           
           <div class="col-xs-4" style="border:1px solid black;width:59px;height:25px;font-size:12px;    padding-left: 5px;">
-          <input type="text" style="border-bottom:0px" name="1st[]" value="<?php echo $row2['1ST_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>">
+          <input type="text" style="border-bottom:0px" name="1st[]" value="<?php echo $row2['1ST_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
            
         </div> 
         <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;    padding-left: 5px;">
-         <input type="text" style="border-bottom:0px" name="2nd[]" value="<?php echo $row2['2ND_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>">       
+         <input type="text" style="border-bottom:0px" name="2nd[]" value="<?php echo $row2['2ND_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>       
           </div> 
         <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;    padding-left: 5px;">
-        <input type="text" style="border-bottom:0px" name="3rd[]" value="<?php echo $row2['3RD_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID']?>)" class="grade<?php echo $row2['TGS_ID'] ?>">
+        <input type="text" style="border-bottom:0px" name="3rd[]" value="<?php echo $row2['3RD_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID']?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
          
         </div> 
         <div class="col-xs-4" style="border:1px solid black;width:54px;height:25px;font-size:12px;    padding-left: 5px;" >
-        <input type="text" style="border-bottom:0px" name="4th[]" value="<?php echo $row2['4TH_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>">
+        <input type="text" style="border-bottom:0px" name="4th[]" value="<?php echo $row2['4TH_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
         </div>    
         <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">
         <input type="text" style="border-bottom:0px" name="final[]" value="<?php echo $row2['FINAL_GRADES'] ?>" id="fin<?php echo $row2['TGS_ID'] ?>" readonly>
         </div>
         <div class="col-xs-1 text-center" style="border:1px solid black;height:25px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">
-      <input style="border-bottom:0px" type="text" name="action[]" value="<?php echo $row2['PASSED_FAILED'] ?>" id="action<?php echo $row2['TGS_ID'] ?>">
+      <input style="border-bottom:0px" type="text" name="action[]" value="<?php echo $row2['PASSED_FAILED'] ?>" id="action<?php echo $row2['TGS_ID'] ?>" readonly>
           
         </div>
 
@@ -145,66 +171,59 @@ if ($_POST['id'] && $_POST['gradeId']) {
 
     <div class="col-xs-12">
       <br>
-      <table class="table" style="width:940px" >
-       
-          <tr>
-            <th style="font-size:10px;text-align:center;width:130px">Months</td>
-            <th style="font-size:10px;text-align:center;width:50px">Jun</td>
-            <th style="font-size:10px;text-align:center;width:50px">Jul</td>
-            <th style="font-size:10px;text-align:center;width:50px">Aug</td>
-            <th style="font-size:10px;text-align:center;width:50px">Sept</td>
-            <th style="font-size:10px;text-align:center;width:50px">Oct</td>
-            <th style="font-size:10px;text-align:center;width:50px">Nov</td>
-            <th style="font-size:10px;text-align:center;width:50px">Dec</td>
-            <th style="font-size:10px;text-align:center;width:50px">Jan</td>
-            <th style="font-size:10px;text-align:center;width:50px">Feb</td>
-            <th style="font-size:10px;text-align:center;width:50px">March</td>
-            <th style="font-size:10px;text-align:center;width:50px">April</td>
-            <th style="font-size:10px;text-align:center;width:50px">May</td>
-            <th style="font-size:10px;text-align:center;width:130px">Total</td>
-          </tr>
-          <tr>
-            <td style="font-size:10px;text-align:center;width:130px">Days of School</td>
-            <?php
-            $atten= mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
-            while($att=mysqli_fetch_assoc($atten)){
+      <table class="table" style="width:940px;margin-left:7%">
+  <tr>
+    <th style="font-size:10px;text-align:center;width:130px">Months</th>
+    <th style="font-size:10px;text-align:center;width:50px">Jun</th>
+    <th style="font-size:10px;text-align:center;width:50px">Jul</th>
+    <th style="font-size:10px;text-align:center;width:50px">Aug</th>
+    <th style="font-size:10px;text-align:center;width:50px">Sept</th>
+    <th style="font-size:10px;text-align:center;width:50px">Oct</th>
+    <th style="font-size:10px;text-align:center;width:50px">Nov</th>
+    <th style="font-size:10px;text-align:center;width:50px">Dec</th>
+    <th style="font-size:10px;text-align:center;width:50px">Jan</th>
+    <th style="font-size:10px;text-align:center;width:50px">Feb</th>
+    <th style="font-size:10px;text-align:center;width:50px">March</th>
+    <th style="font-size:10px;text-align:center;width:50px">April</th>
+    <th style="font-size:10px;text-align:center;width:50px">May</th>
+    <th style="font-size:10px;text-align:center;width:130px">Total</th>
+  </tr>
 
+  <tr>
+    <td style="font-size:10px;text-align:center;width:130px">Days of School</td>
+    <?php
+    $atten = mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
+    while($att = mysqli_fetch_assoc($atten)) {
+    ?>
+    <td style="font-size:10px;text-align:center;width:50px">
+      <input type="hidden" name="att_id[]" value="<?php echo $att['ATT_ID'] ?>" >
+      <input style="border-bottom:0px;width:30px" class="dc" type="text" name="dc[]" value="<?php echo $att['DAYS_OF_CLASSES'] ?>" oninput="calculateTotal()" maxlength="2" required>
+    </td>
+    <?php } ?>
+    <td style="font-size:10px;text-align:center;width:130px">
+      <input id="tdc" type="text" name="Tdc" style="text-align:center;width:100px;border-bottom:0px" readonly>
+    </td>
+  </tr>
 
+  <tr>
+    <td style="font-size:10px;text-align:center;width:130px">Days Present</td>
+    <?php
+    $atten2 = mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
+    while($att2 = mysqli_fetch_assoc($atten2)) {
+    ?>
+    <td style="font-size:10px;text-align:center;width:50px">
+      <input type="hidden" name="att_d[]" value="<?php echo $att2['ATT_ID'] ?>" >
+      <input style="border-bottom:0px;width:30px" class="p" type="text" name="pp[]" value="<?php echo $att2['DAYS_PRESENT'] ?>" oninput="calculateTotal()" maxlength="2" required>
+    </td>
+    <?php } ?>
+    <td style="font-size:10px;text-align:center;width:130px">
+      <input type="text" id="tp" name="Tp" style="text-align:center;width:100px;border-bottom:0px" readonly>
+    </td>
+  </tr>
 
-             ?>
-            <td style="font-size:10px;text-align:center;width:50px">
-            <input  type="hidden" name="att_id[]" value="<?php echo $att['ATT_ID'] ?>" >
-            <input style="border-bottom:0px;width:30px" class="dc" type="text" name="dc[]" value="<?php echo $att['DAYS_OF_CLASSES'] ?>" >
-             </td>
-            <?php } ?>
-            
-            <td style="font-size:10px;text-align:center;width:130px">
-            <input id="tdc" type="text" name="Tdc" style="text-align:center;width:100px;border-bottom:0px">
-           </td>
-          </tr>
-          <tr>
-            <td style="font-size:10px;text-align:center;width:130px">Days Present</td>
-            <?php
-            $atten2= mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
-            while($att2=mysqli_fetch_assoc($atten2)){
+</table>
 
-
-
-             ?>
-            <td style="font-size:10px;text-align:center;width:50px">
-          
-            <input  type="hidden" name="att_d[]" value="<?php echo $att2['ATT_ID'] ?>" >
-              <input style="border-bottom:0px;width:30px" class="p" type="text" name="pp[]" value="<?php echo $att2['DAYS_PRESENT'] ?>" >
-            </td>
-           <?php } ?>
-            <td style="font-size:10px;text-align:center;width:130px">
-              <input type="text" id="tp" name="Tp" style="text-align:center;width:100px;border-bottom:0px" >
-            </td>
-          </tr>
-        
-      </table>
-
-      <button type="submit" class="btn btn-success">Update</button>
+      <button type="submit" style="margin-left:80%" class="btn btn-success">Update</button>
       <a id="new_add" style="margin-top:5px;margin-bottom:5px;" class="btn btn-primary"><i class="fa fa-plus"></i>Add row</a>
     </form>
     </div>
@@ -212,23 +231,17 @@ if ($_POST['id'] && $_POST['gradeId']) {
     </div>
  </div>
     </div>
-
     <br>
-
-    
-
-
-
         <?php
 
-  }  
-}
-else{
-  echo "<br><br><br>";
-  echo "<h3>This student does not have record in selected grade.</h3>";
-}
-mysqli_close($conn);
- }
+            }  
+          }
+          else{
+            echo "<br><br><br>";
+            echo "<h3>This student does not have record in selected grade.</h3>";
+          }
+          mysqli_close($conn);
+          }
      ?> 
      <script>
       $(document).ready(function() {
@@ -328,4 +341,31 @@ function calculateAVE() {
   $("input#tp").val(sum.toFixed(0));
 }
 
+function validateNumber(event) {
+    const input = event.target;
+    input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+}
+
+function calculateTotal() {
+    let tdc = 0; // To store the total of "Days of School"
+    let tp = 0; // To store the total of "Days Present"
+
+    // Get all "Days of School" inputs
+    let dcInputs = document.querySelectorAll('input[name="dc[]"]');
+    dcInputs.forEach(input => {
+      let value = parseInt(input.value) || 0; // If input is empty, treat it as 0
+      tdc += value; // Add value to total
+    });
+
+    // Get all "Days Present" inputs
+    let ppInputs = document.querySelectorAll('input[name="pp[]"]');
+    ppInputs.forEach(input => {
+      let value = parseInt(input.value) || 0; // If input is empty, treat it as 0
+      tp += value; // Add value to total
+    });
+
+    // Update the "Total" fields
+    document.getElementById('tdc').value = tdc; // Total for "Days of School"
+    document.getElementById('tp').value = tp;   // Total for "Days Present"
+  }
     </script>
