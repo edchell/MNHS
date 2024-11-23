@@ -5,42 +5,47 @@ include('auth.php');
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-        // Utility function to get query parameters
-        function getParameterByName(name, url = window.location.href) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-            const results = regex.exec(url);
-            return results ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : null;
-        }
+<script type="text/javascript">
+function getParameterByName(name, url) {
+    if (!url) {
+        url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
-        $(document).ready(function () {
-            $('#fetch').on('change', function () {
-                const gradeId = $(this).val();
-                const studentId = getParameterByName('id');
+$(document).ready(function() {
+    // When the grade dropdown changes
+    $('#fetch').on('change', function() {
+        var gradeId = $(this).val(); // Get selected grade ID
+        var studentId = getParameterByName('id'); // Get student ID from URL
+        var data = {
+            id: studentId,
+            gradeId: gradeId // Send the selected grade ID
+        };
 
-                if (!gradeId || !studentId) {
-                    alert('Invalid request. Missing grade or student ID.');
-                    return;
-                }
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'updateRecord.php',
-                    data: { id: studentId, gradeId: gradeId },
-                    beforeSend: function () {
-                        $("#fetch-field").html('Loading data, please wait...');
-                    },
-                    success: function (response) {
-                        $("#fetch-field").html(response);
-                    },
-                    error: function () {
-                        $("#fetch-field").html('Error fetching data.');
-                    }
-                });
-            });
+        $.ajax({
+            type: 'POST',
+            url: 'updateRecord.php',
+            data: data, 
+            beforeSend: function() {
+                $("content-field").html('Working on Please wait..');
+            },
+            success: function(response) {
+                // Update the content dynamically in the "fetch-feild" div
+                $("content-field").html(response);
+            },
+            error: function() {
+                $("content-field").html('Error fetching data.');
+            }
         });
-    </script>
+    });
+});
+</script>
 
 <style>
   input {
@@ -66,24 +71,26 @@ while($row = mysqli_fetch_assoc($sql)) {
 
       <h1 class="page-header"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></h1>
       <?php
-} 
+} mysqli_close($conn);
   ?>
   <div class="col-md-5">
-        <div class="form-inline">
-            <div class="form-group">
-                <label for="focusedInput">Select Grade:</label>
-                <select class="form-control" id="fetch">
-                    <option value="">Select</option>
-                    <?php
-                    $gradeQuery = $conn->query("SELECT * FROM grade ORDER BY grade_id");
-                    while ($grade = $gradeQuery->fetch_assoc()) {
-                        echo '<option value="' . htmlspecialchars($grade['grade_id']) . '">' . htmlspecialchars($grade['grade']) . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
-    </div>
+  <div class="form-inline">
+  <div class="form-group">
+  <!-- <a href="rms.php?page=record&id=<?php  echo $_GET['id']?>" class="btn btn-success"> View All</a> -->
+  <label for="focusedInput">Select Grade:</label>
+  <select class="form-control" style="height:30px;font-size:12px" id="fetch">
+    <option > </option>
+<?php 
+include 'db.php';
+$query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
+while($row=mysqli_fetch_assoc($query)){
+?>
+<option value="<?php echo $row['grade_id'] ?>"><?php echo $row['grade'] ?> </option>
+<?php }  ?>
+  </select>
+</div>
+</div>
+</div>
 <div class="col-md-7 text-right">
   <a href="rms.php?page=records" class="btn btn-primary">Back</a>
 <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
@@ -112,7 +119,7 @@ while($row1 = mysqli_fetch_assoc($sql1)) {
 ?>
 
 
-<div id="fetch-feild">
+<div id="content-field">
 <div class="col-md-12">
 
 
