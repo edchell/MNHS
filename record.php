@@ -71,7 +71,7 @@ while($row = mysqli_fetch_assoc($sql)) {
 
       <h1 class="page-header"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></h1>
       <?php
-} mysqli_close($conn);
+} 
   ?>
   <div class="col-md-5">
   <div class="form-inline">
@@ -86,7 +86,7 @@ $query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
 while($row=mysqli_fetch_assoc($query)){
 ?>
 <option value="<?php echo $row['grade_id'] ?>"><?php echo $row['grade'] ?> </option>
-<?php } mysqli_close($conn);?>
+<?php } ?>
   </select>
 </div>
 </div>
