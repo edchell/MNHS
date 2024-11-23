@@ -6,45 +6,55 @@ include('auth.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
-function getParameterByName(name, url) {
-    if (!url) {
-        url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-$(document).ready(function() {
+$(document).ready(function () {
     // When the grade dropdown changes
-    $('#fetch').on('change', function() {
-        var gradeId = $(this).val(); // Get selected grade ID
+    $('#fetch').on('change', function () {
+        var gradeId = $(this).val(); // Get the selected grade ID
+        if (!gradeId) {
+            $("#content-field").html('Please select a valid grade.');
+            return; // Exit if no grade is selected
+        }
+
+        // Function to extract URL parameters
+        function getParameterByName(name) {
+            const url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            return results ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : null;
+        }
+
         var studentId = getParameterByName('id'); // Get student ID from URL
+
+        if (!studentId) {
+            $("#content-field").html('Student ID is missing in the URL.');
+            return; // Exit if student ID is not found
+        }
+
         var data = {
             id: studentId,
             gradeId: gradeId // Send the selected grade ID
         };
 
+        // AJAX request
         $.ajax({
             type: 'POST',
-            url: 'updateRecord.php',
-            data: data, 
-            beforeSend: function() {
-                $("#content-field").html('Working on Please wait..');
+            url: 'updateRecord.php', // Server-side script to handle the update
+            data: data,
+            beforeSend: function () {
+                $("#content-field").html('Working on it. Please wait...');
             },
-            success: function(response) {
-                // Update the content dynamically in the "fetch-feild" div
+            success: function (response) {
+                // Dynamically update the content
                 $("#content-field").html(response);
             },
-            error: function() {
-                $("#content-field").html('Error fetching data.');
+            error: function () {
+                $("#content-field").html('Error fetching data. Please try again.');
             }
         });
     });
 });
+
 </script>
 
 <style>
@@ -75,21 +85,22 @@ while($row = mysqli_fetch_assoc($sql)) {
   ?>
   <div class="col-md-5">
   <div class="form-inline">
-  <div class="form-group">
-  <!-- <a href="rms.php?page=record&id=<?php  echo $_GET['id']?>" class="btn btn-success"> View All</a> -->
-  <label for="focusedInput">Select Grade:</label>
-  <select class="form-control" style="height:30px;font-size:12px" id="fetch">
-    <option > </option>
-<?php 
-include 'db.php';
-$query=mysqli_query($conn,"SELECT * FROM grade Order by grade_id");
-while($row=mysqli_fetch_assoc($query)){
-?>
-<option value="<?php echo $row['grade_id'] ?>"><?php echo $row['grade'] ?> </option>
-<?php }  ?>
-  </select>
-</div>
-</div>
+    <div class="form-group">
+      <!-- Uncomment if "View All" button is needed -->
+      <!-- <a href="rms.php?page=record&id=<?php echo $_GET['id']; ?>" class="btn btn-success"> View All</a> -->
+      <label for="fetch">Select Grade:</label>
+      <select class="form-control" style="height:30px; font-size:12px;" id="fetch">
+        <option value="">Select a grade</option> <!-- Placeholder option -->
+        <?php 
+        include 'db.php';
+        $query = mysqli_query($conn, "SELECT * FROM grade ORDER BY grade_id");
+        while ($row = mysqli_fetch_assoc($query)) {
+          echo '<option value="' . $row['grade_id'] . '">' . htmlspecialchars($row['grade']) . '</option>';
+        }
+        ?>
+      </select>
+    </div>
+  </div>
 </div>
 <div class="col-md-7 text-right">
   <a href="rms.php?page=records" class="btn btn-primary">Back</a>
