@@ -69,7 +69,7 @@ if (strpos($request, '.php') !== false) {
         $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
         $row = mysqli_fetch_assoc($sql);
             // Check if the user is not an administrator
-            if($row['USER_TYPE'] != 'ADMINISTRATOR'){
+            if($row['USER_TYPE'] != 'FACULTY TEACHER'){
         ?>
             <!-- Notifications Dropdown -->
             <li class="dropdown notifications">
@@ -92,7 +92,7 @@ if (strpos($request, '.php') !== false) {
                     <h6 style="text-align:center;padding-bottom:5px;border-bottom:2px solid black;">You have new notifications</h6>
                     <?php
                     // Get the list of notifications
-                    $notifications = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id = '".$_SESSION['ID']."' AND status = 'New' ORDER BY created_at DESC LIMIT 5");
+                    $notifications = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id = '".$_SESSION['ID']."' ORDER BY created_at DESC LIMIT 5");
                     while ($notification = mysqli_fetch_assoc($notifications)) {
                         $id = $notification['student_id'];
                         $notification_id = $notification['notification_id'];
