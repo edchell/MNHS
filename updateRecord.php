@@ -1,25 +1,3 @@
-<?php
-session_start();
-if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
-    include 'db.php';  // Including the database connection file
-
-    // Using mysqli_real_escape_string to sanitize the inputs (good practice)
-    $req = mysqli_real_escape_string($conn, $_GET['gradeid']);
-    $id = mysqli_real_escape_string($conn, $_GET['id']);
-
-    // Query to fetch student details from 'student_year_info' based on the student's 'id' and 'grade_id'
-    $sql = mysqli_query($conn, "SELECT * FROM student_year_info 
-        LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
-        LEFT JOIN advisers ON student_year_info.ADVISER = advisers.adviser_id 
-        WHERE STUDENT_ID = '$id' AND YEAR = '$req'");
-
-    $NUM = mysqli_num_rows($sql);  // Checking if any rows were returned
-    if ($NUM > 0) {  // If rows were found, process the result
-        while ($row = mysqli_fetch_assoc($sql)) {
-            $syi = $row['SYI_ID'];  // Extracting the 'SYI_ID' value for use later
-
-            include 'addrow_grades.php';  // Including another PHP file for further processing
-?>
 
 <style>
   input {
