@@ -47,7 +47,6 @@ include('auth.php');
              ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
             '</tr>';
         $("#table-body").append(data);
-        disableSubject();
     }
 
     function remtrr($i){
@@ -55,40 +54,39 @@ include('auth.php');
         disableSubject(); // Recheck selections when row is removed
     }
 
-    // Function to disable subjects already selected in other dropdowns
+    // Disable already selected subjects
     function disableSubject() {
-        let selects = document.querySelectorAll("select");
-        let selectedValues = [];
+        var allSelects = document.querySelectorAll('select[name="subj[]"]');
+        var selectedSubjects = [];
 
-        // Collect selected values from all select elements
-        selects.forEach(select => {
-            let selectedOption = select.options[select.selectedIndex];
-            if (selectedOption.value) {
-                selectedValues.push(selectedOption.value);
+        // Collect selected subjects
+        allSelects.forEach(select => {
+            if (select.value) {
+                selectedSubjects.push(select.value);
             }
         });
 
-        // Enable all options first
-        selects.forEach(select => {
-            for (let option of select.options) {
+        // Enable all options
+        allSelects.forEach(select => {
+            select.querySelectorAll('option').forEach(option => {
                 option.disabled = false;
-            }
+            });
         });
 
-        // Disable the selected options in other dropdowns
-        selects.forEach(select => {
-            for (let option of select.options) {
-                if (selectedValues.includes(option.value) && option.value !== "") {
+        // Disable already selected subjects
+        allSelects.forEach(select => {
+            select.querySelectorAll('option').forEach(option => {
+                if (selectedSubjects.includes(option.value)) {
                     option.disabled = true;
                 }
-            }
+            });
         });
     }
 
-    // Function to handle changes in subject selection
+    // Handle both disabling and new row creation on subject change
     function handleSubjectChange(currentIndex) {
-        disableSubject(); // Reapply disablement across all dropdowns
-        newrow(currentIndex);
+        disableSubject();
+        newrow(currentIndex); // add the next row if necessary
     }
 </script>
   
@@ -102,8 +100,8 @@ include('auth.php');
 
     ?>
     <div class="d-flex align-items-center justify-content-between">
-          <a href="rms.php?page=record&id=<?php echo $row['STUDENT_ID'] ?>" style="margin-top:2%;margin-left:1%" class="btn btn-primary">BACK</a>
-          <h1 style="margin-left:4%" class="page-header"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></h1>
+          <a href="rms.php?page=record&id=<?php echo $row['STUDENT_ID'] ?>" class="btn btn-primary">BACK</a>
+          <h1 class="page-header"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></h1>
           </div>
           <?php
     } mysqli_close($conn);
@@ -112,7 +110,7 @@ include('auth.php');
      <input name="id" type="hidden" value="<?php echo $_GET["id"] ?>">
      <div class="col-md-6">
        <div class="row">
-       <label class="col-md-4 te" style="margin-left:6%" for="school">School</label>
+       <label class="col-md-4 te" for="school">School</label>
        <div class="col-md-6">
        <?php
     include 'db.php';
@@ -127,7 +125,7 @@ include('auth.php');
        </div>
        <br>
        <div class="row">
-       <label class="col-md-4 te" style="margin-left:6%" for="yr">Grade</label>
+       <label class="col-md-4 te" for="yr">Grade</label>
        <div class="col-md-6">
          <select type="text" name="yr" class="form-control" id ="yr" required>
         <?php 
@@ -164,7 +162,7 @@ include('auth.php');
        </div>
        <br>
        <div class="row">
-       <label class="col-md-4 te" style="margin-left:6%" for="sec">Section</label>
+       <label class="col-md-4 te" for="sec">Section</label>
        <div class="col-md-6">
          <input type="text" name="sec" class="form-control" id ="sec"required>
        </div>
@@ -248,11 +246,11 @@ include('auth.php');
 
             </select> </td>
              <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" oninput="validateNumber(event)" required maxlength="3" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" oninput="validateNumber(event)" required maxlength="3" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" oninput="validateNumber(event)" required maxlength="3" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td>
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td>
              <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" oninput="validateNumber(event)" required maxlength="3" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td>
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td>
              <td style="width:60px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td>
              <td style="width:60px;text-align:center;height:30px;font-size:12px">
@@ -283,63 +281,63 @@ include('auth.php');
          <tbody>
            <tr>
              <td><input type="text" name="month[]" value="June" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc1" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p1" onkeyup="validate('1')" onkeydown="validate('1')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc1" style="text-align:center;width:100px" ></td>
+             <td><input type="text" class="p" name="p[]" id="p1" onkeyup="validate('1')" onkeydown="validate('1')" style="text-align:center;width:100px" ></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="July" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc2" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p2" onkeyup="validate('2')" onkeydown="validate('2')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc2" style="text-align:center;width:100px" ></td>
+             <td><input type="text" class="p" name="p[]" id="p2" onkeyup="validate('2')" onkeydown="validate('2')" style="text-align:center;width:100px" ></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="August" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc3" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p3" onkeyup="validate('3')" onkeydown="validate('3')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc3" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p3" onkeyup="validate('3')" onkeydown="validate('3')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="September" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc4" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p4" onkeyup="validate('4')" onkeydown="validate('4')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc4" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p4" onkeyup="validate('4')" onkeydown="validate('4')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="October" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc5" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p5" onkeyup="validate('5')" onkeydown="validate('5')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc5" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p5" onkeyup="validate('5')" onkeydown="validate('5')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="November" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc6" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p6" onkeyup="validate('6')" onkeydown="validate('6')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc6" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p6" onkeyup="validate('6')" onkeydown="validate('6')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="December" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc7" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p7" onkeyup="validate('7')" onkeydown="validate('7')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc7" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p7" onkeyup="validate('7')" onkeydown="validate('7')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="January" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc8" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p8" onkeyup="validate('8')" onkeydown="validate('8')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc8" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p8" onkeyup="validate('8')" onkeydown="validate('8')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="February" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc9" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p9" onkeyup="validate('9')" onkeydown="validate('9')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc9" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p9" onkeyup="validate('9')" onkeydown="validate('9')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="March" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc10" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p10" onkeyup="validate('10')" onkeydown="validate('10')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc10" style="text-align:center;width:100px"></td>
+             <td><input type="text" class="p" name="p[]" id="p10" onkeyup="validate('10')" onkeydown="validate('10')" style="text-align:center;width:100px"></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="April" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc11" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p11" onkeyup="validate('11')" onkeydown="validate('11')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc11" style="text-align:center;width:100px" ></td>
+             <td><input type="text" class="p" name="p[]" id="p11" onkeyup="validate('11')" onkeydown="validate('11')" style="text-align:center;width:100px"  ></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="May" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc12" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
-             <td><input type="text" class="p" name="p[]" id="p12" onkeyup="validate('12')" onkeydown="validate('12')" style="text-align:center;width:100px" oninput="validateNumber(event)" required maxlength="2"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc12" style="text-align:center;width:100px"  ></td>
+             <td><input type="text" class="p" name="p[]" id="p12" onkeyup="validate('12')" onkeydown="validate('12')" style="text-align:center;width:100px" ></td>
            </tr>
            <tr>
              <td><input type="text" name="Total" value="Total" readonly></td>
@@ -351,7 +349,7 @@ include('auth.php');
 
        </table>
           <br>
-     <button class="btn btn-success" style="margin-bottom:10%" type="submit">Save</button>
+     <button class="btn btn-success" type="submit">Save</button>
      </div>
 
     </form>
@@ -457,13 +455,46 @@ function acts($i){
       $("#p"+i).css("background-color","white");
     }
   }
-    </script>
 
-<script>
-    function validateNumber(event) {
-    const input = event.target;
-    input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+  // Disable subjects that are already selected in other selects
+function disableSubject(currentIndex) {
+  var allSelects = document.querySelectorAll('select[name="subj[]"]');
+  var selectedSubjects = [];
+
+  // Get all selected subjects and store them
+  allSelects.forEach((select, index) => {
+    if (index !== currentIndex && select.value) {
+      selectedSubjects.push(select.value);
+    }
+  });
+
+  // Enable all options before disabling the new ones
+  allSelects.forEach((select, index) => {
+    var options = select.querySelectorAll('option');
+    options.forEach(option => {
+      option.disabled = false;
+    });
+  });
+
+  // Disable selected options in other selects
+  allSelects.forEach((select, index) => {
+    var options = select.querySelectorAll('option');
+    options.forEach(option => {
+      if (selectedSubjects.includes(option.value)) {
+        option.disabled = true;
+      }
+    });
+  });
 }
-</script>
+
+// Handle both subject change and new row creation
+function handleSubjectChange(currentIndex) {
+  // Call disableSubject() to disable options
+  disableSubject(currentIndex);
+
+  // Call newrow() to handle any other logic you had for adding a new row
+  newrow(currentIndex);
+}
+    </script>
  
  
