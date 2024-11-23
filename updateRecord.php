@@ -1,4 +1,5 @@
 <?php
+include 'addrow_grades.php'; 
 include('db.php');
 if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
     // Using mysqli_real_escape_string to sanitize the inputs (good practice)
