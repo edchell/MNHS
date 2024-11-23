@@ -1,5 +1,9 @@
 <?php
 include('auth.php');
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
