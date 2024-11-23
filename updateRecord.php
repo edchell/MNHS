@@ -7,12 +7,6 @@ if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' a
     $req = mysqli_real_escape_string($conn, $_GET['gradeid']);
     $id = mysqli_real_escape_string($conn, $_GET['id']);
 
-    // Query to fetch the grade from the 'grade' table based on the provided 'gradeid'
-    $grade_sql = mysqli_query($conn, "SELECT grade FROM grade WHERE grade_id = '$req'");
-    while ($grade = mysqli_fetch_assoc($grade_sql)) {
-        $grade_id = $grade['grade'];  // Extracting the grade value
-    }
-
     // Query to fetch student details from 'student_year_info' based on the student's 'id' and 'grade_id'
     $sql = mysqli_query($conn, "SELECT * FROM student_year_info 
         LEFT JOIN grade ON student_year_info.YEAR = grade.grade_id 
