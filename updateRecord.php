@@ -1,5 +1,4 @@
-<?php
-include 'addrow_grades.php'; 
+<?php 
 include('db.php');
 if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
     // Using mysqli_real_escape_string to sanitize the inputs (good practice)
@@ -217,6 +216,9 @@ border-collapse: collapse;
 
       <button type="submit" style="margin-left:80%" class="btn btn-success">Update</button>
       <a id="new_add" style="margin-top:5px;margin-bottom:5px;" class="btn btn-primary"><i class="fa fa-plus"></i>Add row</a>
+      <?php
+      include 'addrow_grades.php';
+      ?>
     </form>
     </div>
        </div>
