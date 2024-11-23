@@ -46,91 +46,102 @@ if (strpos($request, '.php') !== false) {
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="col-md-1">
-                  <!-- <img src="" style="height:48px;width:50px;align:center" alt=""> -->
-                </div>
-                                
-                <a class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; MNHS - Student Grading System</b></a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-               <!-- Notifications Dropdown -->
-        <li class="dropdown notifications">
-            <?php
-            include 'db.php';
-                // Count the number of new notifications
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="col-md-1">
+          <!-- <img src="" style="height:48px;width:50px;align:center" alt=""> -->
+        </div>
+                            
+        <a class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; MNHS - Student Grading System</b></a>
+    </div>
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+        <?php
+        include 'db.php';
+
+        $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
+        $row = mysqli_fetch_assoc($sql);
+            // Check if the user is not an administrator
+            if($row['USER_TYPE'] != 'ADMINISTRATOR'){
+        ?>
+            <!-- Notifications Dropdown -->
+            <li class="dropdown notifications">
+                <?php
+                include 'db.php';
+                // Count the number of new notifications for non-admin users
                 $notifications_query = mysqli_query($conn, "SELECT COUNT(*) as new_count FROM notifications WHERE user_id = '".$_SESSION['ID']."' AND status = 'New'");
                 $notification_row = mysqli_fetch_assoc($notifications_query);
                 $new_notifications_count = $notification_row['new_count'];
-            ?>
+                ?>
 
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell"></i> 
-                <?php if($new_notifications_count > 0): ?>
-                    <span class="badge" style="background-color:red;"><?php echo $new_notifications_count; ?></span>
-                <?php endif; ?>
-            </a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell"></i> 
+                    <?php if ($new_notifications_count > 0): ?>
+                        <span class="badge" style="background-color:red;"><?php echo $new_notifications_count; ?></span>
+                    <?php endif; ?>
+                </a>
 
-            <ul class="dropdown-menu" style="width:300px;">
-            <h6 style="text-align:center;padding-bottom:5px;border-bottom:2px solid black;">You have new notifications</h6> <!-- Header for notifications -->
-                <?php
+                <ul class="dropdown-menu" style="width:300px;">
+                    <h6 style="text-align:center;padding-bottom:5px;border-bottom:2px solid black;">You have new notifications</h6>
+                    <?php
                     // Get the list of notifications
                     $notifications = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id = '".$_SESSION['ID']."' AND status = 'New' ORDER BY created_at DESC LIMIT 5");
                     while ($notification = mysqli_fetch_assoc($notifications)) {
-                      $id = $notification['student_id'];
-                      $notification_id = $notification['notification_id'];
-                      $query = mysqli_query($conn, "SELECT * FROM student_info WHERE STUDENT_ID = '$id'");
-                      $row = mysqli_fetch_assoc($query);
-                      $student = $row['FIRSTNAME']. ' ' .$row['LASTNAME'];
-                      echo '<li style="font-size:14px;border-bottom:1px solid gray;">';
-                      echo '<a href="rms.php?page=record&id='.$id.'" class="mark-as-read" data-notification-id="'.$notification_id.'">New student record added for <b>'. $student .'</b></a>';
-                      echo '</li>';
+                        $id = $notification['student_id'];
+                        $notification_id = $notification['notification_id'];
+                        $query = mysqli_query($conn, "SELECT * FROM student_info WHERE STUDENT_ID = '$id'");
+                        $row = mysqli_fetch_assoc($query);
+                        $student = $row['FIRSTNAME']. ' ' .$row['LASTNAME'];
+                        echo '<li style="font-size:14px;border-bottom:1px solid gray;">';
+                        echo '<a href="rms.php?page=record&id='.$id.'" class="mark-as-read" data-notification-id="'.$notification_id.'">New student record added for <b>'. $student .'</b></a>';
+                        echo '</li>';
                     }
-                ?>
+                    ?>
+                </ul>
+            </li>
+        <?php } ?>
+        
+        <!-- User Dropdown -->
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
+            <?php echo $_SESSION['fname']?>
+                <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                     <a href="" data-toggle="modal" data-target="#new_user"><i class="fa fa-fw fa-pencil"></i>Account</a>
+                </li>
+               <li class="divider"></li>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
             </ul>
         </li>
-              <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
-                <?php echo $_SESSION['fname']?>
-                    <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    <li>
-                         <a href="" data-toggle="modal" data-target="#new_user"><i class="fa fa-fw fa-pencil"></i>Account</a>
-                    </li>
-                   <li class="divider"></li>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-              </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <?php 
-            include 'db.php';
+    </ul>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <?php 
+    include 'db.php';
 
-            $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
-            $row = mysqli_fetch_assoc($sql);
-            if($row['USER_TYPE'] == 'ADMINISTRATOR'){
-                include 'sidebar.php';
-            }else{
-                include 'sidebar_staff.php';
-            }
-            ?>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
+    $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
+    $row = mysqli_fetch_assoc($sql);
+    if($row['USER_TYPE'] == 'ADMINISTRATOR'){
+        include 'sidebar.php';
+    }else{
+        include 'sidebar_staff.php';
+    }
+    ?>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>
 
 
 
