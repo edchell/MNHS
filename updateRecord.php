@@ -1,8 +1,7 @@
 <?php
 session_start();
+include 'db.php';
 if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
-    include 'db.php';  // Including the database connection file
-
     // Using mysqli_real_escape_string to sanitize the inputs (good practice)
     $req = mysqli_real_escape_string($conn, $_GET['gradeid']);
     $id = mysqli_real_escape_string($conn, $_GET['id']);
@@ -39,8 +38,8 @@ border-collapse: collapse;
 <br>
 <br>
     <form method="POST" action="uprec.php">
-    <input type="hidden" name="syi" value="<?php echo $syi ?>">
-    <input type="hidden" name="id" value="<?php echo $id ?>" >
+    <input type="hidden" name="syi" value="<?php echo $row["SYI_ID"] ?>">
+    <input type="hidden" name="id" value="<?php echo $row1['STUDENT_ID'] ?>" >
       <label style="font-size:6;margin-left:10%;" for="">School</label>
         <input type="text" name="school" style="width:450px;text-align:center" value="<?php echo $row["SCHOOL"] ?>" readonly>
 
