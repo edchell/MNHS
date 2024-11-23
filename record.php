@@ -7,58 +7,7 @@ error_reporting(E_ALL);
 ?>
 
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function () {
-    // When the grade dropdown changes
-    $('#fetch').on('change', function () {
-        var gradeId = $(this).val(); // Get the selected grade ID
-        if (!gradeId) {
-            $("#content-field").html('Please select a valid grade.');
-            return; // Exit if no grade is selected
-        }
-
-        // Function to extract URL parameters
-        function getParameterByName(name) {
-            const url = window.location.href;
-            name = name.replace(/[\[\]]/g, '\\$&');
-            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-            const results = regex.exec(url);
-            return results ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : null;
-        }
-
-        var studentId = getParameterByName('id'); // Get student ID from URL
-
-        if (!studentId) {
-            $("#content-field").html('Student ID is missing in the URL.');
-            return; // Exit if student ID is not found
-        }
-
-        var data = {
-            id: studentId,
-            gradeId: gradeId // Send the selected grade ID
-        };
-
-        // AJAX request
-        $.ajax({
-            type: 'POST',
-            url: 'updateRecord.php', // Server-side script to handle the update
-            data: data,
-            beforeSend: function () {
-                $("#content-field").html('Working on it. Please wait...');
-            },
-            success: function (response) {
-                // Dynamically update the content
-                $("#content-field").html(response);
-            },
-            error: function () {
-                $("#content-field").html('Error fetching data. Please try again.');
-            }
-        });
-    });
-});
-
-</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <style>
   input {
@@ -84,26 +33,21 @@ while($row = mysqli_fetch_assoc($sql)) {
 
       <h1 class="page-header"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></h1>
       <?php
-} mysqli_close($conn);
+}
   ?>
-  <div class="col-md-5">
-  <div class="form-inline">
-    <div class="form-group">
-      <!-- Uncomment if "View All" button is needed -->
-      <!-- <a href="rms.php?page=record&id=<?php echo $_GET['id']; ?>" class="btn btn-success"> View All</a> -->
-      <label for="fetch">Select Grade:</label>
-      <select class="form-control" style="height:30px; font-size:12px;" id="fetch">
-        <option value="">Select a grade</option> <!-- Placeholder option -->
-        <?php 
-        include 'db.php';
-        $query = mysqli_query($conn, "SELECT * FROM grade ORDER BY grade_id");
-        while ($row = mysqli_fetch_assoc($query)) {
-          echo '<option value="' . $row['grade_id'] . '">' . htmlspecialchars($row['grade']) . '</option>';
-        }
-        ?>
-      </select>
-    </div>
-  </div>
+  <!-- Add a dropdown to select grade -->
+<div class="col-md-2">
+  <label for="gradeSelect">Select Grade:</label>
+  <select id="gradeSelect" class="form-control" onchange="filterByGrade()">
+    <option value="" disabled selected>Select Grade</option>
+    <?php 
+    // Fetch available grades
+    $gradeQuery = mysqli_query($conn, "SELECT grade_id, grade FROM grade");
+    while($grade = mysqli_fetch_assoc($gradeQuery)) { 
+      echo "<option value='".$grade['grade_id']."'>".$grade['grade']."</option>";
+    } 
+    ?>
+  </select>
 </div>
 <div class="col-md-7 text-right">
   <a href="rms.php?page=records" class="btn btn-primary">Back</a>
@@ -326,6 +270,25 @@ mysqli_close($conn);
 
 </div>
 </div>
+
+<script>
+  function filterByGrade() {
+    var gradeId = $('#gradeSelect').val();
+    
+    if (gradeId) {
+      $.ajax({
+        url: 'get_student_by_grade.php', // This is where you will fetch the content based on selected grade
+        type: 'GET',
+        data: { grade_id: gradeId, student_id: '<?php echo $id; ?>' },
+        success: function(response) {
+          $('#content-field').html(response);
+        }
+      });
+    } else {
+      $('#content-field').empty(); // Clear content if no grade is selected
+    }
+  }
+</script>
 
 
 
