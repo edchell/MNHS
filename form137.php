@@ -43,7 +43,7 @@
             text-align: left;
         }
         .left-head p {
-            margin-bottom: -5px;
+            margin-bottom: -3px;
         }
         .printContainer {
             position: absolute;
