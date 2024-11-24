@@ -284,9 +284,9 @@ if (strpos($request, '.php') !== false) {
 		</div>
         <table >
             <tr>
-                <td><b>Subjects</b></td>
-                <td><b>Final Rating</b></td>
-                <td><b>Action<br>Taken</b></td>
+                <td style="width:150px;border:1px solid black;font-size:10px;height:15px;text-align:center;"><b>Subjects</b></td>
+                <td style="width:60px;border:1px solid black;font-size:10px;height:15px;text-align:center"><b>Final Rating</b></td>
+                <td style="width:83px;border:1px solid black;font-size:10px;height:15px"><b>Action<br>Taken</b></td>
             </tr>
             <?php
                 $syi = $row1['SYI_ID'];
