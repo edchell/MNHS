@@ -374,7 +374,6 @@ if (strpos($request, '.php') !== false) {
 				<?php
  					mysqli_close($conn);
 				?>
-		</div>
 	</center>
 </body>
 <script>
