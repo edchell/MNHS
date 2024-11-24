@@ -24,9 +24,11 @@ if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' a
         while ($row = mysqli_fetch_assoc($sql)) {
             $syi = $row['SYI_ID'];  // Extracting the 'SYI_ID' value for use later
 
+            include 'addrow_grades.php';  // Including another PHP file for further processing
 ?>
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
   input {
     border: 0;
@@ -157,7 +159,8 @@ border-collapse: collapse;
 
     <br>
     <div id="t_rows">
-      
+
+
    </div>
     </div>
     </div> 
