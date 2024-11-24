@@ -210,7 +210,7 @@ if (strpos($request, '.php') !== false) {
 			<div class="pob">
 				<label><h6 style="font-size:12px;">Parents/Guardian</h6></label>
 				<span>
-					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['PARENT_GUARDIAN']?></p></label>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:280px;"><?php echo $row['PARENT_GUARDIAN']?></p></label>
 				</span>
 			</div>
 			<div class="pob">
