@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'addrow_grades.php';
 if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
     include 'db.php';  // Including the database connection file
