@@ -58,8 +58,6 @@ if (strpos($request, '.php') !== false) {
 			display: none;
 		}
 		#print{
-			position:fixed;
-			top:0px;
 			margin-top:20px;
 			margin-bottom:30px;
 			margin-right:50px;
