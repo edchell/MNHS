@@ -288,9 +288,54 @@ if (strpos($request, '.php') !== false) {
                 <td><b>Final Rating</b></td>
                 <td><b>Action<br>Taken</b></td>
             </tr>
+            <?php
+                $syi = $row1['SYI_ID'];
+                $sql2 = mysqli_query($conn,"SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT");
+                $num4 = mysqli_num_rows($sql2);
+                while($row2 = mysqli_fetch_assoc($sql2)){
+                    $sub = $row2['SUBJECT'];
+                $sql3 = mysqli_query($conn,"SELECT * FROM subjects where SUBJECT_ID = '$sub'");
+                while($row3 = mysqli_fetch_assoc($sql3)){
+            ?>
+		    <tr>
+		        <td style="width:150px;border:1px solid black;font-size:10px;height:15px;text-align:center;">
+			    <?php
+                    if($row3['SUBJECT'] == "     *Music"){
+                        echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];}
+                        elseif($row3['SUBJECT'] == "     *Arts"){
+                        echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];
+                        }
+                        elseif($row3['SUBJECT'] == "     *Physical Education"){
+                        echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];
+                        }
+                        elseif($row3['SUBJECT'] == "     *Health"){
+                        echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];
+                        }	
+                        else{
+                        echo $row3['SUBJECT'];
+                    }
+                ?>
+		        </td>
+		        <td style="width:60px;border:1px solid black;font-size:10px;height:15px;text-align:center"><?php echo $row2['FINAL_GRADES'] ?></td>
+		        <td style="width:83px;border:1px solid black;font-size:10px;height:15px"><center><?php echo $row2['PASSED_FAILED'] ?></center></td>
+		    </tr>
+		    <?php
+	            }
+			
+	        }	
+			for($q = $num4; $q < 6 ; $q++){
+		    ?>
+		    <tr>
+                <td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
+                <td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
+                <td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
+		    </tr>
+		    <?php
+		        }
+		    ?>
         </table>
         <?php
-        }
+            }
         ?>
 	</div>
 </body>
