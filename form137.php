@@ -120,9 +120,6 @@ if (strpos($request, '.php') !== false) {
 		  <center><p><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p></center>
 		  </div>
           </div>
-          <div class="row">
-		  <div class="col-md-12">
-
 		<?php 
 		include 'db.php';
 		$id = $_GET['id'];
