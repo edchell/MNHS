@@ -161,9 +161,9 @@
 				<label><h6 style="font-size:12px;">Place of Birth:</h6></label>
 			</div>
 			<div>
-				<label><h6 style="font-size:12px;">Province</h6></label>
+                <label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:140px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[2]) ? trim($parts[2]) : '';?></p></label>
 				<span>
-					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:140px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[2]) ? trim($parts[2]) : '';?></p></label>
+                    <label><h6 style="font-size:12px;">Province</h6></label>
 				</span>
 			</div>
 			<div>
