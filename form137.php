@@ -206,6 +206,44 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
+        <div class="pob">
+			<div>
+				<label><h6 style="font-size:12px;">Parents/Guardian</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['PARENT_GUARDIAN']?></p></label>
+				</span>
+			</div>
+		</div>
+		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+			<div>
+				<label><h6 style="font-size:12px;">Address of Parents/Guardian</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['P_ADDRESS']?></p></label>
+				</span>
+			</div>
+		</div>
+		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+			<div>
+				<label><h6 style="font-size:12px;">Junior/Senior High School Attended</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;">Madridejos National High School</p></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">School Year</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:120px;"><?php echo $row['SCHOOL_YEAR'] ?></p></label>
+				</span>
+			</div>
+		</div>
+		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+			<div>
+				<label><h6 style="font-size:12px;">Total Number of Years in School to Complete Junior/Senior High School</h6></label>
+				<span>
+					<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:279px;padding-left:20px;"></label>
+				</span>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
