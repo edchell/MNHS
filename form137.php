@@ -57,13 +57,8 @@ if (strpos($request, '.php') !== false) {
 		@page {
 			size:9.5in 13in;
 		}
-		head{
-			height:0px;
-			display: none;
-		}
 		#head{
 			display: none;
-			height:0px;
 		}
 		#print{
 			position:fixed;
