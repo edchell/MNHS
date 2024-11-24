@@ -311,4 +311,52 @@ function validateNumber(event) {
     input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
 }
 
+
+
+<script>
+// Add a new row dynamically
+document.getElementById("new_add").addEventListener("click", function() {
+    const newRow = document.createElement("div");
+    newRow.classList.add("row");
+
+    // Create new elements for the subject, grading, final grades, and passed/failed
+    newRow.innerHTML = `
+        <div class="col-xs-4" style="border:1px solid black;height:25px">
+            <input type="hidden" name="tg_id[]" value="">
+            <select name="subj[]">
+                <option value="">Select Subject</option>
+                <?php
+                // Fetch subjects for the dropdown list (you can customize this query)
+                $subjects = mysqli_query($conn, "SELECT * FROM subjects ORDER BY SUBJECT");
+                while ($subject = mysqli_fetch_assoc($subjects)) {
+                ?>
+                    <option value="<?php echo htmlspecialchars($subject['SUBJECT_ID']); ?>"><?php echo htmlspecialchars($subject['SUBJECT']); ?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+        <div class="col-xs-4" style="border:1px solid black;width:59px;height:25px;font-size:12px;padding-left: 5px;">
+            <input type="text" style="border-bottom:0px" name="1st[]" onkeyup="calculateSum2()" onkeydown="calculateSum2()" class="grade" oninput="validateNumber(event)" maxlength="3" required>
+        </div> 
+        <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;padding-left: 5px;">
+            <input type="text" style="border-bottom:0px" name="2nd[]" onkeyup="calculateSum2()" onkeydown="calculateSum2()" class="grade" oninput="validateNumber(event)" maxlength="3" required>       
+        </div>
+        <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;padding-left: 5px;">
+            <input type="text" style="border-bottom:0px" name="3rd[]" onkeyup="calculateSum2()" onkeydown="calculateSum2()" class="grade" oninput="validateNumber(event)" maxlength="3" required>
+        </div> 
+        <div class="col-xs-4" style="border:1px solid black;width:54px;height:25px;font-size:12px;padding-left: 5px;">
+            <input type="text" style="border-bottom:0px" name="4th[]" onkeyup="calculateSum2()" onkeydown="calculateSum2()" class="grade" oninput="validateNumber(event)" maxlength="3" required>
+        </div>
+        <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">
+            <input type="text" style="border-bottom:0px" name="final[]" id="fin" readonly>
+        </div>
+        <div class="col-xs-1 text-center" style="border:1px solid black;height:25px;padding-left: 2px;text-align:center;font-size:12px;width:100px">
+            <input style="border-bottom:0px" type="text" name="action[]" id="action" readonly>
+        </div>
+    `;
+    
+    document.getElementById("t_rows").appendChild(newRow);
+});
+</script>
     </script>
