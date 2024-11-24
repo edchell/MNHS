@@ -47,41 +47,43 @@ include('auth.php');
              ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
             '</tr>';
         $("#table-body").append(data);
+        handleSubjectChange(currentIndex)
     }
 
     function remtrr($i){
         $("." + $i).remove();
-        disableSubject(); // Recheck selections when row is removed
+        handleSubjectChange(currentIndex) // Recheck selections when row is removed
     }
 
-    // Disable already selected subjects
+    // Function to disable subjects already selected in other dropdowns
     function disableSubject() {
-        var allSelects = document.querySelectorAll('select[name="subj[]"]');
-        var selectedSubjects = [];
+        let selects = document.querySelectorAll('select[name="subj[]"]');
+        let selectedValues = [];
 
-        // Collect selected subjects
-        allSelects.forEach(select => {
-            if (select.value) {
-                selectedSubjects.push(select.value);
+        // Collect selected values from all select elements
+        selects.forEach(select => {
+            let selectedOption = select.options[select.selectedIndex];
+            if (selectedOption.value) {
+                selectedValues.push(selectedOption.value);
             }
         });
 
-        // Enable all options
-        allSelects.forEach(select => {
-            select.querySelectorAll('option').forEach(option => {
+        // Enable all options first
+        selects.forEach(select => {
+            for (let option of select.options) {
                 option.disabled = false;
-            });
+            }
         });
 
-        // Disable already selected subjects
-        allSelects.forEach(select => {
-            select.querySelectorAll('option').forEach(option => {
-                if (selectedSubjects.includes(option.value)) {
+        // Disable the selected options in other dropdowns
+        selects.forEach(select => {
+            for (let option of select.options) {
+                if (selectedValues.includes(option.value) && option.value !== "") {
                     option.disabled = true;
                 }
-            });
+            }
         });
-    }
+      }
 
     // Handle both disabling and new row creation on subject change
     function handleSubjectChange(currentIndex) {
