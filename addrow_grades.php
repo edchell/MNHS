@@ -107,7 +107,7 @@ for ($i = 0; $i < 1; $i++) {
         <select name="sub[]" onchange="handleSubjectChange(<?php echo $i ?>)" required>
             <option></option>
             <?php
-            $sql4 = mysqli_query($conn, "SELECT * from SUBJECTS");
+            $sql4 = mysqli_query($conn, "SELECT * FROM subjects");
             while ($row4 = mysqli_fetch_assoc($sql4)) {
             ?>
                 <option value="<?php echo $row4['SUBJECT_ID']; ?>"><?php echo $row4['SUBJECT']; ?></option>
