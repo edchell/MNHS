@@ -134,7 +134,6 @@ if (strpos($request, '.php') !== false) {
 			<p>DepEd Form 137-A</p>
 			<p>LRN No.</p>
 		</div>
-        <br>
         <div class="center-head">
 			<div>
 				<img src="images/logo.png" alt="" class="kd">
