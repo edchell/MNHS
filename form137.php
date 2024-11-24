@@ -205,7 +205,7 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
-        <div class="dob" style="margin-top:-6px;">
+        <div class="dob" style="margin-top:-7px;">
 			<div class="pob">
 				<label><h6 style="font-size:12px;">Parents/Guardian</h6></label>
 				<span>
