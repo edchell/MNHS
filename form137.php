@@ -42,6 +42,9 @@
             float: left;
             text-align: left;
         }
+        .left-head p {
+            margin-bottom: -5px;
+        }
         .printContainer {
             position: absolute;
             top: 0;
