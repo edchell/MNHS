@@ -325,33 +325,6 @@ $("."+ i).remove();
     </div>
 
     <script>
-function newrow(index) {
-    // Get the selected subject from the current row
-    var selectedSubject = document.getElementById('subj' + index).value;
-
-    // Loop through all rows and disable already selected subjects in the other dropdowns
-    var rows = document.querySelectorAll('select[name="subj[]"]');
-    rows.forEach(function(select, idx) {
-        // Enable all subjects before disabling
-        var options = select.querySelectorAll('option');
-        options.forEach(function(option) {
-            option.disabled = false;
-        });
-
-        // Disable selected subject in other rows
-        if (select !== document.getElementById('subj' + index)) {
-            var options = select.querySelectorAll('option');
-            options.forEach(function(option) {
-                if (option.value == selectedSubject) {
-                    option.disabled = true;
-                }
-            });
-        }
-    });
-}
-</script>
-
-    <script>
       $(document).ready(function() {
     
     calculateSum();
