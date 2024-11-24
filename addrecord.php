@@ -46,8 +46,6 @@ data = '<tr id="rowws" class="'+i+'">'+
      '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
     '<input style="width:50px;text-align:center" id="fin'+i+'" type="number" name="final[]" readonly=""></td>'+
      '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
-     '<input style="width:50px" type="text" name="units[]"></td>'+
-     '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
       '<input type="text" name="action[]" id="action'+i+'" style="text-align:center" readonly="" >'+
 
       '</td>'+
