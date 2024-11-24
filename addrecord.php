@@ -47,33 +47,34 @@ include('auth.php');
              ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
             '</tr>';
         $("#table-body").append(data);
-        // disableSubject();
+        disableSubject();
     }
 
     function remtrr($i){
         $("." + $i).remove();
     }
 </script>
-<!-- <script>
-  // Function to disable subjects already selected in other dropdowns
+<script>
   function disableSubject() {
-        var selects = document.querySelectorAll('select[name="subj[]"]');
+    var selects = document.querySelectorAll('select[name="subj[]"]');
 
-        // Enable all options first
-        selects.forEach(select => {
-            for (let option of select.options) {
-                option.disabled = false;
-            }
-        });
+    // Enable all options first
+    selects.forEach(select => {
+        for (let option of select.options) {
+            option.style.display = 'block'; // Show all options
+        }
+    });
 
-        // Disable the selected options in other dropdowns
-        selects.forEach(select => {
-            for (let option of select.options) {
-                    option.disabled = true;
+    // Disable the selected options in other dropdowns
+    selects.forEach(select => {
+        for (let option of select.options) {
+            if (option.selected) {
+                option.style.display = 'none'; // Hide selected options in other dropdowns
             }
-        });
-      }
-</script> -->
+        }
+    });
+}
+</script>
   
     <?php
     include 'db.php';
