@@ -28,6 +28,9 @@
     .printContainer {
         text-align: center;
     }
+    .btn-head {
+        margin-left: 2%
+    }
 
     @media print {
         .btn-head {
