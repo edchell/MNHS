@@ -438,7 +438,7 @@ function acts($i){
         // Enable all options first
         selects.forEach(select => {
             for (let option of select.options) {
-                option.disabled = false;
+                option.style.display = 'block';
             }
         });
 
@@ -446,7 +446,7 @@ function acts($i){
         selects.forEach(select => {
             for (let option of select.options) {
                 if (selectedValues.includes(option.value) && option.value !== "") {
-                    option.disabled = true;
+                    option.style.display = 'none';
                 }
             }
         });
