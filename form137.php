@@ -118,13 +118,14 @@
 			</div>
 		</div>
         <p><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p>
-        <div>
+        <div class="stu-info">
             <div>
 		    	<label for="name"><h6 style="font-size:12px;">Name:</h6></label>
 				<span id="name">
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME'] . ' ' . $row['MIDDLENAME']; ?></p></label>
 				</span>
 			</div>
+            <div>
 			<div>
 				<label for="dob"><h6 style="font-size:12px;">Date of Birth:</h6></label>
 			</div>
@@ -146,6 +147,7 @@
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:35px;"><?php echo date('d', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
 				</span>
 			</div>
+            </div>
         </div>
 	</div>
 </body>
