@@ -112,7 +112,7 @@ if (strpos($request, '.php') !== false) {
         }
         .kd {
             width:140px;
-            height:120px;
+            height:100px;
         }
         .deped {
             width:170px;
