@@ -242,7 +242,7 @@ border-collapse: collapse;
           }
 
           
-    include 'addrow_grades.php';  // Including another PHP file for further processing
+    include 'addrow_grades.php';
      ?> 
      <script>
       $(document).ready(function() {
