@@ -213,8 +213,6 @@ if (strpos($request, '.php') !== false) {
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:200px;"><?php echo $row['PARENT_GUARDIAN']?></p></label>
 				</span>
 			</div>
-        </div> 
-        <div class="dob"> 
 			<div class="pob">
 				<label><h6 style="font-size:12px;">Address of Parents/Guardian</h6></label>
 				<span>
