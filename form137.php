@@ -241,7 +241,7 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
-        <hr style="border-color:black;border:1px solid black;margin-top:-3px;margin-bottom:1px"></hr>
+        <hr style="border-color:black;border:1px solid black;margin-top:-3px;margin-bottom:2px"></hr>
         <div class="dob">
 			<div class="pob">
 				<label><h6 style="font-size:12px;">Curriculum Year</h6></label>
