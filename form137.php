@@ -331,7 +331,7 @@ if (strpos($request, '.php') !== false) {
 	}
 			
 	}	
-			for($q = $num4; $q < 3 ; $q++){
+			for($q = $num4; $q < 6 ; $q++){
 		 ?>
 		
 		<tr>
