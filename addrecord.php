@@ -88,7 +88,6 @@ include('auth.php');
     // Handle both disabling and new row creation on subject change
     function handleSubjectChange(currentIndex) {
         disableSubject();
-        newrow(currentIndex); // add the next row if necessary
     }
 </script>
   
