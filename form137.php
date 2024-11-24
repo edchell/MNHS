@@ -53,7 +53,7 @@ if (strpos($request, '.php') !== false) {
     }
     .printContainer {
         text-align: center;
-        margin-top: -2%;
+        margin-top: 1%;
         width: 100%;
     }
     .btn-head {
