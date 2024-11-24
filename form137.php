@@ -39,11 +39,11 @@
         justify-content:space-between;
     }
     .kd {
-        width:90px;
+        width:120px;
         height:90px;
     }
     .deped {
-        width:120px;
+        width:150px;
         height:120px;
     }
 
