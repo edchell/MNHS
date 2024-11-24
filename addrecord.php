@@ -441,46 +441,6 @@ function acts($i){
       $("#p"+i).css("background-color","white");
     }
   }
-
-  // Disable subjects that are already selected in other selects
-function disableSubject(currentIndex) {
-  var allSelects = document.querySelectorAll('select[name="subj[]"]');
-  var selectedSubjects = [];
-
-  // Get all selected subjects and store them
-  allSelects.forEach((select, index) => {
-    if (index !== currentIndex && select.value) {
-      selectedSubjects.push(select.value);
-    }
-  });
-
-  // Enable all options before disabling the new ones
-  allSelects.forEach((select, index) => {
-    var options = select.querySelectorAll('option');
-    options.forEach(option => {
-      option.disabled = false;
-    });
-  });
-
-  // Disable selected options in other selects
-  allSelects.forEach((select, index) => {
-    var options = select.querySelectorAll('option');
-    options.forEach(option => {
-      if (selectedSubjects.includes(option.value)) {
-        option.disabled = true;
-      }
-    });
-  });
-}
-
-// Handle both subject change and new row creation
-function handleSubjectChange(currentIndex) {
-  // Call disableSubject() to disable options
-  disableSubject(currentIndex);
-
-  // Call newrow() to handle any other logic you had for adding a new row
-  newrow(currentIndex);
-}
     </script>
  
  
