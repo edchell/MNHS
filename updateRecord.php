@@ -28,7 +28,21 @@ if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' a
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        // Hide initial row setup
+        $("#new_row").hide();
 
+        // Clone the initial row on button click and show it
+        $("#new_add").click(function() {
+            $("#new_row").clone().appendTo("#t_rows").show();
+            disableSubject();  // Ensure the disablement applies to new row as well
+        });
+
+        // Delegate events to handle subject change dynamically
+        $(document).on('change', 'select[name="sub[]"]', function() {
+            handleSubjectChange($(this).closest('.tr').index());
+        });
+    });
 
     // Custom function to add a new row with disablement functionality integrated
     function newrow($i) {
@@ -38,7 +52,7 @@ if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' a
             '<select name="sub[]" onchange="handleSubjectChange('+i+')" required>' +  
             '<option></option>' +
             '<?php
-                $sql4 = mysqli_query($conn, "SELECT * from SUBJECTS");
+                $sql4 = mysqli_query($conn, "SELECT * FROM subjects");
                 while ($row4 = mysqli_fetch_assoc($sql4)) {
                     ?>' +
                     '<option value="<?php echo $row4['SUBJECT_ID']; ?>"><?php echo $row4['SUBJECT']; ?></option>' +
