@@ -22,7 +22,7 @@ include('auth.php');
 var data, i = $i +1;
 data = '<tr id="rowws" class="'+i+'">'+
    '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-     '<select name="subj[]" id="mySelect" onchange="newrow('+i+')">'+
+     '<select name="subj[]" onchange="newrow('+i+')">'+
      '<option></option>'+
      ' <?php
                    include 'db.php';
@@ -58,10 +58,10 @@ var i = $i;
 $("."+ i).remove();
 }
 
-const selectElement = document.getElementById('mySelect');
+const selectElement = document.getElementByName('subj');
   const selectedOption = selectElement.options[selectElement.selectedIndex];
 
-  selectedOption.disabled = true;
+   selectedOption.disabled = true;
 </script>
   
     <?php
