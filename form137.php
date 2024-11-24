@@ -53,23 +53,7 @@ if (strpos($request, '.php') !== false) {
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/jq.js"></script>
 	<style>
-	@media print {  
-		#prints, #cancel{
-			display: none;
-		}
-		#print{
-			position:fixed;
-			top:0px;
-			margin-top:20px;
-			margin-bottom:30px;
-			margin-right:50px;
-			margin-left:50px;
-			height: 100%;
-			width: 100%;
-		}
-		}
 
-		
 		#print{
 		width:7.5in;
 		}
