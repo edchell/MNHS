@@ -91,8 +91,8 @@ if (strpos($request, '.php') !== false) {
 			top: 0;
 			bottom: 0;
 		}
-		#header {
-			position: relative;
+		#tables {
+			position: ;
 			top: 0;
 		}
 	}
@@ -115,7 +115,7 @@ if (strpos($request, '.php') !== false) {
 	<br>
 	<br>
 	<br>
-<div id="header" style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
+<div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 			<div style="display:flex;align-items:center;justify-content:space-between;">
 				<div>
 					<img src="images/logo.png" alt="" style="width:90px;height:90px;">
@@ -259,7 +259,7 @@ if (strpos($request, '.php') !== false) {
 
 		while($row1 = mysqli_fetch_assoc($sql1)){
 		?>
-		<table style="float:left;margin-left:5px;margin-bottom:20px;">
+		<table id="tables" style="float:left;margin-left:5px;margin-bottom:20px;">
 		<tr>
 		<td>  
 		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
