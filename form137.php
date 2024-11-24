@@ -101,7 +101,7 @@ if (strpos($request, '.php') !== false) {
 </head> 
 <body style="background-color:white;color:black;"> 
 <span id='returncode'></span>
-<button class="btn btn-info" onclick="window.print()">Print this page</button>
+<button class="btn btn-info" onclick="window.print()">Print</button>
 	<a class="btn btn-danger" onclick="window.close()">Cancel</a>
 <br>
 <center>
