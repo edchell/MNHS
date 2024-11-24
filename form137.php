@@ -104,11 +104,8 @@ if (strpos($request, '.php') !== false) {
 </head> 
 <body style="background-color:white;color:black;"> 
 <span id='returncode'></span>
-<div class="col-md-2" id="head">
 <button onclick="window.print()">Print this page</button>
 	<a class="btn btn-info" onclick="window.close()">Cancel</a>
-	
-</div>
 <br>
 <center>
 <div id='print'>
