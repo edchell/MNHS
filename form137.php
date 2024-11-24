@@ -86,6 +86,10 @@ if (strpos($request, '.php') !== false) {
 		#prints, #cancel {
 			display: none;
 		}
+		#print {
+			position: absolute;
+			top: 0;
+		}
 	}
 	</style>
 
