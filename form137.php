@@ -83,7 +83,6 @@ if (strpos($request, '.php') !== false) {
         display:flex;
         align-items:center;
         justify-content:space-between;
-        margin-top: 10px;
     }
     .dob {
         display:flex;
