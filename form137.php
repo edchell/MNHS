@@ -72,6 +72,7 @@ if (strpos($request, '.php') !== false) {
 			margin-bottom:30px;
 			margin-right:50px;
 			margin-left:50px;
+			height: 100%;
 		}
 		}
 
