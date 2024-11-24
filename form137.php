@@ -74,6 +74,7 @@
             top: 0;
             left: 0;
             right: 0;
+            width: 100%;
         }
         .kd {
             width:120px;
