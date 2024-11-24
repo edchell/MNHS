@@ -241,7 +241,7 @@ if (strpos($request, '.php') !== false) {
 		<?php } ?>
 		  </div>
           </div>
-          <div class="row" id="tables">
+          <div class="row">
           <div class="col-md-12">
           <hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
           </div>
