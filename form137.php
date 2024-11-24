@@ -81,7 +81,7 @@
             height:120px;
         }
         .deped {
-            width:190px;
+            width:170px;
             height:190px;
         }
     }
