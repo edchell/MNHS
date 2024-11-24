@@ -77,7 +77,7 @@
             width: 100%;
         }
         .kd {
-            width:120px;
+            width:140px;
             height:120px;
         }
         .deped {
