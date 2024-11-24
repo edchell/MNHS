@@ -20,10 +20,10 @@
 </head>
 <style>
     * {
-    color: black;
-    background-color: white;
-    padding: 10px;
-    border: none;
+        margin: 0 auto;
+        padding: 0;
+        color: black;
+        background-color: white;
     }
     .printContainer {
         text-align: center;
