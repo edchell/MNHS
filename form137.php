@@ -92,7 +92,7 @@ if (strpos($request, '.php') !== false) {
 			bottom: 0;
 		}
 		#tables {
-			position: absolute;
+			position: relative;
 			top: 0;
 		}
 	}
