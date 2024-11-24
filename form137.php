@@ -282,7 +282,7 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
-        <table style="width: 90%">
+        <table style="width: 75%">
             <tr>
                 <td style="width:150px;border:1px solid black;font-size:10px;height:15px;text-align:center;"><b>Subjects</b></td>
                 <td style="width:60px;border:1px solid black;font-size:10px;height:15px;text-align:center"><b>Final Rating</b></td>
