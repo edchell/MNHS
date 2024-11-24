@@ -22,6 +22,7 @@
     * {
     color: black;
     background-color: white;
+    padding: 10px;
     }
     .printContainer {
         text-align: center;
