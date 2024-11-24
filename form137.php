@@ -220,14 +220,14 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
-		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
-			<div>
+		<div class="dob">
+			<div class="pob">
 				<label><h6 style="font-size:12px;">Junior/Senior High School Attended</h6></label>
 				<span>
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;">Madridejos National High School</p></label>
 				</span>
 			</div>
-			<div>
+			<div class="pob">
 				<label><h6 style="font-size:12px;">School Year</h6></label>
 				<span>
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:120px;"><?php echo $row['SCHOOL_YEAR'] ?></p></label>
