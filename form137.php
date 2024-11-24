@@ -56,6 +56,11 @@
         width:230px;
         height:230px;
     }
+    .stu-info {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
 
 
     @media print {
@@ -113,6 +118,35 @@
 			</div>
 		</div>
         <p><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p>
+        <div class="stu-info">
+            <div>
+		    	<label for="name"><h6 style="font-size:12px;">Name:</h6></label>
+				<span id="name">
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME'] . ' ' . $row['MIDDLENAME']; ?></p></label>
+				</span>
+			</div>
+			<div>
+				<label for="dob"><h6 style="font-size:12px;">Date of Birth:</h6></label>
+			</div>
+			<div>
+				<label for=""><h6 style="font-size:12px;">Year</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:60px;"><?php echo date('Y', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+				</span>
+			</div>
+			<div>
+				<label for=""><h6 style="font-size:12px;">Month</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:90px;"><?php echo date('F', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+				</span>
+			</div>
+			<div>
+				<label for=""><h6 style="font-size:12px;">Day</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:35px;"><?php echo date('d', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+				</span>
+			</div>
+        </div>
 	</div>
 </body>
 </html>
