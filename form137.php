@@ -257,6 +257,11 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
+        <?php
+		$sql1 = mysqli_query($conn,"SELECT * FROM student_year_info left join grade on student_year_info.YEAR=grade.grade_id where STUDENT_ID = '$id'");
+		$num1 = mysqli_num_rows($sql1);
+		while($row1 = mysqli_fetch_assoc($sql1)){
+		?>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:-20px;">
 			<div>
 				<label><h6 style="font-size:12px;">Yr. & Sec</h6></label>
@@ -277,6 +282,9 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
+        <?php
+        }
+        ?>
 	</div>
 </body>
 </html>
