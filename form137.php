@@ -243,7 +243,7 @@ if (strpos($request, '.php') !== false) {
 		<?php } ?>
 		  </div>
           </div>
-          <div class="row" id="tables">
+          <div class="row">
           <div class="col-md-12">
           <hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
           </div>
@@ -259,7 +259,7 @@ if (strpos($request, '.php') !== false) {
 
 		while($row1 = mysqli_fetch_assoc($sql1)){
 		?>
-		<table style="float:left;margin-left:5px;margin-bottom:20px;">
+		<table id="tables" style="float:left;margin-left:5px;margin-bottom:20px;">
 		<tr>
 		<td>  
 		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
