@@ -1,4 +1,5 @@
 <?php
+include 'script.php';
 for ($i = 0; $i < 1; $i++) {
 ?>
 <div id="new_row" class="tr<?php echo $i ?>">
