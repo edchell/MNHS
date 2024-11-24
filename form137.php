@@ -53,7 +53,22 @@ if (strpos($request, '.php') !== false) {
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/jq.js"></script>
 	<style>
+	@media print {  
+		#prints, #cancel{
+			display: none;
+		}
+		#print{
+			position:fixed;
+			top:0px;
+			margin-top:20px;
+			margin-bottom:30px;
+			margin-right:50px;
+			margin-left:50px;
+			height: 100%;
+		}
+		}
 
+		
 		#print{
 		width:7.5in;
 		}
@@ -81,19 +96,6 @@ if (strpos($request, '.php') !== false) {
 	line-height: 20px;
 	 letter-spacing: 2px;
 }
-
-	@media print {
-		body {
-			visibility: hidden;
-		}
-		#print {
-			visibility: visible;
-			margin-top: -130px;
-		}
-		#adj {
-			margin-bottom: -50%;
-		}
-	}
 	</style>
 
 </head> 
@@ -248,6 +250,7 @@ if (strpos($request, '.php') !== false) {
           
           </div>
 
+          <p style="">
           <?php
 		$sql1 = mysqli_query($conn,"SELECT * FROM student_year_info left join grade on student_year_info.YEAR=grade.grade_id where STUDENT_ID = '$id'");
 		$num1 = mysqli_num_rows($sql1);
