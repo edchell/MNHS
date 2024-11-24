@@ -40,6 +40,7 @@
         }
         .left-head {
             float: left;
+            text-align: left;
         }
         .printContainer {
             position: absolute;
