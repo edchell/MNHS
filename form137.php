@@ -118,7 +118,7 @@
 			</div>
 		</div>
         <p><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p>
-        <div class="stu-info">
+        <div>
             <div>
 		    	<label for="name"><h6 style="font-size:12px;">Name:</h6></label>
 				<span id="name">
