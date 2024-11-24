@@ -204,7 +204,7 @@ $("."+ i).remove();
           ?>
          <tr id="rowws" class="<?php echo $i ?>">
            <td style="width:50px;text-align:center;height:30px;font-size:12px">
-           <select name="subj[]" id="subj<?php echo $i ?>" onchange="handleSubjectChange(<?php echo $i ?>)">
+           <select name="subj[]" id="subj<?php echo $i ?>" onchange="newrow(<?php echo $i ?>)">
              <option></option>
              <?php
               include 'db.php';
