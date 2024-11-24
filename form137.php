@@ -282,6 +282,13 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
+        <table>
+            <tr>
+                <td><b>Subjects</b></td>
+                <td><b>Final Rating</b></td>
+                <td><b>Action<br>Taken</b></td>
+            </tr>
+        </table>
         <?php
         }
         ?>
