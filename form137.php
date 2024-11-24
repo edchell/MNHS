@@ -61,6 +61,11 @@
         align-items:center;
         justify-content:space-between;
     }
+    .dob {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
 
 
     @media print {
@@ -125,7 +130,7 @@
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME'] . ' ' . $row['MIDDLENAME']; ?></p></label>
 				</span>
 			</div>
-            <div>
+            <div class="dob">
 			<div>
 				<label for="dob"><h6 style="font-size:12px;">Date of Birth:</h6></label>
 			</div>
