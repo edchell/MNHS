@@ -55,6 +55,7 @@ if (strpos($request, '.php') !== false) {
         text-align: center;
         margin-top: 1%;
         width: 100%;
+        height: 100%;
     }
     .btn-head {
         margin-left: 2%;
