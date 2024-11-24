@@ -323,7 +323,7 @@ if (strpos($request, '.php') !== false) {
 	            }
 			
 	        }	
-			for($q = $num4; $q < 6 ; $q++){
+			for($q = $num4; $q < 5 ; $q++){
 		    ?>
 		    <tr>
                 <td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
