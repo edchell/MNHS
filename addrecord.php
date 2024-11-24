@@ -47,15 +47,11 @@ data = '<tr id="rowws" class="'+i+'">'+
     '<input style="width:50px;text-align:center" id="fin'+i+'" type="number" name="final[]" readonly=""></td>'+
      '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
       '<input type="text" name="action[]" id="action'+i+'" style="text-align:center" readonly="" >'+
-
       '</td>'+
      ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
       '</tr>';
 
       $("#table-body").append(data);
-}
-function adds(){
-
 }
 function remtrr($i){
 var i = $i;
