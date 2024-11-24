@@ -60,8 +60,11 @@ if (strpos($request, '.php') !== false) {
 		#print{
 			position:fixed;
 			top:0px;
+			margin-top:20px;
+			margin-bottom:30px;
+			margin-right:50px;
+			margin-left:50px;
 			height: 100%;
-			margin-right: 50%
 		}
 		}
 
