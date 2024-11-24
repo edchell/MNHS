@@ -70,9 +70,7 @@ include('auth.php');
         // Disable the selected options in other dropdowns
         selects.forEach(select => {
             for (let option of select.options) {
-                if (selectedValues.includes(option.value) && option.value !== "") {
                     option.disabled = true;
-                }
             }
         });
       }
