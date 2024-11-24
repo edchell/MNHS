@@ -18,45 +18,76 @@ include('auth.php');
     });
 
     function newrow($i){
+        var data, i = $i + 1;
+        data = '<tr id="rowws" class="'+i+'">'+
+           '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
+             '<select name="subj[]" onchange="handleSubjectChange('+i+')">'+
+             '<option></option>'+
+             '<?php include "db.php";
+              $sql = mysqli_query($conn, "SELECT * from subjects");
+              while($row = mysqli_fetch_assoc($sql)){
+                  $id = $row["SUBJECT_ID"];
+                  $subj = $row["SUBJECT"];
+             ?>'+
+                '<option value="<?php echo $id ?>"><?php echo $subj ?> </option>'+
+                '<?php } mysqli_close($conn); ?>'+
+            '</select> </td>'+
+            '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
+             '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="1st[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">'+
+            ' <input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="2nd[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">'+
+             '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+'>)" onkeydown="calculateSum2('+i+')" type="text" name="3rd[]"></td>'+
+             '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
+             '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="4th[]"></td>'+
+             '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
+            '<input style="width:50px;text-align:center" id="fin'+i+'" type="number" name="final[]" readonly=""></td>'+
+             '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
+              '<input type="text" name="action[]" id="action'+i+'" style="text-align:center" readonly="" >'+
 
-var data, i = $i +1;
-data = '<tr id="rowws" class="'+i+'">'+
-   '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-     '<select name="subj[]" onchange="newrow('+i+')">'+
-     '<option></option>'+
-     ' <?php
-                   include 'db.php';
-                   $sql = mysqli_query($conn, " SELECT * from subjects where `FOR`='All' OR `FOR`= '".$_GET['prog']."' ");
-      while($row=mysqli_fetch_assoc($sql)){
-                     $id = $row['SUBJECT_ID'];
-                     $subj = $row['SUBJECT'];
-     ?>'+
-        '<option value="<?php echo $id ?>"><?php echo $subj ?> </option>'+
-        '<?php
-                      }
-                      mysqli_close($conn);
-                      ?>'+
-    '</select> </td>'+
-     '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-     '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="1st[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-    ' <input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="2nd[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-     '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+'>)" onkeydown="calculateSum2('+i+')" type="text" name="3rd[]"></td>'+
-     '<td style="width:50px;text-align:center;height:30px;font-size:12px">'+
-     '<input style="width:50px" class="grade'+i+'" onkeyup="calculateSum2('+i+')" onkeydown="calculateSum2('+i+')" type="text" name="4th[]"></td>'+
-     '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
-    '<input style="width:50px;text-align:center" id="fin'+i+'" type="number" name="final[]" readonly=""></td>'+
-     '<td style="width:60px;text-align:center;height:30px;font-size:12px">'+
-      '<input type="text" name="action[]" id="action'+i+'" style="text-align:center" readonly="" >'+
-      '</td>'+
-     ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
-      '</tr>';
+              '</td>'+
+             ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
+            '</tr>';
+        $("#table-body").append(data);
+    }
 
-      $("#table-body").append(data);
-}
-function remtrr($i){
-var i = $i;
-$("."+ i).remove();
-}
+    function remtrr($i){
+        $("." + $i).remove();
+        disableSubject(); // Recheck selections when row is removed
+    }
+
+    // Disable already selected subjects
+    function disableSubject() {
+        var allSelects = document.querySelectorAll('select[name="subj[]"]');
+        var selectedSubjects = [];
+
+        // Collect selected subjects
+        allSelects.forEach(select => {
+            if (select.value) {
+                selectedSubjects.push(select.value);
+            }
+        });
+
+        // Enable all options
+        allSelects.forEach(select => {
+            select.querySelectorAll('option').forEach(option => {
+                option.disabled = false;
+            });
+        });
+
+        // Disable already selected subjects
+        allSelects.forEach(select => {
+            select.querySelectorAll('option').forEach(option => {
+                if (selectedSubjects.includes(option.value)) {
+                    option.disabled = true;
+                }
+            });
+        });
+    }
+
+    // Handle both disabling and new row creation on subject change
+    function handleSubjectChange(currentIndex) {
+        disableSubject();
+        newrow(currentIndex); // add the next row if necessary
+    }
 </script>
   
     <?php
@@ -198,7 +229,7 @@ $("."+ i).remove();
           ?>
          <tr id="rowws" class="<?php echo $i ?>">
            <td style="width:50px;text-align:center;height:30px;font-size:12px">
-           <select name="subj[]" id="subj<?php echo $i ?>" onchange="newrow(<?php echo $i ?>)">
+           <select name="subj[]" id="subj<?php echo $i ?>" onchange="handleSubjectChange(<?php echo $i ?>)">
              <option></option>
              <?php
               include 'db.php';
@@ -323,7 +354,6 @@ $("."+ i).remove();
 
     </form>
     </div>
-
     <script>
       $(document).ready(function() {
     
@@ -425,6 +455,46 @@ function acts($i){
       $("#p"+i).css("background-color","white");
     }
   }
+
+  // Disable subjects that are already selected in other selects
+function disableSubject(currentIndex) {
+  var allSelects = document.querySelectorAll('select[name="subj[]"]');
+  var selectedSubjects = [];
+
+  // Get all selected subjects and store them
+  allSelects.forEach((select, index) => {
+    if (index !== currentIndex && select.value) {
+      selectedSubjects.push(select.value);
+    }
+  });
+
+  // Enable all options before disabling the new ones
+  allSelects.forEach((select, index) => {
+    var options = select.querySelectorAll('option');
+    options.forEach(option => {
+      option.disabled = false;
+    });
+  });
+
+  // Disable selected options in other selects
+  allSelects.forEach((select, index) => {
+    var options = select.querySelectorAll('option');
+    options.forEach(option => {
+      if (selectedSubjects.includes(option.value)) {
+        option.disabled = true;
+      }
+    });
+  });
+}
+
+// Handle both subject change and new row creation
+function handleSubjectChange(currentIndex) {
+  // Call disableSubject() to disable options
+  disableSubject(currentIndex);
+
+  // Call newrow() to handle any other logic you had for adding a new row
+  newrow(currentIndex);
+}
     </script>
  
  
