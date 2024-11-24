@@ -44,7 +44,6 @@
             visibility: hidden;
         }
         .left-head {
-            float: left;
             text-align: left;
         }
         .left-head p {
