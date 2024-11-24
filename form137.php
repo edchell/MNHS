@@ -1,8 +1,7 @@
-&nbsp<!DOCTYPE html>
-<html>
-<?php 
+<?php
+include('auth.php');
+
 include 'db.php';
-session_start();
 $user = $_SESSION['ID'];
 
 
@@ -15,13 +14,21 @@ $user = $_SESSION['ID'];
 	mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('printed $student permanent record','$user',NOW() )");
 
+$request = $_SERVER['REQUEST_URI'];
 
-
+if (strpos($request, '.php') !== false) {
+    // Redirect to remove .php extension
+    $new_url = str_replace('.php', '', $request);
+    header("Location: $new_url", true, 301);
+    exit();
+}
 ?>
+<!DOCTYPE html>
+<html>
 <head>
     <link rel="icon" href="images/logo.jpg">
 
-    <title>Student Grading System</title>
+    <title>MNHS - Student Grading System</title>
 
      <!-- Bootstrap Core CSS -->
     <link href="asset/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +55,7 @@ $user = $_SESSION['ID'];
 	<style>
 	@media print {  
 		@page {
-			size:8.5in 13in;
+			size:9.5in 13in;
 		}
 		head{
 			height:0px;
@@ -58,13 +65,8 @@ $user = $_SESSION['ID'];
 			display: none;
 			height:0px;
 		}
-		#print{
-		position:fixed;
-		top:0px;
-		margin-top:20px;
-		margin-bottom:30px;
-		margin-right:50px;
-		margin-left:50px;
+		#print {
+			margin-top: -120px;
 		}
 		}
 		#print{
@@ -76,44 +78,46 @@ $user = $_SESSION['ID'];
     background: transparent;
     border-bottom: 1px solid black;
 }
-
-.foo{
-	font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
-	font-size: 24px;
-	font-style: italic;
-	font-variant: normal;
-	font-weight: bold;
-	line-height: 24px;
-	}
-	.p {
-	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-	font-size: 14px;
-	font-style: italic;
-	font-variant: normal;
-	font-weight: 550;
-	line-height: 20px;
-	 letter-spacing: 2px;
-}
 	</style>
 
 </head> 
-<body style="background-color:white"> 
-<span id='returncode'></span>
+<body style="background-color:white;color:black;"> 
 <div class="col-md-2" id="head">
 	<button class="btn btn-info" onclick="print()"><i class="glyphicon glyphicon-print"></i>PRINT</button>
 	<a class="btn btn-info" onclick="window.close()">Cancel</a>
-	
 </div>
+<br>
 <center>
 <div id='print'>
+	<div style="display:flex;flex-direction:column;float:left;">
+	<p style="font-style:italic;font-size:11px;margin-left:-120px;">DepEd Form 137-A</p>
+	<p style="font-size:12px;margin-top:-10px;">LRN: No.:
+		<span><input disabled value="<?php echo $row['LRN_NO'] ?>"></span>
+	</p>
+	</div>
+	<br>
+	<br>
+	<br>
 <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
-
-		<p><center><b>Student Grading System</b></center></p>
-
-		  </div>
-		  <div class="row">
+			<div style="display:flex;align-items:center;justify-content:space-between;">
+				<div>
+					<img src="images/logo.png" alt="" style="width:90px;height:90px;">
+				</div>
+				<div>
+					<center><p style="font-size:12px;margin-bottom:13px;">Department of Education</p></center>
+					<center><p style="font-size:12px;margin-bottom:13px;">Region VII</p></center>
+					<center><p style="font-size:12px;margin-bottom:13px;">Province of Cebu</p></center>
+					<center><p><b>Madridejos National High School</b></p></center>
+					<center><p style="font-size:12px;margin-top:13px;">Poblacion, Madridejos, Cebu</p></center>
+				</div>
+				<div>
+					<img src="images/deped.png" alt="" style="width:120px;height:120px;">
+				</div>
+			</div>
+</div>
+		  <div class="row" style="margin-top:-7px;">
 		  <div class="col-md-12">
-		  <center><p><b><h4>SECONDARY STUDENT'S PERMANENT RECORDS</h4></b></p></center>
+		  <center><p><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p></center>
 		  </div>
           </div>
           <div class="row">
@@ -127,82 +131,104 @@ $user = $_SESSION['ID'];
 		while($row = mysqli_fetch_assoc($sql)){
 			$mid = $row['MIDDLENAME'];
 		?>
-			<tr>
-				<td style="width:600px;font-size:12px">
-					<label for="" style="">Name:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<b style="font-size:13px;text-transform: uppercase;"><?php echo $row['LASTNAME'].", " .  $row['FIRSTNAME']. " " .  substr("$mid",0,1) . "."; ?></b>
-					<br>
-					<label for="">Place of Birth:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px"><?php echo $row['BIRTH_PLACE'] ?></h>
-					
-				</td>
-				<td style="width:600px;font-size:12px">
-				<label for="">Date of Birth:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px"><?php echo date("F d,Y") ?></h>
-					<br>
-					<label for="">Town / City:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px"><?php echo $row['ADDRESS'] ?></h>
-				</td>
-				
-			</tr>
-
+			<div style="display:flex;align-items:center;justify-content:between;margin-top:-10px;">
+				<div>
+					<label for="name"><h6 style="font-size:12px;">Name:</h6></label>
+					<span id="name">
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME'] . ' ' . $row['MIDDLENAME']; ?></p></label>
+					</span>
+				</div>
+				<div>
+					<label for="dob"><h6 style="font-size:12px;">Date of Birth:</h6></label>
+				</div>
+				<div>
+					<label for=""><h6 style="font-size:12px;">Year</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:60px;"><?php echo date('Y', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+					</span>
+				</div>
+				<div>
+					<label for=""><h6 style="font-size:12px;">Month</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:90px;"><?php echo date('F', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+					</span>
+				</div>
+				<div>
+					<label for=""><h6 style="font-size:12px;">Day</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:35px;"><?php echo date('d', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+					</span>
+				</div>
+		</div>
+			<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+				<div>
+					<label><h6 style="font-size:12px;">Place of Birth:</h6></label>
+				</div>
+				<div>
+					<label><h6 style="font-size:12px;">Province</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:140px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[2]) ? trim($parts[2]) : '';?></p></label>
+					</span>
+				</div>
+				<div>
+					<label><h6 style="font-size:12px;">Municipality</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:150px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[1]) ? trim($parts[1]) : '';?></p></label>
+					</span>
+				</div>
+				<div>
+					<label><h6 style="font-size:12px;">Barangay</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:150px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[0]) ? trim($parts[0]) : '';?></p></label>
+					</span>
+				</div>
+			</div>
+			<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+				<div>
+					<label><h6 style="font-size:12px;">Parents/Guardian</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['PARENT_GUARDIAN']?></p></label>
+					</span>
+				</div>
+			</div>
+			<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+				<div>
+					<label><h6 style="font-size:12px;">Address of Parents/Guardian</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;"><?php echo $row['P_ADDRESS']?></p></label>
+					</span>
+				</div>
+			</div>
+			<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+				<div>
+					<label><h6 style="font-size:12px;">Junior/Senior High School Attended</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:300px;">Madridejos National High School</p></label>
+					</span>
+				</div>
+				<div>
+					<label><h6 style="font-size:12px;">School Year</h6></label>
+					<span>
+						<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:120px;"><?php echo $row['SCHOOL_YEAR'] ?></p></label>
+					</span>
+				</div>
+			</div>
+			<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+				<div>
+					<label><h6 style="font-size:12px;">Total Number of Years in School to Complete Junior/Senior High School</h6></label>
+					<span>
+						<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:279px;padding-left:20px;"></label>
+					</span>
+				</div>
+			</div>
 			
 			</table> 
-			<table>
-			<tr>
-			<td style="width:1000px;font-size:12px;align:left">
-				
-					<label for="">Parent or Guardian:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px;text-transform: capitalize"><?php echo $row['PARENT_GUARDIAN'] ?></h>
-				</td>
-				<td style="width:600px;font-size:12px;align:left">
-				
-					
-				</td>
-			</tr>
-
-			</table>
-			<table>
-			
-			<tr>
-			<td style="width:1000px;font-size:12px;align:left">
-
-				
-					<label for="">Address of Parent or Guardian:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="font-size:12px;text-transform: capitalize"><?php echo $row['P_ADDRESS'] ?></h>
-				
-			</td>
-			</tr>
-			
-			</table> 
-			<table>
-			<tr>
-
-			<td style="width:800px;font-size:12px">
-
-				
-					<label for="">Intermediate Course Completed at:&nbsp</label>
-					<h style="text-transform: capitalize"><?php echo $row['INT_COURSE_COMP'] ?></h>
-				
-			</td>
-			<td style="width:200px;font-size:12px">
-				<label for="">Year:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-					<h style="text-transform: capitalize"><?php echo $row['SCHOOL_YEAR'] ?></h>
-			</td>
-			<td style="width:200px;font-size:12px">
-				<label for="">Ave:&nbsp</label>
-					<h style="text-transform: capitalize"><?php echo $row['GEN_AVE'] ?></h>
-			</td>
-			
-			
-			</tr>
-		</table>
 		<?php } ?>
 		  </div>
           </div>
           <div class="row">
           <div class="col-md-12">
-          <hr style="border-color:black;border:1px solid black"></hr>
+          <hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
           </div>
           
           </div>
@@ -219,41 +245,45 @@ $user = $_SESSION['ID'];
 		<table style="float:left;margin-left:5px;margin-bottom:20px;">
 		<tr>
 		<td>  
-		<table>
-			<tr style="width:100%">
-			<td>
-         
-			<label style="font-size:12px">School:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-			</td>
-			<td style="border-bottom:1px solid black;width:280px">
-		<label style="font-size:12px"><?php echo $row1['SCHOOL'] ?> </label>
-		</td>
-		</tr>
-		</table>
-	
-					
-					
-		<table>
-		<tr style="width:100%">
-		<td  style="width:200px">
-		<label style="font-size:12px">Yr.& Sec:&nbsp&nbsp&nbsp&nbsp&nbsp
-					<?php echo $row1['grade'] . '-' . $row1['SECTION']  ?></label>
-		</td>
-		<td >
-		<label style="font-size:12px">Sch.Yr.:&nbsp&nbsp&nbsp&nbsp&nbsp
-					<?php echo $row1['SCHOOL_YEAR']?>
-						
-					</label>
-		</td>
-		</tr>
-		</table>
+		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+			<div>
+				<label><h6 style="font-size:12px;">Curriculum Year</h6></label>
+				<span>
+					<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:200px;padding-left:10px;"></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">School</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:350px;padding-left:10px;">Madridejos National High School</p></label>
+				</span>
+			</div>
+		</div>
+		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+			<div>
+				<label><h6 style="font-size:12px;">Yr. & Sec</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:200px;padding-left:10px;"><?php echo $row1['grade'] . '-' . $row1['SECTION']  ?></p></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">School Year</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:200px;padding-left:10px;"><?php echo $row1['SCHOOL_YEAR']?></p></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">Semester</h6></label>
+				<span>
+					<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:100px;padding-left:10px;"></label>
+				</span>
+			</div>
+		</div>		
 		
-		
-		<table style="border-collapse:collapse">
+		<table style="border-collapse:collapse;width:715px;">
 		<tr>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
 		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
 		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
 		</tr>
 		<?php
@@ -267,7 +297,7 @@ $user = $_SESSION['ID'];
 
 		?>
 		<tr>
-		<td style="width:150px;border:1px solid black;font-size:10px;height:15px">
+		<td style="width:150px;border:1px solid black;font-size:10px;height:15px;text-align:center;">
 			<?php
            if($row3['SUBJECT'] == "     *Music"){
             echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$row3['SUBJECT'];}
@@ -287,7 +317,6 @@ $user = $_SESSION['ID'];
             ?>
 		</td>
 		<td style="width:60px;border:1px solid black;font-size:10px;height:15px;text-align:center"><?php echo $row2['FINAL_GRADES'] ?></td>
-		<td style="width:60px;border:1px solid black;font-size:10px;height:15px"><?php echo $row2['UNITS'] ?></td>
 		<td style="width:83px;border:1px solid black;font-size:10px;height:15px"><center><?php echo $row2['PASSED_FAILED'] ?></center></td>
 		</tr>
 		
@@ -295,270 +324,72 @@ $user = $_SESSION['ID'];
 	}
 			
 	}	
-			for($q = $num4; $q < 15 ; $q++){
+			for($q = $num4; $q < 6 ; $q++){
 		 ?>
 		
 		<tr>
 		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
 		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
 		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
 		</tr>
 		<?php
-	
-
-}
-	
+		}
 		?>
-		<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of School:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TDAYS_OF_CLASSES'] ?></center></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">No. of Ye</td>
-		<td style="width:83px;font-size:12px;height:15px">ars in</td>
-		</tr>
-		<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of Present:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TDAYS_PRESENT'] ?></center></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">School</td>
-		<td style="width:83px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TOTAL_NO_OF_YEAR'] ?></center></td>
-		</tr>
-
 		</table>
-		<table style="border-collapse:collapse">
+		<center><p style="font-weight:bolder;">Attendance Report</p></center>
+		<table style="border-collapse:collapse;width:715px;margin-bottom:20px;margin-top:-10px;">
 			<tr>
-		<td style="width:150px;font-size:12px;height:15px">To be classified as:</td>
-		<td style="width:120px;border-bottom:1px solid black;font-size:12px;height:15px"><center><?php echo $row1['TO_BE_CLASSIFIED'] ?></center></td>
-		<td style="width:83px;font-size:12px;height:15px"></td>
-		</tr>
-		</table>
-		</td>
-		</tr>
-
-		</table>
-
-
-		
-         
-          
-          <?php
-	}
-	?>
-	<?php
-	for($c =  $num1;$c < 4; $c++){
-		?>
-		<table style="float:left;margin-left:5px;margin-bottom:20px;">
-		<tr>
-		<td>
-		<table>
-			<tr style="width:100%">
-			<td>
-			<label style="font-size:12px">School:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-			</td>
-			<td style="border-bottom:1px solid black;width:280px">
-		<label style="font-size:12px"></label>
-		</td>
-		</tr>
-		</table>
-	
-					
-					
-		<table>
-		<tr style="width:100%">
-		<td  style="width:200px">
-		<label style="font-size:12px">Yr.& Sec:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-		</td>
-		<td >
-		<label style="font-size:12px">Sch.Yr.:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-		</td>
-		</tr>
-		</table>
-		<table style="border-collapse:collapse">
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
-		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
-		</tr>
-		<?php
-		
-		for($p = 0 ; $p < 7 ; $p++){
-		 ?>
-		
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
-		</tr>
-		<?php 
-	}
-		?>
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;height:15px;font-size:11px;text-align:right"><b>*</b></td>
-		<td style="width:60px;height:15px;font-size:11px;text-align:right"><b>**** no &nbsp</b></td>
-		<td style="width:83px;border-right:1px solid black;font-size:11px;height:15px;text-align:left"><b>entry *****</b></td>
-		</tr>
-
-		<?php
-		for($s = 0 ; $s < 7 ; $s++){
-		 ?>
-		
-		<tr>
-		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
-		</tr>
-		<?php 
-		}
-	
-
-		?>
-<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of School:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">No. of Ye</td>
-		<td style="width:83px;font-size:12px;height:15px">ars in</td>
-		</tr>
-		<tr>
-		<td style="width:150px;font-size:12px;height:15px">Days of Present:</td>
-		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:60;font-size:12px;height:15px;text-align:right">School:</td>
-		<td style="width:83px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		</tr>
-
-		</table>
-		<table style="border-collapse:collapse">
-			<tr>
-		<td style="width:150px;font-size:12px;height:15px">To be classified as:</td>
-		<td style="width:120px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
-		<td style="width:83px;font-size:12px;height:15px"></td>
-		</tr>
-		</table>
-		</td>
-		</tr>
-
-		</td>
-		</tr>
-
-		</table>
-		
-		<?php 
-	
-
-		}
-	
-	
-
-		?>
-      	<p>
-
-
-<p style="float:left;margin-left:15px;margin-bottom:20px;">
-<div class="col-md-12">
-          <hr style="border-color:black;border:1px solid black"></hr>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-         <table>
-         <tr>
-         	<td>
-		<center><h3 class="foo"><b>CERTIFICATION</b></h3></center>	
-		
-		<?php
-		$sql= mysqli_query($conn,"SELECT * FROM student_info where STUDENT_ID = '$id'");
-		while($row = mysqli_fetch_assoc($sql)){
-			$mid = $row['MIDDLENAME'];
-			$sql3 = mysqli_query($conn,"SELECT * FROM student_year_info where STUDENT_ID = '$id'");
-			$num = mysqli_num_rows($sql3) ; 
-			if($num > 0){
-		$sql2 = mysqli_query($conn,"SELECT * FROM student_year_info where STUDENT_ID = '$id' order by SYI_ID DESC limit 1 ");
-		while($row2 = mysqli_fetch_assoc($sql2)){
-
-		 ?>
-		
-		
-		<p class="p" style="text-align:justify;line-height:5mm;font-transform:capitalize"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp I hereby certify that this is the true record of &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <?php echo '<u>&nbsp&nbsp&nbsp&nbsp'  . $row['FIRSTNAME'] . ' ' .  substr("$mid", 0, 1) . '. ' . $row['LASTNAME'] . '&nbsp&nbsp&nbsp</u>' . '.' ?> This student is eligible on this &nbsp&nbsp&nbsp <?php echo date("d") . 'th'?> &nbsp&nbsp&nbsp day of &nbsp&nbsp&nbsp <?php echo date("M") . ',' . date("y")?> &nbsp&nbsp&nbsp for admission to &nbsp&nbsp&nbsp <?php echo $row2['TO_BE_CLASSIFIED'] ?>&nbsp&nbsp&nbsp year as (regular/irregular) student, and has no property responsibility in this school. </p>
-
-		<?php
-		}
-	}else{
-		?>
-		<p class="p" style="text-align:justify;line-height:5mm;font-transform:capitalize"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp I hereby certify that this is the true record of &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <?php echo '<u>&nbsp&nbsp&nbsp&nbsp'  . $row['FIRSTNAME'] . ' ' .  substr("$mid", 0, 1) . '. ' . $row['LASTNAME'] . '&nbsp&nbsp&nbsp</u>' . '.' ?> This student is eligible on this &nbsp&nbsp&nbsp <?php echo date("d") . 'th'?> &nbsp&nbsp&nbsp day of &nbsp&nbsp&nbsp <?php echo date("M") . ',' . date("y")?> &nbsp&nbsp&nbsp for admission to &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp year as (regular/irregular) student, and has no property responsibility in this school. </p>
-
-		
-		<?php
-		}
-		}
-		 ?>
-			<table>
-			<tr>
-				<td align="left" style="width:500px">
-					<h5>REMARKS:</h5>
-				</td>
-				<td style="">
-					<table>
-						
-				
-					
-					<tr>
-						<td>
-							&nbsp
-						</td>
-					</tr>
-
-						<tr>
-							<td style="width:250px;border-bottom:1px solid black">
-								
-							</td>
-						</tr>
-						<tr>
-						<td style="width:250px;">
-							<center><h5>PRINCIPAL</h5></center>
-						</td>
-					</tr>
-					</table>
-				</td>
-
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:130px">Months</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jun</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jul</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Aug</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Sept</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Oct</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Nov</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Dec</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jan</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Feb</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">March</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">April</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">May</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:130px">Total</td>
 			</tr>
-			</table>
-         	</td>
-         </tr>
-         </table>
-
-</div>
-</p>
+			<tr>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;">Days of School</td>
+				<?php
+					$atten= mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
+					while($att=mysqli_fetch_assoc($atten)){
+				?>
+				<td style="font-size:10px;text-align:center;width:50px;border:1px solid black;"> <?php echo $att['DAYS_OF_CLASSES'] ?></td>
+				<?php } ?>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;"><?php echo $row1['TDAYS_OF_CLASSES'] ?> </td>
+			</tr>
+			<tr>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;">Days Present</td>
+				<?php
+					$atten2= mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
+					while($att2=mysqli_fetch_assoc($atten2)){
+				?>
+				<td style="font-size:10px;text-align:center;width:50px;border:1px solid black;"><?php echo $att2['DAYS_PRESENT'] ?></td>
+				<?php } ?>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;"><?php echo $row1['TDAYS_PRESENT'] ?></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
+			</tr>
+		</table>
+          <?php
+			}
+			?>
 
 <?php
 
  mysqli_close($conn);
 ?>
+</p>
+</div>
 </center>
 </body>
-<script>
-function printContent(el){
-	var restorepage = document.body.innerHTML;
-	var printcontent = document.getElementById(el).innerHTML;
-	document.body.innerHTML = printcontent;
-	window.print();
-	document.body.innerHTML = restorepage;
-
-	$.ajax({
-		url:'print_log.php?act=form137&id=<?php echo $_GET['id'] ?>',
-		success:function(html){
-			$('#returncode').html(html);
-		}
-	});
-}
-</script>
 </html>
