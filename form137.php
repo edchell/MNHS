@@ -67,7 +67,6 @@ if (strpos($request, '.php') !== false) {
 		}
 		#print {
 			margin-top: -120px;
-			margin-bottom: -500px;
 		}
 		}
 		#print{
@@ -391,20 +390,4 @@ if (strpos($request, '.php') !== false) {
 ?>
 </center>
 </body>
-<script>
-function printContent(el){
-	var restorepage = document.body.innerHTML;
-	var printcontent = document.getElementById(el).innerHTML;
-	document.body.innerHTML = printcontent;
-	window.print();
-	document.body.innerHTML = restorepage;
-
-	$.ajax({
-		url:'print_log.php?act=form137&id=<?php echo $_GET['id'] ?>',
-		success:function(html){
-			$('#returncode').html(html);
-		}
-	});
-}
-</script>
 </html>
