@@ -26,7 +26,7 @@
     body {
         background-color: white;
         color: black;
-        font-size: 1rem
+        font-size: 3rem
     }
     .printContainer {
         text-align: center;
