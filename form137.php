@@ -38,6 +38,15 @@
         align-items:center;
         justify-content:space-between;
     }
+    .kd {
+        width:90px;
+        height:90px;
+    }
+    .deped {
+        width:120px;
+        height:120px;
+    }
+
 
     @media print {
         .btn-head {
@@ -70,7 +79,7 @@
         <br>
         <div class="center-head">
 			<div>
-				<img src="images/logo.png" alt="" style="width:90px;height:90px;">
+				<img src="images/logo.png" alt="" class="kd">
 			</div>
 			<div>
 				<p>Department of Education</p>
@@ -80,7 +89,7 @@
 				<p>Poblacion, Madridejos, Cebu</p>
 			</div>
 			<div>
-				<img src="images/deped.png" alt="" style="width:120px;height:120px;">
+				<img src="images/deped.png" alt="" class="deped">
 			</div>
 		</div>
 	</div>
