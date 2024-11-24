@@ -89,11 +89,7 @@ if (strpos($request, '.php') !== false) {
 		#print {
 			visibility: visible;
 			margin-top: -130px;
-		}
-		#tables {
-			margin-top:-300px;
-			page-break-before: always;
-			page-break-after: always;
+			margin-bottom: -150px;
 		}
 	}
 	</style>
@@ -259,7 +255,7 @@ if (strpos($request, '.php') !== false) {
 
 		while($row1 = mysqli_fetch_assoc($sql1)){
 		?>
-		<table id="tables" style="float:left;margin-left:5px;margin-bottom:20px;">
+		<table style="float:left;margin-left:5px;margin-bottom:20px;">
 		<tr>
 		<td>  
 		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
