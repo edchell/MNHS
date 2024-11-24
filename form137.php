@@ -33,6 +33,11 @@
     .btn-head {
         margin-left: 2%
     }
+    .center-head {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
 
     @media print {
         .btn-head {
@@ -63,7 +68,7 @@
 			<p>DepEd Form 137-A</p>
 			<p>LRN No.</p>
 		</div>
-        <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="center-head">
 			<div>
 				<img src="images/logo.png" alt="" style="width:90px;height:90px;">
 			</div>
