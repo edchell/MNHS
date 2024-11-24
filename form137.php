@@ -66,8 +66,10 @@ if (strpos($request, '.php') !== false) {
 			height:0px;
 		}
 		#print{
-		position:sticky;
+		position:fixed;
 		top:0px;
+		margin-top:20px;
+		margin-bottom:30px;
 		margin-right:50px;
 		margin-left:50px;
 		}
