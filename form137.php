@@ -38,6 +38,7 @@
     }
     .left-head {
         margin-bottom: 2px;
+        margin-left: 3%;
     }
     .center-head {
         display:flex;
