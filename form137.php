@@ -247,7 +247,7 @@ if (strpos($request, '.php') !== false) {
 			<div class="pob">
 				<label><h6 style="font-size:12px;">Curriculum Year</h6></label>
 				<span>
-					<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:200px;padding-left:10px;"></label>
+					<label for=""><input type="text" style="font-weight:bold;border:none;border-bottom:1px solid black;width:200px;padding-left:10px;"></label>
 				</span>
 			</div>
 			<div class="pob">
