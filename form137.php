@@ -47,8 +47,6 @@
             float: left;
             text-align: left;
             width: 100%;
-            display: flex;
-            flex-wrap: wrap;
         }
         .left-head p {
             margin-bottom: -3px;
@@ -71,6 +69,7 @@
 			<p>DepEd Form 137-A</p>
 			<p>LRN No.</p>
 		</div>
+        <br>
         <div class="center-head">
 			<div>
 				<img src="images/logo.png" alt="" style="width:90px;height:90px;">
