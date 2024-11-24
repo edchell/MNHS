@@ -257,6 +257,26 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:-20px;">
+			<div>
+				<label><h6 style="font-size:12px;">Yr. & Sec</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:200px;padding-left:10px;"><?php echo $row1['grade'] . '-' . $row1['SECTION']  ?></p></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">School Year</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:200px;padding-left:10px;"><?php echo $row1['SCHOOL_YEAR']?></p></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">Semester</h6></label>
+				<span>
+					<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:100px;padding-left:10px;"></label>
+				</span>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
