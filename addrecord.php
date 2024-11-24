@@ -60,14 +60,6 @@ include('auth.php');
         let selects = document.querySelectorAll('select[name="subj[]"]');
         let selectedValues = [];
 
-        // Collect selected values from all select elements
-        selects.forEach(select => {
-            let selectedOption = select.options[select.selectedIndex];
-            if (selectedOption.value) {
-                selectedValues.push(selectedOption.value);
-            }
-        });
-
         // Enable all options first
         selects.forEach(select => {
             for (let option of select.options) {
