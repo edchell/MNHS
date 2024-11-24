@@ -40,11 +40,11 @@
     }
     .kd {
         width:200px;
-        height:90px;
+        height:200px;
     }
     .deped {
-        width:230px;
-        height:120px;
+        width:250px;
+        height:230px;
     }
 
 
