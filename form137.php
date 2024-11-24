@@ -120,6 +120,10 @@ if (strpos($request, '.php') !== false) {
 		  <center><p><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p></center>
 		  </div>
           </div>
+          <div class="row">
+		  <div class="col-md-12">
+
+		  <table style="line-height:5mm">
 		<?php 
 		include 'db.php';
 		$id = $_GET['id'];
@@ -222,7 +226,14 @@ if (strpos($request, '.php') !== false) {
 		<?php } ?>
 		  </div>
           </div>
-          <p style="">
+          <div class="row">
+          <div class="col-md-12">
+          <hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
+          </div>
+          
+          </div>
+
+          <p style="margin-top:-500px;">
           <?php
 		$sql1 = mysqli_query($conn,"SELECT * FROM student_year_info left join grade on student_year_info.YEAR=grade.grade_id where STUDENT_ID = '$id'");
 		$num1 = mysqli_num_rows($sql1);
@@ -377,8 +388,6 @@ if (strpos($request, '.php') !== false) {
 
  mysqli_close($conn);
 ?>
-</p>
-</div>
 </center>
 </body>
 </html>
