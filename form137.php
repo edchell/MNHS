@@ -334,6 +334,51 @@ if (strpos($request, '.php') !== false) {
 		        }
 		    ?>
         </table>
+        </table>
+		<center><p style="font-weight:bolder;">Attendance Report</p></center>
+		<table style="border-collapse:collapse;width:715px;margin-bottom:20px;margin-top:-10px;">
+			<tr>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:130px">Months</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jun</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jul</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Aug</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Sept</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Oct</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Nov</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Dec</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jan</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Feb</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">March</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">April</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">May</td>
+				<td style="font-size:10px;border:1px solid black;text-align:center;width:130px">Total</td>
+			</tr>
+			<tr>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;">Days of School</td>
+				<?php
+					$atten= mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
+					while($att=mysqli_fetch_assoc($atten)){
+				?>
+				<td style="font-size:10px;text-align:center;width:50px;border:1px solid black;"> <?php echo $att['DAYS_OF_CLASSES'] ?></td>
+				<?php } ?>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;"><?php echo $row1['TDAYS_OF_CLASSES'] ?> </td>
+			</tr>
+			<tr>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;">Days Present</td>
+				<?php
+					$atten2= mysqli_query($conn, "SELECT * FROM attendance where SYI_ID = '$syi' order by ATT_ID ");
+					while($att2=mysqli_fetch_assoc($atten2)){
+				?>
+				<td style="font-size:10px;text-align:center;width:50px;border:1px solid black;"><?php echo $att2['DAYS_PRESENT'] ?></td>
+				<?php } ?>
+				<td style="font-size:10px;text-align:center;width:130px;border:1px solid black;"><?php echo $row1['TDAYS_PRESENT'] ?></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
+			</tr>
+		</table>
         <?php
             }
         ?>
