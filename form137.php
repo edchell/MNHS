@@ -123,7 +123,6 @@ if (strpos($request, '.php') !== false) {
           <div class="row">
 		  <div class="col-md-12">
 
-		  <table style="line-height:5mm">
 		<?php 
 		include 'db.php';
 		$id = $_GET['id'];
