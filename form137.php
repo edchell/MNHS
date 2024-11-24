@@ -66,10 +66,17 @@ if (strpos($request, '.php') !== false) {
 			height:0px;
 		}
 		#print{
-		
+			max-width: unset;
+			box-shadow: none;
+			border: 0px;
+			background-color: white;
+			height: 100%;
+			width: 100%;
+			
 		}
 		}
-		
+
+
 		#print{
 		width:7.5in;
 		}
