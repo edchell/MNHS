@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'addrow_grades.php';
 if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
     include 'db.php';  // Including the database connection file
 
@@ -47,14 +48,11 @@ border-collapse: collapse;
     <input type="hidden" name="id" value="<?php echo $row1['STUDENT_ID'] ?>" >
       <label style="font-size:6;margin-left:10%;" for="">School</label>
         <input type="text" name="school" style="width:450px;text-align:center" value="<?php echo $row["SCHOOL"] ?>" readonly>
-
       <label style="font-size:6" for="">Grade</label>
       <input type="text" name="yr" value="<?php echo $row["grade"] ?>" style="width:100px;text-align:center;border:0px solid white;border-bottom:1px solid black" readonly>    
-
       <label style="font-size:6" for="">Section</label>
         <input type="text" name="sec" style="width:100px;text-align:center" value="<?php echo $row["SECTION"] ?>" readonly>  
         <br>
-
       <label style="font-size:6;margin-left:10%;" for="">Total number of years in school to date</label>
         <input type="text" name="tny" style="width:290px;text-align:center" value="<?php echo $row["TOTAL_NO_OF_YEAR"] ?>" readonly>
 
@@ -64,12 +62,8 @@ border-collapse: collapse;
         <label style="font-size:6;margin-left:10%;" for="">Adviser:</label>
         <input type="text" name="adviser" style="width:220px;text-align:center" 
         value="<?php echo $row['ADVISER'] ?>" required>
-
-    
         <br><br><br>
-
         <div class="col-xs-9" style="width:700px;margin-left:150px;">
-
         <div class="row" style="margin-left:10%" >
           <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
           <br>
@@ -77,7 +71,6 @@ border-collapse: collapse;
             <br>
           </div>
           <div class="col-xs-4" style="height:53px;border:1px solid black;width:225px">
-          
             <label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
             <br>
             <label for="" style="font-size:6;width:43px;border-right:1px solid black;text-align:center">1</label>
@@ -91,17 +84,10 @@ border-collapse: collapse;
             <br>
           </div>
           <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
-          
             <label for="" style="font-size:15px">Passed or Failed</label>
             <br>
           </div>
-
-            
-
         </div>  
-         
-
-      
         <div class="row" id="t_row" style="margin-left:10%">
    <?php     $sql2=  mysqli_query($conn, "SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT ");
     while($row2 = mysqli_fetch_assoc($sql2)){
@@ -109,8 +95,6 @@ border-collapse: collapse;
 
          $sql3=  mysqli_query($conn, "SELECT * FROM subjects where SUBJECT_ID = '$subj' ");
     while($row3 = mysqli_fetch_assoc($sql3)){
-
-
       ?>
           <div class="col-xs-4" style="border:1px solid black;height:25px">
     <input type="hidden" name="tg_id[]" value="<?php echo htmlspecialchars($row2['TGS_ID']); ?>" >
@@ -126,7 +110,6 @@ border-collapse: collapse;
         ?>
     </select>
 </div>
-          
           <div class="col-xs-4" style="border:1px solid black;width:59px;height:25px;font-size:12px;    padding-left: 5px;">
           <input type="text" style="border-bottom:0px" name="1st[]" value="<?php echo $row2['1ST_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
            
@@ -152,21 +135,14 @@ border-collapse: collapse;
         <?php
       }
     }
-    
          ?>
-
     <br>
     <div id="t_rows">
 
    </div>
     </div>
-    </div> 
-
-   
-       
+    </div>     
     </div>
-
-
     <div class="col-xs-12">
       <br>
       <table class="table" style="width:940px;margin-left:7%">
@@ -240,9 +216,6 @@ border-collapse: collapse;
           }
           mysqli_close($conn);
           }
-
-          
-    include 'addrow_grades.php';
      ?> 
      <script>
       $(document).ready(function() {
@@ -251,7 +224,6 @@ border-collapse: collapse;
      calculateSum2();
      calculateAVE();
      acts();
-
 
     $(".dc").on("keydown keyup", function() {
         calculateSum();
