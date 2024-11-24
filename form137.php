@@ -88,6 +88,8 @@ if (strpos($request, '.php') !== false) {
 		}
 		#print {
 			visibility: visible;
+			position: absolute;
+			top: 0;
 		}
 	}
 	</style>
