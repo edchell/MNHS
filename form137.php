@@ -105,7 +105,7 @@ if (strpos($request, '.php') !== false) {
 <body style="background-color:white;color:black;"> 
 <span id='returncode'></span>
 <div class="col-md-2" id="head">
-	<button class="btn btn-info" onclick="print()"><i class="glyphicon glyphicon-print"></i>PRINT</button>
+	<button class="btn btn-info" onclick="window.print()"><i class="glyphicon glyphicon-print"></i>PRINT</button>
 	<a class="btn btn-info" onclick="window.close()">Cancel</a>
 	
 </div>
