@@ -41,7 +41,7 @@ if (strpos($request, '.php') !== false) {
 
     <!-- Custom Fonts -->
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	<link rel="stylesheet" href="form137.css">
     
     <script src="datatables/jquery.dataTables.js"></script>
     <script src="datatables/dataTables.bootstrap.js"></script>
@@ -52,56 +52,6 @@ if (strpos($request, '.php') !== false) {
 
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/jq.js"></script>
-	<style>
-	@media print {  
-		@page {
-			size:9.5in 13in;
-		}
-		head{
-			height:0px;
-			display: none;
-		}
-		#head{
-			display: none;
-			height:0px;
-		}
-		#print{
-		position:fixed;
-		top:0px;
-		margin-top:20px;
-		margin-bottom:30px;
-		margin-right:50px;
-		margin-left:50px;
-		}
-		}
-		#print{
-		width:7.5in;
-		}
-		input {
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid black;
-}
-
-.foo{
-	font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
-	font-size: 24px;
-	font-style: italic;
-	font-variant: normal;
-	font-weight: bold;
-	line-height: 24px;
-	}
-	.p {
-	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-	font-size: 14px;
-	font-style: italic;
-	font-variant: normal;
-	font-weight: 550;
-	line-height: 20px;
-	 letter-spacing: 2px;
-}
-	</style>
 
 </head> 
 <body style="background-color:white;color:black;"> 

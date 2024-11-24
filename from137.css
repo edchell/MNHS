@@ -1,0 +1,52 @@
+@media print {  
+    head{
+        height:0px;
+        display: none;
+    }
+    #head{
+        display: none;
+        height:0px;
+    }
+    #print{
+        max-width: unset;
+        box-shadow: none;
+        border: 0px;
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+    }
+    #print{
+    width:7.5in;
+    }
+    input {
+border: 0;
+outline: 0;
+background: transparent;
+border-bottom: 1px solid black;
+}
+
+.foo{
+font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+font-size: 24px;
+font-style: italic;
+font-variant: normal;
+font-weight: bold;
+line-height: 24px;
+}
+.p {
+font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+font-size: 14px;
+font-style: italic;
+font-variant: normal;
+font-weight: 550;
+line-height: 20px;
+ letter-spacing: 2px;
+}
