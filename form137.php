@@ -234,7 +234,7 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
-		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
+		<div style="display:flex;align-items:center;justify-content:between;">
 			<div>
 				<label><h6 style="font-size:12px;">Total Number of Years in School to Complete Junior/Senior High School</h6></label>
 				<span>
