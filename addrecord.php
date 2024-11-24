@@ -47,12 +47,11 @@ include('auth.php');
              ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
             '</tr>';
         $("#table-body").append(data);
-        handleSubjectChange()
     }
 
     function remtrr($i){
         $("." + $i).remove();
-        handleSubjectChange() // Recheck selections when row is removed
+        handleSubjectChange(currentIndex) // Recheck selections when row is removed
     }
 
     // Function to disable subjects already selected in other dropdowns
@@ -86,7 +85,7 @@ include('auth.php');
       }
 
     // Handle both disabling and new row creation on subject change
-    function handleSubjectChange() {
+    function handleSubjectChange(currentIndex) {
         disableSubject();
         newrow(currentIndex); // add the next row if necessary
     }
