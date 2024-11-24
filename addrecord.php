@@ -56,7 +56,7 @@ include('auth.php');
 
     // Function to disable subjects already selected in other dropdowns
     function disableSubject() {
-        let selects = document.querySelectorAll('select[name="subj[]"]');
+        var selects = document.querySelectorAll('select[name="subj[]"]');
 
         // Enable all options first
         selects.forEach(select => {
