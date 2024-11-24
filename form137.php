@@ -66,7 +66,7 @@ if (strpos($request, '.php') !== false) {
 			height:0px;
 		}
 		#print {
-			margin-top: -130px;
+			margin-top: -120px;
 		}
 		}
 		#print{
