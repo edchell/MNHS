@@ -47,6 +47,8 @@
             float: left;
             text-align: left;
             width: 100%;
+            display: flex;
+            flex-wrap: wrap;
         }
         .left-head p {
             margin-bottom: -3px;
