@@ -53,6 +53,26 @@ if (strpos($request, '.php') !== false) {
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/jq.js"></script>
 	<style>
+	@media print {  
+		head{
+			height:0px;
+			display: none;
+		}
+		#head{
+			display: none;
+			height:0px;
+		}
+		#print{
+			position:fixed;
+			top:0px;
+			margin-top:20px;
+			margin-bottom:30px;
+			margin-right:50px;
+			margin-left:50px;
+		}
+		}
+
+		
 		#print{
 		width:7.5in;
 		}
@@ -80,33 +100,6 @@ if (strpos($request, '.php') !== false) {
 	line-height: 20px;
 	 letter-spacing: 2px;
 }
-
-@media print {  
-		@page {
-			size:9.5in 13in;
-		}
-		head{
-			height:0px;
-			display: none;
-		}
-		#head{
-			display: none;
-			height:0px;
-		}
-		#print{
-			max-width: unset;
-			box-shadow: none;
-			border: 0px;
-			background-color: white;
-			height: 100%;
-			width: 100%;
-			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-			margin: 0;
-		}
-	}
 	</style>
 
 </head> 
