@@ -54,20 +54,26 @@ if (strpos($request, '.php') !== false) {
     <script src="assets/js/jq.js"></script>
 	<style>
 	@media print {  
-		#prints, #cancel{
+		@page {
+			size:9.5in 13in;
+		}
+		head{
+			height:0px;
 			display: none;
 		}
+		#head{
+			display: none;
+			height:0px;
+		}
 		#print{
-			position: relative;
-			margin-top:20px;
-			margin-bottom:30px;
-			margin-right:50px;
-			margin-left:50px;
-			height: 100%;
+		position:fixed;
+		top:0px;
+		margin-top:20px;
+		margin-bottom:30px;
+		margin-right:50px;
+		margin-left:50px;
 		}
 		}
-
-		
 		#print{
 		width:7.5in;
 		}
@@ -100,8 +106,11 @@ if (strpos($request, '.php') !== false) {
 </head> 
 <body style="background-color:white;color:black;"> 
 <span id='returncode'></span>
-<button style="margin-left:2%" id="prints" class="btn btn-info" onclick="window.print()">Print</button>
-	<a class="btn btn-danger" id="cancel" onclick="window.close()">Cancel</a>
+<div class="col-md-2" id="head">
+	<button class="btn btn-info" onclick="print()"><i class="glyphicon glyphicon-print"></i>PRINT</button>
+	<a class="btn btn-info" onclick="window.close()">Cancel</a>
+	
+</div>
 <br>
 <center>
 <div id='print'>
