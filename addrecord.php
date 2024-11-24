@@ -47,7 +47,7 @@ include('auth.php');
              ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
             '</tr>';
         $("#table-body").append(data);
-        disableSubject();
+        // disableSubject();
     }
 
     function remtrr($i){
