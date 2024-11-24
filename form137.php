@@ -126,7 +126,7 @@ if (strpos($request, '.php') !== false) {
 	<br>
 	<br>
 	<br>
-<div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
+<div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;line-height:1mm;">
 			<div style="display:flex;align-items:center;justify-content:space-between;">
 				<div>
 					<img src="images/logo.png" alt="" style="width:90px;height:90px;">
@@ -273,7 +273,7 @@ if (strpos($request, '.php') !== false) {
 		<table style="float:left;margin-left:5px;margin-bottom:20px;">
 		<tr>
 		<td>  
-		<div style="display:flex;align-items:center;justify-content:between;">
+		<div style="display:flex;align-items:center;justify-content:between;margin-top:-20px;">
 			<div>
 				<label><h6 style="font-size:12px;">Curriculum Year</h6></label>
 				<span>
