@@ -91,7 +91,7 @@ if (strpos($request, '.php') !== false) {
 			margin-top: -130px;
 		}
 		#tables {
-			margin-top: -500px;
+			margin-top: -300px;
 		}
 	}
 	</style>
