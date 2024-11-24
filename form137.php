@@ -388,6 +388,7 @@ if (strpos($request, '.php') !== false) {
 
  mysqli_close($conn);
 ?>
+</div>
 </center>
 </body>
 </html>
