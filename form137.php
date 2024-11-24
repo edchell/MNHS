@@ -112,6 +112,7 @@
 				<img src="images/deped.png" alt="" class="deped">
 			</div>
 		</div>
+        <p><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p>
 	</div>
 </body>
 </html>
