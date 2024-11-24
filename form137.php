@@ -111,12 +111,12 @@ if (strpos($request, '.php') !== false) {
             width: 100%;
         }
         .kd {
-            width:140px;
+            width:120px;
             height:100px;
         }
         .deped {
-            width:170px;
-            height:190px;
+            width:140px;
+            height:170px;
         }
         .pob {
             display:flex;
