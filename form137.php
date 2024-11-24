@@ -39,8 +39,10 @@
             visibility: hidden;
         }
         .printContainer {
-            position: relative;
+            position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
         }
     }
 </style>
