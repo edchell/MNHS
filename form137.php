@@ -46,7 +46,6 @@
         .left-head {
             float: left;
             text-align: left;
-            width: 100%;
         }
         .left-head p {
             margin-bottom: -3px;
