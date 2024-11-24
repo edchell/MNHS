@@ -118,6 +118,11 @@ if (strpos($request, '.php') !== false) {
             width:170px;
             height:190px;
         }
+        .pob {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
     }
 </style>
 <body>
@@ -179,23 +184,23 @@ if (strpos($request, '.php') !== false) {
                 </div>
             </div>
         </div>
-        <div class="stu-info">
+        <div class="pob">
 			<div>
 				<label><h6 style="font-size:12px;">Place of Birth:</h6></label>
 			</div>
-			<div>
+			<div class="pob">
 				<label><h6 style="font-size:12px;">Province</h6></label>
 				<span>
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:140px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[2]) ? trim($parts[2]) : '';?></p></label>
 				</span>
 			</div>
-			<div>
+			<div class="pob">
 				<label><h6 style="font-size:12px;">Municipality</h6></label>
 				<span>
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:150px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[1]) ? trim($parts[1]) : '';?></p></label>
 				</span>
 			</div>
-			<div>
+			<div class="pob">
 				<label><h6 style="font-size:12px;">Barangay</h6></label>
 				<span>
 					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:150px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[0]) ? trim($parts[0]) : '';?></p></label>
