@@ -38,6 +38,10 @@
         .btn-head {
             visibility: hidden;
         }
+        .printContainer {
+            position: relative;
+            top: 0;
+        }
     }
 </style>
 <body>
