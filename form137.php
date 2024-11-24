@@ -28,6 +28,10 @@
     }
 </style>
 <body>
+    <div class="btn-head">
+        <button class="btn btn-info" onclick="window.print()">Print</button>
+        <button class="btn btn-info" onclick="window.close()">Cancel</button>
+    </div>
 	<div class="printContainer">
 		<div class="left-head">
 			<p>DepEd Form 137-A</p>
