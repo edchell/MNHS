@@ -86,6 +86,9 @@ if (strpos($request, '.php') !== false) {
 		body {
 			visibility: hidden;
 		}
+		#print {
+			visibility: visible;
+		}
 	}
 	</style>
 
