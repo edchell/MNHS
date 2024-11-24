@@ -158,10 +158,6 @@ border-collapse: collapse;
     <br>
     <div id="t_rows">
 
-    <?php
-    include 'addrow_grades.php';  // Including another PHP file for further processing
-    ?>
-
    </div>
     </div>
     </div> 
@@ -244,6 +240,9 @@ border-collapse: collapse;
           }
           mysqli_close($conn);
           }
+
+          
+    include 'addrow_grades.php';  // Including another PHP file for further processing
      ?> 
      <script>
       $(document).ready(function() {
