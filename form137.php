@@ -28,7 +28,7 @@
     }
 
     @media print {
-        .btn-header {
+        .btn-head {
             visibility: hidden;
         }
     }
