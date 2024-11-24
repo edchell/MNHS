@@ -54,42 +54,6 @@ include('auth.php');
         $("." + $i).remove();
         handleSubjectChange(currentIndex); // Recheck selections when row is removed
     }
-
-    // Function to disable subjects already selected in other dropdowns
-    function disableSubject() {
-        let selects = document.querySelectorAll('select[name="subj[]"]');
-        let selectedValues = [];
-
-        // Collect selected values from all select elements
-        selects.forEach(select => {
-            let selectedOption = select.options[select.selectedIndex];
-            if (selectedOption.value) {
-                selectedValues.push(selectedOption.value);
-            }
-        });
-
-        // Enable all options first
-        selects.forEach(select => {
-            for (let option of select.options) {
-                option.disabled = false;
-            }
-        });
-
-        // Disable the selected options in other dropdowns
-        selects.forEach(select => {
-            for (let option of select.options) {
-                if (selectedValues.includes(option.value) && option.value !== "") {
-                    option.disabled = true;
-                }
-            }
-        });
-      }
-
-    // Handle both disabling and new row creation on subject change
-    function handleSubjectChange(currentIndex) {
-        disableSubject();
-        newrow(currentIndex); // add the next row if necessary
-    }
 </script>
   
     <?php
@@ -457,6 +421,42 @@ function acts($i){
       $("#p"+i).css("background-color","white");
     }
   }
+
+  // Function to disable subjects already selected in other dropdowns
+  function disableSubject() {
+        let selects = document.querySelectorAll('select[name="subj[]"]');
+        let selectedValues = [];
+
+        // Collect selected values from all select elements
+        selects.forEach(select => {
+            let selectedOption = select.options[select.selectedIndex];
+            if (selectedOption.value) {
+                selectedValues.push(selectedOption.value);
+            }
+        });
+
+        // Enable all options first
+        selects.forEach(select => {
+            for (let option of select.options) {
+                option.disabled = false;
+            }
+        });
+
+        // Disable the selected options in other dropdowns
+        selects.forEach(select => {
+            for (let option of select.options) {
+                if (selectedValues.includes(option.value) && option.value !== "") {
+                    option.disabled = true;
+                }
+            }
+        });
+      }
+
+    // Handle both disabling and new row creation on subject change
+    function handleSubjectChange(currentIndex) {
+        disableSubject();
+        newrow(currentIndex); // add the next row if necessary
+    }
     </script>
  
  
