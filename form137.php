@@ -106,7 +106,7 @@ if (strpos($request, '.php') !== false) {
         }
         .printContainer {
             position: absolute;
-            top: -2%;
+            top: -1%;
             left: 0;
             right: 0;
             width: 100%;
