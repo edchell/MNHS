@@ -243,7 +243,7 @@ if (strpos($request, '.php') !== false) {
 			</div>
 		</div>
         <hr style="border-color:black;border:1px solid black;margin-top:-3px;"></hr>
-        <div class="dob" style="margin-top:-20px">
+        <div class="dob" style="margin-top:-18px">
 			<div class="pob">
 				<label><h6 style="font-size:12px;">Curriculum Year</h6></label>
 				<span>
@@ -262,7 +262,7 @@ if (strpos($request, '.php') !== false) {
 		$num1 = mysqli_num_rows($sql1);
 		while($row1 = mysqli_fetch_assoc($sql1)){
 		?>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:-20px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:-16px;">
 			<div>
 				<label><h6 style="font-size:12px;">Yr. & Sec</h6></label>
 				<span>
