@@ -278,7 +278,7 @@ if (strpos($request, '.php') !== false) {
 			<div>
 				<label><h6 style="font-size:12px;">Semester</h6></label>
 				<span>
-					<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:100px;padding-left:10px;"></label>
+					<label for=""><input type="text" style="font-weight:bold;border:none;border-bottom:1px solid black;width:100px;padding-left:10px;"></label>
 				</span>
 			</div>
 		</div>
