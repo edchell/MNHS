@@ -69,6 +69,7 @@ if (strpos($request, '.php') !== false) {
 		
 		}
 		}
+		
 		#print{
 		width:7.5in;
 		}
