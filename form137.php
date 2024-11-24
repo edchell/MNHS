@@ -75,12 +75,12 @@
             right: 0;
         }
         .kd {
-            width:90px;
-            height:90px;
+            width:120px;
+            height:120px;
         }
         .deped {
-            width:120px;
-            height:100px;
+            width:190px;
+            height:190px;
         }
     }
 </style>
