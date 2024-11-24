@@ -38,7 +38,7 @@
     }
     .left-head p {
         margin-bottom: 2px;
-        margin-left: 7%;
+        margin-left: 20%;
     }
     .center-head {
         display:flex;
