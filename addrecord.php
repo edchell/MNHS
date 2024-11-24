@@ -195,7 +195,7 @@ include('auth.php');
           ?>
          <tr id="rowws" class="<?php echo $i ?>">
            <td style="width:50px;text-align:center;height:30px;font-size:12px">
-           <select name="subj[]" id="subj<?php echo $i ?>" onchange="handleSubjectChange(<?php echo $i ?>)">
+           <select name="subj[]" id="subj<?php echo $i ?>" onchange="handleSubjectChange(<?php echo $i ?>)" required>
              <option></option>
              <?php
               include 'db.php';
@@ -212,11 +212,11 @@ include('auth.php');
 
             </select> </td>
              <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]"></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]"></td>
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="1st[]" oninput="validateNumber(event)" maxlength="3" required></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="2nd[]" oninput="validateNumber(event)" maxlength="3" required></td><td style="width:50px;text-align:center;height:30px;font-size:12px">
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="3rd[]" oninput="validateNumber(event)" maxlength="3" required></td>
              <td style="width:50px;text-align:center;height:30px;font-size:12px">
-             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]"></td>
+             <input style="width:50px" class="grade<?php echo $i ?>" onkeyup="calculateSum2(<?php echo $i ?>)" onkeydown="calculateSum2(<?php echo $i ?>)" type="text" name="4th[]" oninput="validateNumber(event)" maxlength="3" required></td>
              <td style="width:60px;text-align:center;height:30px;font-size:12px">
              <input style="width:50px;text-align:center" id="fin<?php echo $i ?>" type="number" name="final[]" readonly=""></td>
              <td style="width:60px;text-align:center;height:30px;font-size:12px">
@@ -247,63 +247,63 @@ include('auth.php');
          <tbody>
            <tr>
              <td><input type="text" name="month[]" value="June" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc1" style="text-align:center;width:100px" ></td>
-             <td><input type="text" class="p" name="p[]" id="p1" onkeyup="validate('1')" onkeydown="validate('1')" style="text-align:center;width:100px" ></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc1" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p1" onkeyup="validate('1')" onkeydown="validate('1')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="July" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc2" style="text-align:center;width:100px" ></td>
-             <td><input type="text" class="p" name="p[]" id="p2" onkeyup="validate('2')" onkeydown="validate('2')" style="text-align:center;width:100px" ></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc2" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p2" onkeyup="validate('2')" onkeydown="validate('2')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="August" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc3" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p3" onkeyup="validate('3')" onkeydown="validate('3')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc3" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p3" onkeyup="validate('3')" onkeydown="validate('3')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="September" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc4" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p4" onkeyup="validate('4')" onkeydown="validate('4')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc4" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p4" onkeyup="validate('4')" onkeydown="validate('4')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="October" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc5" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p5" onkeyup="validate('5')" onkeydown="validate('5')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc5" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p5" onkeyup="validate('5')" onkeydown="validate('5')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="November" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc6" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p6" onkeyup="validate('6')" onkeydown="validate('6')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc6" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p6" onkeyup="validate('6')" onkeydown="validate('6')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="December" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc7" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p7" onkeyup="validate('7')" onkeydown="validate('7')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc7" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p7" onkeyup="validate('7')" onkeydown="validate('7')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="January" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc8" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p8" onkeyup="validate('8')" onkeydown="validate('8')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc8" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p8" onkeyup="validate('8')" onkeydown="validate('8')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="February" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc9" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p9" onkeyup="validate('9')" onkeydown="validate('9')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc9" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p9" onkeyup="validate('9')" onkeydown="validate('9')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="March" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc10" style="text-align:center;width:100px"></td>
-             <td><input type="text" class="p" name="p[]" id="p10" onkeyup="validate('10')" onkeydown="validate('10')" style="text-align:center;width:100px"></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc10" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p10" onkeyup="validate('10')" onkeydown="validate('10')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="April" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc11" style="text-align:center;width:100px" ></td>
-             <td><input type="text" class="p" name="p[]" id="p11" onkeyup="validate('11')" onkeydown="validate('11')" style="text-align:center;width:100px"  ></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc11" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p11" onkeyup="validate('11')" onkeydown="validate('11')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="month[]" value="May" readonly></td>
-             <td><input class="dc" type="text" name="dc[]" id="dc12" style="text-align:center;width:100px"  ></td>
-             <td><input type="text" class="p" name="p[]" id="p12" onkeyup="validate('12')" onkeydown="validate('12')" style="text-align:center;width:100px" ></td>
+             <td><input class="dc" type="text" name="dc[]" id="dc12" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
+             <td><input type="text" class="p" name="p[]" id="p12" onkeyup="validate('12')" onkeydown="validate('12')" style="text-align:center;width:100px" oninput="validateNumber(event)" maxlength="2" required></td>
            </tr>
            <tr>
              <td><input type="text" name="Total" value="Total" readonly></td>
@@ -421,6 +421,12 @@ function acts($i){
       $("#p"+i).css("background-color","white");
     }
   }
+
+  
+function validateNumber(event) {
+    const input = event.target;
+    input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+}
 
   // Function to disable subjects already selected in other dropdowns
   function disableSubject() {
