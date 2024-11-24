@@ -74,6 +74,14 @@
             left: 0;
             right: 0;
         }
+        .kd {
+            width:90px;
+            height:90px;
+        }
+        .deped {
+            width:120px;
+            height:100px;
+        }
     }
 </style>
 <body>
