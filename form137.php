@@ -133,29 +133,52 @@
 				</span>
 			</div>
             <div class="dob">
-			<div>
-				<label for="dob"><h6 style="font-size:12px;">Date of Birth:</h6></label>
-			</div>
-			<div>
-				<label for=""><h6 style="font-size:12px;">Year</h6></label>
-				<span>
-					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:60px;"><?php echo date('Y', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
-				</span>
-			</div>
-			<div>
-				<label for=""><h6 style="font-size:12px;">Month</h6></label>
-				<span>
-					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:90px;"><?php echo date('F', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
-				</span>
-			</div>
-			<div>
-				<label for=""><h6 style="font-size:12px;">Day</h6></label>
-				<span>
-					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:35px;"><?php echo date('d', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
-				</span>
-			</div>
+                <div>
+                    <label for="dob"><h6 style="font-size:12px;">Date of Birth:</h6></label>
+                </div>
+                <div>
+                    <label for=""><h6 style="font-size:12px;">Year</h6></label>
+                    <span>
+                        <label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:60px;"><?php echo date('Y', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+                    </span>
+                </div>
+                <div>
+                    <label for=""><h6 style="font-size:12px;">Month</h6></label>
+                    <span>
+                        <label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:90px;"><?php echo date('F', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+                    </span>
+                </div>
+                <div>
+                    <label for=""><h6 style="font-size:12px;">Day</h6></label>
+                    <span>
+                        <label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:35px;"><?php echo date('d', strtotime($row['DATE_OF_BIRTH'])); ?></p></label>
+                    </span>
+                </div>
             </div>
         </div>
+        <div class="stu-info">
+			<div>
+				<label><h6 style="font-size:12px;">Place of Birth:</h6></label>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">Province</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:140px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[2]) ? trim($parts[2]) : '';?></p></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">Municipality</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:150px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[1]) ? trim($parts[1]) : '';?></p></label>
+				</span>
+			</div>
+			<div>
+				<label><h6 style="font-size:12px;">Barangay</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:150px;"><?php $parts = explode(',', $row['BIRTH_PLACE']); echo isset($parts[0]) ? trim($parts[0]) : '';?></p></label>
+				</span>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
