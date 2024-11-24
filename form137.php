@@ -91,6 +91,10 @@ if (strpos($request, '.php') !== false) {
 			top: 0;
 			bottom: 0;
 		}
+		#header {
+			position: relative;
+			top: 0;
+		}
 	}
 	</style>
 
@@ -111,7 +115,7 @@ if (strpos($request, '.php') !== false) {
 	<br>
 	<br>
 	<br>
-<div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
+<div id="header" style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 			<div style="display:flex;align-items:center;justify-content:space-between;">
 				<div>
 					<img src="images/logo.png" alt="" style="width:90px;height:90px;">
