@@ -65,16 +65,13 @@ if (strpos($request, '.php') !== false) {
 			display: none;
 			height:0px;
 		}
-		body{
-		position:relative;
+		#print{
+		position:fixed;
 		top:0px;
 		margin-top:20px;
 		margin-bottom:30px;
 		margin-right:50px;
 		margin-left:50px;
-		}
-		#try {
-			margin-bottom: -100px;
 		}
 		}
 		#print{
@@ -126,7 +123,7 @@ if (strpos($request, '.php') !== false) {
 	<br>
 	<br>
 	<br>
-<div>
+<div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 			<div style="display:flex;align-items:center;justify-content:space-between;">
 				<div>
 					<img src="images/logo.png" alt="" style="width:90px;height:90px;">
@@ -411,6 +408,115 @@ if (strpos($request, '.php') !== false) {
           <?php
 			}
 			?>
+	<?php
+	for($c =  $num1;$c < 4; $c++){
+		?>
+		<table style="float:left;margin-left:5px;margin-bottom:20px;">
+		<tr>
+		<td>
+		<table>
+			<tr style="width:100%">
+			<td>
+			<label style="font-size:12px">School:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+			</td>
+			<td style="border-bottom:1px solid black;width:280px">
+		<label style="font-size:12px"></label>
+		</td>
+		</tr>
+		</table>
+	
+					
+					
+		<table>
+		<tr style="width:100%">
+		<td  style="width:200px">
+		<label style="font-size:12px">Yr.& Sec:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+		</td>
+		<td >
+		<label style="font-size:12px">Sch.Yr.:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+		</td>
+		</tr>
+		</table>
+		<table style="border-collapse:collapse">
+		<tr>
+		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Units Earned</b></center></td>
+		<td style="width:10px;border:1px solid black;font-size:12px;"><center><b>Action<br>Taken</b></center></td>
+		</tr>
+		<?php
+		
+		for($p = 0 ; $p < 7 ; $p++){
+		 ?>
+		
+		<tr>
+		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
+		</tr>
+		<?php 
+	}
+		?>
+		<tr>
+		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:60px;height:15px;font-size:11px;text-align:right"><b>*</b></td>
+		<td style="width:60px;height:15px;font-size:11px;text-align:right"><b>**** no &nbsp</b></td>
+		<td style="width:83px;border-right:1px solid black;font-size:11px;height:15px;text-align:left"><b>entry *****</b></td>
+		</tr>
+
+		<?php
+		for($s = 0 ; $s < 7 ; $s++){
+		 ?>
+		
+		<tr>
+		<td style="width:150px;border:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:60px;border:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:83px;border:1px solid black;font-size:12px;height:15px"></td>
+		</tr>
+		<?php 
+		}
+	
+
+		?>
+<tr>
+		<td style="width:150px;font-size:12px;height:15px">Days of School:</td>
+		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:60;font-size:12px;height:15px;text-align:right">No. of Ye</td>
+		<td style="width:83px;font-size:12px;height:15px">ars in</td>
+		</tr>
+		<tr>
+		<td style="width:150px;font-size:12px;height:15px">Days of Present:</td>
+		<td style="width:60px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:60;font-size:12px;height:15px;text-align:right">School:</td>
+		<td style="width:83px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
+		</tr>
+
+		</table>
+		<table style="border-collapse:collapse">
+			<tr>
+		<td style="width:150px;font-size:12px;height:15px">To be classified as:</td>
+		<td style="width:120px;border-bottom:1px solid black;font-size:12px;height:15px"></td>
+		<td style="width:83px;font-size:12px;height:15px"></td>
+		</tr>
+		</table>
+		</td>
+		</tr>
+
+		</td>
+		</tr>
+
+		</table>
+		
+		<?php 
+	
+
+		}
+	
+	
+
+		?>
 
 <?php
 
