@@ -280,7 +280,7 @@ if (strpos($request, '.php') !== false) {
 			</div>
 		</div>		
 		
-		<table style="border-collapse:collapse;width:715px;">
+		<table style="border-collapse:collapse;width:715px;margin-top:-200px;">
 		<tr>
 		<td style="width:150px;border:1px solid black;font-size:12px;"><center><b>Subjects</b></center></td>
 		<td style="width:60px;border:1px solid black;font-size:12px;"><center><b>Final Rating</b></center></td>
