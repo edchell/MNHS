@@ -25,7 +25,7 @@
     }
     body {
         background-color: white;
-        color: blacl
+        color: black;
     }
     .printContainer {
         text-align: center;
