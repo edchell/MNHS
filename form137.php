@@ -67,6 +67,7 @@ if (strpos($request, '.php') !== false) {
         margin-left: 10%;
     }
     .center-head {
+        margin-top: -20px;
         display:flex;
         align-items:center;
         justify-content:space-between;
