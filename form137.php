@@ -184,7 +184,7 @@ if (strpos($request, '.php') !== false) {
                 </div>
             </div>
         </div>
-        <div class="dob" style="margin-top:-5px;">
+        <div class="dob" style="margin-top:-5px;width:100%;">
 			<div>
 				<label><h6 style="font-size:12px;">Place of Birth:</h6></label>
 			</div>
