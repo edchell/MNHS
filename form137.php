@@ -126,7 +126,7 @@ if (strpos($request, '.php') !== false) {
 	<br>
 	<br>
 	<br>
-<div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;line-height:1mm;">
+<div>
 			<div style="display:flex;align-items:center;justify-content:space-between;">
 				<div>
 					<img src="images/logo.png" alt="" style="width:90px;height:90px;">
