@@ -1,10 +1,16 @@
 <?php
-session_start();
-include 'db.php';
 if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' and 'gradeid' are set in the URL
+    include 'db.php';  // Including the database connection file
+
     // Using mysqli_real_escape_string to sanitize the inputs (good practice)
     $req = mysqli_real_escape_string($conn, $_GET['gradeid']);
     $id = mysqli_real_escape_string($conn, $_GET['id']);
+
+    // Query to fetch the grade from the 'grade' table based on the provided 'gradeid'
+    $grade_sql = mysqli_query($conn, "SELECT grade FROM grade WHERE grade_id = '$req'");
+    while ($grade = mysqli_fetch_assoc($grade_sql)) {
+        $grade_id = $grade['grade'];  // Extracting the grade value
+    }
 
     // Query to fetch student details from 'student_year_info' based on the student's 'id' and 'grade_id'
     $sql = mysqli_query($conn, "SELECT * FROM student_year_info 
@@ -16,6 +22,8 @@ if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' a
     if ($NUM > 0) {  // If rows were found, process the result
         while ($row = mysqli_fetch_assoc($sql)) {
             $syi = $row['SYI_ID'];  // Extracting the 'SYI_ID' value for use later
+
+            include 'addrow_grades.php';  // Including another PHP file for further processing
 ?>
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -36,7 +44,7 @@ border-collapse: collapse;
 <br>
 <br>
     <form method="POST" action="uprec.php">
-    <input type="hidden" name="syi" value="<?php echo $row["SYI_ID"] ?>">
+    <input type="hidden" name="syi" value="<?php echo $row["SYI_ID"] ?>" >
     <input type="hidden" name="id" value="<?php echo $row1['STUDENT_ID'] ?>" >
       <label style="font-size:6;margin-left:10%;" for="">School</label>
         <input type="text" name="school" style="width:450px;text-align:center" value="<?php echo $row["SCHOOL"] ?>" readonly>
@@ -217,9 +225,6 @@ border-collapse: collapse;
 
       <button type="submit" style="margin-left:80%" class="btn btn-success">Update</button>
       <a id="new_add" style="margin-top:5px;margin-bottom:5px;" class="btn btn-primary"><i class="fa fa-plus"></i>Add row</a>
-      <?php
-      include 'addrow_grades.php';
-      ?>
     </form>
     </div>
        </div>
@@ -341,26 +346,4 @@ function validateNumber(event) {
     input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
 }
 
-function calculateTotal() {
-    let tdc = 0; // To store the total of "Days of School"
-    let tp = 0; // To store the total of "Days Present"
-
-    // Get all "Days of School" inputs
-    let dcInputs = document.querySelectorAll('input[name="dc[]"]');
-    dcInputs.forEach(input => {
-      let value = parseInt(input.value) || 0; // If input is empty, treat it as 0
-      tdc += value; // Add value to total
-    });
-
-    // Get all "Days Present" inputs
-    let ppInputs = document.querySelectorAll('input[name="pp[]"]');
-    ppInputs.forEach(input => {
-      let value = parseInt(input.value) || 0; // If input is empty, treat it as 0
-      tp += value; // Add value to total
-    });
-
-    // Update the "Total" fields
-    document.getElementById('tdc').value = tdc; // Total for "Days of School"
-    document.getElementById('tp').value = tp;   // Total for "Days Present"
-  }
     </script>
