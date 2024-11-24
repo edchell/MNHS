@@ -61,6 +61,7 @@ if (strpos($request, '.php') !== false) {
 			position:fixed;
 			top:0px;
 			height: 100%;
+			margin-right: 10%
 		}
 		}
 
