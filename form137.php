@@ -66,7 +66,7 @@ if (strpos($request, '.php') !== false) {
 			height:0px;
 		}
 		body{
-		position:fixed;
+		position:relative;
 		top:0px;
 		margin-top:20px;
 		margin-bottom:30px;
