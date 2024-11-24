@@ -376,7 +376,7 @@ if (strpos($request, '.php') !== false) {
 		</table>
 		<table>
 			<tr>
-				<hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
+				<hr style="border-color:black;border:1px solid black;margin-top:-4px;margin-bottom:3%"></hr>
 			</tr>
 		</table>
         <?php
