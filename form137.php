@@ -242,6 +242,7 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
+        <hr style="border-color:black;border:1px solid black;"></hr>
 	</div>
 </body>
 </html>
