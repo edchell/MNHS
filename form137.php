@@ -83,17 +83,8 @@ if (strpos($request, '.php') !== false) {
 }
 
 	@media print {
-		#prints, #cancel {
-			display: none;
-		}
-		#print {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-		}
-		#tables {
-			position: relative;
-			top: 0;
+		body {
+			visibility: hidden;
 		}
 	}
 	</style>
