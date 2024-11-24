@@ -42,11 +42,11 @@
 				<img src="images/logo.png" alt="" style="width:90px;height:90px;">
 			</div>
 			<div>
-				<center><p style="font-size:12px;margin-bottom:13px;">Department of Education</p></center>
-				<center><p style="font-size:12px;margin-bottom:13px;">Region VII</p></center>
-				<center><p style="font-size:12px;margin-bottom:13px;">Province of Cebu</p></center>
-				<center><p><b>Madridejos National High School</b></p></center>
-				<center><p style="font-size:12px;margin-top:13px;">Poblacion, Madridejos, Cebu</p></center>
+				<p>Department of Education</p>
+				<p>Region VII</p>
+				<p>Province of Cebu</p>
+				<p><b>Madridejos National High School</b></p>
+				<p>Poblacion, Madridejos, Cebu</p>
 			</div>
 			<div>
 				<img src="images/deped.png" alt="" style="width:120px;height:120px;">
