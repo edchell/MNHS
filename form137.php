@@ -31,6 +31,7 @@
     .printContainer {
         text-align: center;
         margin-top: 2%;
+        width: 100px;
     }
     .btn-head {
         margin-left: 2%
