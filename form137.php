@@ -242,6 +242,20 @@ if (strpos($request, '.php') !== false) {
 			</div>
 		</div>
         <hr style="border-color:black;border:1px solid black;margin-top:-3px;"></hr>
+        <div class="dob">
+			<div class="pob">
+				<label><h6 style="font-size:12px;">Curriculum Year</h6></label>
+				<span>
+					<label for=""><input type="text" style="font-weight:bold;border-bottom:1px solid black;width:200px;padding-left:10px;"></label>
+				</span>
+			</div>
+			<div class="pob">
+				<label><h6 style="font-size:12px;">School</h6></label>
+				<span>
+					<label for=""><p style="font-weight:bold;border-bottom:1px solid black;width:350px;padding-left:10px;">Madridejos National High School</p></label>
+				</span>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
