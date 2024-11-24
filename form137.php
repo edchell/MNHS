@@ -90,7 +90,9 @@ if (strpos($request, '.php') !== false) {
 			visibility: visible;
 			margin-top: -130px;
 		}
-
+		#tables {
+			margin-top: -150px;
+		}
 	}
 	</style>
 
