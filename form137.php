@@ -67,6 +67,7 @@
         }
         .left-head p {
             margin-bottom: -3px;
+            margin-left: 0;
         }
         .printContainer {
             position: absolute;
