@@ -226,10 +226,6 @@ if (strpos($request, '.php') !== false) {
 		<?php } ?>
 		  </div>
           </div>
-          <div class="row">
-          <div class="col-md-12">
-          <hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
-          </div>
           <p style="">
           <?php
 		$sql1 = mysqli_query($conn,"SELECT * FROM student_year_info left join grade on student_year_info.YEAR=grade.grade_id where STUDENT_ID = '$id'");
