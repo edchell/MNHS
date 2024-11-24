@@ -47,11 +47,12 @@ include('auth.php');
              ' <td><a onclick="remtrr('+i+')"  id="remtr">X</a></td>'+
             '</tr>';
         $("#table-body").append(data);
+        disableSubject();
     }
 
     function remtrr($i){
         $("." + $i).remove();
-        handleSubjectChange(currentIndex) // Recheck selections when row is removed
+        handleSubjectChange(currentIndex); // Recheck selections when row is removed
     }
 
     // Function to disable subjects already selected in other dropdowns
