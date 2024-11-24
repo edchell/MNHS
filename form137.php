@@ -89,7 +89,9 @@ if (strpos($request, '.php') !== false) {
 		#print {
 			visibility: visible;
 			margin-top: -130px;
-			margin-bottom: -250px;
+		}
+		#adj {
+			margin-bottom: -150px;
 		}
 	}
 	</style>
@@ -239,7 +241,7 @@ if (strpos($request, '.php') !== false) {
 		<?php } ?>
 		  </div>
           </div>
-          <div class="row">
+          <div class="row" id="adj">
           <div class="col-md-12">
           <hr style="border-color:black;border:1px solid black;margin-top:-4px;"></hr>
           </div>
