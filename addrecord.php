@@ -53,9 +53,10 @@ include('auth.php');
     function remtrr($i){
         $("." + $i).remove();
     }
-
-    // Function to disable subjects already selected in other dropdowns
-    function disableSubject() {
+</script>
+<script>
+  // Function to disable subjects already selected in other dropdowns
+  function disableSubject() {
         var selects = document.querySelectorAll('select[name="subj[]"]');
 
         // Enable all options first
