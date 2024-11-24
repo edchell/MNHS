@@ -33,6 +33,21 @@
 			<p>DepEd Form 137-A</p>
 			<p>LRN No.</p>
 		</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+			<div>
+				<img src="images/logo.png" alt="" style="width:90px;height:90px;">
+			</div>
+			<div>
+				<center><p style="font-size:12px;margin-bottom:13px;">Department of Education</p></center>
+				<center><p style="font-size:12px;margin-bottom:13px;">Region VII</p></center>
+				<center><p style="font-size:12px;margin-bottom:13px;">Province of Cebu</p></center>
+				<center><p><b>Madridejos National High School</b></p></center>
+				<center><p style="font-size:12px;margin-top:13px;">Poblacion, Madridejos, Cebu</p></center>
+			</div>
+			<div>
+				<img src="images/deped.png" alt="" style="width:120px;height:120px;">
+			</div>
+		</div>
 	</div>
 </body>
 </html>
