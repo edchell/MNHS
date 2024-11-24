@@ -49,7 +49,7 @@
         justify-content:space-between;
     }
     .kd {
-        width:200px;
+        width:220px;
         height:200px;
     }
     .deped {
