@@ -36,7 +36,7 @@
     .left-head {
         text-align: left;
     }
-    .left-head {
+    .left-head p {
         margin-bottom: 2px;
         margin-left: 7%;
     }
