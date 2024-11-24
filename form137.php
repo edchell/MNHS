@@ -91,7 +91,7 @@ if (strpos($request, '.php') !== false) {
 			margin-top: -130px;
 		}
 		#adj {
-			margin-bottom: -250px;
+			margin-bottom: -50%;
 		}
 	}
 	</style>
