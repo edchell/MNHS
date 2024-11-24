@@ -2,7 +2,7 @@
 include('auth.php');
 ?>
           <h1 class="page-header">Student Records</h1>
-
+          <a class="btn btn-danger" href="delete.php" onclick="return confirm('Are you sure you want to delete all records?');">Delete All</a>
        <div class="col-md-12">   
        <div class="panel panel-default">
         <div class="panel-heading">
@@ -35,7 +35,6 @@ include('auth.php');
         <td>
           <center>
               <a class="btn btn-info" href="rms.php?page=record&id=<?php echo $row['STUDENT_ID'] ?>">View Records</a>
-              <a class="btn btn-danger" href="delete.php" onclick="return confirm('Are you sure you want to delete all records?');">Delete All</a>
           </center>
             </td>
       </tr>
