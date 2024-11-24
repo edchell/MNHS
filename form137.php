@@ -140,11 +140,11 @@ if (strpos($request, '.php') !== false) {
 				<img src="images/logo.png" alt="" class="kd">
 			</div>
 			<div>
-				<p>Department of Education</p>
-				<p>Region VII</p>
-				<p>Province of Cebu</p>
-				<p><b>Madridejos National High School</b></p>
-				<p>Poblacion, Madridejos, Cebu</p>
+				<p style="margin-bottom:-3px;">Department of Education</p>
+				<p style="margin-bottom:-3px;">Region VII</p>
+				<p style="margin-bottom:-3px;">Province of Cebu</p>
+				<p style="margin-bottom:-3px;"><b>Madridejos National High School</b></p>
+				<p style="margin-bottom:-3px;">Poblacion, Madridejos, Cebu</p>
 			</div>
 			<div>
 				<img src="images/deped.png" alt="" class="deped">
