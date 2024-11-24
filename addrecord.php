@@ -54,7 +54,7 @@ include('auth.php');
         $("." + $i).remove();
     }
 </script>
-<script>
+<!-- <script>
   // Function to disable subjects already selected in other dropdowns
   function disableSubject() {
         var selects = document.querySelectorAll('select[name="subj[]"]');
@@ -73,7 +73,7 @@ include('auth.php');
             }
         });
       }
-</script>
+</script> -->
   
     <?php
     include 'db.php';
