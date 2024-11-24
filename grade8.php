@@ -56,15 +56,15 @@ success:function(data)
                                 <div class="form-group">
                                     <label class="col-xs-4 control-label" for="lrn">LRN Number</label>
                                     <div class="col-xs-6">
-                                        <input id="lrn" name="lrn" type="text" placeholder="Enter LRN " maxlength="12" class="form-control input-xs" required="">
+                                        <input id="lrn" name="lrn" type="text" placeholder="Enter LRN " maxlength="12" class="form-control input-xs" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-xs-4 control-label" for="name">Name</label>
                                     <div class="col-xs-8">
                                         <div class="input-group">
-                                            <input id="name" class="form-control input-xs" style="text-transform: capitalize;margin-bottom:5px;" name="lname" placeholder="Lastname" type="text" required="">
-                                            <input id="name" class="form-control input-xs" style="text-transform: capitalize;margin-bottom:5px;" name="fname" placeholder="Firstname" type="text" required="">
+                                            <input id="name" class="form-control input-xs" style="text-transform: capitalize;margin-bottom:5px;" name="lname" placeholder="Lastname" type="text" required>
+                                            <input id="name" class="form-control input-xs" style="text-transform: capitalize;margin-bottom:5px;" name="fname" placeholder="Firstname" type="text" required>
                                             <input id="name" class="form-control input-xs" style="text-transform: capitalize;" name="mname" placeholder="Middlename" type="text">
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@ success:function(data)
                                     <label class="col-xs-4 control-label" for="address">Birth Place</label>
                                     <div class="col-xs-8">
                                         <div class="input-group">
-                                            <input id="address" class="form-control" style="text-transform: capitalize;" name="bp" placeholder="Birth Place" type="text" required="">
+                                            <input id="address" class="form-control" style="text-transform: capitalize;" name="bp" placeholder="Birth Place" type="text" required>
                                         </div>
                                     </div>
                                 </div>
@@ -93,21 +93,21 @@ success:function(data)
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label" for="dob">Date of Birth</label>
                                     <div class="col-xs-7">
-                                        <input id="dob" name="dob" type="date" placeholder="YYYY-MM-DD" class="form-control input-md" required="">
+                                        <input id="dob" name="dob" type="date" placeholder="YYYY-MM-DD" class="form-control input-md" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label" for="pob">ADDRESS</label>
                                     <div class="col-xs-7">
-                                        <input id="pob" name="pob" type="text" style="text-transform: capitalize;" placeholder="Enter Student Address" class="form-control input-xs" required="">
+                                        <input id="pob" name="pob" type="text" style="text-transform: capitalize;" placeholder="Enter Student Address" class="form-control input-xs" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label" for="pg">Parent/Guardian</label>
                                     <div class="col-xs-7">
                                         <div class="input-group">
-                                            <input id="pg" name="pg" class="form-control" style="text-transform: capitalize;margin-bottom:5px;" placeholder="Enter Full Name" type="text" required="">
-                                            <input id="pg" name="pg_add" class="form-control" style="text-transform: capitalize;" placeholder="Enter Address" type="text" required="">
+                                            <input id="pg" name="pg" class="form-control" style="text-transform: capitalize;margin-bottom:5px;" placeholder="Enter Full Name" type="text" required>
+                                            <input id="pg" name="pg_add" class="form-control" style="text-transform: capitalize;" placeholder="Enter Address" type="text" required>
                                         </div>
                                     </div>
                                 </div>
@@ -123,14 +123,14 @@ success:function(data)
                                     <label class="col-xs-2 control-label" for="icc">Intermediate Course Completed</label>
                                     <br>
                                     <div class="col-xs-6">
-                                        <input id="icc" name="icc" type="text" style="text-transform: capitalize;" placeholder="Enter School Graduated " class="form-control input-xs" required="">
+                                        <input id="icc" name="icc" type="text" style="text-transform: capitalize;" placeholder="Enter School Graduated " class="form-control input-xs" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-xs-2 control-label" for="sy">School Year</label>
                                     <div class="col-xs-10">
-                                        <input class="form-control" style="width:150px" id="sy" name="sy" type="text" placeholder="FROM-TO">
+                                        <input class="form-control" style="width:150px" id="sy" name="sy" type="text" placeholder="FROM-TO" required>
                                     </div>
                                 </div>
 
@@ -138,14 +138,14 @@ success:function(data)
                                     <label class="col-xs-2 control-label" for="tn">Total Number Of Years</label>
                                     <br>
                                     <div class="col-xs-6">
-                                        <input id="tn" name="tny" type="number" style="width:100px;text-align:right" class="form-control input-xs" required="">
+                                        <input id="tn" name="tny" type="number" style="width:100px;text-align:right" class="form-control input-xs" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-xs-2 control-label" for="ave">General Average</label>
                                     <div class="col-xs-6">
-                                        <input id="ave" name="ave" type="number" style="width:100px;text-align:right" class="form-control input-xs" required="">
+                                        <input id="ave" name="ave" type="number" style="width:100px;text-align:right" class="form-control input-xs" required>
                                     </div>
                                 </div>
                             </div>
