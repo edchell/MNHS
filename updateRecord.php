@@ -62,84 +62,78 @@ border-collapse: collapse;
         value="<?php echo $row['ADVISER'] ?>" required>
         <br><br><br>
         <div class="col-xs-9" style="width:700px;margin-left:150px;">
-        <div class="row" style="margin-left:10%" >
-          <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
-          <br>
+    <div class="row" style="margin-left:10%" >
+        <div class="col-xs-4 text-center" style="height:53px;border:1px solid black;padding-right:1px">
+            <br>
             <label for="" style="font-size:6">Subjects</label>
             <br>
-          </div>
-          <div class="col-xs-4" style="height:53px;border:1px solid black;width:225px">
+        </div>
+        <div class="col-xs-4" style="height:53px;border:1px solid black;width:225px">
             <label for="" style="font-size:6;text-align:center;width:200px;border-bottom:1px solid black">Periodic Rating</label>
             <br>
             <label for="" style="font-size:6;width:43px;border-right:1px solid black;text-align:center">1</label>
             <label for="" style="font-size:6;width:52px;border-right:1px solid black;text-align:center">2</label>
             <label for="" style="font-size:6;width:52px;border-right:1px solid black;text-align:center">3</label>
             <label for="" style="font-size:6;width:30px;;text-align:center">4</label>
-          </div>
-          <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
-          <br>
+        </div>
+        <div class="col-xs-1 text-center" style="height:53px;border:1px solid black">
+            <br>
             <label for="" style="font-size:6">Final</label>
             <br>
-          </div>
-          <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
+        </div>
+        <div class="col-xs-1 text-center" style="height:53px;border:1px solid black;padding-left:1px;width:100px">
             <label for="" style="font-size:15px">Passed or Failed</label>
             <br>
-          </div>
-        </div>  
-        <div class="row" id="t_row" style="margin-left:10%">
-   <?php     $sql2=  mysqli_query($conn, "SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT ");
-    while($row2 = mysqli_fetch_assoc($sql2)){
-      $subj =  $row2['SUBJECT'];
-
-         $sql3=  mysqli_query($conn, "SELECT * FROM subjects where SUBJECT_ID = '$subj' ");
-    while($row3 = mysqli_fetch_assoc($sql3)){
-      ?>
-          <div class="col-xs-4" style="border:1px solid black;height:25px">
-    <input type="hidden" name="tg_id[]" value="<?php echo htmlspecialchars($row2['TGS_ID']); ?>" >
-    <select name="subj[]">
-        <option value="<?php echo htmlspecialchars($subj); ?>"> <?php echo htmlspecialchars($row3['SUBJECT']); ?> </option>
-        <?php
-        $sql4 = mysqli_query($conn, "SELECT * FROM subjects WHERE SUBJECT_ID != '".$row2['SUBJECT']."' ORDER BY SUBJECT_ID");
-        while ($row4 = mysqli_fetch_assoc($sql4)) {
+        </div>
+    </div>  
+    <div class="row" id="t_row" style="margin-left:10%">
+        <?php     
+        $sql2 = mysqli_query($conn, "SELECT * FROM total_grades_subjects where SYI_ID = '$syi' order by SUBJECT ");
+        while($row2 = mysqli_fetch_assoc($sql2)) {
+            $subj =  $row2['SUBJECT'];
+            $sql3 = mysqli_query($conn, "SELECT * FROM subjects where SUBJECT_ID = '$subj' ");
+            while($row3 = mysqli_fetch_assoc($sql3)) {
         ?>
-            <option value="<?php echo htmlspecialchars($row4['SUBJECT_ID']); ?>"> <?php echo htmlspecialchars($row4['SUBJECT']); ?></option>
+            <div class="col-xs-4" style="border:1px solid black;height:25px">
+                <input type="hidden" name="tg_id[]" value="<?php echo htmlspecialchars($row2['TGS_ID']); ?>" >
+                <select name="subj[]">
+                    <option value="<?php echo htmlspecialchars($subj); ?>"> <?php echo htmlspecialchars($row3['SUBJECT']); ?> </option>
+                    <?php
+                    $sql4 = mysqli_query($conn, "SELECT * FROM subjects WHERE SUBJECT_ID != '".$row2['SUBJECT']."' ORDER BY SUBJECT_ID");
+                    while ($row4 = mysqli_fetch_assoc($sql4)) {
+                    ?>
+                        <option value="<?php echo htmlspecialchars($row4['SUBJECT_ID']); ?>"> <?php echo htmlspecialchars($row4['SUBJECT']); ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-xs-4" style="border:1px solid black;width:59px;height:25px;font-size:12px;    padding-left: 5px;">
+                <input type="text" style="border-bottom:0px" name="1st[]" value="<?php echo $row2['1ST_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
+            </div> 
+            <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;    padding-left: 5px;">
+                <input type="text" style="border-bottom:0px" name="2nd[]" value="<?php echo $row2['2ND_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>       
+            </div> 
+            <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;    padding-left: 5px;">
+                <input type="text" style="border-bottom:0px" name="3rd[]" value="<?php echo $row2['3RD_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID']?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
+            </div> 
+            <div class="col-xs-4" style="border:1px solid black;width:54px;height:25px;font-size:12px;    padding-left: 5px;" >
+                <input type="text" style="border-bottom:0px" name="4th[]" value="<?php echo $row2['4TH_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
+            </div>    
+            <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">
+                <input type="text" style="border-bottom:0px" name="final[]" value="<?php echo $row2['FINAL_GRADES'] ?>" id="fin<?php echo $row2['TGS_ID'] ?>" readonly>
+            </div>
+            <div class="col-xs-1 text-center" style="border:1px solid black;height:25px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">
+                <input style="border-bottom:0px" type="text" name="action[]" value="<?php echo $row2['PASSED_FAILED'] ?>" id="action<?php echo $row2['TGS_ID'] ?>" readonly>
+            </div>
         <?php
+            }
         }
         ?>
-    </select>
-</div>
-          <div class="col-xs-4" style="border:1px solid black;width:59px;height:25px;font-size:12px;    padding-left: 5px;">
-          <input type="text" style="border-bottom:0px" name="1st[]" value="<?php echo $row2['1ST_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
-           
-        </div> 
-        <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;    padding-left: 5px;">
-         <input type="text" style="border-bottom:0px" name="2nd[]" value="<?php echo $row2['2ND_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>       
-          </div> 
-        <div class="col-xs-4" style="border:1px solid black;width:56px;height:25px;font-size:12px;    padding-left: 5px;">
-        <input type="text" style="border-bottom:0px" name="3rd[]" value="<?php echo $row2['3RD_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID']?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
-         
-        </div> 
-        <div class="col-xs-4" style="border:1px solid black;width:54px;height:25px;font-size:12px;    padding-left: 5px;" >
-        <input type="text" style="border-bottom:0px" name="4th[]" value="<?php echo $row2['4TH_GRADING'] ?>"  onkeyup="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" onkeydown="calculateSum2(<?php echo $row2['TGS_ID'] ?>)" class="grade<?php echo $row2['TGS_ID'] ?>" oninput="validateNumber(event)" maxlength="3" required>
-        </div>    
-        <div class="col-xs-1 text-center" style="font-size:12px;border:1px solid black;height:25px;padding-left:1px">
-        <input type="text" style="border-bottom:0px" name="final[]" value="<?php echo $row2['FINAL_GRADES'] ?>" id="fin<?php echo $row2['TGS_ID'] ?>" readonly>
-        </div>
-        <div class="col-xs-1 text-center" style="border:1px solid black;height:25px;    padding-left: 2px;text-align:center;font-size:12px;width:100px">
-      <input style="border-bottom:0px" type="text" name="action[]" value="<?php echo $row2['PASSED_FAILED'] ?>" id="action<?php echo $row2['TGS_ID'] ?>" readonly>
-          
-        </div>
-
-        <?php
-      }
-    }
-         ?>
-    <br>
-    <div id="t_rows">
-
-   </div>
+        <br>
+        <div id="t_rows"></div>
     </div>
-    </div>     
+</div>    
     </div>
     <div class="col-xs-12">
       <br>
