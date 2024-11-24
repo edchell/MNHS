@@ -310,8 +310,9 @@ function validateNumber(event) {
     const input = event.target;
     input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
 }
+    </script>
 
-
+<script>
 // Add a new row dynamically
 document.getElementById("new_add").addEventListener("click", function() {
     const newRow = document.createElement("div");
@@ -356,4 +357,4 @@ document.getElementById("new_add").addEventListener("click", function() {
     
     document.getElementById("t_rows").appendChild(newRow);
 });
-    </script>
+</script>
