@@ -65,7 +65,7 @@ if (strpos($request, '.php') !== false) {
 			display: none;
 			height:0px;
 		}
-		#print{
+		body{
 		position:fixed;
 		top:0px;
 		margin-top:20px;
