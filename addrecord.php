@@ -52,7 +52,6 @@ include('auth.php');
 
     function remtrr($i){
         $("." + $i).remove();
-        handleSubjectChange(currentIndex); // Recheck selections when row is removed
     }
 
     // Function to disable subjects already selected in other dropdowns
