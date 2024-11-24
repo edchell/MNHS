@@ -17,8 +17,16 @@
     <script src="asset/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/jq.js"></script>
-	<link rel="stylesheet" href="/form137.css">
 </head>
+<style>
+    * {
+    color: black;
+    background-color: white;
+    }
+    .printContainer {
+        text-align: center;
+    }
+</style>
 <body>
 	<div class="printContainer">
 		<div class="left-head">
