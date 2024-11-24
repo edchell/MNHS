@@ -27,7 +27,8 @@ if (isset($_GET['id']) && isset($_GET['gradeid'])) {  // Checking if both 'id' a
 <script src="assets/js/ie-emulation-modes-warning.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <?php
-include 'addrow_grades.php';?>
+include_once 'addrow_grades.php';
+?>
 
 <style>
   input {
