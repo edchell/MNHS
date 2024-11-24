@@ -53,7 +53,7 @@
         height:200px;
     }
     .deped {
-        width:250px;
+        width:230px;
         height:230px;
     }
 
