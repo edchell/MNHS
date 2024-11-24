@@ -23,6 +23,7 @@
     color: black;
     background-color: white;
     padding: 10px;
+    border: none;
     }
     .printContainer {
         text-align: center;
