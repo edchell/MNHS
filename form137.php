@@ -33,6 +33,12 @@
     .btn-head {
         margin-left: 2%
     }
+    .left-head {
+        text-align: left;
+    }
+    .left-head {
+        margin-bottom: 2px;
+    }
     .center-head {
         display:flex;
         align-items:center;
