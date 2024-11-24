@@ -65,6 +65,7 @@ if (strpos($request, '.php') !== false) {
 			margin-right:50px;
 			margin-left:50px;
 			height: 100%;
+			width: 100%;
 		}
 		}
 
