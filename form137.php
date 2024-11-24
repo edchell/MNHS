@@ -65,12 +65,6 @@ if (strpos($request, '.php') !== false) {
 			display: none;
 			height:0px;
 		}
-		#print{
-		margin-top:20px;
-		margin-bottom:30px;
-		margin-right:50px;
-		margin-left:50px;
-		}
 		}
 		#print{
 		width:7.5in;
