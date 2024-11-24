@@ -73,11 +73,6 @@ include('auth.php');
             }
         });
       }
-
-    // Handle both disabling and new row creation on subject change
-    function handleSubjectChange(currentIndex) {
-        disableSubject();
-    }
 </script>
   
     <?php
