@@ -54,6 +54,9 @@ if (strpos($request, '.php') !== false) {
     <script src="assets/js/jq.js"></script>
 	<style>
 	@media print {  
+		@page {
+			size:9.5in 13in;
+		}
 		head{
 			height:0px;
 			display: none;
