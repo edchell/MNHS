@@ -89,6 +89,7 @@ if (strpos($request, '.php') !== false) {
 		#print {
 			position: absolute;
 			top: 0;
+			bottom: 0;
 		}
 	}
 	</style>
