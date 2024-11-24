@@ -335,8 +335,8 @@ if (strpos($request, '.php') !== false) {
 		    ?>
         </table>
         </table>
-		<center><p style="font-weight:bolder;margin-top:2%;margin-bottom: 2%">Attendance Report</p></center>
-		<table style="border-collapse:collapse;width: 90%;margin-bottom:20px;margin-top:-10px;">
+		<center><p style="font-weight:bolder;margin-top:2%;">Attendance Report</p></center>
+		<table style="border-collapse:collapse;width: 90%;margin-bottom:20px;margin-top:-5px;">
 			<tr>
 				<td style="font-size:10px;border:1px solid black;text-align:center;width:130px">Months</td>
 				<td style="font-size:10px;border:1px solid black;text-align:center;width:50px">Jun</td>
