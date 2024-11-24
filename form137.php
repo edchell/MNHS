@@ -81,6 +81,12 @@ if (strpos($request, '.php') !== false) {
 	line-height: 20px;
 	 letter-spacing: 2px;
 }
+
+	@media print {
+		#prints, #cancel {
+			display: none;
+		}
+	}
 	</style>
 
 </head> 
