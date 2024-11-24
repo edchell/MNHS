@@ -26,6 +26,12 @@
     .printContainer {
         text-align: center;
     }
+
+    @media print {
+        .btn-header {
+            visibility: hidden;
+        }
+    }
 </style>
 <body>
     <div class="btn-head">
