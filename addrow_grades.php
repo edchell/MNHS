@@ -32,7 +32,7 @@ include('auth.php');
         // Enable all options first
         selects.forEach(select => {
             for (let option of select.options) {
-                option.disabled = false;
+                option.style.display = 'block';
             }
         });
 
@@ -40,7 +40,7 @@ include('auth.php');
         selects.forEach(select => {
             for (let option of select.options) {
                 if (selectedValues.includes(option.value) && option.value !== "") {
-                    option.disabled = true;
+                    option.style.display = 'none';
                 }
             }
         });
