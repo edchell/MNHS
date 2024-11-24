@@ -242,7 +242,7 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
-        <hr style="border-color:black;border:1px solid black;margin-top:-3px;"></hr>
+        <hr style="border-color:black;border:1px solid black;margin-top:-20px;"></hr>
         <div class="dob" style="margin-top:-2px">
 			<div class="pob">
 				<label><h6 style="font-size:12px;">Curriculum Year</h6></label>
@@ -282,7 +282,7 @@ if (strpos($request, '.php') !== false) {
 				</span>
 			</div>
 		</div>
-        <table>
+        <table >
             <tr>
                 <td><b>Subjects</b></td>
                 <td><b>Final Rating</b></td>
