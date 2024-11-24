@@ -29,6 +29,7 @@
     }
     .printContainer {
         text-align: center;
+        margin-top: 20%;
     }
     .btn-head {
         margin-left: 2%
