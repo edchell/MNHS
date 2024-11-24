@@ -150,7 +150,7 @@ if (strpos($request, '.php') !== false) {
 				<img src="images/deped.png" alt="" class="deped">
 			</div>
 		</div>
-        <p style="margin-bottom:-10px;margin-top:-15px;"><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p>
+        <p style="margin-bottom:-10px;margin-top:-17px;"><b><h4>SECONDARY STUDENT' PERMANENT RECORD</h4></b></p>
         <div class="stu-info">
             <div>
 		    	<label for="name"><h6 style="font-size:12px;">Name:</h6></label>
