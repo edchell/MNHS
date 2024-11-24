@@ -88,7 +88,7 @@ if (strpos($request, '.php') !== false) {
 		}
 		#print {
 			visibility: visible;
-			margin-top: -120px;
+			margin-top: -130px;
 		}
 
 	}
