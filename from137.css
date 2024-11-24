@@ -1,28 +1,4 @@
-@media print {  
-    head{
-        height:0px;
-        display: none;
-    }
-    #head{
-        display: none;
-        height:0px;
-    }
-    #print{
-        max-width: unset;
-        box-shadow: none;
-        border: 0px;
-        background-color: white;
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 15px;
-        font-size: 14px;
-        line-height: 18px;
-    }
-    }
+
     #print{
     width:7.5in;
     }
@@ -50,3 +26,29 @@ font-weight: 550;
 line-height: 20px;
  letter-spacing: 2px;
 }
+
+@media print {  
+    head{
+        height:0px;
+        display: none;
+    }
+    #head{
+        display: none;
+        height:0px;
+    }
+    #print{
+        max-width: unset;
+        box-shadow: none;
+        border: 0px;
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+    }
