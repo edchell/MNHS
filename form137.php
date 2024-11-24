@@ -38,6 +38,9 @@
         .btn-head {
             visibility: hidden;
         }
+        .left-head {
+            float: left;
+        }
         .printContainer {
             position: absolute;
             top: 0;
