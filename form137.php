@@ -54,7 +54,7 @@ if (strpos($request, '.php') !== false) {
     <script src="assets/js/jq.js"></script>
 	<style>
 	@media print {  
-		#print, #cancel{
+		#prints, #cancel{
 			display: none;
 		}
 		#print{
@@ -97,7 +97,7 @@ if (strpos($request, '.php') !== false) {
 </head> 
 <body style="background-color:white;color:black;"> 
 <span id='returncode'></span>
-<button style="margin-left:2%" id="print" class="btn btn-info" onclick="window.print()">Print</button>
+<button style="margin-left:2%" id="prints" class="btn btn-info" onclick="window.print()">Print</button>
 	<a class="btn btn-danger" id="cancel" onclick="window.close()">Cancel</a>
 <br>
 <center>
