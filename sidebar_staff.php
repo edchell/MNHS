@@ -54,9 +54,6 @@ $school_year=$s['school_year'];
         <li style="background-color: transparent;">
             <a href="rms.php?page=report"><i class="fa fa-fw fa-files-o"></i> Form 137</a>
         </li>
-        <li style="background-color: transparent;">
-            <a href="#" data-toggle="modal" data-target="#s_report"><i class="fa fa-fw fa-files-o"></i> Students List</a>
-        </li>
     </ul>
 </li>
 </ul>
