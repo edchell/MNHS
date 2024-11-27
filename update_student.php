@@ -45,7 +45,7 @@ $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '
 
 		if (mysqli_query($conn, $sql)) {
 			mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
-		VALUES ('updated $id in the student list','$user',NOW() )");
+		VALUES ('Updated $id in the student list','$user',NOW() )");
 		echo   "<div id='message' class='erlert-success'><center><h4>" . "Data Successfuly updated." . "</h4></center></div>";
 		"<script>
 		setTimeout(function(){ $('#message').hide)();  }, 2000); 

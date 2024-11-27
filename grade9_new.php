@@ -62,8 +62,8 @@ $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '
 			'$gender',
             'grade9'
 		)";
-		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
-		VALUES ('added $fn $ln as new student','$user',NOW() )");
+		mysqli_query($conn, "INSERT into history_log (transaction,user_id,grade,status,date_added) 
+		VALUES ('Added $fn $ln as new student','$user','grade9','Add',NOW() )");
 		if (mysqli_query($conn, $sql)) {
 
 			echo "<div class='erlert-success'><center><h4>" . "New Student Successfully Added." . "</h4></center></div>";

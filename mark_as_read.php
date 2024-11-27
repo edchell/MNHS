@@ -7,7 +7,7 @@ if (isset($_POST['notification_id'])) {
     $notification_id = $_POST['notification_id'];
 
     // Update the notification status to 'read'
-    $query = "UPDATE notifications SET status = 'Read' WHERE notification_id = '$notification_id'";
+    $query = "UPDATE history_log SET status = 'Read' WHERE log_id = '$notification_id'";
     $result = mysqli_query($conn, $query);
 
     if ($result) {

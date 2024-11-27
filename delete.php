@@ -8,6 +8,7 @@ $stmt2 = $conn->prepare("DELETE FROM `student_year_info`");
 $stmt3 = $conn->prepare("DELETE FROM `total_grades_subjects`");
 $stmt4 = $conn->prepare("DELETE FROM `student_info`");
 $stmt5 = $conn->prepare("DELETE FROM `subjects`");
+$stmt6 = $conn->prepare("DELETE FROM `history_log`");
 
 // Execute each statement
 $success = true; // Flag to track the success of all queries
@@ -32,6 +33,10 @@ if (!$stmt5->execute()) {
     $success = false;
     echo "<script>alert('Error deleting records from subjects: " . $conn->error . "');</script>";
 }
+if (!$stmt6->execute()) {
+    $success = false;
+    echo "<script>alert('Error deleting records from history_log: " . $conn->error . "');</script>";
+}
 
 // If all queries are successful, show a success message
 if ($success) {
@@ -44,6 +49,7 @@ $stmt2->close();
 $stmt3->close();
 $stmt4->close();
 $stmt5->close();
+$stmt6->close();
 $conn->close();
 
 // Redirect to the records page (or wherever you want)

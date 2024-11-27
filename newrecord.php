@@ -24,16 +24,52 @@ $Tdc = $_POST['Tdc'];
 $Tp = $_POST['Tp'];
 $user = $_SESSION['ID'];
 
-// Query to check for existing records
-$search_qry = mysqli_query($conn, "SELECT student_info.FIRSTNAME, student_info.LASTNAME, student_year_info.* FROM student_year_info 
-LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID 
-WHERE student_year_info.STUDENT_ID = '$id' AND YEAR ='$yr'");
+// First query to get student data
+$stmt = $conn->prepare("SELECT student_info.FIRSTNAME, student_info.LASTNAME, student_year_info.* 
+                        FROM student_year_info 
+                        LEFT JOIN student_info ON student_year_info.STUDENT_ID = student_info.STUDENT_ID 
+                        WHERE student_year_info.STUDENT_ID = ? AND YEAR = ?");
+$stmt->bind_param("is", $id, $yr);
+if (!$stmt->execute()) {
+    // Handle the error
+    echo "Error: " . $stmt->error;
+    exit;
+}
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
 
-$row = mysqli_fetch_assoc($search_qry);
-$student_firstname = $row['FIRSTNAME'];
-$student_lastname = $row['LASTNAME'];
-$student = $student_firstname . ' ' . $student_lastname;
-$num_row = mysqli_num_rows($search_qry);
+// Second query to get student name
+$stmt1 = $conn->prepare("SELECT FIRSTNAME, LASTNAME FROM student_info WHERE STUDENT_ID=?");
+$stmt1->bind_param("i", $id);
+if (!$stmt1->execute()) {
+    // Handle the error
+    echo "Error: " . $stmt1->error;
+    exit;
+}
+$stmt1_result = $stmt1->get_result();
+$name = $stmt1_result->fetch_assoc();
+
+if ($name) {
+    $fn = $name['FIRSTNAME'];
+    $ln = $name['LASTNAME'];
+} else {
+    // Handle case where name is not found
+    $fn = "Unknown";
+    $ln = "Unknown";
+}
+
+// Insert history log
+$history_stmt = $conn->prepare("INSERT INTO history_log (transaction, user_id, student_id, status, date_added) 
+                                VALUES (?, ?, ?, ?, NOW())");
+$transaction = "New Record for $fn $ln added";
+$history_stmt->bind_param("siis", $transaction, $user, $id, $status);
+$status = 'Add';
+$history_stmt->execute();
+
+// Close prepared statements
+$stmt->close();
+$history_stmt->close();
+
 
 if ($num_row >= 1) {
     echo "<script>
@@ -70,16 +106,6 @@ if ($num_row >= 1) {
         $ga = $row['fin_grade'] / $row['tg_count'];
         mysqli_query($conn, "UPDATE student_year_info SET GEN_AVE = '$ga' WHERE SYI_ID = '".$row['SYI_ID']."'");
     }
-
-    // Insert notification after the new student record is added
-    $users_query = mysqli_query($conn, "SELECT USER_ID FROM user WHERE USER_TYPE = 'ADMINISTRATOR' AND STATUS = ''");
-while ($user = mysqli_fetch_assoc($users_query)) {
-    $user_id = $user['USER_ID'];
-
-    // Insert a notification for each user except the one who added the record
-    mysqli_query($conn, "INSERT INTO notifications (user_id, student_id, status) 
-        VALUES ('$user_id', '$id', 'New')");
-}
 
         echo "<script>
         alert('Student Record Added Successfully!');

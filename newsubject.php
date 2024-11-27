@@ -21,8 +21,8 @@
 
 	if ($sql=mysqli_query($conn, "INSERT into subjects (SUBJECT, DESCRIPTION) 
 		VALUES ( '$sub', '$des' )")){
-		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
-		VALUES ('added $sub in the subject list','$user',NOW() )");
+		mysqli_query($conn, "INSERT into history_log (transaction,user_id,status,date_added) 
+		VALUES ('Added $sub in the subject list','$user','Add',NOW() )");
 	echo "<script>
 				alert('New Subject Added successfully');
 				window.location.href = 'rms.php?page=subjects';
@@ -38,8 +38,8 @@
 	}else{
 		$id=$_POST['id'];
 		$sql = "UPDATE subjects SET SUBJECT='$sub', DESCRIPTION='$des' WHERE SUBJECT_ID='$id'";
-		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
-		VALUES ('updated $id in the subject list','$user',NOW() )");
+		mysqli_query($conn, "INSERT into history_log (transaction,user_id,status,date_added) 
+		VALUES ('Updated $id in the subject list','$user','Update',NOW() )");
 
 		if (mysqli_query($conn, $sql)) {
 			echo "<script>

@@ -63,23 +63,33 @@ if (strpos($request, '.php') !== false) {
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
-        <?php
+      <?php
         include 'db.php';
 
-        $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
-        $row = mysqli_fetch_assoc($sql);
-            // Check if the user is not an administrator
-            if($row['USER_TYPE'] != 'FACULTY TEACHER'){
+        $stmt = $conn->prepare("SELECT * FROM user WHERE USER_ID = ?");
+        $stmt->bind_param("s", $_SESSION['ID']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        // Check if the user is not an administrator
+        if ($row['USER_TYPE'] != 'FACULTY TEACHER') {
         ?>
             <!-- Notifications Dropdown -->
-            <li class="dropdown notifications">
-                <?php
-                include 'db.php';
+            <li class="dropdown notifications" >
+            <?php
                 // Count the number of new notifications for non-admin users
-                $notifications_query = mysqli_query($conn, "SELECT COUNT(*) as new_count FROM notifications WHERE user_id = '".$_SESSION['ID']."' AND status = 'New'");
-                $notification_row = mysqli_fetch_assoc($notifications_query);
+                $notifications_query = $conn->prepare(
+                    "SELECT COUNT(*) as new_count 
+                    FROM history_log hl
+                    INNER JOIN user u ON hl.user_id = u.USER_ID
+                    WHERE (hl.status='Add' OR hl.status='Update')
+                    AND u.USER_TYPE = 'FACULTY TEACHER'"
+                );
+                $notifications_query->execute();
+                $notification_row = $notifications_query->get_result()->fetch_assoc();
                 $new_notifications_count = $notification_row['new_count'];
-                ?>
+            ?>
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-bell"></i> 
@@ -88,25 +98,61 @@ if (strpos($request, '.php') !== false) {
                     <?php endif; ?>
                 </a>
 
-                <ul class="dropdown-menu" style="width:300px;">
-                    <h6 style="text-align:center;padding-bottom:5px;border-bottom:2px solid black;">You have new notifications</h6>
-                    <?php
-                    // Get the list of notifications
-                    $notifications = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id = '".$_SESSION['ID']."' ORDER BY created_at DESC LIMIT 5");
-                    while ($notification = mysqli_fetch_assoc($notifications)) {
-                        $id = $notification['student_id'];
-                        $notification_id = $notification['notification_id'];
-                        $query = mysqli_query($conn, "SELECT * FROM student_info WHERE STUDENT_ID = '$id'");
-                        $row = mysqli_fetch_assoc($query);
-                        $student = $row['FIRSTNAME']. ' ' .$row['LASTNAME'];
-                        echo '<li style="font-size:14px;border-bottom:1px solid gray;">';
-                        echo '<a href="rms.php?page=record&id='.$id.'" class="mark-as-read" data-notification-id="'.$notification_id.'">New student record added for <b>'. $student .'</b></a>';
-                        echo '</li>';
-                    }
-                    ?>
-                </ul>
+                <ul class="dropdown-menu" style="width:150px;border-radius:5px;max-height: 200px; overflow-y: auto;">
+    <h6 style="text-align:center;padding-bottom:5px;border-bottom:2px solid black;font-size:10px;margin-bottom:-2px;margin-top:2px;">You have new notifications</h6>
+    <?php
+        // Get the list of notifications
+        $notifications = $conn->prepare(
+            "SELECT * FROM history_log hl
+            INNER JOIN user u ON hl.user_id = u.USER_ID
+            WHERE u.USER_TYPE = 'FACULTY TEACHER'
+            ORDER BY hl.status IN ('Add','Update') AND date_added desc"
+        );
+        $notifications->execute();
+        $result_notifications = $notifications->get_result();
+
+        while ($notification = $result_notifications->fetch_assoc()) {
+            $trans = $notification['transaction'];
+            $notification_id = $notification['log_id'];
+            $status = $notification['status']; // Assuming 'status' is a column in the 'history_log' table
+            $student_grade = $notification['grade'];  // Change 'grade' to the actual column name for the grade
+            $student_id = $notification['student_id']; // Assuming there's a 'student_id' field in the history_log table
+
+            // Set the URL based on the student's grade
+            $page_url = "rms.php?page=" . strtolower($student_grade);  // Converts the grade to lowercase (e.g., grade7 -> grade7)
+
+            // Determine the background color based on the status
+            $background_color = 'transparent'; // Default background for 'read' notifications
+            if ($status == 'Add' || $status == 'Update') {
+                $background_color = 'skyblue'; // Background for 'Add' or 'Update' notifications
+            }
+
+            // URL for the history log page based on student ID
+            $history_url = "rms.php?page=record&id=" . $student_id;
+            $subject_page = "rms?page=subjects";
+
+            if($student_id > 0){
+              // Second list item (for history log page)
+            echo '<li style="font-size:10px;border-bottom:1px solid gray; background-color:' . $background_color . ';">';
+            echo '<a href="' . $history_url . '" class="mark-as-read" data-notification-id="' . $notification_id . '">' . $trans . '</a>';
+            echo '</li>';
+            
+            } else if($student_grade > 0) {
+              // First list item (for grade-based page)
+            echo '<li style="font-size:10px;border-bottom:1px solid gray; background-color:' . $background_color . ';">';
+            echo '<a href="' . $page_url . '" class="mark-as-read" data-notification-id="' . $notification_id . '">' . $trans . '</a>';
+            echo '</li>';
+            } else {
+              echo '<li style="font-size:10px;border-bottom:1px solid gray; background-color:' . $background_color . ';">';
+              echo '<a href="' . $subject_page . '" class="mark-as-read" data-notification-id="' . $notification_id . '">' . $trans . '</a>';
+              echo '</li>';
+            }
+        }
+    ?>
+</ul>
+
             </li>
-        <?php } ?>
+      <?php } ?>
         
         <!-- User Dropdown -->
         <li class="dropdown">

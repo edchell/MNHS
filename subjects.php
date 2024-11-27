@@ -14,6 +14,7 @@ include 'newsubject.php';
       <table id="example" class="display" style="width:100%">
         <thead>
           <tr>
+            <th style="width:10%">ID</th>
             <th style="width:20%">Subjects</th>
             <th style="width:10%">Description</th>
             <th style="width:10%"></th>
@@ -27,6 +28,7 @@ include 'newsubject.php';
           while ($row = mysqli_fetch_assoc($sql)) {
           ?>
             <tr>
+              <td style="text-align:center;"><?php echo htmlspecialchars($row['SUBJECT_ID']); ?></td>
               <td data-id="<?php echo $row['SUBJECT_ID']; ?>" id="sub<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['SUBJECT']); ?></td>
               <td id="des<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['DESCRIPTION']); ?></td>
               <td>
