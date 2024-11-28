@@ -105,7 +105,7 @@ if (strpos($request, '.php') !== false) {
         $notifications = $conn->prepare(
             "SELECT * FROM history_log hl
             INNER JOIN user u ON hl.user_id = u.USER_ID
-            WHERE u.USER_TYPE = 'FACULTY TEACHER'
+            WHERE u.USER_TYPE = 'FACULTY TEACHER' AND (hl.status='Add' OR hl.status='Update')
             ORDER BY hl.status IN ('Add','Update') AND date_added desc"
         );
         $notifications->execute();
