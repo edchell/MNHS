@@ -7,7 +7,7 @@ $stmt1 = $conn->prepare("DELETE FROM `notifications`");
 $stmt2 = $conn->prepare("DELETE FROM `student_year_info`");
 $stmt3 = $conn->prepare("DELETE FROM `total_grades_subjects`");
 $stmt4 = $conn->prepare("DELETE FROM `student_info`");
-$stmt5 = $conn->prepare("DELETE FROM `subjects`");
+// $stmt5 = $conn->prepare("DELETE FROM `subjects`");
 $stmt6 = $conn->prepare("DELETE FROM `history_log`");
 
 // Execute each statement
