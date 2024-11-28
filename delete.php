@@ -29,10 +29,10 @@ if (!$stmt4->execute()) {
     $success = false;
     echo "<script>alert('Error deleting records from student_info: " . $conn->error . "');</script>";
 }
-if (!$stmt5->execute()) {
-    $success = false;
-    echo "<script>alert('Error deleting records from subjects: " . $conn->error . "');</script>";
-}
+// if (!$stmt5->execute()) {
+//     $success = false;
+//     echo "<script>alert('Error deleting records from subjects: " . $conn->error . "');</script>";
+// }
 if (!$stmt6->execute()) {
     $success = false;
     echo "<script>alert('Error deleting records from history_log: " . $conn->error . "');</script>";
@@ -48,7 +48,7 @@ $stmt1->close();
 $stmt2->close();
 $stmt3->close();
 $stmt4->close();
-$stmt5->close();
+// $stmt5->close();
 $stmt6->close();
 $conn->close();
 
