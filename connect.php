@@ -32,8 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_SESSION['lockout_time'] && time() < $_SESSION['lockout_time']) {
         $lockout_time_remaining = $_SESSION['lockout_time'] - time();
         $minutes_remaining = ceil($lockout_time_remaining / 60);
-        $_SESSION['status'] = "Too many failed attempts. Please try again in $minutes_remaining minute(s).";
-        $_SESSION['status_code'] = "error";
         header("Location: .");
         exit(0);
     }
@@ -67,10 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $current_time = time();
 
             if ($current_time - $lockout_time < 30 * 60) {
-                $_SESSION['status'] = "Account Locked";
-                $_SESSION['status_code'] = "error";
-                header("Location: .");
-                exit(0);
+                
             } else {
                 unset($_SESSION['failed_attempts']);
                 unset($_SESSION['lockout_time']);
@@ -97,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['login_attempts']++;
             if ($_SESSION['login_attempts'] >= 3) {
                 $_SESSION['lockout_time'] = time() + 300; // Lock out for 5 minutes
-                $_SESSION['status'] = "Too many failed attempts. You are locked out for 5 minutes.";
             } else {
                 $_SESSION['status'] = "Invalid Credentials";
             }
@@ -110,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['login_attempts']++;
         if ($_SESSION['login_attempts'] >= 3) {
             $_SESSION['lockout_time'] = time() + 300; // Lock out for 5 minutes
-            $_SESSION['status'] = "Too many failed attempts. You are locked out for 5 minutes.";
         } else {
         $_SESSION['status'] = "Invalid Credentials";
         }
