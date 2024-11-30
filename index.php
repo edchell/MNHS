@@ -1,6 +1,8 @@
 <?php
-$request = $_SERVER['REQUEST_URI'];
+session_start();
 
+// Redirect to clean URLs without ".php"
+$request = $_SERVER['REQUEST_URI'];
 if (strpos($request, '.php') !== false) {
     $new_url = str_replace('.php', '', strtok($request, '?'));
     if ($_SERVER['QUERY_STRING']) {
@@ -10,22 +12,7 @@ if (strpos($request, '.php') !== false) {
     exit();
 }
 
-
-// Error handling
-$error_message = '';
-if (isset($_GET['error'])) {
-    $error = htmlspecialchars($_GET['error']);
-    switch ($error) {
-        case 'captcha_failed':
-            $error_message = 'Captcha verification failed. Please try again.';
-            break;
-        case 'invalid_credentials':
-            $error_message = 'Invalid credentials. Please try again.';
-            break;
-        default:
-            $error_message = 'An unknown error occurred. Please try again.';
-    }
-}
+include('includes/script.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +34,7 @@ if (isset($_GET['error'])) {
             margin: 0;
             height: 100vh;
             display: flex;
-            justify-content: flex-end; /* Align the login form to the right */
+            justify-content: flex-end;
             align-items: center;
             background: url('images/bg.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -58,7 +45,7 @@ if (isset($_GET['error'])) {
             border-radius: 20px;
             padding: 30px;
             width: 400px;
-            margin-right: 150px; /* Add space from the right edge */
+            margin-right: 150px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         .error-message {
@@ -76,7 +63,7 @@ if (isset($_GET['error'])) {
     <div class="login-form" id="login_modal" role="dialog">
         <center><h3><b>Please Login</b></h3></center>
         <div class="error-message" id="error-message">Location access is required to use this form.</div>
-        <form class="form-horizontal" method="post" action="connect.php">
+        <form class="form-horizontal" method="post" action="connect">
             <div class="form-group">
                 <label for="user">Email:</label>
                 <div class="input-group">
@@ -101,7 +88,7 @@ if (isset($_GET['error'])) {
                 <button type="submit" id="login" class="btn btn-primary btn-block" disabled>Login</button>
             </div>
             <div class="form-group text-center">
-                <a href="reset-password.php" class="btn btn-link">Forgot password?</a>
+                <a href="reset-password" class="btn btn-link">Forgot password?</a>
             </div>
         </form>
     </div>
@@ -126,22 +113,19 @@ if (isset($_GET['error'])) {
             errorMessage.style.display = 'block';
         }
 
-        // Check for lockout error
         const urlParams = new URLSearchParams(window.location.search);
         const errorParam = urlParams.get('error');
         if (errorParam === 'account_locked') {
-            disableForm("Your account is locked due to too many failed attempts. Please try again later.");
+            disableForm("You have been locked out due to too many failed attempts. Please try again later.");
             return;
         }
 
         if (navigator.geolocation) {
             watchId = navigator.geolocation.watchPosition(
                 position => {
-                    console.log('Location access granted');
                     enableForm();
                 },
                 error => {
-                    console.error('Location error:', error.message);
                     if (error.code === error.PERMISSION_DENIED) {
                         disableForm("Please allow location access to enable login.");
                     } else {
@@ -154,28 +138,13 @@ if (isset($_GET['error'])) {
             disableForm("Geolocation is not supported by this browser.");
         }
 
-        // Clean up the geolocation watch when the user navigates away
         window.addEventListener('beforeunload', () => {
             if (watchId) {
                 navigator.geolocation.clearWatch(watchId);
             }
         });
     });
-</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        <?php if (!empty($error_message)): ?>
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: '<?php echo $error_message; ?>',
-                confirmButtonText: 'Retry'
-            });
-        <?php endif; ?>
-    });
-</script>
-<script>
     document.addEventListener('DOMContentLoaded', function () {
         const togglePassword = document.querySelector('#toggle-password');
         const passwordField = document.querySelector('#pwd');
@@ -183,12 +152,10 @@ if (isset($_GET['error'])) {
         togglePassword.addEventListener('click', function () {
             const type = passwordField.type === 'password' ? 'text' : 'password';
             passwordField.type = type;
-
-            // Toggle eye icon
             this.querySelector('i').classList.toggle('fa-eye');
             this.querySelector('i').classList.toggle('fa-eye-slash');
         });
     });
-</script>
+    </script>
 </body>
 </html>
