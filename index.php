@@ -23,6 +23,7 @@ if (strpos($request, '.php') !== false) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="asset/css/style.css" rel="stylesheet">
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.min.css">
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
     <style>
         body {
