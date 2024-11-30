@@ -12,7 +12,7 @@ if (strpos($request, '.php') !== false) {
     exit();
 }
 
-include('includes/script.php');
+include('script.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
