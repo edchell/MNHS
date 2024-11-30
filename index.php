@@ -9,6 +9,20 @@ if (strpos($request, '.php') !== false) {
     header("Location: $new_url", true, 301);
     exit();
 }
+
+if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+{
+    ?>
+    <script>
+        Swal.fire({
+            title: "<?php echo $_SESSION['status']; ?>",
+            icon: "<?php echo $_SESSION['status_code']; ?>",
+            confirmButtonText: "OK"
+        });
+    </script>
+    <?php
+    unset($_SESSION['status']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
