@@ -13,21 +13,20 @@ if (strpos($request, '.php') !== false) {
 }
 
 // Display SweetAlert notifications if set in the session.
-if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+{
     ?>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            Swal.fire({
-                title: "<?php echo $_SESSION['status']; ?>",
-                icon: "<?php echo $_SESSION['status_code']; ?>",
-                confirmButtonText: "OK"
-            }).then(() => {
-                <?php unset($_SESSION['status']); unset($_SESSION['status_code']); ?>
-            });
+        Swal.fire({
+            title: "<?php echo $_SESSION['status']; ?>",
+            icon: "<?php echo $_SESSION['status_code']; ?>",
+            confirmButtonText: "OK"
         });
     </script>
     <?php
+    unset($_SESSION['status']);
 }
+
 
 // Display success message for login.
 if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
