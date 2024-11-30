@@ -97,15 +97,22 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <div class="login-form" id="login_modal" role="dialog">
         <center><h3><b>Please Login</b></h3></center>
         <div class="error-message" id="error-message">Location access is required to use this form.</div>
-        <?php if (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']): ?>
-                            <?php
-                            $lockout_time_remaining = $_SESSION['lockout_time'] - time();
-                            $minutes_remaining = ceil($lockout_time_remaining / 60);
-                            ?>
-                            <div class="error-message">
-                                Too many failed attempts. Please try again in <?php echo $minutes_remaining; ?> minute(s).
-                            </div>
-                        <?php endif; ?>
+        <?php if (isset($_SESSION['lockout_message'])): ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const errorMessage = document.querySelector('#error-message');
+                    errorMessage.textContent = "<?php echo $_SESSION['lockout_message']; ?>";
+                    errorMessage.style.display = 'block';
+
+                    // Disable form elements
+                    const formInputs = document.querySelectorAll('#user, #pwd');
+                    const loginButton = document.querySelector('#login');
+                    formInputs.forEach(input => input.disabled = true);
+                    loginButton.disabled = true;
+                });
+            </script>
+            <?php unset($_SESSION['lockout_message']); ?>
+        <?php endif; ?>
         <form class="form-horizontal" method="post" action="connect.php">
             <div class="form-group">
                 <label for="user">Email:</label>

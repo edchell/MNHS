@@ -22,6 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ],
     ];
 
+    // Check if lockout time is set and not expired
+    if (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']) {
+        $lockout_time_remaining = $_SESSION['lockout_time'] - time();
+        $minutes_remaining = ceil($lockout_time_remaining / 60);
+
+        // Set the lockout time and message in session to display on the client
+        $_SESSION['lockout_message'] = "Too many failed attempts. Please try again in $minutes_remaining minute(s).";
+        $_SESSION['lockout_code'] = "error";
+        header("Location: ."); // Redirect to the login page or the relevant page
+        exit(0);
+    }
+    
     $context  = stream_context_create($options);
     $result = file_get_contents($verify_url, false, $context);
     $verification = json_decode($result);
