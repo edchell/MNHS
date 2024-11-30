@@ -103,7 +103,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                             $minutes_remaining = ceil($lockout_time_remaining / 60);
                             ?>
                             <div class="alert alert-danger">
-                                Too many failed attempts. Please try again in <?php echo $minutes_remaining; ?> minute(s).
+                                Too many failed attempts. Please try again later.
                             </div>
                         <?php endif; ?>
         <form class="form-horizontal" method="post" action="connect.php">
