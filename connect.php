@@ -28,8 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $verification = json_decode($result);
 
     if (!$verification->success) {
-        $_SESSION['title'] = "Captcha Verification Failed";
-        $_SESSION['icon'] = "error";
+        echo "<script>alert('Captcha Verification Failed')</scipt>";
         header("Location: index.php");
         exit();
     }
@@ -52,8 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $current_time = time();
 
             if ($current_time - $lockout_time < 30 * 60) {
-                $_SESSION['title'] = "Account Locked";
-                $_SESSION['icon'] = "error";
+                echo "<script>alert('Account Locked')</scipt>";
                 header("Location: index.php");
                 exit();
             } else {
@@ -73,8 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $use['USER_ID'];
             mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged in', '$id', NOW())");
 
-            $_SESSION['title'] = "Login Successful";
-            $_SESSION['icon'] = "success";
+            echo "<script>alert('Login Successful')</scipt>";
             header("Location: rms.php?page=home");
             exit();
         } else {
@@ -82,34 +79,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['lockout_time'] = time();
 
             if ($_SESSION['failed_attempts'] >= 3) {
-                $_SESSION['title'] = "Account Locked";
-                $_SESSION['icon'] = "error";
+                echo "<script>alert('Account Locked')</scipt>";
                 header("Location: index.php");
                 exit();
             } else {
-                $_SESSION['title'] = "Invalid Credentials";
-                $_SESSION['icon'] = "error";
+                echo "<script>alert('Invalid Credentials')</scipt>";
                 header("Location: index.php");
                 exit();
             }
         }
     } else {
-        $_SESSION['title'] = "Invalid Credentials";
-        $_SESSION['icon'] = "error";
+        echo "<script>alert('Invalid Credentials')</scipt>";
         header("Location: index.php");
         exit();
     }
-}
-
-// Show SweetAlert2 message if session variables are set
-if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
-    echo "<script>
-        Swal.fire({
-            title: '{$_SESSION['title']}',
-            icon: '{$_SESSION['icon']}',
-            confirmButtonText: 'OK'
-        });
-    </script>";
-    unset($_SESSION['title']);
 }
 ?>
