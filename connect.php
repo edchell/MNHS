@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('script.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('db.php');
@@ -28,16 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $verification = json_decode($result);
 
     if (!$verification->success) {
-        echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Captcha Verification Failed',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'index.php';
-                });
-              </script>";
-        exit();
+        $_SESSION['status'] = "Captcha Verification Failed";
+        $_SESSION['status_code'] = "error";
+        header("Location: .");
+        exit(0);
     }
 
     // Validate user credentials
@@ -58,16 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $current_time = time();
 
             if ($current_time - $lockout_time < 30 * 60) {
-                echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Account Locked',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            window.location = 'index.php';
-                        });
-                      </script>";
-                exit();
+                $_SESSION['status'] = "Account Locked";
+                $_SESSION['status_code'] = "error";
+                header("Location: .");
+                exit(0);
             } else {
                 unset($_SESSION['failed_attempts']);
                 unset($_SESSION['lockout_time']);
@@ -85,55 +72,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $use['USER_ID'];
             mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged in', '$id', NOW())");
 
-            echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Login Successful',
-                        confirmButtonText: 'OK'
-                    }).then(() => {
-                        window.location = 'rms.php?page=home';
-                    });
-                  </script>";
+            $_SESSION['login_success'] = true;
+            header("Location: .");
             exit();
         } else {
             $_SESSION['failed_attempts'] = ($_SESSION['failed_attempts'] ?? 0) + 1;
             $_SESSION['lockout_time'] = time();
 
             if ($_SESSION['failed_attempts'] >= 3) {
-                echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Account Locked',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            window.location = 'index.php';
-                        });
-                      </script>";
-                exit();
+                $_SESSION['status'] = "Account Locked";
+                $_SESSION['status_code'] = "error";
+                header("Location: .");
+                exit(0);
             } else {
-                echo "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Invalid Credentials',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            window.location = 'index.php';
-                        });
-                      </script>";
-                exit();
+                $_SESSION['status'] = "Invalid Credentials";
+                $_SESSION['status_code'] = "error";
+                header("Location: .");
+                exit(0);
             }
         }
     } else {
-        echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Credentials',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location = 'index.php';
-                });
-              </script>";
-        exit();
+        $_SESSION['status'] = "Invalid Credentials";
+        $_SESSION['status_code'] = "error";
+        header("Location: .");
+        exit(0);
     }
 }
 ?>

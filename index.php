@@ -89,6 +89,9 @@ if (strpos($request, '.php') !== false) {
         </form>
     </div>
 
+    <?php
+    include('script.php');
+    ?>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const formInputs = document.querySelectorAll('#user, #pwd');
@@ -160,5 +163,20 @@ if (strpos($request, '.php') !== false) {
         });
     });
 </script>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+        <?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']): ?>
+            <?php unset($_SESSION['login_success']); // Clear session variable ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful',
+                showConfirmButton: true
+            }).then(() => {
+                window.location.href = 'rms.php?page=home'; // Redirect after showing SweetAlert
+            });
+        <?php endif; ?>
+    });
+    </script>
 </body>
 </html>
