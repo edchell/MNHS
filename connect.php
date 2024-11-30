@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $minutes_remaining = ceil($lockout_time_remaining / 60);
         $_SESSION['status'] = "Too many failed attempts. Please try again in $minutes_remaining minute(s).";
         $_SESSION['status_code'] = "error";
-        header("Location: admin_login");
+        header("Location: .");
         exit(0);
     }
 
