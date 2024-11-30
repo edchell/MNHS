@@ -1,6 +1,8 @@
 <?php
-$request = $_SERVER['REQUEST_URI'];
+session_start();
 
+// Redirect any URLs containing '.php' to remove the extension.
+$request = $_SERVER['REQUEST_URI'];
 if (strpos($request, '.php') !== false) {
     $new_url = str_replace('.php', '', strtok($request, '?'));
     if ($_SERVER['QUERY_STRING']) {
@@ -10,18 +12,39 @@ if (strpos($request, '.php') !== false) {
     exit();
 }
 
-if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-{
+// Display SweetAlert notifications if set in the session.
+if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     ?>
     <script>
-        Swal.fire({
-            title: "<?php echo $_SESSION['status']; ?>",
-            icon: "<?php echo $_SESSION['status_code']; ?>",
-            confirmButtonText: "OK"
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: "<?php echo $_SESSION['status']; ?>",
+                icon: "<?php echo $_SESSION['status_code']; ?>",
+                confirmButtonText: "OK"
+            }).then(() => {
+                <?php unset($_SESSION['status']); unset($_SESSION['status_code']); ?>
+            });
         });
     </script>
     <?php
-    unset($_SESSION['status']);
+}
+
+// Display success message for login.
+if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful',
+                showConfirmButton: true
+            }).then(() => {
+                window.location.href = 'rms.php?page=home';
+            });
+        });
+    </script>
+    <?php
+    unset($_SESSION['login_success']);
 }
 ?>
 <!DOCTYPE html>
@@ -102,10 +125,6 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             </div>
         </form>
     </div>
-
-    <?php
-    include('script.php');
-    ?>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const formInputs = document.querySelectorAll('#user, #pwd');
@@ -161,36 +180,22 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             }
         });
     });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const togglePassword = document.querySelector('#toggle-password');
-        const passwordField = document.querySelector('#pwd');
-
-        togglePassword.addEventListener('click', function () {
-            const type = passwordField.type === 'password' ? 'text' : 'password';
-            passwordField.type = type;
-
-            // Toggle eye icon
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
-        });
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
-        <?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']): ?>
-            <?php unset($_SESSION['login_success']); // Clear session variable ?>
-            Swal.fire({
-                icon: 'success',
-                title: 'Login Successful',
-                showConfirmButton: true
-            }).then(() => {
-                window.location.href = 'rms.php?page=home'; // Redirect after showing SweetAlert
-            });
-        <?php endif; ?>
-    });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePassword = document.querySelector('#toggle-password');
+            const passwordField = document.querySelector('#pwd');
+
+            togglePassword.addEventListener('click', function () {
+                const type = passwordField.type === 'password' ? 'text' : 'password';
+                passwordField.type = type;
+
+                // Toggle eye icon
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
