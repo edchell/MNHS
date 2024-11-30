@@ -47,23 +47,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <?php
     unset($_SESSION['login_success']);
 }
-
-if (isset($_SESSION['lockout_message'])): ?>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const errorMessage = document.querySelector('#error-message');
-            errorMessage.textContent = "<?php echo $_SESSION['lockout_message']; ?>";
-            errorMessage.style.display = 'block';
-
-            // Disable form elements
-            const formInputs = document.querySelectorAll('#user, #pwd');
-            const loginButton = document.querySelector('#login');
-            formInputs.forEach(input => input.disabled = true);
-            loginButton.disabled = true;
-        });
-    </script>
-    <?php unset($_SESSION['lockout_message']); ?>
-<?php endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,19 +97,28 @@ if (isset($_SESSION['lockout_message'])): ?>
     <div class="login-form" id="login_modal" role="dialog">
         <center><h3><b>Please Login</b></h3></center>
         <div class="error-message" id="error-message">Location access is required to use this form.</div>
+        <?php if (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']): ?>
+                            <?php
+                            $lockout_time_remaining = $_SESSION['lockout_time'] - time();
+                            $minutes_remaining = ceil($lockout_time_remaining / 60);
+                            ?>
+                            <div class="alert alert-danger">
+                                Too many failed attempts. Please try again in <?php echo $minutes_remaining; ?> minute(s).
+                            </div>
+                        <?php endif; ?>
         <form class="form-horizontal" method="post" action="connect.php">
             <div class="form-group">
                 <label for="user">Email:</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off" <?php echo (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']) ? 'disabled' : ''; ?> disabled>
+                    <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" <?php echo (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']) ? 'disabled' : ''; ?> disabled>
+                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>
                     <span class="input-group-addon" id="toggle-password" style="cursor: pointer;">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </span>
@@ -136,7 +128,7 @@ if (isset($_SESSION['lockout_message'])): ?>
                 <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
             </div>
             <div class="form-group">
-                <button type="submit" id="login" class="btn btn-primary btn-block" <?php echo (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']) ? 'disabled' : ''; ?> disabled>Login</button>
+                <button type="submit" id="login" class="btn btn-primary btn-block" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>Login</button>
             </div>
             <div class="form-group text-center">
                 <a href="reset-password.php" class="btn btn-link">Forgot password?</a>

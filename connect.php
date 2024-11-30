@@ -22,18 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ],
     ];
 
-    // Check if lockout time is set and not expired
-    if (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']) {
+    // Initialize session variables if not already set
+    if (!isset($_SESSION['login_attempts'])) {
+        $_SESSION['login_attempts'] = 0;
+        $_SESSION['lockout_time'] = null;
+    }
+
+    // Check if user is locked out
+    if ($_SESSION['lockout_time'] && time() < $_SESSION['lockout_time']) {
         $lockout_time_remaining = $_SESSION['lockout_time'] - time();
         $minutes_remaining = ceil($lockout_time_remaining / 60);
-
-        // Set the lockout time and message in session to display on the client
-        $_SESSION['lockout_message'] = "Too many failed attempts. Please try again in $minutes_remaining minute(s).";
-        $_SESSION['lockout_code'] = "error";
-        header("Location: ."); // Redirect to the login page or the relevant page
+        $_SESSION['status'] = "Too many failed attempts. Please try again in $minutes_remaining minute(s).";
+        $_SESSION['status_code'] = "error";
+        header("Location: admin_login");
         exit(0);
     }
-    
+
     $context  = stream_context_create($options);
     $result = file_get_contents($verify_url, false, $context);
     $verification = json_decode($result);
@@ -74,10 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (password_verify($pwd, $use['PASSWORD'])) {
-            unset($_SESSION['failed_attempts']);
-            unset($_SESSION['lockout_time']);
-
             session_regenerate_id();
+            // Reset login attempts on successful login
+            $_SESSION['login_attempts'] = 0;
+            $_SESSION['lockout_time'] = null;
+
             $_SESSION['ID'] = $use['USER_ID'];
             $_SESSION['fname'] = $use['FIRSTNAME'];
 
@@ -88,23 +93,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: .");
             exit();
         } else {
-            $_SESSION['failed_attempts'] = ($_SESSION['failed_attempts'] ?? 0) + 1;
-            $_SESSION['lockout_time'] = time();
-
-            if ($_SESSION['failed_attempts'] >= 3) {
-                $_SESSION['status'] = "Account Locked";
-                $_SESSION['status_code'] = "error";
-                header("Location: .");
-                exit(0);
+            // Increment login attempts on failure
+            $_SESSION['login_attempts']++;
+            if ($_SESSION['login_attempts'] >= 3) {
+                $_SESSION['lockout_time'] = time() + 300; // Lock out for 5 minutes
+                $_SESSION['status'] = "Too many failed attempts. You are locked out for 5 minutes.";
             } else {
                 $_SESSION['status'] = "Invalid Credentials";
-                $_SESSION['status_code'] = "error";
-                header("Location: .");
-                exit(0);
             }
+            $_SESSION['status_code'] = "error";
+            header("Location: .");
+            exit(0);
         }
     } else {
+        // Increment login attempts on failure
+        $_SESSION['login_attempts']++;
+        if ($_SESSION['login_attempts'] >= 3) {
+            $_SESSION['lockout_time'] = time() + 300; // Lock out for 5 minutes
+            $_SESSION['status'] = "Too many failed attempts. You are locked out for 5 minutes.";
+        } else {
         $_SESSION['status'] = "Invalid Credentials";
+        }
         $_SESSION['status_code'] = "error";
         header("Location: .");
         exit(0);
