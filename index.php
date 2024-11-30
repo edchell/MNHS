@@ -147,19 +147,6 @@ if (strpos($request, '.php') !== false) {
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const errorMessage = "<?php echo htmlspecialchars($error_message ?? '', ENT_QUOTES, 'UTF-8'); ?>";
-        if (errorMessage) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: errorMessage,
-                confirmButtonText: 'Retry'
-            });
-        }
-    });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
         const togglePassword = document.querySelector('#toggle-password');
         const passwordField = document.querySelector('#pwd');
 
