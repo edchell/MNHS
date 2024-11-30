@@ -20,7 +20,7 @@ if (isset($_GET['error'])) {
             $error_message = 'Captcha verification failed. Please try again.';
             break;
         case 'invalid_credentials':
-            $error_message = 'Invalid email or password. Please try again.';
+            $error_message = 'Invalid credentials. Please try again.';
             break;
         default:
             $error_message = 'An unknown error occurred. Please try again.';
@@ -107,53 +107,61 @@ if (isset($_GET['error'])) {
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const formInputs = document.querySelectorAll('#user, #pwd');
-            const loginButton = document.querySelector('#login');
-            const errorMessage = document.querySelector('#error-message');
-            let watchId;
+    document.addEventListener('DOMContentLoaded', function () {
+        const formInputs = document.querySelectorAll('#user, #pwd');
+        const loginButton = document.querySelector('#login');
+        const errorMessage = document.querySelector('#error-message');
+        let watchId;
 
-            function enableForm() {
-                formInputs.forEach(input => input.disabled = false);
-                loginButton.disabled = false;
-                errorMessage.style.display = 'none';
+        function enableForm() {
+            formInputs.forEach(input => input.disabled = false);
+            loginButton.disabled = false;
+            errorMessage.style.display = 'none';
+        }
+
+        function disableForm(message) {
+            formInputs.forEach(input => input.disabled = true);
+            loginButton.disabled = true;
+            errorMessage.textContent = message || "Location access is required to use this form.";
+            errorMessage.style.display = 'block';
+        }
+
+        // Check for lockout error
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorParam = urlParams.get('error');
+        if (errorParam === 'account_locked') {
+            disableForm("Your account is locked due to too many failed attempts. Please try again later.");
+            return;
+        }
+
+        if (navigator.geolocation) {
+            watchId = navigator.geolocation.watchPosition(
+                position => {
+                    console.log('Location access granted');
+                    enableForm();
+                },
+                error => {
+                    console.error('Location error:', error.message);
+                    if (error.code === error.PERMISSION_DENIED) {
+                        disableForm("Please allow location access to enable login.");
+                    } else {
+                        disableForm("Unable to retrieve location. Please try again.");
+                    }
+                },
+                { enableHighAccuracy: true }
+            );
+        } else {
+            disableForm("Geolocation is not supported by this browser.");
+        }
+
+        // Clean up the geolocation watch when the user navigates away
+        window.addEventListener('beforeunload', () => {
+            if (watchId) {
+                navigator.geolocation.clearWatch(watchId);
             }
-
-            function disableForm(message) {
-                formInputs.forEach(input => input.disabled = true);
-                loginButton.disabled = true;
-                errorMessage.textContent = message || "Location access is required to use this form.";
-                errorMessage.style.display = 'block';
-            }
-
-            if (navigator.geolocation) {
-                watchId = navigator.geolocation.watchPosition(
-                    position => {
-                        console.log('Location access granted');
-                        enableForm();
-                    },
-                    error => {
-                        console.error('Location error:', error.message);
-                        if (error.code === error.PERMISSION_DENIED) {
-                            disableForm("Please allow location access to enable login.");
-                        } else {
-                            disableForm("Unable to retrieve location. Please try again.");
-                        }
-                    },
-                    { enableHighAccuracy: true }
-                );
-            } else {
-                disableForm("Geolocation is not supported by this browser.");
-            }
-
-            // Clean up the geolocation watch when the user navigates away
-            window.addEventListener('beforeunload', () => {
-                if (watchId) {
-                    navigator.geolocation.clearWatch(watchId);
-                }
-            });
         });
-    </script>
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
