@@ -47,6 +47,23 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <?php
     unset($_SESSION['login_success']);
 }
+
+if (isset($_SESSION['lockout_message'])): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const errorMessage = document.querySelector('#error-message');
+            errorMessage.textContent = "<?php echo $_SESSION['lockout_message']; ?>";
+            errorMessage.style.display = 'block';
+
+            // Disable form elements
+            const formInputs = document.querySelectorAll('#user, #pwd');
+            const loginButton = document.querySelector('#login');
+            formInputs.forEach(input => input.disabled = true);
+            loginButton.disabled = true;
+        });
+    </script>
+    <?php unset($_SESSION['lockout_message']); ?>
+<?php endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,22 +114,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <div class="login-form" id="login_modal" role="dialog">
         <center><h3><b>Please Login</b></h3></center>
         <div class="error-message" id="error-message">Location access is required to use this form.</div>
-        <?php if (isset($_SESSION['lockout_message'])): ?>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const errorMessage = document.querySelector('#error-message');
-                    errorMessage.textContent = "<?php echo $_SESSION['lockout_message']; ?>";
-                    errorMessage.style.display = 'block';
-
-                    // Disable form elements
-                    const formInputs = document.querySelectorAll('#user, #pwd');
-                    const loginButton = document.querySelector('#login');
-                    formInputs.forEach(input => input.disabled = true);
-                    loginButton.disabled = true;
-                });
-            </script>
-            <?php unset($_SESSION['lockout_message']); ?>
-        <?php endif; ?>
         <form class="form-horizontal" method="post" action="connect.php">
             <div class="form-group">
                 <label for="user">Email:</label>
