@@ -163,7 +163,7 @@ if (strpos($request, '.php') !== false) {
         });
     });
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
         document.addEventListener('DOMContentLoaded', function () {
         <?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']): ?>
