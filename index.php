@@ -126,6 +126,25 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             </div>
         </form>
     </div>
+    <?php if (isset($_SESSION['status']) && $_SESSION['status'] == 'Account Locked'): ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const formInputs = document.querySelectorAll('#user, #pwd');
+                    const loginButton = document.querySelector('#login');
+                    const errorMessage = document.querySelector('#error-message');
+
+                    function disableForm(message) {
+                        formInputs.forEach(input => input.disabled = true);
+                        loginButton.disabled = true;
+                        errorMessage.textContent = message || "You have been locked due to too many failed attempts. Please try again later.";
+                        errorMessage.style.display = 'block';
+                    }
+
+                    // Call disableForm with the lockout message
+                    disableForm("You have been locked due to too many failed attempts. Please try again later.");
+                });
+            </script>
+        <?php endif; ?>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const formInputs = document.querySelectorAll('#user, #pwd');
@@ -145,26 +164,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             errorMessage.textContent = message || "Location access is required to use this form.";
             errorMessage.style.display = 'block';
         }
-
-        <?php if (isset($_SESSION['status']) && $_SESSION['status'] == 'Account Locked'): ?>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const formInputs = document.querySelectorAll('#user, #pwd');
-                    const loginButton = document.querySelector('#login');
-                    const errorMessage = document.querySelector('#error-message');
-
-                    function disableForm(message) {
-                        formInputs.forEach(input => input.disabled = true);
-                        loginButton.disabled = true;
-                        errorMessage.textContent = message || "You have been locked due to too many failed attempts. Please try again later.";
-                        errorMessage.style.display = 'block';
-                    }
-
-                    // Call disableForm with the lockout message
-                    disableForm("You have been locked due to too many failed attempts. Please try again later.");
-                });
-            </script>
-        <?php endif; ?>
 
         if (navigator.geolocation) {
             watchId = navigator.geolocation.watchPosition(
