@@ -146,6 +146,18 @@ include('script.php');
     });
 
     document.addEventListener('DOMContentLoaded', function () {
+        <?php if (isset($_SESSION['title'])): ?>
+            Swal.fire({
+                title: '<?php echo $_SESSION['title']; ?>',
+                icon: '<?php echo $_SESSION['icon']; ?>',
+                confirmButtonText: 'OK'
+            });
+            <?php unset($_SESSION['title']); ?>
+            <?php unset($_SESSION['icon']); ?>
+        <?php endif; ?>
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
         const togglePassword = document.querySelector('#toggle-password');
         const passwordField = document.querySelector('#pwd');
 

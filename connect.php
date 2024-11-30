@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('script.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('db.php');
@@ -98,5 +99,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: index.php");
         exit();
     }
+}
+
+// Show SweetAlert2 message if session variables are set
+if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
+    echo "<script>
+        Swal.fire({
+            title: '{$_SESSION['title']}',
+            icon: '{$_SESSION['icon']}',
+            confirmButtonText: 'OK'
+        });
+    </script>";
+    unset($_SESSION['title']);
 }
 ?>
