@@ -24,7 +24,6 @@ if (strpos($request, '.php') !== false) {
     <link href="asset/css/style.css" rel="stylesheet">
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             margin: 0;
