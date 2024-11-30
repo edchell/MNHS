@@ -28,8 +28,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $verification = json_decode($result);
 
     if (!$verification->success) {
-        echo "<script>alert('Captcha Verification Failed')</scipt>";
-        header("Location: index.php");
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Captcha Verification Failed',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location = 'index.php';
+                });
+              </script>";
         exit();
     }
 
@@ -51,8 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $current_time = time();
 
             if ($current_time - $lockout_time < 30 * 60) {
-                echo "<script>alert('Account Locked')</scipt>";
-                header("Location: index.php");
+                echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Account Locked',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location = 'index.php';
+                        });
+                      </script>";
                 exit();
             } else {
                 unset($_SESSION['failed_attempts']);
@@ -71,26 +85,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $use['USER_ID'];
             mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged in', '$id', NOW())");
 
-            echo "<script>alert('Login Successful')</scipt>";
-            header("Location: rms.php?page=home");
+            echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Successful',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location = 'rms.php?page=home';
+                    });
+                  </script>";
             exit();
         } else {
             $_SESSION['failed_attempts'] = ($_SESSION['failed_attempts'] ?? 0) + 1;
             $_SESSION['lockout_time'] = time();
 
             if ($_SESSION['failed_attempts'] >= 3) {
-                echo "<script>alert('Account Locked')</scipt>";
-                header("Location: index.php");
+                echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Account Locked',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location = 'index.php';
+                        });
+                      </script>";
                 exit();
             } else {
-                echo "<script>alert('Invalid Credentials')</scipt>";
-                header("Location: index.php");
+                echo "<script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Credentials',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location = 'index.php';
+                        });
+                      </script>";
                 exit();
             }
         }
     } else {
-        echo "<script>alert('Invalid Credentials')</scipt>";
-        header("Location: index.php");
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Credentials',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location = 'index.php';
+                });
+              </script>";
         exit();
     }
 }

@@ -145,17 +145,17 @@ if (strpos($request, '.php') !== false) {
         });
     });
 </script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        <?php if (!empty($error_message)): ?>
+        const errorMessage = "<?php echo htmlspecialchars($error_message ?? '', ENT_QUOTES, 'UTF-8'); ?>";
+        if (errorMessage) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: '<?php echo $error_message; ?>',
+                text: errorMessage,
                 confirmButtonText: 'Retry'
             });
-        <?php endif; ?>
+        }
     });
 </script>
 <script>
