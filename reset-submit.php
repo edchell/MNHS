@@ -64,9 +64,15 @@ include 'db.php';
 
             if($update_token_run) {
                 if(submit_reset($get_email, $token)){
-                    echo "We email you the reset password link.";
+                    $_SESSION['status'] = "We email you the reset password link.";
+                    $_SESSION['status_code'] = "success";
+                    header("Location: reset-password.php");
+                    exit(0);
                 } else {
-                    echo "Email sending failed. Try again.";
+                    $_SESSION['status'] = "Email sending failed. Try again.";
+                    $_SESSION['status_code'] = "error";
+                    header("Location: reset-password.php");
+                    exit(0);
                 }
             }
         }
