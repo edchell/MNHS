@@ -2,7 +2,7 @@
 include('auth.php');
 ?>
           <h1 class="page-header">Student Records</h1>
-          <a class="btn btn-danger" href="delete.php" onclick="return confirm('Are you sure you want to delete all records?');">Delete All</a>
+          <a class="btn btn-danger" href="delete.php">Delete All</a>
        <div class="col-md-12">   
        <div class="panel panel-default">
         <div class="panel-heading">
