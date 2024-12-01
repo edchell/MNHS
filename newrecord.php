@@ -73,9 +73,14 @@ $history_stmt->close();
 
 if ($num_row >= 1) {
     echo "<script>
-    alert('Student Year Record already exists!');
-    location.replace(document.referrer);
-    </script>";
+				Swal.fire({
+					icon: 'error',
+					title: 'Student Year Not Available',
+					text: 'Student Year Record already exists!',
+				}).then(() => {
+					window.history.back();
+				});
+			</script>";
 } else {
     // Insert new student record
     $sql = mysqli_query($conn, "INSERT INTO student_year_info
@@ -106,11 +111,15 @@ if ($num_row >= 1) {
         $ga = $row['fin_grade'] / $row['tg_count'];
         mysqli_query($conn, "UPDATE student_year_info SET GEN_AVE = '$ga' WHERE SYI_ID = '".$row['SYI_ID']."'");
     }
-
         echo "<script>
-        alert('Student Record Added Successfully!');
-        window.location.href = 'rms.php?page=record&id={$id}';
-        </script>";
+					Swal.fire({
+						icon: 'success',
+						title: 'Success',
+						text: 'Student Record Added Successfully.',
+					}).then(() => {
+						window.location.href = 'rms.php?page=record&id={$id}';
+					});
+				</script>";
         exit;
 }
 
