@@ -4,7 +4,7 @@ include 'db.php';
 
 $syi_id = $_POST['syi'];
 $id = $_POST['id'];
-$adv = $_POST['adviser'];
+$adv= $_POST['adviser'];
 $tg_id = $_POST['tg_id'];
 $subject = $_POST['subj'];
 $una = $_POST['1st'];
@@ -19,64 +19,72 @@ $Tdc = $_POST['Tdc'];
 $att_d = $_POST['att_d'];
 $pp = $_POST['pp'];
 $Tp = $_POST['Tp'];
-$user = $_SESSION["ID"];
+$user= $_SESSION["ID"];
 
-try {
-    // Insert new total grades for each subject if action is not empty
-    $subc = count($subject);
-    for ($q = 0; $q < $subc; $q++) {
-        if ($action[$q] != "") {
-            $query = "INSERT INTO total_grades_subjects (STUDENT_ID, SYI_ID, SUBJECT, 1ST_GRADING, 2ND_GRADING, 3RD_GRADING, 4TH_GRADING, FINAL_GRADES, PASSED_FAILED)
-                      VALUES('$id', '$syi_id', '$subject[$q]', '$una[$q]', '$ikaduwa[$q]', '$ikatlo[$q]', '$ikaapat[$q]', '$f[$q]', '$action[$q]')";
-            mysqli_query($conn, $query);
-        }
-    }
+if(isset($_POST['sub']	)){
+$sub = $_POST['sub'];
+$one = $_POST['una'];
+$two = $_POST['duwa'];
+$three = $_POST['tatlo'];
+$four = $_POST['apat'];
+$fin = $_POST['fin'];
+$act = $_POST['action'];
 
-    // Insert into history log for update
-    $query = mysqli_query($conn, "SELECT * FROM student_info WHERE STUDENT_ID = '$id'");
-    while ($row = mysqli_fetch_assoc($query)) {
-        $student = $row['FIRSTNAME'] . ' ' . $row['LASTNAME'];
-        mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added)
-                             VALUES ('Updated $student academic record', '$user', NOW())");
-    }
+$subc= count($sub);
+		
 
-    // Update existing total grades for each subject
-    $sc = count($tg_id);
-    for ($w = 0; $w < $sc; $w++) {
-        $query = "UPDATE total_grades_subjects SET SUBJECT='$subject[$w]', 1ST_GRADING='$una[$w]', 2ND_GRADING='$ikaduwa[$w]', 3RD_GRADING='$ikatlo[$w]', 
-                  4TH_GRADING='$ikaapat[$w]', FINAL_GRADES='$f[$w]', PASSED_FAILED='$action[$w]' WHERE TGS_ID = '$tg_id[$w]'";
-        mysqli_query($conn, $query);
-    }
+			for($q=0;$q < $subc;$q++){
+				if($act[$q] == ""){
 
-    // Update attendance for days of classes
-    $mc = count($att_id);
-    for ($i = 0; $i < $mc; $i++) {
-        $query = "UPDATE attendance SET DAYS_OF_CLASSES='$dc[$i]' WHERE ATT_ID='$att_id[$i]'";
-        mysqli_query($conn, $query);
-    }
+				}else{
+				mysqli_query($conn,"INSERT INTO total_grades_subjects (STUDENT_ID, SYI_ID, SUBJECT, 1ST_GRADING, 2ND_GRADING, 3RD_GRADING, 4TH_GRADING, FINAL_GRADES, PASSED_FAILED)
+				VALUES('$id', '$syi_id', '$sub[$q]', '$one[$q]', '$two[$q]', '$three[$q]', '$four[$q]', '$fin[$q]', '$act[$q]')");
+			} 
+		}
+			}
 
-    // Update attendance for days present
-    $mc2 = count($att_d);
-    for ($z = 0; $z < $mc2; $z++) {
-        $query = "UPDATE attendance SET DAYS_PRESENT='$pp[$z]' WHERE ATT_ID='$att_d[$z]'";
-        mysqli_query($conn, $query);
-    }
+			$query = mysqli_query($conn, "SELECT * FROM student_info Where STUDENT_ID = '$id' ");
+			while ($row = mysqli_fetch_assoc($query)) {
+				$student = $row['FIRSTNAME'] . ' ' . $row['LASTNAME'];
 
-    // Calculate and update the average grade
-    $gen = mysqli_query($conn, "SELECT SUM(FINAL_GRADES) as fin_gra, COUNT(TGS_ID) as gra_count FROM total_grades_subjects WHERE SYI_ID='$syi_id'");
-    $fgen = mysqli_fetch_assoc($gen);
-    $ga = $fgen['fin_gra'] / $fgen['gra_count'];
+				mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added)
+				VALUES ('Updated $student academic record', '$user', NOW())");
+			}
 
-    // Update student year info
-    $query = "UPDATE student_year_info SET ADVISER='$adv', TDAYS_OF_CLASSES='$Tdc', TDAYS_PRESENT='$Tp' WHERE SYI_ID='$syi_id'";
-    mysqli_query($conn, $query);
+			$sc= count($tg_id);
 
-    // Return a JSON response
-    echo json_encode(['status' => 'success', 'message' => 'Student record updated successfully']);
-} catch (Exception $e) {
-    // Return an error response
-    echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
-} finally {
-    mysqli_close($conn);
-}
+			for($w=0;$w < $sc;$w++){
+				
+				mysqli_query($conn,"UPDATE total_grades_subjects set  SUBJECT='$subject[$w]', 1ST_GRADING ='$una[$w]', 2ND_GRADING='$ikaduwa[$w]', 3RD_GRADING ='$ikatlo[$w]', 4TH_GRADING='$ikaapat[$w]', FINAL_GRADES='$f[$w]', PASSED_FAILED ='$action[$w]' where TGS_ID = '$tg_id[$w]' ");
+			}
+
+		$mc = count($att_id);
+
+		for($i=0 ; $i < $mc; $i++)
+		{
+			
+			mysqli_query($conn,"UPDATE  attendance set DAYS_OF_CLASSES ='$dc[$i]' where ATT_ID= '$att_id[$i]' ") ;
+				
+		}
+
+		$mc2 = count($att_d);
+
+		for($z=0 ; $z < $mc2; $z++)
+		{
+			
+			mysqli_query($conn,"UPDATE  attendance set DAYS_PRESENT ='$pp[$z]' where ATT_ID= '$att_d[$z]' ") ;
+				
+		}
+
+		$gen= mysqli_query($conn,"SELECT *, SUM(FINAL_GRADES) as fin_gra,count(TGS_ID) as gra_count from total_grades_subjects where SYI_ID='$syi_id' ");
+		$fgen=mysqli_fetch_assoc($gen);
+		$ga = $fgen['fin_gra'] / $fgen['gra_count'];
+
+
+		$sql= mysqli_query($conn,"UPDATE student_year_info set ADVISER='$adv',TDAYS_OF_CLASSES='$Tdc',TDAYS_PRESENT='$Tp' where SYI_ID='$syi_id' ");
+		
+	  	echo json_encode(['status' => 'success', 'message' => 'Student record updated successfully!']);
+		exit;
+			 
+		mysqli_close($conn);
 ?>
