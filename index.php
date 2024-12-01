@@ -96,7 +96,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 <body>
     <div class="login-form" id="login_modal" role="dialog">
         <center><h3><b>Please Login</b></h3></center>
-        <div class="error-message" id="error-message">Location access is required to use this form.</div>
         <?php if (isset($_SESSION['lockout_time']) && time() < $_SESSION['lockout_time']): ?>
                         <?php
                         $lockout_time_remaining = $_SESSION['lockout_time'] - time();
@@ -104,6 +103,12 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                         ?>
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
+                                const formInputs = document.querySelectorAll('#user, #pwd');
+                                const loginButton = document.getElementById('login');
+                                
+                                formInputs.forEach(input => input.disabled = true);
+                                loginButton.disabled = true;
+
                                 Swal.fire({
                                     title: 'Account Locked',
                                     text: "Your account is locked. Please try again later.",
@@ -152,51 +157,77 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
         </form>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const formInputs = document.querySelectorAll('#user, #pwd');
-        const loginButton = document.querySelector('#login');
-        const errorMessage = document.querySelector('#error-message');
-        let watchId;
+    // Select form input elements to disable initially
+    const formInputs = document.querySelectorAll('#admin_type, #email, #password');
+        const loginButton = document.querySelector('[name="admin_login_btn"]');
 
-        function enableForm() {
-            formInputs.forEach(input => input.disabled = false);
-            loginButton.disabled = false;
-            errorMessage.style.display = 'none';
-        }
-
-        function disableForm(message) {
-            formInputs.forEach(input => input.disabled = true);
-            loginButton.disabled = true;
-            errorMessage.textContent = message || "Location access is required to use this form.";
-            errorMessage.style.display = 'block';
-        }
-
+        // Function to request and check location permissions
+        function requestLocation() {
         if (navigator.geolocation) {
-            watchId = navigator.geolocation.watchPosition(
-                position => {
-                    console.log('Location access granted');
-                    enableForm();
-                },
-                error => {
-                    console.error('Location error:', error.message);
-                    if (error.code === error.PERMISSION_DENIED) {
-                        disableForm("Please allow location access to enable login.");
-                    } else {
-                        disableForm("Unable to retrieve location. Please try again.");
-                    }
-                },
-                { enableHighAccuracy: true }
-            );
-        } else {
-            disableForm("Geolocation is not supported by this browser.");
-        }
+            <?php if (!isset($lockout_time_remaining) || time() >= $_SESSION['lockout_time']): ?>
+                navigator.geolocation.watchPosition(
+                    function (position) {
+                        console.log('Location access granted');
+                        formInputs.forEach(input => input.disabled = false);
+                        loginButton.disabled = false;
+                    },
+                    function (error) {
+                        if (error.code === error.PERMISSION_DENIED) {
+                            Swal.fire({
+                                title: 'Permission Denied',
+                                text: "Please allow location access to use this login page.",
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            }).then(() => {
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
+                            });
+                        }
 
-        // Clean up the geolocation watch when the user navigates away
-        window.addEventListener('beforeunload', () => {
-            if (watchId) {
-                navigator.geolocation.clearWatch(watchId);
-            }
-        });
+                        if (error.code === error.POSITION_UNAVAILABLE || error.code === error.TIMEOUT) {
+                            Swal.fire({
+                                title: 'Location Lost',
+                                text: "Location access was lost. The form will reload.",
+                                icon: 'error',
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            }).then(() => {
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
+                            });
+                        }
+                    }
+                );
+            <?php endif; ?>
+        } else {
+            Swal.fire({
+                title: 'Geolocation Not Supported',
+                text: "Geolocation is not supported by this browser.",
+                icon: 'error',
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(() => {
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        requestLocation();
     });
     </script>
     <script>
