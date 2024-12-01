@@ -183,7 +183,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                      <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </li>
             </ul>
         </li>
@@ -483,7 +483,49 @@ function showSlides() {
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#logoutLink').click(function(e) {
+            e.preventDefault(); // Prevent the default link action
 
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be logged out of your account.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Log Out',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'logout.php', // URL to the PHP script that handles logging out
+                        type: 'GET',
+                        success: function(response) {
+                            // If logout is successful, redirect to the login page or show a success alert
+                            Swal.fire({
+                                title: 'Logged Out!',
+                                text: 'You have been logged out successfully.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                window.location.href = '.'; // Redirect to the login page
+                            });
+                        },
+                        error: function() {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An unexpected error occurred while logging out.',
+                                icon: 'error',
+                                confirmButtonText: 'Try Again'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
