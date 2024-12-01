@@ -3,11 +3,11 @@
 include 'db.php'; // Adjust the filename as needed
 
 // Prepare the SQL statements to delete all records from different tables
-$stmt1 = $conn->prepare("DELETE FROM `notifications`");
-$stmt2 = $conn->prepare("DELETE FROM `student_year_info`");
-$stmt3 = $conn->prepare("DELETE FROM `total_grades_subjects`");
-$stmt4 = $conn->prepare("DELETE FROM `student_info`");
-$stmt6 = $conn->prepare("DELETE FROM `history_log`");
+$stmt1 = $conn->prepare("DELETE FROM notifications");
+$stmt2 = $conn->prepare("DELETE FROM student_year_info");
+$stmt3 = $conn->prepare("DELETE FROM total_grades_subjects");
+$stmt4 = $conn->prepare("DELETE FROM student_info");
+$stmt6 = $conn->prepare("DELETE FROM history_log");
 
 // Execute each statement
 $success = true; // Flag to track the success of all queries
