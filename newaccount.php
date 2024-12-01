@@ -13,31 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$fname', '$lname', '$phone', '$pwd', '$user', '$type')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "
-              <script>
-                  Swal.fire({
-                      icon: 'success',
-                      title: 'Account Created',
-                      text: 'New account successfully recorded!',
-                      confirmButtonText: 'OK'
-                  }).then((result) => {
-                      if (result.isConfirmed) {
-                          location.href = 'rms.php?page=users';
-                      }
-                  });
-              </script>";
+        echo "<script>
+					Swal.fire({
+						icon: 'success',
+						title: 'Success',
+						text: 'New account successfully recorded.',
+					}).then(() => {
+						window.location.href = 'rms.php?page=users';
+					});
+				</script>";
     } else {
-        echo "
-              <script>
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Error',
-                      text: 'There was an error creating the account: " . mysqli_error($conn) . "',
-                      confirmButtonText: 'OK'
-                  });
-              </script>";
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-
-    mysqli_close($conn);
 }
+
+mysqli_close($conn);
 ?>
