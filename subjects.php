@@ -34,10 +34,10 @@ include 'newsubject.php';
               <td>
                 <center>
                   <button onclick="update_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-info">
-                    <i class="fa fa-pencil-square" aria-hidden="true"></i> Edit
+                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
                   </button>
                   <button onclick="delete_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                    <i class="fa fa-trash" aria-hidden="true"></i>
                   </button>
                 </center>
               </td>
