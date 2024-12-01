@@ -80,11 +80,11 @@ $(document).ready(function() {
                                     <td><?php echo htmlspecialchars($row['USER']); ?></td>
                                     <td><?php echo htmlspecialchars($row['USER_TYPE']); ?></td>
                                     <td>
-                                        <a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser">
-                                            <i class="fa fa-pencil-square" aria-hidden="true"></i> edit
+                                        <a data-toggle="modal" class="btn btn-primary" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                         </a>
-                                        <a href="#" class="text-danger deleteUser" data-id="<?php echo $row['USER_ID']; ?>">
-                                            <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                        <a href="#" class="deleteUser btn btn-danger" data-id="<?php echo $row['USER_ID']; ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
