@@ -208,6 +208,34 @@ $(document).on('click', '.deleteUser', function () {
     });
 });
 
+$(document).on('submit', 'form[action="newaccount.php"]', function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Gather form data
+    const formData = $(this).serialize();
+
+    // Submit the form data via AJAX
+    $.post('newaccount.php', formData, function (response) {
+        // Show success message with SweetAlert
+        Swal.fire({
+            icon: 'success',
+            title: 'User Added',
+            text: response,
+            confirmButtonText: 'OK'
+        }).then(() => {
+            location.reload(); // Reload the page to reflect changes
+        });
+    }).fail(function (xhr, status, error) {
+        // Handle errors with SweetAlert
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `An error occurred: ${xhr.responseText || error}`,
+            confirmButtonText: 'OK'
+        });
+    });
+});
+
         // Show/Hide Password
         document.getElementById('showPwd').addEventListener('change', function () {
             const pwdInput = document.getElementById('pwd');
