@@ -22,6 +22,26 @@
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.js"></script>
+    <style>
+      body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end; /* Align the login form to the right */
+            align-items: center;
+            background: url('images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid grey;
+            border-radius: 20px;
+            padding: 30px;
+            width: 400px;
+            margin-right: 150px; /* Add space from the right edge */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
   </head>
 <body>
 
