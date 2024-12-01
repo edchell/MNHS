@@ -58,7 +58,6 @@ include('auth.php');
   
     <?php
     include 'db.php';
-    include 'newrecord.php';
 
     $sql=  mysqli_query($conn, "SELECT * FROM student_info where STUDENT_ID = '".$_GET['id']."' ");
     while($row = mysqli_fetch_assoc($sql)) {
