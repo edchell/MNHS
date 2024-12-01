@@ -155,43 +155,40 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     const formInputs = document.querySelectorAll('#user, #pwd');
         const loginButton = document.querySelector('[name="login"]');
 
-        // Function to request and check location permissions
+       // Function to request and check location permissions
         function requestLocation() {
-        if (navigator.geolocation) {
-                navigator.geolocation.watchPosition(
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
                     function (position) {
+                        // Location access granted
                         console.log('Location access granted');
+                        // Enable form inputs and login button
                         formInputs.forEach(input => input.disabled = false);
                         loginButton.disabled = false;
                     },
                     function (error) {
+                        // Handle location access denial
                         if (error.code === error.PERMISSION_DENIED) {
                             Swal.fire({
                                 title: 'Permission Denied',
                                 text: "Please allow location access to use this login page.",
                                 icon: 'warning',
-                                showConfirmButton: false,
-                                allowOutsideClick: false,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
+                                showConfirmButton: true,
+                                allowOutsideClick: false
                             }).then(() => {
                                 setTimeout(function() {
                                     window.location.reload();
                                 }, 1000);
                             });
                         }
-
-                        if (error.code === error.POSITION_UNAVAILABLE || error.code === error.TIMEOUT) {
+                        // Handle other errors such as position unavailable or timeout
+                        else {
                             Swal.fire({
-                                title: 'Location Lost',
-                                text: "Location access was lost. The form will reload.",
+                                title: 'Location Error',
+                                text: "There was an issue accessing your location. Please try again later.",
                                 icon: 'error',
-                                showConfirmButton: false,
-                                allowOutsideClick: false,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
+                                showConfirmButton: true,
+                                allowOutsideClick: false
                             }).then(() => {
                                 setTimeout(function() {
                                     window.location.reload();
@@ -200,28 +197,30 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                         }
                     }
                 );
-        } else {
-            Swal.fire({
-                title: 'Geolocation Not Supported',
-                text: "Geolocation is not supported by this browser.",
-                icon: 'error',
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            }).then(() => {
-                setTimeout(function() {
-                    window.location.reload();
-                }, 1000);
-            });
+            } else {
+                Swal.fire({
+                    title: 'Geolocation Not Supported',
+                    text: "Geolocation is not supported by this browser.",
+                    icon: 'error',
+                    showConfirmButton: true,
+                    allowOutsideClick: false
+                }).then(() => {
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                });
+            }
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        requestLocation();
-    });
-    </script>
+        // Select form input elements and the login button
+        const formInputs = document.querySelectorAll('#user, #pwd');
+        const loginButton = document.querySelector('[name="login"]');
+
+        // Request location access when the document is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            requestLocation();
+        });
+</script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const togglePassword = document.querySelector('#toggle-password');
