@@ -231,72 +231,66 @@ if (!empty($page)) {
     </div>
     <div class="modal fade" id="new_user" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Manage Acount</h4>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Manage Account</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <?php
+                    include 'db.php';
+                    $sql = mysqli_query($conn, "SELECT * FROM user WHERE USER_ID = '" . $_SESSION['ID'] . "'");
+                    while ($row = mysqli_fetch_assoc($sql)) {
+                    ?>
+                        <form id="updateAccountForm" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="fname">Firstname:</label>
+                                <div class="col-sm-3">  
+                                    <input type="hidden" name="id" value="<?php echo $row['USER_ID'] ?>" >
+                                    <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $row['FIRSTNAME'] ?>" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="lname">Lastname:</label>
+                                <div class="col-sm-3">          
+                                    <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $row['LASTNAME'] ?>" >
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="user">User:</label>
+                                <div class="col-sm-3">          
+                                    <input type="text" class="form-control" id="user" name="user" value="<?php echo $row['USER'] ?>" >
+                                </div>
+                            </div>    
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="pwd">User Type:</label>
+                                <div class="col-sm-3">   
+                                    <select class="form-control" name="type" id="sel1">
+                                        <option><?php echo $row['USER_TYPE'] ?></option>
+                                        <?php
+                                        if ($row['USER_TYPE'] == "FACULTY TEACHER") { ?>
+                                            <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+                                        <?php } else { ?>
+                                            <option value="FACULTY TEACHER">FACULTY TEACHER</option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-offset-2">
+                    <button type="button" id="saveButton" class="btn btn-default">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-        <div class="container">
-         <?php
-    include 'db.php';
-    $sql=  mysqli_query($conn, "SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
-    while($row = mysqli_fetch_assoc($sql)) {
-
-
-    ?>
-        <form class="form-horizontal" method="post" action="update_account.php">
-              <div class="form-group">
-      <label class="control-label col-sm-1" for="fname">Firstname:</label>
-      <div class="col-sm-3">  
-              <input type="hidden" class="form-control" name="id" value="<?php echo $row['USER_ID'] ?>" >
-        
-        <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $row['FIRSTNAME'] ?>" >
-      </div>
-    </div> 
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="lname">Lastname:</label>
-      <div class="col-sm-3">          
-        <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $row['LASTNAME'] ?>" >
-      </div>
-    </div>  
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="user">User:</label>
-      <div class="col-sm-3">          
-        <input type="text" class="form-control" id="user" name="user" value="<?php echo $row['USER'] ?>" >
-      </div>
-    </div>    
-    <div class="form-group">
-      <label class="control-label col-sm-1" for="pwd">User Type:</label>
-      <div class="col-sm-3">   
-        <select class="form-control" name="type" id="sel1">
-        <option><?php echo $row['USER_TYPE']?></option>
-        <?php
-        if($row['USER_TYPE'] == "FACULTY TEACHER"){ ?>
-          <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-        <?php }else{?>
-          <option value="FACULTY TEACHER">FACULTY TEACHER</option>
-        <?php } ?>
-        </select>
-      </div>
     </div>
-    <?php } ?>
-          
-        </div>
-          
-        </div>
-        <div class="modal-footer">
-        <div class="col-md-offset-2">
-        <button type="submit" class="btn btn-default">Save</button>
-        </form>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-        </div>
-        </div>
-        </div>
-      </div>
+</div>
 
       <div class="modal fade" id="s_report" role="dialog">
                 <div class="modal-dialog modal-sm">
@@ -444,6 +438,48 @@ function showSlides() {
 
             // Optionally, you can redirect to the page after marking the notification as read
             window.location.href = $(this).attr('href');
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#saveButton').click(function() {
+            var formData = $('#updateAccountForm').serialize();
+
+            $.ajax({
+                url: 'update_account.php', // URL to the PHP script for processing the form
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            location.reload(); // Optionally reload the page or close the modal
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: response.message,
+                            icon: 'error',
+                            confirmButtonText: 'Try Again'
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An unexpected error occurred.',
+                        icon: 'error',
+                        confirmButtonText: 'Try Again'
+                    });
+                }
+            });
         });
     });
 </script>

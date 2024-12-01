@@ -12,12 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if ($row) {
         $sql = mysqli_query($conn, "UPDATE user SET FIRSTNAME = '$fname', LASTNAME = '$lname', USER = '$user', USER_TYPE = '$type' WHERE USER_ID = '$id'");
-        echo "<script>
-                alert('Account updated successfully');
-                location.replace(document.referrer);
-              </script>";
+        
+        if ($sql) {
+            // Success response
+            echo json_encode(['status' => 'success', 'message' => 'Account updated successfully']);
+        } else {
+            // Error response
+            echo json_encode(['status' => 'error', 'message' => 'Failed to update the account.']);
+        }
+    } else {
+        // User not found
+        echo json_encode(['status' => 'error', 'message' => 'User not found.']);
     }
-}
 
-mysqli_close($conn);
+    mysqli_close($conn);
+}
 ?>
