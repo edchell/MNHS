@@ -11,7 +11,11 @@ if (isset($_SESSION['ID'])) {
 
     // Insert the logout record into the history_log table
     $sql = "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged out', '$user_id', NOW())";
-    mysqli_query($conn, $sql);
+
+    if (!mysqli_query($conn, $sql)) {
+        // Log an error if the insert fails
+        error_log("Failed to log logout action for user ID $user_id: " . mysqli_error($conn));
+    }
 }
 
 // Clear session variables
