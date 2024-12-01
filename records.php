@@ -3,7 +3,7 @@ session_start();
 include('auth.php');
 ?>
 <h1 class="page-header">Student Records</h1>
-<a class="btn btn-danger" href="javascript:void(0)" onclick="deleteAllRecords()">Delete All</a>
+<!-- <a class="btn btn-danger" href="javascript:void(0)" onclick="deleteAllRecords()">Delete All</a> -->
 <div class="col-md-12">   
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -34,7 +34,6 @@ include('auth.php');
                             <td>
                                 <center>
                                     <a class="btn btn-info" href="rms.php?page=record&id=<?php echo $row['STUDENT_ID'] ?>">View Records</a>
-                                    <button class="btn btn-danger" onclick="deleteStudent(<?php echo $row['STUDENT_ID']; ?>)">Delete</button>
                                 </center>
                             </td>
                         </tr>
@@ -50,68 +49,35 @@ include('auth.php');
 <script type="text/javascript">
     new DataTable('#example');
 
-    function deleteStudent(id) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This action will permanently delete the student record!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: 'delete_student.php',
-                    type: 'POST',
-                    data: { id: id },
-                    success: function(response) {
-                        if (response === 'success') {
-                            Swal.fire('Deleted!', 'The student record has been deleted.', 'success')
-                                .then(() => {
-                                    location.reload();
-                                });
-                        } else {
-                            Swal.fire('Error!', 'An issue occurred while deleting the student record.', 'error');
-                        }
-                    },
-                    error: function() {
-                        Swal.fire('Error!', 'An unexpected error occurred.', 'error');
-                    }
-                });
-            }
-        });
-    }
-
-
-    function deleteAllRecords() {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "This action will permanently delete all records!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'Cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // AJAX request to delete records
-            $.ajax({
-                url: 'delete.php',
-                type: 'POST',
-                success: function(response) {
-                    if (response === 'success') {
-                        Swal.fire('Deleted!', 'All records have been deleted.', 'success')
-                            .then(() => {
-                                location.reload(); // Refresh the page after deletion
-                            });
-                    } else {
-                        Swal.fire('Error!', 'An issue occurred while deleting the records.', 'error');
-                    }
-                },
-                error: function() {
-                    Swal.fire('Error!', 'An unexpected error occurred.', 'error');
-                }
-            });
-        }
-    });
-}
+//     function deleteAllRecords() {
+//     Swal.fire({
+//         title: 'Are you sure?',
+//         text: "This action will permanently delete all records!",
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonText: 'Yes, delete it!',
+//         cancelButtonText: 'Cancel'
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             // AJAX request to delete records
+//             $.ajax({
+//                 url: 'delete.php',
+//                 type: 'POST',
+//                 success: function(response) {
+//                     if (response === 'success') {
+//                         Swal.fire('Deleted!', 'All records have been deleted.', 'success')
+//                             .then(() => {
+//                                 location.reload(); // Refresh the page after deletion
+//                             });
+//                     } else {
+//                         Swal.fire('Error!', 'An issue occurred while deleting the records.', 'error');
+//                     }
+//                 },
+//                 error: function() {
+//                     Swal.fire('Error!', 'An unexpected error occurred.', 'error');
+//                 }
+//             });
+//         }
+//     });
+// }
 </script>
