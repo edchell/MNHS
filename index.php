@@ -152,6 +152,53 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.querySelector('form');
+            const loginButton = document.querySelector('#login');
+            
+            // Check if geolocation is supported
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        // If user allows location access
+                        loginButton.disabled = false;
+                        loginForm.querySelectorAll('input, button').forEach(function (element) {
+                            element.disabled = false;
+                        });
+                    },
+                    function (error) {
+                        // If user denies location access or there's an error
+                        Swal.fire({
+                            title: 'Location Access Denied',
+                            text: 'You need to allow location access for full functionality.',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            // Disable the form inputs and login button
+                            loginButton.disabled = true;
+                            loginForm.querySelectorAll('input, button').forEach(function (element) {
+                                element.disabled = true;
+                            });
+                        });
+                    }
+                );
+            } else {
+                Swal.fire({
+                    title: 'Geolocation Not Supported',
+                    text: 'Your browser does not support geolocation.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Disable the form if geolocation is not supported
+                    loginButton.disabled = true;
+                    loginForm.querySelectorAll('input, button').forEach(function (element) {
+                        element.disabled = true;
+                    });
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             const togglePassword = document.querySelector('#toggle-password');
             const passwordField = document.querySelector('#pwd');
 
