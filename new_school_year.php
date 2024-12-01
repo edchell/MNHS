@@ -20,14 +20,9 @@
 	if ($sql=mysqli_query($conn, "INSERT into school_year (school_year, status) 
 		VALUES ( '$sy', 'No' )") && $sql2=mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('added $sy in the school year list','$user',NOW() )") ){
-	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>New Scool Year Successfully Added.</h4></center></div>";
-	echo "<script>
-	setTimeout(function(){	window.location.href='rms.php?page=school_year';  }, 2000);</script>";
+	echo "New Scool Year Successfully Added.";
 	} else {
-		echo "<script>
-		alert('New subject failed to record!" .$sql."');
-		window.location.href='rms.php?page=school_year';
-		</script>";
+		echo "New subject failed to record!' .$sql.'";
 		unset($_POST);
 
 	}
@@ -45,9 +40,7 @@
 	}
 
 		if (mysqli_query($conn, $sql)) {
-			echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Current School Year Successfully Updated.</h4></center></div>";
-			echo "<script>
-			setTimeout(function(){	window.location.href='rms.php?page=school_year';  }, 2000);</script>";
+			echo "Current School Year Successfully Updated.";
 
 		} else {
     echo "Error updating record: " . mysqli_error($conn);
