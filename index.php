@@ -132,14 +132,14 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 <label for="user">Email:</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>
+                    <input type="email" class="form-control" id="user" name="user" placeholder="Enter Email" autocomplete="off" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>
+                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password" disabled>
                     <span class="input-group-addon" id="toggle-password" style="cursor: pointer;">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </span>
@@ -149,7 +149,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
             </div>
             <div class="form-group">
-                <button type="submit" name="login" id="login" class="btn btn-primary btn-block" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>Login</button>
+                <button type="submit" name="login" id="login" class="btn btn-primary btn-block" disabled>Login</button>
             </div>
             <div class="form-group text-center">
                 <a href="reset-password.php" class="btn btn-link">Forgot password?</a>
