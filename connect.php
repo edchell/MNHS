@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (password_verify($pwd, $use['PASSWORD'])) {
-            session_regenerate_id();
+            session_regenerate_id(true);
             // Reset login attempts on successful login
             $_SESSION['login_attempts'] = 0;
             $_SESSION['lockout_time'] = null;
