@@ -60,7 +60,7 @@ include('auth.php');
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: 'delete_student.php',
+                    url: 'delete.php',
                     type: 'POST',
                     data: { id: id },
                     success: function(response) {
