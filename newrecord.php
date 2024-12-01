@@ -3,7 +3,7 @@ session_start(); // Start the session
 
 include 'db.php';
 
-$id = $_GET['id'];
+$id = $_POST['id'];
 $school = $_POST['school'];
 $yr = $_POST['yr'];
 $sec = $_POST['sec'];
