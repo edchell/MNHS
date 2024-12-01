@@ -14,10 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_query($conn, $sql)) {
         echo "<script>
-            alert('New account successfully recorded!');
-            location.href = 'rms.php?page=users'; // Fixed typo here
-        </script>";
-        echo "<script>
 					Swal.fire({
 						icon: 'success',
 						title: 'Success',
