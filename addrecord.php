@@ -72,7 +72,7 @@ include('auth.php');
           <?php
     } mysqli_close($conn);
       ?>
-     <form action="newrecord.php" method="post">
+     <form id="myForm" action="newrecord.php" method="post">
      <input name="id" type="hidden" value="<?php echo $_GET["id"] ?>">
      <div class="col-md-6">
        <div class="row">
@@ -465,4 +465,49 @@ function validateNumber(event) {
     }
     </script>
  
+ <script>
+$(document).ready(function() {
+    $("#myForm").submit(function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        var formData = $(this).serialize(); // Serialize form data for AJAX
+        
+        $.ajax({
+            url: 'newrecord.php',
+            type: 'POST',
+            data: formData,
+            dataType: 'json', // Expect JSON response from PHP
+            success: function(response) {
+                if (response.status === 'success') {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'rms.php?page=record&id=<?php echo $_GET['id']; ?>';
+                        }
+                    });
+                } else if (response.status === 'error') {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'There was an issue processing your request. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+});
+</script>
  
