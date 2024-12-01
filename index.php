@@ -182,6 +182,9 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                             loginButton.disabled = true;
                             loginForm.querySelectorAll('input, button').forEach(function (element) {
                                 element.disabled = true;
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
                             });
                         });
                     }
@@ -202,6 +205,9 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                     loginButton.disabled = true;
                     loginForm.querySelectorAll('input, button').forEach(function (element) {
                         element.disabled = true;
+                        setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
                     });
                 });
             }
