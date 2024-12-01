@@ -320,5 +320,48 @@ function validateNumber(event) {
     const input = event.target;
     input.value = input.value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
 }
+</script>
 
-    </script>
+<script>
+  $(document).ready(function() {
+    $('form').on('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      var formData = $(this).serialize();
+
+      $.ajax({
+        url: 'uprec.php',
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === 'success') {
+            Swal.fire({
+              title: 'Success!',
+              text: response.message,
+              icon: 'success',
+              confirmButtonText: 'OK',
+            }).then(() => {
+              window.location.href = document.referrer; // Redirect to the previous page
+            });
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: response.message,
+              icon: 'error',
+              confirmButtonText: 'Try Again',
+            });
+          }
+        },
+        error: function() {
+          Swal.fire({
+            title: 'Error!',
+            text: 'An unexpected error occurred.',
+            icon: 'error',
+            confirmButtonText: 'Try Again',
+          });
+        }
+      });
+    });
+  });
+</script>
