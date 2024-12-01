@@ -16,8 +16,7 @@
     <link href="asset/css/style.css" rel="stylesheet">
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="assets/css/sticky-footer-navbar.css" rel="stylesheet">
-        <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="student_portal.css">
+    <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
