@@ -111,15 +111,15 @@ if ($num_row >= 1) {
         $ga = $row['fin_grade'] / $row['tg_count'];
         mysqli_query($conn, "UPDATE student_year_info SET GEN_AVE = '$ga' WHERE SYI_ID = '".$row['SYI_ID']."'");
     }
-        echo "<script>
-					Swal.fire({
-						icon: 'success',
-						title: 'Success',
-						text: 'Student Record Added Successfully.',
-					}).then(() => {
-						window.location.href = 'rms.php?page=record&id=" . $id . "';
-					});
-				</script>";
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Student Record Added Successfully.',
+    }).then(function() {
+        window.location.href = 'rms.php?page=record&id=$id'; // Redirects to the desired page
+    });
+</script>";
 }
 
 mysqli_close($conn);
