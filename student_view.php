@@ -46,24 +46,20 @@
 <body>
 
   <div class="login-form" id="login_modal" role="dialog" >
-  <center><h3 style="color:black;border-radius:5px"><b>Please Enter LRN No.</b></h3></center>
+  <center><h3><b>Please Enter LRN No.</b></h3></center>
   <form class="form-horizontal" action="student_view_code.php" method="post">
-    <div class="form-group" id="lrn_form">
-      <label id="lrn_label" class="control-label col-sm-3" for="lrn_no">LRN No:</label>
-      <div class="col-md-9">
+    <div class="form-group">
+      <label for="lrn_no">LRN No:</label>
       <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
         <input type="text" class="form-control" id="lrn_no" name="lrn_no" placeholder="Enter LRN No." maxlength="12" autocomplete="off">
-      </div>
       </div>
     </div>
     <div class="form-group">
       <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
     </div>
     <div class="form-group">        
-      <div class="col-md-offset-9 col-md-12" id="buttons">
         <button class="btn btn-default" name="submit" id="submit">Submit</button>
-      </div>
     </div>
   </form>
    </div>          
