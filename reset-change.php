@@ -1,9 +1,9 @@
 <?php
 $request = $_SERVER['REQUEST_URI'];
 
-// Redirect to remove .php extension
-if (preg_match('/\.php$/', $request)) {
-    $new_url = preg_replace('/\.php$/', '', $request);
+if (strpos($request, '.php') !== false) {
+    // Redirect to remove .php extension
+    $new_url = str_replace('.php', '', $request);
     header("Location: $new_url", true, 301);
     exit();
 }
