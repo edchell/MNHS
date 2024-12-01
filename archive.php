@@ -37,6 +37,7 @@ include 'newstudent.php';
             <a href="#" class="text-primary restoreUser" data-id="<?php echo $row['USER_ID']; ?>">
                 <i class="fa fa-repeat" aria-hidden="true"></i> Restore
             </a>
+            <button class="deleteUser" data-id="<?php echo $row['USER_ID']; ?>">Delete</button>
       </td>
        </tr>
 
@@ -62,3 +63,32 @@ include 'newstudent.php';
         }
     });
     </script>
+
+<script type="text/javascript">
+    $(document).on('click', '.deleteUser', function() {
+        const userId = $(this).data('id');
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post('archived_delete.php', { id: userId }, function(response) {
+                    Swal.fire(
+                        'Deleted!',
+                        response,
+                        'success'
+                    ).then(() => {
+                        location.reload(); // Refresh the page to see the changes
+                    });
+                });
+            }
+        });
+    });
+</script>
+
