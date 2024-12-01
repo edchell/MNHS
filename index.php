@@ -155,66 +155,56 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             const loginForm = document.querySelector('form');
             const loginButton = document.querySelector('#login');
             
-            function checkLocationPermission() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        function (position) {
-                            // If the user allows location access
-                            loginButton.disabled = false;
-                            loginForm.querySelectorAll('input, button').forEach(function (element) {
-                                element.disabled = false;
-                            });
-                            // Reload the page to indicate that the user allowed location
-                            window.location.reload();
-                        },
-                        function (error) {
-                            // If the user denies location access
-                            Swal.fire({
-                                title: 'Location Access Denied',
-                                text: 'You need to allow location access for full functionality.',
-                                icon: 'warning',
-                                confirmButtonText: false,,
-                                allowOutsideClick: false,
-                                allowEscapeKey: false, 
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
-                            }).then(() => {
-                                // Disable the form inputs and login button
-                                loginButton.disabled = true;
-                                loginForm.querySelectorAll('input, button').forEach(function (element) {
-                                    element.disabled = true;
-                                });
-                                // Reload the page after a delay to re-check permissions
-                                setTimeout(checkLocationPermission, 1000); // Adjust the delay as needed
-                            });
-                        }
-                    );
-                } else {
-                    Swal.fire({
-                        title: 'Geolocation Not Supported',
-                        text: 'Your browser does not support geolocation.',
-                        icon: 'error',
-                        confirmButtonText: false,
-                        allowOutsideClick: false,
-                        allowEscapeKey: false, 
-                        didOpen: () => {
-                            Swal.showLoading();
-                        }
-                    }).then(() => {
-                        // Disable the form if geolocation is not supported
-                        loginButton.disabled = true;
+            // Check if geolocation is supported
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        // If user allows location access
+                        loginButton.disabled = false;
                         loginForm.querySelectorAll('input, button').forEach(function (element) {
-                            element.disabled = true;
+                            element.disabled = false;
                         });
-                        // Reload the page after a delay to re-check permissions
-                        setTimeout(checkLocationPermission, 1000); // Adjust the delay as needed
+                    },
+                    function (error) {
+                        // If user denies location access or there's an error
+                        Swal.fire({
+                            title: 'Location Access Denied',
+                            text: 'You need to allow location access for full functionality.',
+                            icon: 'warning',
+                            confirmButtonText: false,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false, 
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        }).then(() => {
+                            // Disable the form inputs and login button
+                            loginButton.disabled = true;
+                            loginForm.querySelectorAll('input, button').forEach(function (element) {
+                                element.disabled = true;
+                            });
+                        });
+                    }
+                );
+            } else {
+                Swal.fire({
+                    title: 'Geolocation Not Supported',
+                    text: 'Your browser does not support geolocation.',
+                    icon: 'error',
+                    confirmButtonText: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false, 
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                }).then(() => {
+                    // Disable the form if geolocation is not supported
+                    loginButton.disabled = true;
+                    loginForm.querySelectorAll('input, button').forEach(function (element) {
+                        element.disabled = true;
                     });
-                }
+                });
             }
-
-            // Initial check for location permission
-            checkLocationPermission();
         });
     </script>
     <script>
