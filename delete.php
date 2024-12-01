@@ -20,34 +20,31 @@ $stmt6 = $conn->prepare("DELETE FROM history_log");
 $success = true; // Flag to track the success of all queries
 
 // Execute each statement and check for errors
+$errors = []; // Array to store errors
+
 if (!$stmt1 || !$stmt1->execute()) {
     $success = false;
-    echo "<script>alert('Error deleting records from notifications: " . $conn->error . "');</script>";
+    $errors[] = "Error deleting records from notifications: " . $conn->error;
 }
 if (!$stmt2 || !$stmt2->execute()) {
     $success = false;
-    echo "<script>alert('Error deleting records from student_year_info: " . $conn->error . "');</script>";
+    $errors[] = "Error deleting records from student_year_info: " . $conn->error;
 }
 if (!$stmt3 || !$stmt3->execute()) {
     $success = false;
-    echo "<script>alert('Error deleting records from total_grades_subjects: " . $conn->error . "');</script>";
+    $errors[] = "Error deleting records from total_grades_subjects: " . $conn->error;
 }
 if (!$stmt4 || !$stmt4->execute()) {
     $success = false;
-    echo "<script>alert('Error deleting records from student_info: " . $conn->error . "');</script>";
+    $errors[] = "Error deleting records from student_info: " . $conn->error;
 }
 if (!$stmt6 || !$stmt6->execute()) {
     $success = false;
-    echo "<script>alert('Error deleting records from history_log: " . $conn->error . "');</script>";
+    $errors[] = "Error deleting records from history_log: " . $conn->error;
 }
 
 // Re-enable foreign key checks
 $conn->query("SET FOREIGN_KEY_CHECKS=1");
-
-// If all queries are successful, show a success message
-if ($success) {
-    echo "<script>alert('All records deleted successfully.');</script>";
-}
 
 // Close the statements
 if ($stmt1) $stmt1->close();
@@ -59,7 +56,35 @@ if ($stmt6) $stmt6->close();
 // Close the connection
 $conn->close();
 
-// Redirect to the records page (or wherever you want)
-header("Location: rms.php?page=records");
+// Redirect with SweetAlert
+if ($success) {
+    echo "
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: 'All records have been deleted successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = 'rms.php?page=records';
+        });
+    </script>";
+} else {
+    // Display errors with SweetAlert
+    $errorMessages = implode('\\n', $errors);
+    echo "
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+        Swal.fire({
+            title: 'Error!',
+            text: 'Some errors occurred:\\n$errorMessages',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = 'rms.php?page=records';
+        });
+    </script>";
+}
 exit();
 ?>
