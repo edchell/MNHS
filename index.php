@@ -171,7 +171,12 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                             title: 'Location Access Denied',
                             text: 'You need to allow location access for full functionality.',
                             icon: 'warning',
-                            confirmButtonText: 'OK'
+                            confirmButtonText: false,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false, 
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
                         }).then(() => {
                             // Disable the form inputs and login button
                             loginButton.disabled = true;
@@ -186,7 +191,12 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                     title: 'Geolocation Not Supported',
                     text: 'Your browser does not support geolocation.',
                     icon: 'error',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false, 
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
                 }).then(() => {
                     // Disable the form if geolocation is not supported
                     loginButton.disabled = true;
