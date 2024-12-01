@@ -33,10 +33,10 @@ include 'newsubject.php';
               <td id="des<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['DESCRIPTION']); ?></td>
               <td>
                 <center>
-                  <button onclick="update_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-info">
+                  <button onclick="update_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
                     <i class="fa fa-pencil-square" aria-hidden="true"></i>
                   </button>
-                  <button onclick="delete_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-danger">
+                  <button onclick="delete_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </button>
                 </center>
