@@ -33,6 +33,9 @@
                                         <button onclick="update_sy(<?php echo $row['SY_ID']; ?>)" class="btn btn-info">
                                             <i class="fa fa-pencil-square" aria-hidden="true"></i> Edit
                                         </button>
+                                        <button onclick="delete_sy(<?php echo $row['SY_ID']; ?>)" class="btn btn-danger">
+                                            <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                        </button>
                                     </center>
                                 </td>
                             </tr>
@@ -116,6 +119,41 @@
                 this.submit(); // Submit the form after user clicks "OK"
             });
         });
+
+
+        function delete_sy(id) {
+        // Show SweetAlert confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You will not be able to recover this school year!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Send AJAX request to delete the record
+                $.ajax({
+                    url: 'delete_school_year.php',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function(response) {
+                        if (response === 'success') {
+                            Swal.fire('Deleted!', 'The school year has been deleted.', 'success')
+                                .then(() => {
+                                    location.reload(); // Refresh the page to reflect changes
+                                });
+                        } else {
+                            Swal.fire('Error!', 'There was an issue deleting the school year.', 'error');
+                        }
+                    },
+                    error: function() {
+                        Swal.fire('Error!', 'An unexpected error occurred.', 'error');
+                    }
+                });
+            }
+        });
+    }
     </script>
 
     <script>
