@@ -13,14 +13,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$fname', '$lname', '$phone', '$pwd', '$user', '$type')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "<script>
-            alert('New account successfully recorded!');
-            location.href = 'rms.php?page=users'; // Fixed typo here
-        </script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+              <script>
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Account Created',
+                      text: 'New account successfully recorded!',
+                      confirmButtonText: 'OK'
+                  }).then((result) => {
+                      if (result.isConfirmed) {
+                          location.href = 'rms.php?page=users';
+                      }
+                  });
+              </script>";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+              <script>
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Error',
+                      text: 'There was an error creating the account: " . mysqli_error($conn) . "',
+                      confirmButtonText: 'OK'
+                  });
+              </script>";
     }
-}
 
-mysqli_close($conn);
+    mysqli_close($conn);
+}
 ?>
