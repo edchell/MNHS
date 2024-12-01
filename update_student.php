@@ -22,8 +22,15 @@ include 'db.php';
 $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '$lrn' and STUDENT_ID != '$id' ");
 		$num_row = mysqli_num_rows($search_query);
 		if($num_row >= 1){
-			echo '<script>alert("LRN is not available."); location.replace(document.referrer);</script>';
-
+			echo "<script>
+				Swal.fire({
+					icon: 'error',
+					title: 'LRN Not Available',
+					text: 'The LRN you entered already exists.',
+				}).then(() => {
+					window.history.back();
+				});
+			</script>";
 		}else{
 			$sql = "UPDATE student_info set
 			 
@@ -46,15 +53,23 @@ $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '
 		if (mysqli_query($conn, $sql)) {
 			mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('Updated $id in the student list','$user',NOW() )");
-		echo   "<div id='message' class='erlert-success'><center><h4>" . "Data Successfuly updated." . "</h4></center></div>";
-		"<script>
-		setTimeout(function(){ $('#message').hide)();  }, 2000); 
-		</script>";
+		echo "<script>
+					Swal.fire({
+						icon: 'success',
+						title: 'Success',
+						text: 'Data Successfuly updated.',
+					}).then(() => {
+						window.location.href = 'rms.php?page=student_p&id=" . $id . "';
+					});
+				</script>";
 		} else {
-		    "<script>
-			alert('Failed to Submit.');
-			 location.replace(document.referrer);
-			</script>";
+			echo "<script>
+					Swal.fire({
+						icon: 'error',
+						title: 'Failed',
+						text: 'Failed to submit the form.',
+					});
+				</script>";
 		}
 
 
