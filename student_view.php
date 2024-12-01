@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="images/logo.jpg">
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
 
     <title>Student Grading System</title>
 
@@ -30,6 +31,9 @@
   <form class="form-horizontal" action="student_view_code.php" method="post">
     <div class="form-group" id="lrn_form">
       <label id="lrn_label" class="control-label col-sm-3" for="lrn_no">LRN No:</label>
+      <div class="form-group">
+                <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
+            </div>
       <div class="col-md-9">
       <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
