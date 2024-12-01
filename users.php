@@ -236,6 +236,35 @@ $(document).on('submit', 'form[action="newaccount.php"]', function (event) {
     });
 });
 
+$(document).on('submit', 'form[action="edit_user.php"]', function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Gather form data
+    const formData = $(this).serialize();
+
+    // Send form data via AJAX
+    $.post('edit_user.php', formData, function (response) {
+        // Show success message with SweetAlert
+        Swal.fire({
+            icon: 'success',
+            title: 'Account Updated',
+            text: response,
+            confirmButtonText: 'OK'
+        }).then(() => {
+            $('#edit_user').modal('hide'); // Close the modal after success
+            location.reload(); // Reload the page to reflect changes
+        });
+    }).fail(function (xhr, status, error) {
+        // Show error message with SweetAlert
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `An error occurred: ${xhr.responseText || error}`,
+            confirmButtonText: 'OK'
+        });
+    });
+});
+
         // Show/Hide Password
         document.getElementById('showPwd').addEventListener('change', function () {
             const pwdInput = document.getElementById('pwd');

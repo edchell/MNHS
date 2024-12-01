@@ -14,10 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Execute the statement
     if ($stmt->execute()) {
-        echo "<script>
-            alert('Account updated successfully');
-            location.replace(document.referrer);
-        </script>";
+        echo 'Account updated successfully';
     }
 
     $stmt->close();
