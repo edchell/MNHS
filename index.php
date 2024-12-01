@@ -149,7 +149,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
             </div>
             <div class="form-group">
-                <button type="submit" id="login" class="btn btn-primary btn-block" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>Login</button>
+                <button type="submit" name="login" id="login" class="btn btn-primary btn-block" <?php if (isset($lockout_time_remaining)) echo 'disabled'; ?> disabled>Login</button>
             </div>
             <div class="form-group text-center">
                 <a href="reset-password.php" class="btn btn-link">Forgot password?</a>
@@ -158,8 +158,8 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     </div>
     <script>
     // Select form input elements to disable initially
-    const formInputs = document.querySelectorAll('#admin_type, #email, #password');
-        const loginButton = document.querySelector('[name="admin_login_btn"]');
+    const formInputs = document.querySelectorAll('#user, #pwd');
+        const loginButton = document.querySelector('[name="login"]');
 
         // Function to request and check location permissions
         function requestLocation() {
