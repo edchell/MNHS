@@ -49,7 +49,7 @@ while($row = mysqli_fetch_assoc($sql)) {
   <a href="rms.php?page=records" class="btn btn-primary">Back</a>
 <?php $query = mysqli_query($conn,"SELECT school_year FROM school_year where status='Yes'");
 while($sy = mysqli_fetch_assoc($query)){ ?>
-  <a class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>">Add Record</a>
+<a class='btn btn-success' href="rms.php?page=addrecord&id=<?php echo $_GET['id'] ?>&sy=<?php echo $sy['school_year'] ?>">Add Record</a>
   <a id="editRecordBtn" class="btn btn-warning" style="display:none;" href="#">Edit Record</a>
   <?php
 } ?>
