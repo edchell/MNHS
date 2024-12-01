@@ -172,7 +172,7 @@ function requestLocation() {
                         title: 'Permission Denied',
                         text: "Please allow location access to use this login page.",
                         icon: 'warning',
-                        showConfirmButton: true,
+                        showConfirmButton: false,
                         allowOutsideClick: false
                     }).then(() => {
                         setTimeout(function() {
@@ -184,7 +184,7 @@ function requestLocation() {
                         title: 'Location Error',
                         text: "There was an issue accessing your location. Please try again later.",
                         icon: 'error',
-                        showConfirmButton: true,
+                        showConfirmButton: false,
                         allowOutsideClick: false
                     }).then(() => {
                         setTimeout(function() {
@@ -199,7 +199,7 @@ function requestLocation() {
             title: 'Geolocation Not Supported',
             text: "Geolocation is not supported by this browser.",
             icon: 'error',
-            showConfirmButton: true,
+            showConfirmButton: false,
             allowOutsideClick: false
         }).then(() => {
             setTimeout(function() {
