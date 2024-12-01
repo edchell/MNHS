@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $grade = $_POST['grade'];
 
+    // Validate input
     if (empty($grade)) {
         echo 'error';
         exit;
@@ -13,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_query($conn, $sql)) {
         echo 'success';
     } else {
-        echo 'error';
+        echo 'error: ' . mysqli_error($conn);
     }
 
     mysqli_close($conn);

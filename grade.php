@@ -161,37 +161,38 @@ include('auth.php');
 
     // Update Grade
     function updateGrade() {
-        const id = document.getElementById('id').value;
-        const grade = document.getElementById('grade').value.trim();
-        const gradeError = document.getElementById('gradeError');
+    const id = document.getElementById('id').value;
+    const grade = document.getElementById('grade').value.trim();
+    const gradeError = document.getElementById('gradeError');
 
-        // Basic validation
-        if (grade === '') {
-            gradeError.textContent = '* Grade is required.';
-            return;
-        } else {
-            gradeError.textContent = '';
-        }
-
-        const data = { id: id, grade: grade };
-
-        $.ajax({
-            url: 'update_grade.php',
-            type: 'POST',
-            data: data,
-            success: function(response) {
-                if (response === 'success') {
-                    Swal.fire('Success!', 'Grade has been updated.', 'success')
-                        .then(() => {
-                            location.reload();
-                        });
-                } else {
-                    Swal.fire('Error!', 'An issue occurred while saving the grade.', 'error');
-                }
-            },
-            error: function() {
-                Swal.fire('Error!', 'An unexpected error occurred.', 'error');
-            }
-        });
+    // Basic validation
+    if (grade === '') {
+        gradeError.textContent = '* Grade is required.';
+        return;
+    } else {
+        gradeError.textContent = '';
     }
+
+    const data = { id: id, grade: grade };
+
+    $.ajax({
+        url: 'update_grade.php',
+        type: 'POST',
+        data: data,
+        success: function(response) {
+            if (response === 'success') {
+                Swal.fire('Success!', 'Grade has been updated.', 'success')
+                    .then(() => {
+                        location.reload();
+                    });
+            } else {
+                Swal.fire('Error!', 'An issue occurred while saving the grade.', 'error');
+                console.log(response); // Debug response from PHP
+            }
+        },
+        error: function() {
+            Swal.fire('Error!', 'An unexpected error occurred.', 'error');
+        }
+    });
+}
 </script>
