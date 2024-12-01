@@ -111,15 +111,13 @@ include 'new_grade.php';
                                 <input type="text" class="form-control" id="grade" name="grade" style="width:200px"
                                     placeholder="Enter grade" value="<?php echo isset($_POST['grade']) ? htmlspecialchars($_POST['grade']) : ''; ?>" />
                             </div>
-                            <p>
-                                <?php if (isset($errors['grade'])) echo "<div class='erlert' id='alert'><h5>{$errors['grade']}</h5></div>"; ?>
-                            </p>
+                            <p id="gradeError" style="color: red;"></p>
                         </div>
                     </div>
                     <div id="status"></div>
                     <div class="form-group">
                         <input type="reset" class="btn btn-info" id="reset" name="reset" value="Cancel">
-                        <button type="button" class="btn btn-info" id="btn_add" onclick="add_or_update_grade()">Add</button>
+                        <button type="button" class="btn btn-info" id="btn_add" onclick="addOrUpdateGrade()">Add</button>
                     </div>
                 </form>
             </div>
@@ -128,22 +126,29 @@ include 'new_grade.php';
 </div>
 
 <script>
-    function add_or_update_grade() {
+     function addOrUpdateGrade() {
         const id = document.getElementById('id').value;
-        const grade = document.getElementById('grade').value;
+        const grade = document.getElementById('grade').value.trim();
+        const gradeError = document.getElementById('gradeError');
 
-        if (grade.trim() === '') {
-            Swal.fire('Error!', 'Please enter a grade.', 'error');
+        // Basic validation
+        if (grade === '') {
+            gradeError.textContent = '* Grade is required.';
             return;
+        } else {
+            gradeError.textContent = '';
         }
 
-        const url = id ? 'update_grade.php' : 'add_grade.php';
-        const data = { id: id, grade: grade };
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('grade', grade);
 
         $.ajax({
-            url: url,
+            url: 'new_grade.php',
             type: 'POST',
-            data: data,
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function(response) {
                 if (response === 'success') {
                     Swal.fire('Success!', 'Grade has been ' + (id ? 'updated' : 'added') + '.', 'success')
@@ -151,7 +156,7 @@ include 'new_grade.php';
                             location.reload();
                         });
                 } else {
-                    Swal.fire('Error!', 'There was an issue saving the grade.', 'error');
+                    Swal.fire('Error!', 'An issue occurred while saving the grade.', 'error');
                 }
             },
             error: function() {
