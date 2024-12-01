@@ -117,7 +117,7 @@ if ($num_row >= 1) {
 						title: 'Success',
 						text: 'Student Record Added Successfully.',
 					}).then(() => {
-						window.history.back();
+						window.location.href = 'rms.php?page=record&id=" . $id . "';
 					});
 				</script>";
 }
