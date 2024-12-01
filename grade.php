@@ -114,7 +114,8 @@ include('auth.php');
                     <div id="status"></div>
                     <div class="form-group">
                         <input type="reset" class="btn btn-info" id="reset" name="reset" value="Cancel">
-                        <button type="button" class="btn btn-info" id="btn_add" onclick="addOrUpdateGrade()">Add</button>
+                        <button type="button" class="btn btn-info" id="btn_add" onclick="addGrade()">Add</button>
+                        <button type="button" class="btn btn-info" id="btn_update" onclick="updateGrade()" style="display:none;">Update</button>
                     </div>
                 </form>
             </div>
@@ -123,7 +124,43 @@ include('auth.php');
 </div>
 
 <script>
-    function addOrUpdateGrade() {
+    // Add Grade
+    function addGrade() {
+        const grade = document.getElementById('grade').value.trim();
+        const gradeError = document.getElementById('gradeError');
+
+        // Basic validation
+        if (grade === '') {
+            gradeError.textContent = '* Grade is required.';
+            return;
+        } else {
+            gradeError.textContent = '';
+        }
+
+        const data = { grade: grade };
+
+        $.ajax({
+            url: 'add_grade.php',
+            type: 'POST',
+            data: data,
+            success: function(response) {
+                if (response === 'success') {
+                    Swal.fire('Success!', 'Grade has been added.', 'success')
+                        .then(() => {
+                            location.reload();
+                        });
+                } else {
+                    Swal.fire('Error!', 'An issue occurred while saving the grade.', 'error');
+                }
+            },
+            error: function() {
+                Swal.fire('Error!', 'An unexpected error occurred.', 'error');
+            }
+        });
+    }
+
+    // Update Grade
+    function updateGrade() {
         const id = document.getElementById('id').value;
         const grade = document.getElementById('grade').value.trim();
         const gradeError = document.getElementById('gradeError');
@@ -136,16 +173,15 @@ include('auth.php');
             gradeError.textContent = '';
         }
 
-        const url = id ? 'update_grade.php' : 'add_grade.php';
         const data = { id: id, grade: grade };
 
         $.ajax({
-            url: url,
+            url: 'update_grade.php',
             type: 'POST',
             data: data,
             success: function(response) {
                 if (response === 'success') {
-                    Swal.fire('Success!', 'Grade has been ' + (id ? 'updated' : 'added') + '.', 'success')
+                    Swal.fire('Success!', 'Grade has been updated.', 'success')
                         .then(() => {
                             location.reload();
                         });
