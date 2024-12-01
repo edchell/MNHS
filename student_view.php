@@ -45,7 +45,6 @@
   </head>
 <body>
 
-<div class="container-fluid">
   <div class="login-form" id="login_modal" role="dialog" >
   <center><h3 style="color:black;border-radius:5px"><b>Please Enter LRN No.</b></h3></center>
   <form class="form-horizontal" action="student_view_code.php" method="post">
@@ -68,7 +67,6 @@
     </div>
   </form>
    </div>          
-</div>
 
 </body>
 <script src="assets/js/jquery.min.js"></script>
