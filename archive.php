@@ -34,10 +34,10 @@ include 'newstudent.php';
       <td><?php echo htmlspecialchars($row['USER']); ?></td>
       <td><?php echo htmlspecialchars($row['USER_TYPE']); ?></td>
       <td>
-            <a href="#" class="text-primary restoreUser" data-id="<?php echo $row['USER_ID']; ?>">
-                <i class="fa fa-repeat" aria-hidden="true"></i> Restore
+            <a href="#" class="restoreUser btn btn-primary" data-id="<?php echo $row['USER_ID']; ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore">
+                <i class="fa fa-repeat" aria-hidden="true"></i>
             </a>
-            <button class="deleteUser btn-danger" data-id="<?php echo $row['USER_ID']; ?>">Delete</button>
+            <button class="deleteUser btn btn-danger" data-id="<?php echo $row['USER_ID']; ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
       </td>
        </tr>
 
