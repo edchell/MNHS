@@ -55,12 +55,28 @@ include 'newstudent.php';
 
         $(document).on('click', '.restoreUser', function() {
         const userId = $(this).data('id');
-        if (confirm("Are you sure you want to restore this user?")) {
-            $.post('user_restore.php', { id: userId }, function(response) {
-                alert(response);
-                location.reload(); // Refresh the page to see the changes
-            });
-        }
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to restore this user?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, restore it!',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post('user_restore.php', { id: userId }, function(response) {
+                    Swal.fire(
+                        'Restored!',
+                        response,
+                        'success'
+                    ).then(() => {
+                        location.reload(); // Refresh the page to see the changes
+                    });
+                });
+            }
+        });
     });
     </script>
 
