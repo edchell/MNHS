@@ -33,7 +33,7 @@ include 'db.php';
                 <div class='content'>
                     <p>Hello,</p>
                     <p>We received a request to reset your password. Click the link below to reset it:</p>
-                    <p><a href='localhost/MNHS/reset-change.php?token=" . urlencode($token) . "'>Reset Password</a></p>
+                    <p><a href='https://mnhs-gradeinfo.com/reset-change.php?token=" . urlencode($token) . "'>Reset Password</a></p>
                     <p>If you did not request a password reset link, please ignore this email.</p>
                 </div>
             </body>
@@ -64,15 +64,9 @@ include 'db.php';
 
             if($update_token_run) {
                 if(submit_reset($get_email, $token)){
-                    echo "<script>
-                    alert('We email you the reset password link.');
-                    window.location.href = 'reset-password.php';
-                    </script>";
+                    echo "We email you the reset password link.";
                 } else {
-                    echo "<script>
-                    alert('Email sending failed. Try again.');
-                    window.location.href = 'reset-password.php';
-                    </script>";
+                    echo "Email sending failed. Try again.";
                 }
             }
         }
