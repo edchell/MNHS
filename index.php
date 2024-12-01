@@ -151,12 +151,9 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
         </form>
     </div>
     <script>
-    // Select form input elements to disable initially
-    const formInputs = document.querySelectorAll('#user, #pwd');
-        const loginButton = document.querySelector('[name="login"]');
 
         // Select form input elements and the login button
-const formInputs = document.querySelectorAll('#user, #pwd');
+const formInputs = document.getElementById('#user, #pwd');
 const loginButton = document.querySelector('[name="login"]');
 
 // Function to request and check location permissions
