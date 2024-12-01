@@ -104,12 +104,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                         ?>
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
-                                const formInputs = document.querySelectorAll('#user, #pwd');
-                                const loginButton = document.getElementById('login');
-                                
-                                formInputs.forEach(input => input.disabled = true);
-                                loginButton.disabled = true;
-
                                 Swal.fire({
                                     title: 'Account Locked',
                                     text: "Your account is locked. Please try again later.",
