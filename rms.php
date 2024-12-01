@@ -9,23 +9,6 @@ if (strpos($request, '.php') !== false) {
     header("Location: $new_url", true, 301);
     exit();
 }
-
-// Display SweetAlert notifications if set in the session.
-if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-{
-    ?>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        Swal.fire({
-            title: "<?php echo $_SESSION['status']; ?>",
-            icon: "<?php echo $_SESSION['status_code']; ?>",
-            confirmButtonText: "OK"
-        });
-    });
-    </script>
-    <?php
-    unset($_SESSION['status']);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
