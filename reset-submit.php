@@ -98,21 +98,21 @@ include 'db.php';
                 $update_password_run = mysqli_query($conn, $update_password);
 
                 if($update_password_run) {
-                    echo "<script>
-                    alert('Password Successfully Changed.');
-                    window.location.href = '.';
-                    </script>";
+                    $_SESSION['status'] = "Password Successfully Changed.";
+                    $_SESSION['status_code'] = "success";
+                    header("Location: .");
+                    exit(0);
                 } else {
-                    echo "<script>
-                    alert('Failed to update the passwod. Please try again.');
-                    window.location.href = 'reset_change.php';
-                    </script>";
+                    $_SESSION['status'] = "Failed to update the passwod. Please try again.";
+                    $_SESSION['status_code'] = "error";
+                    header("Location: reset_change.php");
+                    exit(0);
                 }
             } else {
-                echo "<script>
-                    alert('Link already been used.');
-                    window.location.href = 'reset_change.php';
-                    </script>";
+                    $_SESSION['status'] = "Link already been used.";
+                    $_SESSION['status_code'] = "warning";
+                    header("Location: .");
+                    exit(0);
             }
         }
     }
