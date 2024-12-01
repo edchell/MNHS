@@ -178,15 +178,35 @@ $(document).ready(function() {
         new DataTable('#example');
 
         // Delete User Confirmation
-        $(document).on('click', '.deleteUser', function () {
-            const userId = $(this).data('id');
-            if (confirm("Are you sure you want to delete this user?")) {
-                $.post('user_delete.php', { id: userId }, function (response) {
-                    alert(response);
-                    location.reload();
+$(document).on('click', '.deleteUser', function () {
+    const userId = $(this).data('id');
+    
+    // SweetAlert confirmation dialog
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If user confirms, send POST request to delete user
+            $.post('user_delete.php', { id: userId }, function (response) {
+                // SweetAlert success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: response,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    location.reload(); // Reload the page after the user acknowledges the alert
                 });
-            }
-        });
+            });
+        }
+    });
+});
 
         // Show/Hide Password
         document.getElementById('showPwd').addEventListener('change', function () {
