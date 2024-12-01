@@ -22,10 +22,10 @@ include 'db.php';
 $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '$lrn'");
 		$num_row = mysqli_num_rows($search_query);
 		if($num_row >= 1){
-			"<script>
-			alert('LRN is not available.');
-			 location.replace(document.referrer);
-			</script>";
+			$_SESSION['status'] = "LRN is not available.";
+			$_SESSION['status_code'] = "error";
+            header("Location: rms.php?page=grade7");
+            exit(0);
 		}else{
 			$sql = "INSERT INTO student_info
 			 (
@@ -65,15 +65,16 @@ $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,grade,status,date_added) 
 		VALUES ('Added $fn $ln as new student','$user','grade7','Add',NOW() )");
 		if (mysqli_query($conn, $sql)) {
-
-			echo "<div class='erlert-success'><center><h4>" . "New Student Successfully Added." . "</h4></center></div>";
-
+			$_SESSION['status'] = "New Student Successfully Added.";
+			$_SESSION['status_code'] = "success";
+            header("Location: rms.php?page=grade7");
+            exit(0);
 		} else {
-		    "<script>
-			alert('Failed to Submit.');
-			</script>";
+			$_SESSION['status'] = "Failed to Submit.";
+			$_SESSION['status_code'] = "error";
+            header("Location: rms.php?page=grade7");
+            exit(0);
 		}
-
 
 		}
 	

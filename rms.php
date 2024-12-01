@@ -9,6 +9,23 @@ if (strpos($request, '.php') !== false) {
     header("Location: $new_url", true, 301);
     exit();
 }
+
+// Display SweetAlert notifications if set in the session.
+if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+{
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            title: "<?php echo $_SESSION['status']; ?>",
+            icon: "<?php echo $_SESSION['status_code']; ?>",
+            confirmButtonText: "OK"
+        });
+    });
+    </script>
+    <?php
+    unset($_SESSION['status']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +46,7 @@ if (strpos($request, '.php') !== false) {
     <link href="datatables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="asset/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.min.css">
     
     <script src="assets/js/jquery.min.js"></script>
     <script src="datatables/jquery.dataTables.js"></script>
@@ -37,6 +55,7 @@ if (strpos($request, '.php') !== false) {
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>
