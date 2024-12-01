@@ -126,7 +126,7 @@ include 'new_grade.php';
 </div>
 
 <script>
-     function addOrUpdateGrade() {
+    function addOrUpdateGrade() {
         const id = document.getElementById('id').value;
         const grade = document.getElementById('grade').value.trim();
         const gradeError = document.getElementById('gradeError');
@@ -139,16 +139,13 @@ include 'new_grade.php';
             gradeError.textContent = '';
         }
 
-        const formData = new FormData();
-        formData.append('id', id);
-        formData.append('grade', grade);
+        const url = id ? 'update_grade.php' : 'add_grade.php';
+        const data = { id: id, grade: grade };
 
         $.ajax({
-            url: 'new_grade.php',
+            url: url,
             type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
+            data: data,
             success: function(response) {
                 if (response === 'success') {
                     Swal.fire('Success!', 'Grade has been ' + (id ? 'updated' : 'added') + '.', 'success')
