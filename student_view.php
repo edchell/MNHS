@@ -58,7 +58,7 @@
       <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
     </div>
     <div class="form-group">        
-        <button class="btn btn-default" name="submit" id="submit">Submit</button>
+        <button class="btn btn-primary btn-block" name="submit" id="submit">Submit</button>
     </div>
   </form>
    </div>          
