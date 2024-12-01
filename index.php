@@ -157,7 +157,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             
             // Check if geolocation is supported
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
+                navigator.geolocation.watchPosition(
                     function (position) {
                         // If user allows location access
                         loginButton.disabled = false;
@@ -166,49 +166,54 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                         });
                     },
                     function (error) {
-                        // If user denies location access or there's an error
-                        Swal.fire({
-                            title: 'Location Access Denied',
-                            text: 'You need to allow location access for full functionality.',
-                            icon: 'warning',
-                            confirmButtonText: false,
-                            allowOutsideClick: false,
-                            allowEscapeKey: false, 
-                            didOpen: () => {
-                                Swal.showLoading();
-                            }
-                        }).then(() => {
-                            // Disable the form inputs and login button
-                            loginButton.disabled = true;
-                            loginForm.querySelectorAll('input, button').forEach(function (element) {
-                                element.disabled = true;
+                        if (error.code === error.PERMISSION_DENIED) {
+                            Swal.fire({
+                                title: 'Permission Denied',
+                                text: "Please allow location access to use this login page.",
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            }).then(() => {
                                 setTimeout(function() {
                                     window.location.reload();
                                 }, 1000);
                             });
-                        });
+                        }
+                        if (error.code === error.POSITION_UNAVAILABLE || error.code === error.TIMEOUT) {
+                            Swal.fire({
+                                title: 'Location Lost',
+                                text: "Location access was lost. The form will reload.",
+                                icon: 'error',
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            }).then(() => {
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
+                            });
+                        }
                     }
                 );
             } else {
                 Swal.fire({
-                    title: 'Geolocation Not Supported',
-                    text: 'Your browser does not support geolocation.',
-                    icon: 'error',
-                    confirmButtonText: false,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false, 
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
+                title: 'Geolocation Not Supported',
+                text: "Geolocation is not supported by this browser.",
+                icon: 'error',
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
                 }).then(() => {
-                    // Disable the form if geolocation is not supported
-                    loginButton.disabled = true;
-                    loginForm.querySelectorAll('input, button').forEach(function (element) {
-                        element.disabled = true;
-                        setTimeout(function() {
-                                    window.location.reload();
-                                }, 1000);
-                    });
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
                 });
             }
         });
