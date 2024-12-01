@@ -23,15 +23,23 @@
 		VALUES ( '$sub', '$des' )")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,status,date_added) 
 		VALUES ('Added $sub in the subject list','$user','Add',NOW() )");
-	echo "<script>
-				alert('New Subject Added successfully');
-				window.location.href = 'rms.php?page=subjects';
-		</script>";
+		echo "<script>
+					Swal.fire({
+						icon: 'success',
+						title: 'Success',
+						text: 'New Subject Added successfully.',
+					}).then(() => {
+						window.location.href = 'rms.php?page=subjects';
+					});
+				</script>";
 	} else {
 		echo "<script>
-				alert('New subject failed to record!" .$sql."');
-				window.location.href = 'rms.php?page=subjects';
-		</script>";
+					Swal.fire({
+						icon: 'error',
+						title: 'Failed',
+						text: 'New subject failed to record!" .$sql."',
+					});
+				</script>";
 		unset($_POST);
 
 	}
@@ -42,10 +50,15 @@
 		VALUES ('Updated $id in the subject list','$user','Update',NOW() )");
 
 		if (mysqli_query($conn, $sql)) {
-			echo "<script>
-				alert('Subject Successfully Updated.');
-				window.location.href = 'rms.php?page=subjects';
-		</script>";
+		echo "<script>
+					Swal.fire({
+						icon: 'success',
+						title: 'Success',
+						text: 'Subject Successfully Updated.',
+					}).then(() => {
+						window.location.href = 'rms.php?page=subjects';
+					});
+				</script>";
 		} else {
     echo "Error updating record: " . mysqli_error($conn);
 		}
