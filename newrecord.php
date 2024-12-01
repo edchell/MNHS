@@ -129,8 +129,8 @@ if ($num_row >= 1) {
         window.location.href = 'rms.php?page=record&id={$id}';
     });
     </script>";
-    exit;
 }
 
 mysqli_close($conn);
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
