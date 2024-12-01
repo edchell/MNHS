@@ -2,9 +2,6 @@
 include('auth.php');
 ?>
 <h3 class="page-header">Grade <small>section</small></h3>
-<?php
-include 'new_grade.php';
-?>
 <div class="col-md-8" id="s_page">
     <div class="panel panel-default">
         <div class="panel-heading">
