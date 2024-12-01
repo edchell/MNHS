@@ -31,15 +31,15 @@
   <form class="form-horizontal" action="student_view_code.php" method="post">
     <div class="form-group" id="lrn_form">
       <label id="lrn_label" class="control-label col-sm-3" for="lrn_no">LRN No:</label>
-      <div class="form-group">
-                <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
-            </div>
       <div class="col-md-9">
       <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
         <input type="text" class="form-control" id="lrn_no" name="lrn_no" placeholder="Enter LRN No." maxlength="12" autocomplete="off">
       </div>
       </div>
+    </div>
+    <div class="form-group">
+      <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
     </div>
     <div class="form-group">        
       <div class="col-md-offset-9 col-md-12" id="buttons">
