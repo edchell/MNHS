@@ -36,6 +36,18 @@ RewriteEngine On
     # Remove X-Powered-By header
     Header unset X-Powered-By
 
+    # Set the session cookie lifetime to 0 (expire when browser closes)
+    php_value session.cookie_lifetime 0
+
+    # Set session garbage collection max lifetime to 30 minutes
+    php_value session.gc_maxlifetime 1800
+
+    # Restrict session cookies to HTTP only
+    php_value session.cookie_httponly 1
+
+    # Enable secure cookies if you're using HTTPS
+    php_value session.cookie_secure 1
+
 </IfModule>
 
 RewriteCond %{REQUEST_FILENAME} !-d
