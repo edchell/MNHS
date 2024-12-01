@@ -7,6 +7,23 @@ if (strpos($request, '.php') !== false) {
     header("Location: $new_url", true, 301);
     exit();
 }
+
+// Display SweetAlert notifications if set in the session.
+if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+{
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            title: "<?php echo $_SESSION['status']; ?>",
+            icon: "<?php echo $_SESSION['status_code']; ?>",
+            confirmButtonText: "OK"
+        });
+    });
+    </script>
+    <?php
+    unset($_SESSION['status']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,34 +98,5 @@ if (strpos($request, '.php') !== false) {
 <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
 <script src="js/bootstrap.min.js"></script>
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-<!-- Include SweetAlert2 library -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-$(document).on('submit', 'form[action="reset-submit.php"]', function (event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const formData = $(this).serialize(); // Gather form data
-
-    $.post('reset-submit.php', formData, function (response) {
-        Swal.fire({
-            icon: 'success',
-            title: 'We email you the reset password link.',
-            text: response,
-            confirmButtonText: 'OK'
-        }).then(() => {
-            $('#login_modal').modal('hide'); // Close the modal after success
-            location.href = 'reset-password.php'; // Redirect to the login page or desired location
-        });
-    }).fail(function (xhr, status, error) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: `An error occurred: ${xhr.responseText || error}`,
-            confirmButtonText: 'OK'
-        });
-    });
-});
-</script>
 </body>
 </html>
