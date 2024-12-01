@@ -42,6 +42,7 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="assets/css/sticky-footer-navbar.css" rel="stylesheet">
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.min.css">
 
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <style>
@@ -98,5 +99,6 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
 <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
 <script src="js/bootstrap.min.js"></script>
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
