@@ -20,7 +20,7 @@
 	if ($sql=mysqli_query($conn, "INSERT into school_year (school_year, status) 
 		VALUES ( '$sy', 'No' )") && $sql2=mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('added $sy in the school year list','$user',NOW() )") ){
-	echo "New Scool Year Successfully Added.";
+	
 	} else {
 		echo "New subject failed to record!' .$sql.'";
 		unset($_POST);
@@ -40,8 +40,6 @@
 	}
 
 		if (mysqli_query($conn, $sql)) {
-			echo "Current School Year Successfully Updated.";
-
 		} else {
     echo "Error updating record: " . mysqli_error($conn);
 		}
