@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$fname', '$lname', '$phone', '$pwd', '$user', '$type')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        echo "
               <script>
                   Swal.fire({
                       icon: 'success',
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   });
               </script>";
     } else {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        echo "
               <script>
                   Swal.fire({
                       icon: 'error',
