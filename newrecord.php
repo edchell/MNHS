@@ -31,13 +31,8 @@ $stmt = $conn->prepare("SELECT student_info.FIRSTNAME, student_info.LASTNAME, st
                         WHERE student_year_info.STUDENT_ID = ? AND YEAR = ?");
 $stmt->bind_param("is", $id, $yr);
 if (!$stmt->execute()) {
-    echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Database Error',
-        text: 'Error retrieving student data: " . $stmt->error . "'
-    });
-    </script>";
+    // Handle the error
+    echo "Error: " . $stmt->error;
     exit;
 }
 $result = $stmt->get_result();
@@ -47,13 +42,8 @@ $row = $result->fetch_assoc();
 $stmt1 = $conn->prepare("SELECT FIRSTNAME, LASTNAME FROM student_info WHERE STUDENT_ID=?");
 $stmt1->bind_param("i", $id);
 if (!$stmt1->execute()) {
-    echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Database Error',
-        text: 'Error retrieving student name: " . $stmt1->error . "'
-    });
-    </script>";
+    // Handle the error
+    echo "Error: " . $stmt1->error;
     exit;
 }
 $stmt1_result = $stmt1->get_result();
@@ -63,6 +53,7 @@ if ($name) {
     $fn = $name['FIRSTNAME'];
     $ln = $name['LASTNAME'];
 } else {
+    // Handle case where name is not found
     $fn = "Unknown";
     $ln = "Unknown";
 }
@@ -79,15 +70,11 @@ $history_stmt->execute();
 $stmt->close();
 $history_stmt->close();
 
+
 if ($num_row >= 1) {
     echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Student Year Record already exists!',
-    }).then(() => {
-        window.history.back();
-    });
+    alert('Student Year Record already exists!');
+    location.replace(document.referrer);
     </script>";
 } else {
     // Insert new student record
@@ -120,17 +107,12 @@ if ($num_row >= 1) {
         mysqli_query($conn, "UPDATE student_year_info SET GEN_AVE = '$ga' WHERE SYI_ID = '".$row['SYI_ID']."'");
     }
 
-    echo "<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Student Record Added Successfully!',
-    }).then(() => {
+        echo "<script>
+        alert('Student Record Added Successfully!');
         window.location.href = 'rms.php?page=record&id={$id}';
-    });
-    </script>";
+        </script>";
+        exit;
 }
 
 mysqli_close($conn);
 ?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
