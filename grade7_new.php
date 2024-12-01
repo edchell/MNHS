@@ -1,5 +1,7 @@
 <?php
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+session_start();
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 $lrn=$_POST['lrn'];
@@ -25,7 +27,7 @@ $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '
 			$_SESSION['status'] = "LRN is not available.";
 			$_SESSION['status_code'] = "error";
             header("Location: rms.php?page=grade7");
-            exit(0);
+            exit();
 		}else{
 			$sql = "INSERT INTO student_info
 			 (
@@ -68,12 +70,12 @@ $search_query = mysqli_query($conn, "SELECT * FROM student_info WHERE LRN_NO = '
 			$_SESSION['status'] = "New Student Successfully Added.";
 			$_SESSION['status_code'] = "success";
             header("Location: rms.php?page=grade7");
-            exit(0);
+            exit();
 		} else {
 			$_SESSION['status'] = "Failed to Submit.";
 			$_SESSION['status_code'] = "error";
             header("Location: rms.php?page=grade7");
-            exit(0);
+            exit();
 		}
 
 		}
