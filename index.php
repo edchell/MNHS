@@ -174,6 +174,10 @@ function requestLocation() {
                         icon: 'warning',
                         showConfirmButton: false,
                         allowOutsideClick: false
+                        allowEscapeKey: false, 
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
                     }).then(() => {
                         setTimeout(function() {
                             window.location.reload();
@@ -185,7 +189,11 @@ function requestLocation() {
                         text: "There was an issue accessing your location. Please try again later.",
                         icon: 'error',
                         showConfirmButton: false,
-                        allowOutsideClick: false
+                        allowOutsideClick: false,
+                        allowEscapeKey: false, 
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
                     }).then(() => {
                         setTimeout(function() {
                             window.location.reload();
@@ -200,7 +208,11 @@ function requestLocation() {
             text: "Geolocation is not supported by this browser.",
             icon: 'error',
             showConfirmButton: false,
-            allowOutsideClick: false
+            allowOutsideClick: false,
+            allowEscapeKey: false, 
+            didOpen: () => {
+                Swal.showLoading();
+            }
         }).then(() => {
             setTimeout(function() {
                 window.location.reload();
