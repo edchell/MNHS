@@ -37,7 +37,7 @@ include 'newstudent.php';
             <a href="#" class="text-primary restoreUser" data-id="<?php echo $row['USER_ID']; ?>">
                 <i class="fa fa-repeat" aria-hidden="true"></i> Restore
             </a>
-            <button class="deleteUser" data-id="<?php echo $row['USER_ID']; ?>">Delete</button>
+            <button class="deleteUser btn-danger" data-id="<?php echo $row['USER_ID']; ?>">Delete</button>
       </td>
        </tr>
 
