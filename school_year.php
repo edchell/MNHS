@@ -101,20 +101,6 @@
                 </div>
             `;
             document.getElementById('status').innerHTML = statusHTML;
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You are about to update the school year.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, update it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Automatically submit the form if confirmed
-                    document.querySelector('form').submit();
-                }
-            });
         }
 
         // Add a submit event listener for the form to show a success message on submission
