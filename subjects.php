@@ -36,6 +36,9 @@ include 'newsubject.php';
                   <button onclick="update_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-info">
                     <i class="fa fa-pencil-square" aria-hidden="true"></i> Edit
                   </button>
+                  <button onclick="delete_subject(<?php echo $row['SUBJECT_ID']; ?>)" class="btn btn-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                  </button>
                 </center>
               </td>
             </tr>
@@ -110,4 +113,54 @@ include 'newsubject.php';
 
 <script type="text/javascript">
   new DataTable('#example');
+</script>
+<script>
+  function delete_subject(subject_id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch('subjects_delete.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ subject_id })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            Swal.fire(
+              'Deleted!',
+              'The subject has been deleted.',
+              'success'
+            ).then(() => {
+              // Remove the row from the table
+              document.getElementById("sub" + subject_id).closest('tr').remove();
+            });
+          } else {
+            Swal.fire(
+              'Error!',
+              'Failed to delete subject: ' + data.error,
+              'error'
+            );
+          }
+        })
+        .catch(error => {
+          Swal.fire(
+            'Error!',
+            'An unexpected error occurred.',
+            'error'
+          );
+          console.error('Error:', error);
+        });
+      }
+    });
+  }
 </script>
