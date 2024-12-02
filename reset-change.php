@@ -12,7 +12,8 @@ include 'db.php';
 
 $token = filter_input(INPUT_GET, 'token', FILTER_SANITIZE_STRING);
 if (!$token) {
-    die("Invalid token.");
+    http_response_code(404);
+    exit; 
 }
 
 $token_query = "SELECT * FROM user WHERE TOKEN = ? AND TOKEN_USED = 0";
