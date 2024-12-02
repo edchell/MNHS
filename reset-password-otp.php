@@ -117,6 +117,7 @@ if (isset($_SESSION['email_success']) && $_SESSION['email_success']) {
             Swal.fire({
                 icon: 'success',
                 title: 'OTP sent to your email. Please check your inbox.',
+                allowOutsideClick: false,
                 showConfirmButton: true
             }).then(() => {
                 // Show the second SweetAlert for OTP input
@@ -126,6 +127,7 @@ if (isset($_SESSION['email_success']) && $_SESSION['email_success']) {
                     input: 'text',  // OTP input field
                     inputPlaceholder: 'Enter OTP',
                     showCancelButton: false,
+                    allowOutsideClick: false,
                     confirmButtonText: 'Submit',
                     timer: 30000,  // 30 seconds timer
                     timerProgressBar: true,
