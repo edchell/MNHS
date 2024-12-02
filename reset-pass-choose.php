@@ -81,7 +81,7 @@
 </head>
 <body>
     <div class="login-form" id="login_modal" role="dialog">
-        <center><h3><b>Choose Reset Password</b></h3></center>
+        <center><h3><b>Forgot Password</b></h3></center>
 
         <!-- Reset password links -->
         <div class="reset-links">
