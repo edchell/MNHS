@@ -131,25 +131,6 @@ if (isset($_SESSION['email_success']) && $_SESSION['email_success']) {
                     timerProgressBar: true,
                     didOpen: () => {
                         Swal.showLoading();
-                        
-                        // Create a container element for the timer (optional, just an example)
-                        const timerDisplay = document.createElement('div');
-                        timerDisplay.classList.add('timer-display');
-                        timerDisplay.style.textAlign = 'center';
-                        timerDisplay.style.marginTop = '10px';
-                        Swal.getContent().appendChild(timerDisplay);
-
-                        // Update the timer display every second
-                        const interval = setInterval(() => {
-                            const remainingTime = Swal.getTimerLeft() / 1000; // Get remaining time in seconds
-                            timerDisplay.textContent = `Time remaining: ${Math.ceil(remainingTime)}s`; // Update display
-                        }, 1000);
-
-                        // Clear the interval once the timer finishes
-                        Swal.onTimerComplete = () => {
-                            clearInterval(interval);
-                            timerDisplay.textContent = 'Time is up!';
-                        };
                     },
                     preConfirm: (otp) => {
                         if (!otp) {
@@ -158,7 +139,7 @@ if (isset($_SESSION['email_success']) && $_SESSION['email_success']) {
                         }
                         return otp;  // Return OTP to be sent for processing
                     }
-                });.then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
                         const otp = result.value;  // The OTP entered by the user
                         // Redirect to reset-submit-otp.php with OTP as a query parameter
