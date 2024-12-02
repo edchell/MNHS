@@ -97,7 +97,7 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             </div>
             <div class="form-group">
                 <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Send OTP</button>
-            </dOTPv>
+            </div>
             <div class="form-group text-center">
                 <a href="." class="btn btn-default">Back to login</a>
             </div>
