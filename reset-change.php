@@ -12,8 +12,12 @@ include 'db.php';
 
 $token = filter_input(INPUT_GET, 'token', FILTER_SANITIZE_STRING);
 if (!$token) {
+    // Send a 404 HTTP status code
     http_response_code(404);
-    exit; 
+
+    // Optionally redirect to a custom 404 page
+    header("Location: /404.php"); // Change this path if needed
+    exit; // Ensure no further code is executed
 }
 
 $token_query = "SELECT * FROM user WHERE TOKEN = ? AND TOKEN_USED = 0";
