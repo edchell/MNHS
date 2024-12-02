@@ -146,7 +146,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 <button type="submit" name="login" id="login" class="btn btn-primary btn-block" disabled>Login</button>
             </div>
             <div class="form-group text-center">
-                <a href="reset-password.php" class="btn btn-link">Forgot password?</a>
+                <a href="reset-pass-choose.php" class="btn btn-link">Forgot password?</a>
             </div>
         </form>
     </div>
