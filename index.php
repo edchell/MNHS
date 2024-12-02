@@ -12,8 +12,6 @@ if (strpos($request, '.php') !== false) {
     exit();
 }
 
-$isScriptEnabled = false;
-
 // Display SweetAlert notifications if set in the session.
 if(isset($_SESSION['status']) && $_SESSION['status'] !='')
 {
@@ -152,7 +150,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             </div>
         </form>
     </div>
-    <?php if ($isScriptEnabled): ?>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const loginForm = document.querySelector('form');
@@ -236,7 +233,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             });
         });
     </script>
-    <?php endif; ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
