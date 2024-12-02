@@ -75,11 +75,15 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             margin-bottom: 10px;
             text-align: center;
         }
+        .back {
+            margin-top: -10px;
+            margin-left: -10px;
+        }
     </style>
 </head>
 <body>
     <div class="login-form" id="login_modal" role="dialog">
-        <div class="text-start">
+        <div class="text-start back">
             <a href="reset-pass-choose.php" class="btn btn-primary">Back</a>
         </div>
         <center><h3><b>Send Reset Password</b></h3></center>
