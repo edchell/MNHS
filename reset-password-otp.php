@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+$request = $_SERVER['REQUEST_URI'];
+
+if (strpos($request, '.php') !== false) {
+    // Redirect to remove .php extension
+    $new_url = str_replace('.php', '', $request);
+    header("Location: $new_url", true, 301);
+    exit();
+}
+
+// Display SweetAlert notifications if set in the session.
+if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+{
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            title: "<?php echo $_SESSION['status']; ?>",
+            icon: "<?php echo $_SESSION['status_code']; ?>",
+            confirmButtonText: "OK"
+        });
+    });
+    </script>
+    <?php
+    unset($_SESSION['status']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,51 +75,26 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        .reset-links {
-            margin-top: 20px;
-        }
-        .reset-links a {
-            display: block;
-            margin: 5px 0;
-            text-decoration: none;
-            color: #000;
-            text-align: center;
-        }
-        .reset-links a:hover {
-            text-decoration: none;
-        }
-        .reset-link {
-        	border: 1px solid rgba(0, 0, 0, 0.3);
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .reset-otp {
-        	border: 1px solid rgba(0, 0, 0, 0.3);
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .back-login {
-            text-align: center;
-        }
-        .back-login a {
-            margin-top: 8%;
-        }
     </style>
 </head>
 <body>
     <div class="login-form" id="login_modal" role="dialog">
-        <center><h3><b>Forgot Password</b></h3></center>
-
-        <!-- Reset password links -->
-        <div class="reset-links">
-            <a href="reset-password.php" class="reset-link btn btn-default"><b>Reset via Email Link</b><br><small>Receive a code via email</small></a>
-            <a href="reset-password-otp.php" class="reset-otp btn btn-default"><b>Reset via Email OTP</b><br><small>Receive a code via email</small></a>
-        </div>
-        <div class="back-login">
-        	<a href="." class="btn btn-primary">Back to login</a>
-        </div>
+        <center><h3><b>Send Reset Password</b></h3></center>
+        <form class="form-horizontal" method="post" action="reset-submit.php">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+            <div class="form-group text-center">
+                <a href="." class="btn btn-default">Back to login</a>
+            </div>
+        </form>
     </div>
 
 <script src="assets/js/jquery.min.js"></script>
