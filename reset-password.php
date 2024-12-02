@@ -79,6 +79,9 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
 </head>
 <body>
     <div class="login-form" id="login_modal" role="dialog">
+        <div class="text-start">
+            <a href="reset-pass-choose.php" class="btn btn-primary">Back</a>
+        </div>
         <center><h3><b>Send Reset Password</b></h3></center>
         <form class="form-horizontal" method="post" action="reset-submit.php">
             <div class="form-group">
