@@ -133,22 +133,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             text-decoration: none;
             cursor: pointer;
         }
-
-        .agree-btn {
-            display: block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .agree-btn:hover {
-            background-color: #45a049;
-        }
     </style>
 </head>
 <body>
@@ -284,9 +268,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                             <p style="margin-bottom:5px;font-weight:bold;">Regulatory Authority</p>
                             <p style="magin-bottom:5px;">The <b>National Privacy Commission (NPC)</b> oversees the enforcement of the DPA and issues guidelines and advisories to ensure compliance.</p>
                 </div>
-
-                <!-- Agree button -->
-                <button id="agreeBtn" class="agree-btn">I Agree</button>
             </div>
         </div>
     <script>
@@ -381,9 +362,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // Get the "I Agree" button
-        var agreeBtn = document.getElementById("agreeBtn");
-
         // When the user clicks the link, open the modal
         link.onclick = function(event) {
             event.preventDefault(); // Prevent the default link behavior
@@ -392,12 +370,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks the "I Agree" button, close the modal
-        agreeBtn.onclick = function() {
-            alert("You have accepted the Terms and Conditions.");
             modal.style.display = "none";
         }
 
