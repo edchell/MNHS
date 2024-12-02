@@ -70,6 +70,9 @@ if (strpos($request, '.php') !== false) {
         .reset-links a:hover {
             text-decoration: underline;
         }
+        .reset-link {
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
