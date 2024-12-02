@@ -252,8 +252,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 });
             }
         });
-    </script>
-    <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             const togglePassword = document.querySelector('#toggle-password');
             const passwordField = document.querySelector('#pwd');
