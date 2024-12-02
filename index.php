@@ -108,7 +108,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             margin-right: 40%;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Width of the modal */
+            width: 60%; /* Width of the modal */
             max-width: 600px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             overflow-y: auto; /* Makes content scrollable if too long */
