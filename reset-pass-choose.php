@@ -83,7 +83,7 @@
             <a href="reset-password-otp.php" class="reset-otp btn btn-default"><b>Reset via Email OTP</b><br><small>Receive a code via email</small></a>
         </div>
         <div class="back-login">
-        	<a href="." class="btn btn-primary">Back to login</a>
+        	<a href="." class="btn btn-primary text-center">Back to login</a>
         </div>
     </div>
 
