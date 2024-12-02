@@ -53,7 +53,7 @@
             display: block;
             margin: 5px 0;
             text-decoration: none;
-            color: #007bff;
+            color: #000;
             text-align: center;
             background: whitesmoke;
         }
