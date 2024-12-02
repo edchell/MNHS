@@ -76,8 +76,8 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             text-align: center;
         }
         .back {
-            margin-top: -13px;
-            margin-left: -13px;
+            margin-top: -15px;
+            margin-left: -15px;
         }
     </style>
 </head>
