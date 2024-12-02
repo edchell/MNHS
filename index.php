@@ -197,12 +197,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 </div>
             </div>
             <div class="form-group">
-                <div class="input-group">
-                    <input type="checkbox" class="form-control"> I agree to the
-                    <a href="#" id="openModalLink">Terms and Condition</a>
-                </div>
-            </div>
-            <div class="form-group">
                 <label>
                     <input type="checkbox"> I agree to the
                     <a href="#" id="openModalLink">Terms and Condition</a>
