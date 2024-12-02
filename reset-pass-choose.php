@@ -9,23 +9,6 @@ if (strpos($request, '.php') !== false) {
     header("Location: $new_url", true, 301);
     exit();
 }
-
-// Display SweetAlert notifications if set in the session.
-if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-{
-    ?>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        Swal.fire({
-            title: "<?php echo $_SESSION['status']; ?>",
-            icon: "<?php echo $_SESSION['status_code']; ?>",
-            confirmButtonText: "OK"
-        });
-    });
-    </script>
-    <?php
-    unset($_SESSION['status']);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,26 +58,29 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             margin-bottom: 10px;
             text-align: center;
         }
+        .reset-links {
+            margin-top: 20px;
+        }
+        .reset-links a {
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .reset-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="login-form" id="login_modal" role="dialog">
-        <center><h3><b>Send Reset Password</b></h3></center>
-        <form class="form-horizontal" method="post" action="reset-submit.php">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" autocomplete="off" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Submit</button>
-            </div>
-            <div class="form-group text-center">
-                <a href="." class="btn btn-default">Back to login</a>
-            </div>
-        </form>
+        <center><h3><b>Choose Reset Password</b></h3></center>
+
+        <!-- Reset password links -->
+        <div class="reset-links">
+            <a href="reset-password-link.php" class="reset-link">Reset Password via Link</a>
+            <a href="reset-password-otp.php" class="reset-otp">Reset Password via OTP</a>
+        </div>
     </div>
 
 <script src="assets/js/jquery.min.js"></script>
