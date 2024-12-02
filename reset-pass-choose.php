@@ -1,15 +1,3 @@
-<?php
-session_start();
-
-$request = $_SERVER['REQUEST_URI'];
-
-if (strpos($request, '.php') !== false) {
-    // Redirect to remove .php extension
-    $new_url = str_replace('.php', '', $request);
-    header("Location: $new_url", true, 301);
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,10 +56,23 @@ if (strpos($request, '.php') !== false) {
             color: #007bff;
         }
         .reset-links a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
         .reset-link {
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        	border: 1px solid rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            padding-top: 18px;
+            padding-bottom: 18px;
+            border-radius: 10px;
+        }
+        .reset-otp {
+        	border: 1px solid rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            padding-top: 18px;
+            padding-bottom: 18px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -81,8 +82,11 @@ if (strpos($request, '.php') !== false) {
 
         <!-- Reset password links -->
         <div class="reset-links">
-            <a href="reset-password-link.php" class="reset-link">Reset Password via Link</a>
-            <a href="reset-password-otp.php" class="reset-otp">Reset Password via OTP</a>
+            <a href="reset-password-link.php" class="reset-link"><b>Reset via Email Link</b><br><small>Receive a code via email</small></a>
+            <a href="reset-password-otp.php" class="reset-otp"><b>Reset via Email OTP</b><br><small>Receive a code via email</small></a>
+        </div>
+        <div class="back-login">
+        	<a href="." class="btn btn-default">Back to login</a>
         </div>
     </div>
 
