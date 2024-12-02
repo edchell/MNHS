@@ -56,6 +56,7 @@
             color: #000;
             text-align: center;
             background: whitesmoke;
+            margin-bottom: 5px;
         }
         .reset-links a:hover {
             text-decoration: none;
