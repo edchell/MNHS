@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $request = $_SERVER['REQUEST_URI'];
 
 if (strpos($request, '.php') !== false) {
@@ -7,21 +9,34 @@ if (strpos($request, '.php') !== false) {
     header("Location: $new_url", true, 301);
     exit();
 }
+
+// Check if the email is stored in the session (after OTP verification)
+if (!isset($_SESSION['email_for_reset'])) {
+    header("Location: reset-password-otp.php"); // Redirect if the user didn't verify OTP
+    exit(0);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Student Grading System Login Page">
+    <meta name="description" content="Student Grading System">
     <meta name="author" content="Your Name">
     <link rel="icon" href="images/logo.jpg">
+
     <title>Student Grading System</title>
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="asset/css/style.css" rel="stylesheet">
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="assets/css/sticky-footer-navbar.css" rel="stylesheet">
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.min.css">
+
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <style>
         body {
             margin: 0;
@@ -38,16 +53,39 @@ if (strpos($request, '.php') !== false) {
             border-radius: 20px;
             padding: 30px;
             width: 400px;
-            margin-right: 150px;
+            margin-right: 150px; /* Add space from the right edge */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .error-message {
+            display: none;
+            border-radius: 5px;
+            background-color: #e62a2a;
+            padding: 10px;
+            color: white;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .back {
+            margin-top: -18px;
+            margin-left: -15px;
         }
     </style>
 </head>
 <body>
-    <div class="login-form">
-        <center><h3><b>Reset Password</b></h3></center>
-        <form class="form-horizontal" method="post" action="reset-submit.php">
-            <input type="hidden" name="email" value="<?php echo htmlspecialchars($user['USER']); ?>">
+<div class="login-form" id="login_modal" role="dialog">
+        <div class="text-start back">
+            <a href="reset-pass-choose.php" class="btn btn-primary">Back</a>
+        </div>
+        <center><h3><b>Change Your Password</b></h3></center>
+        <?php if (isset($_SESSION['status'])): ?>
+            <div class="alert alert-<?php echo $_SESSION['status_code']; ?>" role="alert">
+                <?php
+                echo $_SESSION['status']; // Display the status message
+                unset($_SESSION['status']); // Clear status message after displaying it
+                ?>
+            </div>
+        <?php endif; ?>
+        <form class="form-horizontal" method="POST" action="reset-submit-otp.php">
             <div class="form-group">
                 <label for="new_password">New Password:</label>
                 <div class="input-group">
@@ -59,23 +97,28 @@ if (strpos($request, '.php') !== false) {
                 </div>
             </div>
             <div class="form-group">
-                <label for="con_password">Confirm Password:</label>
+                <label for="confirm_password">Confirm Password:</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    <input type="password" id="con_password" name="con_password" class="form-control" placeholder="Confirm Password" required>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
                     <span class="input-group-addon toggle-password" style="cursor: pointer;">
                       <i class="fa fa-eye"></i>
                     </span>
                 </div>
             </div>
-            <button type="submit" name="change" class="btn btn-primary btn-block">Change Password</button>
+            <div class="form-group">
+                <button type="submit" name="submit_password" class="btn btn-primary btn-block">Change Password</button>
+            </div>
+            <div class="form-group text-center">
+                <a href="." class="btn btn-default">Back to login</a>
+            </div>
         </form>
-        <br>
-        <div class="text-center">
-            <a href="." class="btn btn-default">Back to Login</a>
         </div>
-    </div>
     <script src="assets/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const togglePasswordIcons = document.querySelectorAll('.toggle-password');

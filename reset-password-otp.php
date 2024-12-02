@@ -119,8 +119,33 @@ if (isset($_SESSION['email_success']) && $_SESSION['email_success']) {
                 title: 'OTP sent to your email. Please check your inbox.',
                 showConfirmButton: true
             }).then(() => {
-                // Show the OTP form after login success
-                document.getElementById('otp-form').style.display = 'block';
+                // Show the second SweetAlert for OTP input
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Enter OTP',
+                    input: 'text',  // OTP input field
+                    inputPlaceholder: 'Enter OTP',
+                    showCancelButton: false,
+                    confirmButtonText: 'Submit',
+                    timer: 30000,  // 30 seconds timer
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    },
+                    preConfirm: (otp) => {
+                        if (!otp) {
+                            Swal.showValidationMessage('OTP is required');
+                            return false;
+                        }
+                        return otp;  // Return OTP to be sent for processing
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const otp = result.value;  // The OTP entered by the user
+                        // Redirect to reset-submit-otp.php with OTP as a query parameter
+                        window.location.href = `reset-submit-otp.php?otp=${otp}`;
+                    }
+                });
             });
         });
     </script>
@@ -128,14 +153,5 @@ if (isset($_SESSION['email_success']) && $_SESSION['email_success']) {
     unset($_SESSION['email_success']);
 }
 ?>
-
-<!-- OTP Form -->
-<div id="otp-form" style="display: none;">
-    <form method="POST" action="verify_otp.php">
-        <label for="otp">Enter OTP:</label>
-        <input type="text" id="otp" name="otp" required />
-        <button type="submit">Submit</button>
-    </form>
-</div>
 </body>
 </html>
