@@ -91,6 +91,63 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             margin-bottom: 10px;
             text-align: center;
         }
+        #termsModal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Width of the modal */
+            max-width: 600px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Makes content scrollable if too long */
+            max-height: 80vh; /* Prevents the modal from becoming too tall */
+        }
+
+        .terms-text {
+            max-height: 300px;
+            overflow-y: auto; /* Makes the terms text scrollable */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .agree-btn {
+            display: block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .agree-btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -141,8 +198,8 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             </div>
             <div class="form-group">
                 <label>
-                    <input type="checkbox" id="terms-checkbox" class="mr-2"> I agree to the 
-                    <a href="javascript:void(0);" class="terms-link" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a>
+                    <input type="checkbox"> I agree to the
+                    <a href="#" id="openModalLink">Terms and Condition</a>
                 </label>
             </div>
             <div class="form-group">
@@ -155,33 +212,26 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 <a href="reset-pass-choose.php" class="btn btn-link">Forgot password?</a>
             </div>
         </form>
-    </div>
-    <!-- Terms and Conditions Modal -->
-    <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal Structure -->
+        <div id="termsModal" class="modal">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h4>1. Terms of Use</h4>
-                    <p>By accessing this system, you agree to the terms and conditions set forth...</p>
+                <span class="close">&times;</span>
+                <h2>Terms and Conditions</h2>
+                <div class="terms-text">
+                    <p><strong>1. Introduction</strong></p>
+                    <p>These Terms and Conditions govern your use of our website. By using our site, you agree to these terms...</p>
+                    
+                    <p><strong>2. Privacy Policy</strong></p>
+                    <p>We respect your privacy and handle your personal data with care...</p>
 
-                    <h4>2. User Responsibilities</h4>
-                    <p>You are responsible for maintaining the confidentiality of your account...</p>
-
-                    <h4>3. Data Privacy</h4>
-                    <p>We value your privacy and ensure that your personal data is securely stored...</p>
-
-                    <!-- Add more terms here as needed -->
+                    <p><strong>3. User Responsibilities</strong></p>
+                    <p>As a user, you agree not to engage in illegal activities on our platform...</p>
+                    
+                    <p>For full details, visit our <a href="terms.html" target="_blank">Terms and Conditions page</a>.</p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
-                </div>
+
+                <!-- Agree button -->
+                <button id="agreeBtn" class="agree-btn">I Agree</button>
             </div>
         </div>
     </div>
@@ -252,12 +302,11 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 });
             }
         });
-
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const togglePassword = document.querySelector('#toggle-password');
             const passwordField = document.querySelector('#pwd');
-            const termsCheckbox = document.querySelector('#terms-checkbox');
-            const loginButton = document.querySelector('#login');
 
             togglePassword.addEventListener('click', function () {
                 const type = passwordField.type === 'password' ? 'text' : 'password';
@@ -267,15 +316,44 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 this.querySelector('i').classList.toggle('fa-eye');
                 this.querySelector('i').classList.toggle('fa-eye-slash');
             });
-
-            // Enable login button only if checkbox is checked
-            termsCheckbox.addEventListener('change', function () {
-                loginButton.disabled = !this.checked;
-            });
         });
+
+        // Get the modal
+        var modal = document.getElementById("termsModal");
+
+        // Get the link that opens the modal
+        var link = document.getElementById("openModalLink");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Get the "I Agree" button
+        var agreeBtn = document.getElementById("agreeBtn");
+
+        // When the user clicks the link, open the modal
+        link.onclick = function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            modal.style.display = "block"; // Show the modal
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks the "I Agree" button, close the modal
+        agreeBtn.onclick = function() {
+            alert("You have accepted the Terms and Conditions.");
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
