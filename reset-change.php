@@ -12,12 +12,8 @@ include 'db.php';
 
 $token = filter_input(INPUT_GET, 'token', FILTER_SANITIZE_STRING);
 if (!$token) {
-    // Send a 404 HTTP status code
     http_response_code(404);
-
-    // Optionally redirect to a custom 404 page
-    header("Location: /404.php"); // Change this path if needed
-    exit; // Ensure no further code is executed
+    exit;
 }
 
 $token_query = "SELECT * FROM user WHERE TOKEN = ? AND TOKEN_USED = 0";
@@ -27,7 +23,8 @@ mysqli_stmt_execute($stmt);
 $token_result = mysqli_stmt_get_result($stmt);
 
 if (!$token_result || mysqli_num_rows($token_result) === 0) {
-    die("Invalid or expired token.");
+    http_response_code(404);
+    exit;
 }
 
 $user = mysqli_fetch_assoc($token_result);
