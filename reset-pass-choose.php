@@ -55,6 +55,7 @@
             text-decoration: none;
             color: #007bff;
             text-align: center;
+            font-size: 15px;
         }
         .reset-links a:hover {
             text-decoration: none;
