@@ -236,7 +236,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 </div>
             </div>
             <div class="form-group">
-                <label for="termsCheckbox">
+                <label for="exampleCheck1">
                     <input type="checkbox" id="exampleCheck1"> I agree to the <a href="#" id="openModalLink" data-bs-toggle="modal" data-bs-target="#myModal">Terms and Conditions</a>
                 </label>
             </div>
