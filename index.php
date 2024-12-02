@@ -212,8 +212,9 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 <a href="reset-pass-choose.php" class="btn btn-link">Forgot password?</a>
             </div>
         </form>
-        <!-- Modal Structure -->
-        <div id="termsModal" class="modal">
+    </div>
+    <!-- Modal Structure -->
+    <div id="termsModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Terms and Conditions</h2>
@@ -234,7 +235,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 <button id="agreeBtn" class="agree-btn">I Agree</button>
             </div>
         </div>
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const loginForm = document.querySelector('form');
