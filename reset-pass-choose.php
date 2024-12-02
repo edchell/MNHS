@@ -73,6 +73,8 @@
         }
         .back-login {
             text-align: center;
+        }
+        .back-login a {
             margin-top: 5px;
         }
     </style>
