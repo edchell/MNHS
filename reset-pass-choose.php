@@ -61,14 +61,14 @@
         .reset-link {
         	border: 1px solid rgba(0, 0, 0, 0.3);
             box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-            padding: 15px;
+            padding: 10px;
             padding-bottom: 18px;
             border-radius: 10px;
         }
         .reset-otp {
         	border: 1px solid rgba(0, 0, 0, 0.3);
             box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-            padding: 15px;
+            padding: 10px;
             padding-bottom: 18px;
             border-radius: 10px;
         }
