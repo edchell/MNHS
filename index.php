@@ -97,7 +97,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             z-index: 1; /* Sit on top */
             left: 0;
             top: 0;
-            right: 20%;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
@@ -106,6 +105,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
         .modal-content {
             background-color: white;
             margin: 10% auto;
+            margin-right: 20%;
             padding: 20px;
             border: 1px solid #888;
             width: 80%; /* Width of the modal */
