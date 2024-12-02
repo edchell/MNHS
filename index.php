@@ -156,6 +156,35 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             </div>
         </form>
     </div>
+    <!-- Terms and Conditions Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>1. Terms of Use</h4>
+                    <p>By accessing this system, you agree to the terms and conditions set forth...</p>
+
+                    <h4>2. User Responsibilities</h4>
+                    <p>You are responsible for maintaining the confidentiality of your account...</p>
+
+                    <h4>3. Data Privacy</h4>
+                    <p>We value your privacy and ensure that your personal data is securely stored...</p>
+
+                    <!-- Add more terms here as needed -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const loginForm = document.querySelector('form');
@@ -228,6 +257,8 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
         document.addEventListener('DOMContentLoaded', function () {
             const togglePassword = document.querySelector('#toggle-password');
             const passwordField = document.querySelector('#pwd');
+            const termsCheckbox = document.querySelector('#terms-checkbox');
+            const loginButton = document.querySelector('#login');
 
             togglePassword.addEventListener('click', function () {
                 const type = passwordField.type === 'password' ? 'text' : 'password';
@@ -236,6 +267,11 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 // Toggle eye icon
                 this.querySelector('i').classList.toggle('fa-eye');
                 this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+
+            // Enable login button only if checkbox is checked
+            termsCheckbox.addEventListener('change', function () {
+                loginButton.disabled = !this.checked;
             });
         });
     </script>
