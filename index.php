@@ -142,7 +142,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             <div class="form-group">
                 <label>
                     <input type="checkbox" id="terms-checkbox" class="mr-2"> I agree to the 
-                    <a href="javascript:void(0);" class="terms-link" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a>
+                    <a href="javascript:void(0);" class="terms-link" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
                 </label>
             </div>
             <div class="form-group">
