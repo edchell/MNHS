@@ -12,7 +12,7 @@ if (strpos($request, '.php') !== false) {
     exit();
 }
 
-$isScriptEnabled = true;
+$isScriptEnabled = false;
 
 // Display SweetAlert notifications if set in the session.
 if(isset($_SESSION['status']) && $_SESSION['status'] !='')
