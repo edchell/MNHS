@@ -75,11 +75,18 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             margin-bottom: 10px;
             text-align: center;
         }
+        .back {
+            margin-top: -18px;
+            margin-left: -15px;
+        }
     </style>
 </head>
 <body>
     <div class="login-form" id="login_modal" role="dialog">
-        <center><h3><b>Send Reset Password</b></h3></center>
+        <div class="text-start back">
+            <a href="reset-pass-choose.php" class="btn btn-primary">Back</a>
+        </div>
+        <center><h3><b>Send Reset OTP</b></h3></center>
         <form class="form-horizontal" method="post" action="reset-submit.php">
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -89,8 +96,8 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Submit</button>
-            </div>
+                <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Send OTP</button>
+            </dOTPv>
             <div class="form-group text-center">
                 <a href="." class="btn btn-default">Back to login</a>
             </div>
