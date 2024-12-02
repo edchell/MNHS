@@ -81,8 +81,8 @@
 
         <!-- Reset password links -->
         <div class="reset-links">
-            <a href="reset-password-link.php" class="reset-link"><h5><b>Reset via Email Link</b></h5><br><small>Receive a code via email</small></a>
-            <a href="reset-password-otp.php" class="reset-otp"><h5><b>Reset via Email OTP</b></h5><br><small>Receive a code via email</small></a>
+            <a href="reset-password-link.php" class="reset-link"><b>Reset via Email Link</b><br><small>Receive a code via email</small></a>
+            <a href="reset-password-otp.php" class="reset-otp"><b>Reset via Email OTP</b><br><small>Receive a code via email</small></a>
         </div>
         <div class="back-login">
         	<a href="." class="btn btn-default">Back to login</a>
