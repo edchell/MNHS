@@ -158,7 +158,7 @@ if (isset($_POST['submit_password'])) {
         $_SESSION['status'] = "Your password has been successfully updated.";
         $_SESSION['status_code'] = "success";
         unset($_SESSION['email_for_reset']);  // Clear the email session after password reset
-        header("Location: reset-password-otp.php");  // Redirect to login page
+        header("Location: .");  // Redirect to login page
         exit(0);
     } else {
         // Something went wrong with the database update
