@@ -86,7 +86,7 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
         <div class="text-start back">
             <a href="reset-pass-choose.php" class="btn btn-primary">Back</a>
         </div>
-        <center><h3><b>Send Reset Password</b></h3></center>
+        <center><h3><b>Send Reset Link</b></h3></center>
         <form class="form-horizontal" method="post" action="reset-submit.php">
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -96,7 +96,7 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" id="login" name="submit" class="btn btn-primary btn-block">Send Link</button>
             </div>
             <div class="form-group text-center">
                 <a href="." class="btn btn-default">Back to login</a>
