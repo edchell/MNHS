@@ -87,7 +87,7 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
             <a href="reset-pass-choose.php" class="btn btn-primary">Back</a>
         </div>
         <center><h3><b>Send Reset OTP</b></h3></center>
-        <form class="form-horizontal" method="post" action="reset-submit.php">
+        <form class="form-horizontal" method="post" action="reset-submit-otp.php">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <div class="input-group">
@@ -109,5 +109,33 @@ if(isset($_SESSION['status']) && $_SESSION['status'] !='')
 <script src="js/bootstrap.min.js"></script>
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<?php
+if (isset($_SESSION['email_success']) && $_SESSION['email_success']) {
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'OTP sent to your email. Please check your inbox.',
+                showConfirmButton: true
+            }).then(() => {
+                // Show the OTP form after login success
+                document.getElementById('otp-form').style.display = 'block';
+            });
+        });
+    </script>
+    <?php
+    unset($_SESSION['email_success']);
+}
+?>
+
+<!-- OTP Form -->
+<div id="otp-form" style="display: none;">
+    <form method="POST" action="verify_otp.php">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required />
+        <button type="submit">Submit</button>
+    </form>
+</div>
 </body>
 </html>
