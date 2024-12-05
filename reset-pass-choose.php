@@ -1,3 +1,15 @@
+<?php
+// Redirect any URLs containing '.php' to remove the extension.
+$request = $_SERVER['REQUEST_URI'];
+if (strpos($request, '.php') !== false) {
+    $new_url = str_replace('.php', '', strtok($request, '?'));
+    if ($_SERVER['QUERY_STRING']) {
+        $new_url .= '?' . $_SERVER['QUERY_STRING'];
+    }
+    header("Location: $new_url", true, 301);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
