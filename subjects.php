@@ -30,7 +30,7 @@ include 'newsubject.php';
           ?>
             <tr>
               <td style="display:none;"><?php echo htmlspecialchars($row['SUBJECT_ID']); ?></td>
-              <td class="auto-id" style="text-align: center;"></td>
+              <td class="auto-id"></td>
               <td data-id="<?php echo $row['SUBJECT_ID']; ?>" id="sub<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['SUBJECT']); ?></td>
               <td id="des<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['DESCRIPTION']); ?></td>
               <td>
