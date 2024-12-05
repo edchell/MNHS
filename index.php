@@ -380,6 +380,39 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
             }
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginButton = document.querySelector('#login');
+            const termsCheckbox = document.querySelector('input[type="checkbox"]');
+
+            // Add click event listener to the login button
+            loginButton.addEventListener('click', function () {
+                // Automatically check the Terms and Condition checkbox
+                if (termsCheckbox) {
+                    termsCheckbox.checked = true;
+                }
+            });
+            // Modal handling for terms
+            var modal = document.getElementById("termsModal");
+            var link = document.getElementById("openModalLink");
+            var span = document.getElementsByClassName("close")[0];
+
+            link.onclick = function(event) {
+                event.preventDefault();
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
