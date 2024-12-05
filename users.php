@@ -63,6 +63,7 @@ $(document).ready(function() {
                     <table id="example" class="display" style="width:100%">
                         <thead>
                             <tr id="heads">
+                                <th style="width:5%">ID</th>
                                 <th style="width:20%">Name</th>
                                 <th style="width:10%">User</th>
                                 <th style="width:10%">Type</th>
@@ -76,6 +77,7 @@ $(document).ready(function() {
                             while ($row = mysqli_fetch_assoc($sql)) {
                             ?>
                                 <tr>
+                                    <td class="auto-id" style="text-align: center;"></td>
                                     <td><?php echo htmlspecialchars($row['FIRSTNAME'] . " " . $row['LASTNAME']); ?></td>
                                     <td><?php echo htmlspecialchars($row['USER']); ?></td>
                                     <td><?php echo htmlspecialchars($row['USER_TYPE']); ?></td>
@@ -271,4 +273,14 @@ $(document).on('submit', 'form[action="edit_user.php"]', function (event) {
             pwdInput.type = this.checked ? 'text' : 'password';
         });
     });
+</script>
+<script>
+// JavaScript to auto-generate ID numbers in the first column
+window.onload = function() {
+    var rows = document.querySelectorAll("#example tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+        var idCell = rows[i].querySelector(".auto-id");
+        idCell.textContent = i + 1; // Auto generate ID based on row number
+    }
+};
 </script>
