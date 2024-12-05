@@ -202,7 +202,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <div id="termsModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h3 style="margin-bottom:5px;">General Terms and Conditions for DPA of 2012 Compliance</h3>
+                <h3 style="margin-bottom:5px;">General Terms and Conditions for Data Privacy Act of 2012 Compliance</h3>
                 <div class="terms-text">
                             <p style="margin-bottom:5px;font-weight:bold;">1. Principles of Data Privacy</p>
                             <p style="magin-bottom:5px;">Organizations must adhere to these principles when handling personal data:</p>
