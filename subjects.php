@@ -15,7 +15,7 @@ include 'newsubject.php';
         <thead>
           <tr>
             <th style="display:none;"></th>
-            <th style="width:5%">ID</th>
+            <th style="width:10%">ID</th>
             <th style="width:20%">Subjects</th>
             <th style="width:10%">Description</th>
             <th style="width:10%"></th>
