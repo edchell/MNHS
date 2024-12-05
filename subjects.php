@@ -30,7 +30,7 @@ include 'newsubject.php';
           ?>
             <tr>
               <td style="display:none;"><?php echo htmlspecialchars($row['SUBJECT_ID']); ?></td>
-              <td class="auto-id"></td>
+              <td class="auto-id" style="text-align: center;"></td>
               <td data-id="<?php echo $row['SUBJECT_ID']; ?>" id="sub<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['SUBJECT']); ?></td>
               <td id="des<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['DESCRIPTION']); ?></td>
               <td>
@@ -165,14 +165,4 @@ include 'newsubject.php';
       }
     });
   }
-</script>
-<script>
-// JavaScript to auto-generate ID numbers in the first column
-window.onload = function() {
-    var rows = document.querySelectorAll("#example tbody tr");
-    for (var i = 0; i < rows.length; i++) {
-        var idCell = rows[i].querySelector(".auto-id");
-        idCell.textContent = i + 1; // Auto generate ID based on row number
-    }
-};
 </script>
