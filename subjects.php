@@ -14,7 +14,8 @@ include 'newsubject.php';
       <table id="example" class="display" style="width:100%">
         <thead>
           <tr>
-            <th style="width:10%">ID</th>
+            <th style="display:none;"></th>
+            <th style="width:5%">ID</th>
             <th style="width:20%">Subjects</th>
             <th style="width:10%">Description</th>
             <th style="width:10%"></th>
@@ -28,7 +29,8 @@ include 'newsubject.php';
           while ($row = mysqli_fetch_assoc($sql)) {
           ?>
             <tr>
-              <td style="text-align:center;"><?php echo htmlspecialchars($row['SUBJECT_ID']); ?></td>
+              <td style="display:none;"><?php echo htmlspecialchars($row['SUBJECT_ID']); ?></td>
+              <td class="auto-id" style="text-align: center;"></td>
               <td data-id="<?php echo $row['SUBJECT_ID']; ?>" id="sub<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['SUBJECT']); ?></td>
               <td id="des<?php echo $row['SUBJECT_ID']; ?>"><?php echo htmlspecialchars($row['DESCRIPTION']); ?></td>
               <td>
@@ -163,4 +165,14 @@ include 'newsubject.php';
       }
     });
   }
+</script>
+<script>
+// JavaScript to auto-generate ID numbers in the first column
+window.onload = function() {
+    var rows = document.querySelectorAll("#example tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+        var idCell = rows[i].querySelector(".auto-id");
+        idCell.textContent = i + 1; // Auto generate ID based on row number
+    }
+};
 </script>
