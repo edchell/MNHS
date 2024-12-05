@@ -62,8 +62,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <link href="asset/css/style.css" rel="stylesheet">
     <link href="asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.0/dist/sweetalert2.min.css">
-    <!-- Include the reCAPTCHA v3 script -->
-    <script src="https://www.google.com/recaptcha/api.js?render=y6LcO9JIqAAAAAL7DZAX_JTPZmxSUm0osvx5rSxaE"></script> 
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
     <style>
         body {
             margin: 0;
@@ -164,7 +163,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                             });
                         </script>
                     <?php endif; ?>
-        <form class="form-horizontal" method="post" action="connect.php" id="loginForm">
+        <form class="form-horizontal" method="post" action="connect.php">
             <div class="form-group">
                 <label for="user">Email:</label>
                 <div class="input-group">
@@ -189,12 +188,14 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                 </label>
             </div>
             <div class="form-group">
+                <div class="h-captcha" data-sitekey="cdbe03de-503a-4774-952a-8ddebc4c571e"></div>
+            </div>
+            <div class="form-group">
                 <button type="submit" name="login" id="login" class="btn btn-primary btn-block" disabled>Login</button>
             </div>
             <div class="form-group text-center">
                 <a href="reset-pass-choose.php" class="btn btn-link">Forgot password?</a>
             </div>
-            <input type="hidden" name="recaptcha_token" id="recaptcha_token">
         </form>
     </div>
     <!-- Modal Structure -->
@@ -411,16 +412,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
                     modal.style.display = "none";
                 }
             }
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Execute reCAPTCHA and add the token to the form
-            grecaptcha.ready(function () {
-                grecaptcha.execute('6LcO9JIqAAAAAL7DZAX_JTPZmxSUm0osvx5rSxaE', { action: 'login' }).then(function (token) {
-                    document.getElementById('recaptcha_token').value = token;
-                });
-            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
