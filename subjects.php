@@ -16,9 +16,9 @@ include 'newsubject.php';
           <tr>
             <th style="display:none;"></th>
             <th style="width:10%">ID</th>
-            <th style="width:50%">Subjects</th>
-            <th style="width:50%">Description</th>
-            <th style="width:10%"></th>
+            <th style="width:30%">Subjects</th>
+            <th style="width:30%">Description</th>
+            <th style="width:20%"></th>
           </tr>
         </thead>
         <tbody>
@@ -165,4 +165,14 @@ include 'newsubject.php';
       }
     });
   }
+</script>
+<script>
+// JavaScript to auto-generate ID numbers in the first column
+window.onload = function() {
+    var rows = document.querySelectorAll("#example tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+        var idCell = rows[i].querySelector(".auto-id");
+        idCell.textContent = i + 1; // Auto generate ID based on row number
+    }
+};
 </script>
