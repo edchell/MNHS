@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-// Set the timeout duration (in seconds) — 30 seconds
-$timeout_duration = 30; // 30 seconds
+$timeout_duration = 1800; // 30 minutes
 
 // Check if the session exists and if the user has an ID
 if (isset($_SESSION['ID'])) {
