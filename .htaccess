@@ -48,7 +48,7 @@ RewriteEngine On
     # Enable secure cookies if you're using HTTPS
     php_value session.cookie_secure 1
 
-    php_value session.cookie_lifetime 1800  # Set cookie expiration to 30 minutes
+    php_value session.cookie_lifetime 30  # Set cookie expiration to 30 minutes
 </IfModule>
 
 RewriteCond %{REQUEST_FILENAME} !-d
