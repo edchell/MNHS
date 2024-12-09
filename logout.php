@@ -29,14 +29,14 @@ if (isset($_SESSION['ID'])) {
             error_log("Failed to log logout action for user ID $user_id: " . mysqli_error($conn));
         }
 
-        // // Update the user's status to logged out by setting LOGS = 0
-        // $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
-        // mysqli_stmt_bind_param($update_query, 'i', $user_id); // 'i' indicates an integer
+        // Update the user's status to logged out by setting LOGS = 0
+        $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
+        mysqli_stmt_bind_param($update_query, 'i', $user_id); // 'i' indicates an integer
 
-        // if (!mysqli_stmt_execute($update_query)) {
-        //     // Log an error if the update fails
-        //     error_log("Failed to update LOGS for user ID $user_id: " . mysqli_error($conn));
-        // }
+        if (!mysqli_stmt_execute($update_query)) {
+            // Log an error if the update fails
+            error_log("Failed to update LOGS for user ID $user_id: " . mysqli_error($conn));
+        }
 
         // Clear session variables and destroy session
         logout();

@@ -84,22 +84,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $use['USER_ID'];
             mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged in', '$id', NOW())");
 
-            // // Update the user logs and ensure proper handling of SQL query
-            // $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 1 WHERE USER_ID = ?");
-            // mysqli_stmt_bind_param($update_query, 'i', $id);
+            // Update the user logs and ensure proper handling of SQL query
+            $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 1 WHERE USER_ID = ?");
+            mysqli_stmt_bind_param($update_query, 'i', $id);
 
-            // if (mysqli_stmt_execute($update_query)) {
+            if (mysqli_stmt_execute($update_query)) {
                 // Successfully updated the user
                 $_SESSION['login_success'] = true;
                 header("Location: .");
                 exit();
-            // } else {
-            //     // Handle query failure
-            //     $_SESSION['status'] = "Error updating user status";
-            //     $_SESSION['status_code'] = "error";
-            //     header("Location: .");
-            //     exit(0);
-            // }
+            } else {
+                // Handle query failure
+                $_SESSION['status'] = "Error updating user status";
+                $_SESSION['status_code'] = "error";
+                header("Location: .");
+                exit(0);
+            }
         } else {
             // Increment login attempts on failure
             $_SESSION['login_attempts']++;
