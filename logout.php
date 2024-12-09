@@ -31,7 +31,6 @@ if (isset($_SESSION['ID'])) {
             $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
             if ($update_query === false) {
                 error_log("Failed to prepare statement for updating LOGS: " . mysqli_error($conn));
-                logout();
             }
 
             mysqli_stmt_bind_param($update_query, 'i', $user_id); // 'i' indicates an integer
