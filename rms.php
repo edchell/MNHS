@@ -193,7 +193,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <?php 
     include 'db.php';
 
-    $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."' AND LOGS = '1'");
+    $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");
     $row = mysqli_fetch_assoc($sql);
     if($row['USER_TYPE'] == 'ADMINISTRATOR'){
         include 'sidebar.php';
