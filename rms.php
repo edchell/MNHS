@@ -193,13 +193,35 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <?php 
     include 'db.php';
 
-    $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."' AND LOGS = '1'");
-    $row = mysqli_fetch_assoc($sql);
-    if($row['USER_TYPE'] == 'ADMINISTRATOR'){
-        include 'sidebar.php';
-    }else{
-        include 'sidebar_staff.php';
+    if (isset($_SESSION['ID'])) {
+        // Use prepared statements to prevent SQL injection
+        $stmt = $conn->prepare("SELECT * FROM user WHERE USER_ID = ? AND LOGS = 1");
+        $stmt->bind_param("i", $_SESSION['ID']); // 'i' is the type for integer
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        // Check if the query returned any rows
+        if ($row = $result->fetch_assoc()) {
+            // Include the correct sidebar based on user type
+            if ($row['USER_TYPE'] == 'ADMINISTRATOR') {
+                include 'sidebar.php';
+            } else {
+                include 'sidebar_staff.php';
+            }
+        } else {
+            // Handle case where no matching user is found
+            echo "No user found or user is not logged in.";
+        }
+    
+        // Close the statement
+        $stmt->close();
+    } else {
+        // Handle the case where the session ID is not set
+        echo "Please log in first.";
     }
+    
+    // Close the database connection
+    $conn->close();
     ?>
     </div>
     <!-- /.navbar-collapse -->
