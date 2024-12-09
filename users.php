@@ -67,6 +67,7 @@ $(document).ready(function() {
                                 <th style="width:20%">Name</th>
                                 <th style="width:10%">User</th>
                                 <th style="width:10%">Type</th>
+                                <th>Logs</th>
                                 <th style="width:20%">Action</th>
                             </tr>
                         </thead>
@@ -81,6 +82,7 @@ $(document).ready(function() {
                                     <td><?php echo htmlspecialchars($row['FIRSTNAME'] . " " . $row['LASTNAME']); ?></td>
                                     <td><?php echo htmlspecialchars($row['USER']); ?></td>
                                     <td><?php echo htmlspecialchars($row['USER_TYPE']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['LOGS']); ?></td>
                                     <td>
                                         <a data-toggle="modal" class="btn btn-primary" data-target="#edit_user" data-id="<?php echo $row['USER_ID']; ?>" id="getUser" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
                                             <i class="fa fa-pencil-square" aria-hidden="true"></i>
