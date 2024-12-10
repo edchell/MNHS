@@ -39,24 +39,16 @@ if (isset($_SESSION['ID'])) {
         }
 
         // Clear session variables and destroy session
-        // Move logout() here to ensure the database update occurs first
-        logout();
+        session_unset(); // Clear session variables
+        session_destroy(); // Destroy the session
+
+        // Redirect to the homepage or login page
+        header("Location: ."); // Adjust to your desired location
+        exit();
     }
 } else {
     // If the session doesn't exist, redirect to the login page
     header("Location: .");
-    exit();
-}
-
-function logout() {
-    // Clear session variables
-    session_unset();
-
-    // Destroy the session
-    session_destroy();
-
-    // Redirect to the homepage or login page
-    header("Location: ."); // Adjust to your desired location
     exit();
 }
 ?>
