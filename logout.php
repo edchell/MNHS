@@ -1,26 +1,6 @@
 <?php
 session_start();
-
-$timeout_duration = 1800; // 30 minutes
-
-// Check if the session exists and if the user has an ID
-if (isset($_SESSION['ID'])) {
-    // Check if the session has been idle for longer than the allowed time
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
-        // If the session is expired, log the user out and reset session
-        logout();
-    }
-
-    // Update the last activity time on each page load
-    $_SESSION['last_activity'] = time();
-} else {
-    // If the session doesn't exist, redirect to the login page
-    header("Location: .");
-    exit();
-}
-
-    // Insert the logout record into the history_log table (if logging out)
-    if (isset($_GET['logout'])) {
+ if (isset($_GET['logout'])) {
             // Include the database connection
             include 'db.php';
 
@@ -50,4 +30,22 @@ if (isset($_SESSION['ID'])) {
         header("Location: ."); // Adjust to your desired location
         exit();
     }
+
+    $timeout_duration = 1800; // 30 minutes
+
+// Check if the session exists and if the user has an ID
+if (isset($_SESSION['ID'])) {
+    // Check if the session has been idle for longer than the allowed time
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
+        // If the session is expired, log the user out and reset session
+        logout();
+    }
+
+    // Update the last activity time on each page load
+    $_SESSION['last_activity'] = time();
+} else {
+    // If the session doesn't exist, redirect to the login page
+    header("Location: .");
+    exit();
+}
 ?>
