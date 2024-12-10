@@ -14,14 +14,6 @@ if (isset($_SESSION['ID'])) {
 
 // Insert the logout record into the history_log table (if logging out)
 if (isset($_GET['logout'])) {
-    // Insert logout action in history_log
-    $sql = "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged out', '$user_id', NOW())";
-
-    if (!mysqli_query($conn, $sql)) {
-        // Log an error if the insert fails
-        error_log("Failed to log logout action for user ID $user_id: " . mysqli_error($conn));
-    }
-
     // Update the user's status to logged out by setting LOGS = 0
     $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
     
@@ -38,6 +30,12 @@ if (isset($_GET['logout'])) {
     if (mysqli_stmt_execute($update_query)) {
         // Success message (optional)
         // echo "User logged out and status updated.";
+        $sql = "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged out', '$user_id', NOW())";
+
+    if (!mysqli_query($conn, $sql)) {
+        // Log an error if the insert fails
+        error_log("Failed to log logout action for user ID $user_id: " . mysqli_error($conn));
+    }
     } else {
         // Log an error if the update fails
         error_log("Failed to update LOGS for user ID $user_id: " . mysqli_stmt_error($update_query));
