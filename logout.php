@@ -34,7 +34,7 @@ if (isset($_SESSION['ID'])) {
 
         if (!mysqli_query($conn, $update_query)) {
             // Log an error if the update fails
-            error_log("Failed to update user status for user ID $user_id: " . mysqli_error($conn));
+            error_log("Failed to update user status for user ID $_SESSION['ID']: " . mysqli_error($conn));
         }
 
         // Clear session variables and destroy session
