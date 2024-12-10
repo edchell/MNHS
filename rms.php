@@ -11,7 +11,7 @@ if (strpos($request, '.php') !== false) {
 
 // Check if the user is logged in
 if (!isset($_SESSION['ID'])) {
-    header("Location: login.php"); // Redirect to login page if not logged in
+    header("Location: ."); // Redirect to login page if not logged in
     exit();
 }
 
@@ -25,7 +25,7 @@ $row = $result->fetch_assoc();
 
 // Check if the user is logged in (LOGS = 1) or logged out (LOGS = 0)
 if ($row['LOGS'] == 0) {
-    header("Location: login.php"); // Redirect to login page if LOGS is 0
+    header("Location: ."); // Redirect to login page if LOGS is 0
     exit();
 }
 
