@@ -7,6 +7,7 @@ $timeout_duration = 1800; // 30 minutes
 if (isset($_SESSION['ID'])) {
     // Check if the session has been idle for longer than the allowed time
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
+        // If the session is expired, log the user out and reset session
         logout();
     }
 
@@ -15,14 +16,16 @@ if (isset($_SESSION['ID'])) {
 
     // Include the database connection
     include 'db.php';
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
     // Sanitize the user ID for database safety
     $user_id = (int)$_SESSION['ID']; // Cast to integer for safety
 
-    // Insert the logout record into the history_log table (if logging out)
+    // Insert the logout record into the history_log table
     if (isset($_GET['logout'])) {
         error_log("Logout initiated for user ID: $user_id");
-
         $sql = "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged out', '$user_id', NOW())";
 
         if (!mysqli_query($conn, $sql)) {
@@ -30,7 +33,7 @@ if (isset($_SESSION['ID'])) {
         }
 
         // Update the user's status to logged out by setting LOGS = 0
-        $update_query = mysqli_prepare($conn , "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
+        $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 2 WHERE USER_ID = ?");
         mysqli_stmt_bind_param($update_query, 'i', $user_id);
 
         if (!mysqli_stmt_execute($update_query)) {
