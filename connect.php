@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_query($conn, "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged in', '$id', NOW())");
 
             // Update the user logs and ensure proper handling of SQL query
-            $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
+            $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 1 WHERE USER_ID = ?");
             mysqli_stmt_bind_param($update_query, 'i', $id);
 
             if (mysqli_stmt_execute($update_query)) {
