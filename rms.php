@@ -9,6 +9,26 @@ if (strpos($request, '.php') !== false) {
     exit();
 }
 
+// Check if the user is logged in
+if (!isset($_SESSION['ID'])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
+
+include 'db.php';
+
+$stmt = $conn->prepare("SELECT LOGS FROM user WHERE USER_ID = ?");
+$stmt->bind_param("s", $_SESSION['ID']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+// Check if the user is logged in (LOGS = 1) or logged out (LOGS = 0)
+if ($row['LOGS'] == 0) {
+    header("Location: login.php"); // Redirect to login page if LOGS is 0
+    exit();
+}
+
 $timeout_duration = 1800;
 
 if (isset($_SESSION['LAST_ACTIVITY'])) {
