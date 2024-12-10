@@ -30,7 +30,7 @@ if (isset($_SESSION['ID'])) {
         }
 
         // Update the user's status to logged out by setting LOGS = 0
-        $update_query = "UPDATE user SET LOGS = 0 WHERE USER_ID = '$_SESSION['ID']"; // Fixed missing quote
+        $update_query = "UPDATE user SET LOGS = 0 WHERE USER_ID = '$_SESSION['ID']'"; // Fixed missing quote
 
         if (!mysqli_query($conn, $update_query)) {
             // Log an error if the update fails
