@@ -82,7 +82,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
       <?php
         include 'db.php';
 
-        $stmt = $conn->prepare("SELECT * FROM user WHERE USER_ID = ?");
+        $stmt = $conn->prepare("SELECT * FROM user WHERE USER_ID = ? AND LOGS = 1");
         $stmt->bind_param("s", $_SESSION['ID']);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -193,7 +193,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <?php 
     include 'db.php';
 
-    $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."' AND LOGS = '1'");
+    $sql = mysqli_query($conn,"SELECT * FROM user where USER_ID = '".$_SESSION['ID']."' AND LOGS = 1");
     $row = mysqli_fetch_assoc($sql);
     if($row['USER_TYPE'] == 'ADMINISTRATOR'){
         include 'sidebar.php';
@@ -241,7 +241,7 @@ if (!empty($page)) {
                 <div class="container">
                     <?php
                     include 'db.php';
-                    $sql = mysqli_query($conn, "SELECT * FROM user WHERE USER_ID = '" . $_SESSION['ID'] . "'");
+                    $sql = mysqli_query($conn, "SELECT * FROM user WHERE USER_ID = '" . $_SESSION['ID'] . "' AND LOGS = 1");
                     while ($row = mysqli_fetch_assoc($sql)) {
                     ?>
                         <form id="updateAccountForm" class="form-horizontal">
