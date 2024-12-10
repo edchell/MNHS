@@ -521,16 +521,28 @@ function showSlides() {
                     $.ajax({
                         url: 'logout.php', // URL to the PHP script that handles logging out
                         type: 'POST',
+                        data: { logout: true }, // Send a logout parameter
+                        dataType: 'json', // Expect a JSON response
                         success: function(response) {
-                            // If logout is successful, redirect to the login page or show a success alert
-                            Swal.fire({
-                                title: 'Logged Out!',
-                                text: 'You have been logged out successfully.',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then(() => {
-                                window.location.href = '.'; // Redirect to the login page
-                            });
+                            if (response.success) {
+                                // If logout is successful, show success alert
+                                Swal.fire({
+                                    title: 'Logged Out!',
+                                    text: response.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then(() => {
+                                    window.location.href = '.'; // Redirect to the login page
+                                });
+                            } else {
+                                // Show error alert if logout failed
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: response.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'Try Again'
+                                });
+                            }
                         },
                         error: function() {
                             Swal.fire({
