@@ -13,15 +13,20 @@ if (isset($_SESSION['ID'])) {
 
     // Update the last activity time on each page load
     $_SESSION['last_activity'] = time();
-
-    // Include the database connection
-    include 'db.php';
-
-    // Sanitize the user ID for database safety
-    $user_id = mysqli_real_escape_string($conn, $_SESSION['ID']);
+} else {
+    // If the session doesn't exist, redirect to the login page
+    header("Location: .");
+    exit();
+}
 
     // Insert the logout record into the history_log table (if logging out)
     if (isset($_GET['logout'])) {
+            // Include the database connection
+            include 'db.php';
+
+            // Sanitize the user ID for database safety
+            $user_id = mysqli_real_escape_string($conn, $_SESSION['ID']);
+
         $sql = "INSERT INTO history_log (transaction, user_id, date_added) VALUES ('logged out', '$user_id', NOW())";
 
         if (!mysqli_query($conn, $sql)) {
@@ -30,11 +35,11 @@ if (isset($_SESSION['ID'])) {
         }
 
         // Update the user's status to logged out by setting LOGS = 0
-        $update_query = "UPDATE user SET LOGS = 0 WHERE USER_ID = $_SESSION['ID']"; // Fixed missing quote
+        $update_query = "UPDATE user SET LOGS = 0 WHERE USER_ID = $user_id"; // Fixed missing quote
 
         if (!mysqli_query($conn, $update_query)) {
             // Log an error if the update fails
-            error_log("Failed to update user status for user ID $_SESSION['ID']: " . mysqli_error($conn));
+            error_log("Failed to update user status for user ID $user_id: " . mysqli_error($conn));
         }
 
         // Clear session variables and destroy session
@@ -45,9 +50,4 @@ if (isset($_SESSION['ID'])) {
         header("Location: ."); // Adjust to your desired location
         exit();
     }
-} else {
-    // If the session doesn't exist, redirect to the login page
-    header("Location: .");
-    exit();
-}
 ?>
