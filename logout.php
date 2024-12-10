@@ -31,7 +31,7 @@ if (isset($_SESSION['ID'])) {
 
         // Update the user's status to logged out by setting LOGS = 0
         $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
-        mysqli_stmt_bind_param($update_query, 's', $user_id); // Use 's' for string
+        mysqli_stmt_bind_param($update_query, 'i', $user_id); // Use 's' for string
 
         if (!mysqli_stmt_execute($update_query)) {
             // Log an error if the update fails
