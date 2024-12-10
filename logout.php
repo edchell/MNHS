@@ -18,7 +18,7 @@ if (isset($_SESSION['ID'])) {
     include 'db.php';
 
     // Sanitize the user ID for database safety
-    $user_id = mysqli_real_escape_string($conn, $_SESSION['ID']);
+    $user_id = (int)$_SESSION['ID'];
 
     // Insert the logout record into the history_log table (if logging out)
     if (isset($_GET['logout'])) {
