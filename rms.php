@@ -520,7 +520,7 @@ function showSlides() {
                 if (result.isConfirmed) {
                     $.ajax({
                         url: 'logout.php', // URL to the PHP script that handles logging out
-                        type: 'GET',
+                        type: 'POST',
                         success: function(response) {
                             // If logout is successful, redirect to the login page or show a success alert
                             Swal.fire({
