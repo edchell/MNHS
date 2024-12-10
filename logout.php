@@ -18,7 +18,7 @@ if (isset($_SESSION['ID'])) {
     include 'db.php';
 
     // Sanitize the user ID for database safety
-    $user_id = (int)$_SESSION['ID'];
+    $user_id = (int)$_SESSION['ID']; // Cast to integer for safety
 
     // Insert the logout record into the history_log table (if logging out)
     if (isset($_GET['logout'])) {
@@ -31,7 +31,7 @@ if (isset($_SESSION['ID'])) {
 
         // Update the user's status to logged out by setting LOGS = 0
         $update_query = mysqli_prepare($conn, "UPDATE user SET LOGS = 0 WHERE USER_ID = ?");
-        mysqli_stmt_bind_param($update_query, 'i', $user_id); // Use 's' for string
+        mysqli_stmt_bind_param($update_query, 'i', $user_id); // Use 'i' for integer
 
         if (!mysqli_stmt_execute($update_query)) {
             // Log an error if the update fails
