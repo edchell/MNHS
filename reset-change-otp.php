@@ -20,13 +20,12 @@ if (!isset($_SESSION['email_for_reset'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Student Grading System">
     <meta name="author" content="Your Name">
     <link rel="icon" href="images/logo.jpg">
-
     <title>Student Grading System</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -139,7 +138,7 @@ if (!isset($_SESSION['email_for_reset'])) {
         // Form validation for password strength
         document.getElementById('reset-password-form').addEventListener('submit', function (event) {
             const newPassword = document.getElementById('new_password').value;
-            const confirmPassword = document.getElementById('con_password').value;
+            const confirmPassword = document.getElementById('confirm_password').value; // Fixed the ID here
 
             // Password pattern to check
             const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
