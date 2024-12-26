@@ -107,7 +107,7 @@ $(document).ready(function() {
                     <h3 class="panel-title">Add New User</h3>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="">
+                    <form method="post" action="newaccount.php">
                         <div class="form-group">
                             <label for="lname">Last Name</label>
                             <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Lastname" required>
@@ -211,34 +211,6 @@ $(document).on('click', '.deleteUser', function () {
                 });
             });
         }
-    });
-});
-
-$(document).on('submit', 'form[action="newaccount.php"]', function (event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Gather form data
-    const formData = $(this).serialize();
-
-    // Submit the form data via AJAX
-    $.post('newaccount.php', formData, function (response) {
-        // Show success message with SweetAlert
-        Swal.fire({
-            icon: 'success',
-            title: 'User Added',
-            text: response,
-            confirmButtonText: 'OK'
-        }).then(() => {
-            location.reload(); // Reload the page to reflect changes
-        });
-    }).fail(function (xhr, status, error) {
-        // Handle errors with SweetAlert
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: `An error occurred: ${xhr.responseText || error}`,
-            confirmButtonText: 'OK'
-        });
     });
 });
 
