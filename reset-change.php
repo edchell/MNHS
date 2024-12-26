@@ -67,7 +67,7 @@ $user = mysqli_fetch_assoc($token_result);
 <body>
     <div class="login-form">
         <center><h3><b>Reset Password</b></h3></center>
-        <form class="form-horizontal" method="post" action="reset-submit.php">
+        <form class="form-horizontal" method="post" action="reset-submit.php" id="reset-password-form">
             <input type="hidden" name="email" value="<?php echo htmlspecialchars($user['USER']); ?>">
             <div class="form-group">
                 <label for="new_password">New Password:</label>
@@ -97,6 +97,8 @@ $user = mysqli_fetch_assoc($token_result);
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const togglePasswordIcons = document.querySelectorAll('.toggle-password');
@@ -112,6 +114,35 @@ $user = mysqli_fetch_assoc($token_result);
                     this.querySelector('i').classList.toggle('fa-eye-slash');
                 });
             });
+        });
+
+        // Form validation for password strength
+        document.getElementById('reset-password-form').addEventListener('submit', function (event) {
+            const newPassword = document.getElementById('new_password').value;
+            const confirmPassword = document.getElementById('con_password').value;
+
+            // Password pattern to check
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!passwordPattern.test(newPassword)) {
+                // Show SweetAlert if password does not match the pattern
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Password',
+                    text: 'Password must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.',
+                    confirmButtonText: 'OK'
+                });
+                event.preventDefault(); // Prevent form submission
+            } else if (newPassword !== confirmPassword) {
+                // Check if the password and confirm password fields match
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Passwords do not match',
+                    text: 'The passwords you entered do not match. Please try again.',
+                    confirmButtonText: 'OK'
+                });
+                event.preventDefault(); // Prevent form submission
+            }
         });
     </script>
 </body>
