@@ -104,6 +104,19 @@ include('auth.php');
         <h2><?php echo $total_subjects; ?></h2>
         <p style="color: black;">Total Subjects</p>
     </div>
+    <div class="card" style="background-color:#f4f04f;">
+        <?php
+        include 'db.php';
+        
+        // Fetch total user archived
+        $sql = mysqli_query($conn, "SELECT COUNT(*) as total_archived FROM user WHERE STATUS = 'archived'");
+        $row = mysqli_fetch_assoc($sql);
+        $total_archived = $row['total_archived'];
+        mysqli_close($conn);
+        ?>
+        <h2><?php echo $total_archived; ?></h2>
+        <p style="color: black;">Total Archived</p>
+    </div>
 </div>
 
 <!-- Pie Chart Section -->
