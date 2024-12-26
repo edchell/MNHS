@@ -115,7 +115,7 @@ include('auth.php');
         mysqli_close($conn);
         ?>
         <h2><?php echo $total_archived; ?></h2>
-        <p style="color: black;">Total Archived</p>
+        <p style="color: black;">Total User Archived</p>
     </div>
 </div>
 
