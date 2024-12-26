@@ -104,7 +104,7 @@ include('auth.php');
         <h2><?php echo $total_subjects; ?></h2>
         <p style="color: black;">Total Subjects</p>
     </div>
-    <div class="card" style="background-color:#f4f04f;">
+    <div class="card" style="background-color:#ffd54f;">
         <?php
         include 'db.php';
         
