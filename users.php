@@ -174,6 +174,10 @@ $(document).ready(function() {
     </div>
 </div>
 
+<!-- Include SweetAlert2 library -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
 <script>
     $(document).ready(function () {
         // DataTable initialization
@@ -271,6 +275,22 @@ $(document).on('submit', 'form[action="edit_user.php"]', function (event) {
         document.getElementById('showPwd').addEventListener('change', function () {
             const pwdInput = document.getElementById('pwd');
             pwdInput.type = this.checked ? 'text' : 'password';
+        });
+
+        // Form submission validation
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const passwordInput = document.getElementById('pwd');
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            
+            if (!passwordPattern.test(passwordInput.value)) {
+                // Show SweetAlert instead of the default alert
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.',
+                    confirmButtonText: 'Ok'
+                });
+                e.preventDefault(); // Prevent form submission if validation fails
+            }
         });
     });
 </script>
