@@ -98,7 +98,6 @@ $user = mysqli_fetch_assoc($token_result);
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const togglePasswordIcons = document.querySelectorAll('.toggle-password');
