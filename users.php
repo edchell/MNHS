@@ -107,7 +107,7 @@ $(document).ready(function() {
                     <h3 class="panel-title">Add New User</h3>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="newaccount.php">
+                    <form method="post" action="">
                         <div class="form-group">
                             <label for="lname">Last Name</label>
                             <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Lastname" required>
