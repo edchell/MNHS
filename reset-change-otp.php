@@ -85,7 +85,7 @@ if (!isset($_SESSION['email_for_reset'])) {
                 ?>
             </div>
         <?php endif; ?>
-        <form class="form-horizontal" method="POST" action="reset-submit-otp.php">
+        <form class="form-horizontal" method="POST" action="reset-submit-otp.php" id="reset-password-form">
             <div class="form-group">
                 <label for="new_password">New Password:</label>
                 <div class="input-group">
@@ -118,7 +118,7 @@ if (!isset($_SESSION['email_for_reset'])) {
     <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.min.js"></script>
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const togglePasswordIcons = document.querySelectorAll('.toggle-password');
@@ -134,6 +134,35 @@ if (!isset($_SESSION['email_for_reset'])) {
                     this.querySelector('i').classList.toggle('fa-eye-slash');
                 });
             });
+        });
+
+        // Form validation for password strength
+        document.getElementById('reset-password-form').addEventListener('submit', function (event) {
+            const newPassword = document.getElementById('new_password').value;
+            const confirmPassword = document.getElementById('con_password').value;
+
+            // Password pattern to check
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!passwordPattern.test(newPassword)) {
+                // Show SweetAlert if password does not match the pattern
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Password',
+                    text: 'Password must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.',
+                    confirmButtonText: 'OK'
+                });
+                event.preventDefault(); // Prevent form submission
+            } else if (newPassword !== confirmPassword) {
+                // Check if the password and confirm password fields match
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Passwords do not match',
+                    text: 'The passwords you entered do not match. Please try again.',
+                    confirmButtonText: 'OK'
+                });
+                event.preventDefault(); // Prevent form submission
+            }
         });
     </script>
 </body>
